@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#mpic++ -g -Wall -ffast-math -fpic -std=c++11 -lpthread -fopenmp -framework Accelerate -o $1 $1.cpp -I/Volumes/Data1/COSMO++/cosmo_pp_private/include -L/Volumes/Data1/COSMO++/cosmo_pp_private/build/lib -lcosmopp -lcfitsio -lchealpix -lhealpix_cxx -lclass -lmultinest_mpi -I. -D VERBOSE1 -D CREATE_LOG -D CHECKS_ON -DCOSMO_LAPACK
+
+mpic++ -g -Wall -ffast-math -fpic -std=c++11 -lpthread -fopenmp -framework Accelerate -o $1 $1.cpp -I/Volumes/Data1/COSMO++/cosmo_pp_private/include -L/Volumes/Data1/COSMO++/cosmo_pp_private/build/lib -lcosmopp -I/Volumes/Data1/class_public-2.4.2/include -L/Volumes/Data1/class_public-2.4.2 -lclass -DVERBOSE1 -DCREATE_LOG -DCHECKS_ON -DCOSMO_LAPACK
+
+#mpic++ -g -Wall -ffast-math -fpic -std=c++11 -lpthread -fopenmp -framework Accelerate -o $1 $1.cpp -I/Users/ncanac/Programs/cosmo_pp_3.0/include -L/Users/ncanac/Programs/cosmo_pp_3.0/lib -lcosmopp -I/usr/local/include -L/usr/local/ -lcfitsio -I/Users/ncanac/Programs/Healpix_3.20/include -L/Users/ncanac/Programs/Healpix_3.20/lib -lchealpix -I/Users/ncanac/Programs/Healpix_3.20/src/cxx/osx/include -L/Users/ncanac/Programs/Healpix_3.20/src/cxx/osx/lib -lhealpix_cxx -I/Users/ncanac/Programs/class_public-2.4.2/include -L/Users/ncanac/Programs/class_public-2.4.2 -lclass -I/Users/ncanac/Programs/MultiNest_v3.9_CMake/multinest/include -L/Users/ncanac/Programs/MultiNest_v3.9_CMake/multinest/lib -I. -lmultinest_mpi -I/Users/ncanac/Programs/plc-1.0/include /Users/ncanac/Programs/plc-1.0/lib/libclik.dylib -lblas -llapack -D VERBOSE1 -D CREATE_LOG -D CHECKS_ON
