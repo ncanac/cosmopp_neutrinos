@@ -45,7 +45,7 @@ public:
         // Set the cosmological parameters to modelParams_.
         setCosmoParams(*modelParams_);
     
-        return likelihood();
+        return bao_boss_likelihood();
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -57,7 +57,41 @@ public:
     double bao_boss_likelihood()
     {
         // Data at https://github.com/baudren/montepython_public/blob/2.1/data/bao_2014.txt
-        return 0;
+        double chi2 = 0;
+        double da, dr, dv, rsdrag, theo;
+        double z, DVoverRs, sigma;
+
+        // LOWZ data set
+        z = 0.32;
+        DVoverRs = 8.47;
+        sigma = 0.17;
+
+        // Compute angular distance da, radial distance dr, volume distance dv,
+        // sound horizon at baryon drag rsdrag, theoretical prediction and chi2
+        // contribution.
+        da = cosmo_->getAngularDistance(z);
+        dr = z / cosmo_->getHubble(z);
+        dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
+        rsdrag = cosmo_->getrsdrag_fudge();
+        theo = dv/rsdrag;
+        chi2 = chi2 + pow((theo - DVoverRs)/sigma, 2.0);
+
+        // CMASS data set
+        z = 0.57;
+        DVoverRs = 13.77;
+        sigma = 0.13;
+
+        // Compute angular distance da, radial distance dr, volume distance dv,
+        // sound horizon at baryon drag rsdrag, theoretical prediction and chi2
+        // contribution.
+        da = cosmo_->getAngularDistance(z);
+        dr = z / cosmo_->getHubble(z);
+        dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
+        rsdrag = cosmo_->getrsdrag_fudge();
+        theo = dv/rsdrag;
+        chi2 = chi2 + pow((theo - DVoverRs)/sigma, 2.0);
+
+        return chi2;
     }
 
     double bao_boss_aniso_likelihood()
@@ -72,7 +106,7 @@ public:
         return 0;
     }
 
-    double likelihood()
+    double SDSS_likelihood()
     {
         double c = 2.99792458e8;
         // From data set in http://arxiv.org/abs/0907.1660
