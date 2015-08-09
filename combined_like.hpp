@@ -6,37 +6,36 @@
 #include <fstream>
 
 #include <macros.hpp>
-#include <cosmo.hpp>
 #include <likelihood_function.hpp>
+#include <planck_like.hpp>
+#include <bao_like.hpp>
 
 class CombinedLikelihood : public Math::LikelihoodFunction
 {
 public:
-    CombinedLikelihood()
+    CombinedLikelihood(bool usePlanck, bool useBAO)
     {
-        cosmo_ = new Cosmo;
-        lMax = 2;
-        cosmo_->preInitialize(lMax, false, false, false, lMax);
+        if(usePlanck)
+            likeVector_.push_back(PlanckLikelihood(true, true, true, true, true, true, true));
+
+        if(useBAO)
+            likeVector_.push_back(BAOLikelihood());
     }
 
-    ~CombinedLikelihood()
-    {
-        delete cosmo_;
-    }
+    ~CombinedLikelihood() { }
 
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
-        cosmo_->initialize(params, true, false, false, false);
+        for(int i = 0; i < likeVector_.size(); ++i)
+            likeVector_[i].setCosmoParams(params_);
     }
 
     double likelihood()
     {
-        double lnLike = 0;
-        if(wantPlanck)
-            lnLike = lnLike + planck_.likelihood();
-        if(wantBAO)
-            lnLike = lnLike + bao_.likelihood();
+        double lnLike = 0; // This is actually -2*ln(likelihood)
+        for(int i = 0; i < likeVector_.size(); ++i)
+            lnLike = lnLike + likeVector_[i].likelihood;
         return lnLike;
     }
 
@@ -76,12 +75,11 @@ private:
     int lMax;
     Cosmo* cosmo_;
 
-    const CosmologicalParams* params_; // Standard cosmological parameters
+    const CosmologicalParams* params_; // Cosmological parameters for initialization
     
     CosmologicalParams* modelParams_; // Cosmological parameters in test models
     std::vector<double> vModel_; // modelParams_ as a vector
 
-    // Likelihood objects
-    PlanckLikelihood planck_;
-    BAOLikelihood bao_;
+    // Vector of likelihood objects
+    std::vector<Math::LikelihoodFunction> likeVector_;
 };
