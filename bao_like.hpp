@@ -49,7 +49,7 @@ public:
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
-        rsdrag = cosmo_->getrsdrag_fudge();
+        rsdrag = cosmo_->getrsdrag();
         theo = rsdrag/dv;
         chi2 = chi2 + pow((theo - value)/error, 2.0);
 
@@ -61,7 +61,7 @@ public:
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
-        rsdrag = cosmo_->getrsdrag_fudge();
+        rsdrag = cosmo_->getrsdrag();
         theo = dv/rsdrag;
         chi2 = chi2 + pow((theo - value)/error, 2.0);
 
@@ -73,7 +73,7 @@ public:
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
-        rsdrag = cosmo_->getrsdrag_fudge();
+        rsdrag = cosmo_->getrsdrag();
         theo = dv/rsdrag;
         chi2 = chi2 + pow((theo - value)/error, 2.0);
 
@@ -85,7 +85,7 @@ public:
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
-        rsdrag = cosmo_->getrsdrag_fudge();
+        rsdrag = cosmo_->getrsdrag();
         theo = dv/rsdrag;
         chi2 = chi2 + pow((theo - value)/error, 2.0);
 
