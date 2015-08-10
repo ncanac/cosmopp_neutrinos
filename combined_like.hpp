@@ -16,7 +16,7 @@ public:
     CombinedLikelihood(bool usePlanck, bool useBAO) : usePlanck_(usePlanck), useBAO_(useBAO)
     {
         if(usePlanck_)
-            planckLike_ = new PlanckLikelihood(true, true, true, true, true, true, true);    
+            planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 5);
         if(useBAO_)
             BAOLike_ = new BAOLikelihood;
     }
@@ -65,7 +65,10 @@ public:
         const int nModel = vModel_.size();
         
         // Check that number of parameters passed in is same as number of parameters in nModel
-        check(nPar == nModel, "");
+        int extraPar = 0;
+        if(usePlanck_)
+            extraPar = 1;
+        check(nPar == nModel + extraPar, "");
     
         // Set all the parameters in vModel_ to the values in params
         for(int i = 0; i < nModel; ++i)
@@ -75,6 +78,9 @@ public:
         modelParams_->setAllParameters(vModel_);
         // Set the cosmological parameters to modelParams_.
         setCosmoParams(*modelParams_);
+
+        if(usePlanck_)
+            planckLike_->setAPlanck(params[nModel]);
     
         return likelihood();
     }
