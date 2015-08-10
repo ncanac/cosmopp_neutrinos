@@ -13,29 +13,38 @@
 class CombinedLikelihood : public Math::LikelihoodFunction
 {
 public:
-    CombinedLikelihood(bool usePlanck, bool useBAO)
+    CombinedLikelihood(bool usePlanck, bool useBAO) : usePlanck_(usePlanck), useBAO_(useBAO)
     {
-        if(usePlanck)
-            likeVector_.push_back(PlanckLikelihood(true, true, true, true, true, true, true));
-
-        if(useBAO)
-            likeVector_.push_back(BAOLikelihood());
+        if(usePlanck_)
+            planckLike_ = new PlanckLikelihood(true, true, true, true, true, true, true);    
+        if(useBAO_)
+            BAOLike_ = new BAOLikelihood;
     }
 
-    ~CombinedLikelihood() { }
+    ~CombinedLikelihood()
+    {
+        if(usePlanck_)
+            delete planckLike_;
+        if(useBAO_)
+            delete BAOLike_;     
+    }
 
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
-        for(int i = 0; i < likeVector_.size(); ++i)
-            likeVector_[i].setCosmoParams(params_);
+        if(usePlanck_)
+            planckLike_->setCosmoParams(params);
+        if(useBAO_)
+            BAOLike_->setCosmoParams(params);
     }
 
     double likelihood()
     {
-        double lnLike = 0; // This is actually -2*ln(likelihood)
-        for(int i = 0; i < likeVector_.size(); ++i)
-            lnLike = lnLike + likeVector_[i].likelihood;
+        double lnLike = 0; // This is -2*ln(likelihood)
+        if(usePlanck_)
+            lnLike = lnLike + planckLike_->likelihood();
+        if(useBAO_)
+            lnLike = lnLike + BAOLike_->likelihood();
         return lnLike;
     }
 
@@ -63,7 +72,6 @@ public:
             vModel_[i] = params[i];
     
         // Sets the parameters in modelParams_ to the values in vModel_
-        // NEED TO DO: Write setAllParameters for my cosmological parameters class
         modelParams_->setAllParameters(vModel_);
         // Set the cosmological parameters to modelParams_.
         setCosmoParams(*modelParams_);
@@ -72,14 +80,17 @@ public:
     }
 
 private:
-    int lMax;
-    Cosmo* cosmo_;
-
     const CosmologicalParams* params_; // Cosmological parameters for initialization
     
     CosmologicalParams* modelParams_; // Cosmological parameters in test models
     std::vector<double> vModel_; // modelParams_ as a vector
 
-    // Vector of likelihood objects
-    std::vector<Math::LikelihoodFunction> likeVector_;
+    // Specifies which likelihoods to include
+    bool usePlanck_, useBAO_;
+
+    int a = 15;
+
+    // Likelihood objects
+    PlanckLikelihood* planckLike_;
+    BAOLikelihood* BAOLike_;
 };
