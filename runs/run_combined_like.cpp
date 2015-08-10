@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     using namespace Math;
 
-    std::string root = "planck_mh";
+    std::string root = "planck+bao_mh";
 
     CombinedLikelihood combinedLike(true, true);
     const double pivot = 0.05;
@@ -22,12 +22,12 @@ int main(int argc, char *argv[])
     // LambdaCDM
     MetropolisHastings mh(7, combinedLike, root);
 
-    mh.setParam(0, "ombh2", 0.005, 0.1, 0.022, 0.001, 0.0001);
-    mh.setParam(1, "omch2", 0.001, 0.99, 0.12, 0.005, 0.0005);
-    mh.setParam(2, "h", 0.2, 1.0, 0.7, 0.02, 0.002);
-    mh.setParam(3, "tau", 0.01, 0.8, 0.1, 0.01, 0.001);
+    mh.setParam(0, "ombh2", 0.01, 0.04, 0.022, 0.001, 0.0001);
+    mh.setParam(1, "omch2", 0.05, 0.3, 0.12, 0.004, 0.0004);
+    mh.setParam(2, "h", 0.4, 1.0, 0.7, 0.02, 0.002);
+    mh.setParam(3, "tau", 0.05, 0.2, 0.1, 0.01, 0.001);
     mh.setParam(4, "ns", 0.9, 1.1, 1.0, 0.02, 0.002);
-    mh.setParam(5, "As", 2.7, 4.0, 3.0, 0.03, 0.003);
+    mh.setParam(5, "As", 2.7, 4.0, 3.0, 0.02, 0.002);
 
     mh.setParamGauss(6, "A_planck", 1.0, 0.0025, 1.0, 0.01, 0.001);
 
