@@ -13,6 +13,7 @@ set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
 set(PLANCK_DIR /Volumes/Data1/Planck2015/plc-2.0)
 set(PLANCK_DATA_DIR "/Volumes/Data1/Planck2015/plc-2.0")
 set(PLANCK_2015 ON)
+set(PROJECT_DIR /Volumes/Data1/ncanac/cosmopp_neutrinos) 
 
 # compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fpic")
@@ -71,6 +72,9 @@ endif(NOT MPI_CXX_LIBRARIES)
 set(LAPACK_LIB_FLAGS "-framework Accelerate")
 add_definitions(-DCOSMO_LAPACK)
 
+# Add project directory
+include_directories(${PROJECT_DIR})
+
 # Definitions
 add_definitions(-DOUTPUT_LOG)
 add_definitions(-DVERBOSE1)
@@ -84,10 +88,19 @@ add_definitions(-DVERBOSE1)
 #target_link_libraries(run_bao_like ${CLASSLIB})
 
 # planck
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_planck_like run_planck_like.cpp)
+#target_link_libraries(run_planck_like ${COSMOPPLIB})
+#target_link_libraries(run_planck_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_planck_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_planck_like ${CLASSLIB})
+#target_link_libraries(run_planck_like ${PLANCKLIB})
+
+# combined
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(run_planck_like run_planck_like.cpp)
-target_link_libraries(run_planck_like ${COSMOPPLIB})
-target_link_libraries(run_planck_like ${MPI_CXX_LIBRARIES})
-target_link_libraries(run_planck_like ${LAPACK_LIB_FLAGS})
-target_link_libraries(run_planck_like ${CLASSLIB})
-target_link_libraries(run_planck_like ${PLANCKLIB})
+add_executable(run_combined_like run_combined_like.cpp)
+target_link_libraries(run_combined_like ${COSMOPPLIB})
+target_link_libraries(run_combined_like ${MPI_CXX_LIBRARIES})
+target_link_libraries(run_combined_like ${LAPACK_LIB_FLAGS})
+target_link_libraries(run_combined_like ${CLASSLIB})
+target_link_libraries(run_combined_like ${PLANCKLIB})
