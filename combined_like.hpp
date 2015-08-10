@@ -94,8 +94,6 @@ private:
     // Specifies which likelihoods to include
     bool usePlanck_, useBAO_;
 
-    int a = 15;
-
     // Likelihood objects
     PlanckLikelihood* planckLike_;
     BAOLikelihood* BAOLike_;
