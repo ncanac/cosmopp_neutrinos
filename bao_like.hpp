@@ -35,37 +35,59 @@ public:
         // Data at https://github.com/baudren/montepython_public/blob/2.1/data/bao_2014.txt
         double chi2 = 0;
         double da, dr, dv, rsdrag, theo;
-        double z, DVoverRs, sigma;
+        double z, value, error;
 
-        // LOWZ data set
+        // For each data set, compute angular distance da, radial distance dr,
+        // volume distance dv, sound horizon at baryon drag rsdrag, theoretical
+        // prediction, and chi2 contribution.
+
+        // 6DF
+        z = 0.106;
+        value = 0.327; // rs/D_V
+        error = 0.17;
+
+        da = cosmo_->getAngularDistance(z);
+        dr = z / cosmo_->getHubble(z);
+        dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
+        rsdrag = cosmo_->getrsdrag_fudge();
+        theo = rsdrag/dv;
+        chi2 = chi2 + pow((theo - value)/error, 2.0);
+
+        // BOSS LOWZ DR10&11 Anderson et al. 1312.4877
         z = 0.32;
-        DVoverRs = 8.47;
-        sigma = 0.17;
+        value = 8.47; // D_V/rs
+        error = 0.17;
 
-        // Compute angular distance da, radial distance dr, volume distance dv,
-        // sound horizon at baryon drag rsdrag, theoretical prediction and chi2
-        // contribution.
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
         rsdrag = cosmo_->getrsdrag_fudge();
         theo = dv/rsdrag;
-        chi2 = chi2 + pow((theo - DVoverRs)/sigma, 2.0);
+        chi2 = chi2 + pow((theo - value)/error, 2.0);
 
-        // CMASS data set
+        // BOSS CMASS DR10&11 Anderson et al. 1312.4877
         z = 0.57;
-        DVoverRs = 13.77;
-        sigma = 0.13;
+        value = 13.77; // D_V/rs
+        error = 0.13;
 
-        // Compute angular distance da, radial distance dr, volume distance dv,
-        // sound horizon at baryon drag rsdrag, theoretical prediction and chi2
-        // contribution.
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
         dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
         rsdrag = cosmo_->getrsdrag_fudge();
         theo = dv/rsdrag;
-        chi2 = chi2 + pow((theo - DVoverRs)/sigma, 2.0);
+        chi2 = chi2 + pow((theo - value)/error, 2.0);
+
+        // MGS SDSS DR7 MGS, Ross et al. 1409.3242v1
+        z = 0.15;
+        value = 4.47; // D_V/rs
+        error = 0.16;
+
+        da = cosmo_->getAngularDistance(z);
+        dr = z / cosmo_->getHubble(z);
+        dv = pow(da*da*(1 + z)*(1 + z)*dr,1.0/3.0);
+        rsdrag = cosmo_->getrsdrag_fudge();
+        theo = dv/rsdrag;
+        chi2 = chi2 + pow((theo - value)/error, 2.0);
 
         return chi2;
     }
