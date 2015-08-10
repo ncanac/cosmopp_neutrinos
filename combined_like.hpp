@@ -68,7 +68,7 @@ public:
         int extraPar = 0;
         if(usePlanck_)
             extraPar = 1;
-        check(nPar == nModel + extraPar, "");
+        check(nPar == nModel + extraPar, "wrong number of model params");
     
         // Set all the parameters in vModel_ to the values in params
         for(int i = 0; i < nModel; ++i)
