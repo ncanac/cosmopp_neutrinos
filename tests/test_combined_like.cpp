@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
 
     // Create likelihoods
-    PlanckLikelihood planckLike(true, true, true, true, true, true, true); 
+    PlanckLikelihood planckLike(true, true, true, false, true, false, false, false, 5);
     BAOLikelihood BAOLike;
     CombinedLikelihood combLike(true, true);
     
