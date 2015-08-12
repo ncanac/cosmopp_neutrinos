@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     output_screen("Combined likelihood = " << comblnlike << std::endl);
 
     // Check that the individual likelihoods equals the combined likelihood
-    check(planckLike.likelihood() + BAOLike.likelihood() == combLike.likelihood(), "Check failed: likelihoods not equal.");
+    check(plancklnlike + baolnlike == comblnlike, "Check failed: likelihoods not equal.");
 
     return 0;
 }

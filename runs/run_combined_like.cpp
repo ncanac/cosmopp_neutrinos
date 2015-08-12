@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     // LambdaCDM
     MetropolisHastings mh(7, combinedLike, root);
 
-    mh.setParam(0, "ombh2", 0.01, 0.04, 0.022, 0.001, 0.0001);
+    mh.setParam(0, "ombh2", 0.01, 0.04, 0.022, 0.002, 0.0002);
     mh.setParam(1, "omch2", 0.05, 0.3, 0.12, 0.004, 0.0004);
     mh.setParam(2, "h", 0.4, 1.0, 0.7, 0.02, 0.002);
     mh.setParam(3, "tau", 0.05, 0.2, 0.1, 0.01, 0.001);
