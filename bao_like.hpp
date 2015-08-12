@@ -44,7 +44,7 @@ public:
         // 6DF
         z = 0.106;
         value = 0.327; // rs/D_V
-        error = 0.17;
+        error = 0.015;
 
         da = cosmo_->getAngularDistance(z);
         dr = z / cosmo_->getHubble(z);
