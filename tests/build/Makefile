@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_combined_like
+# Target rules for targets named learn_matrix
 
 # Build rule for target.
-test_combined_like: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_combined_like
-.PHONY : test_combined_like
+learn_matrix: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 learn_matrix
+.PHONY : learn_matrix
 
 # fast build rule for target.
-test_combined_like/fast:
-	$(MAKE) -f CMakeFiles/test_combined_like.dir/build.make CMakeFiles/test_combined_like.dir/build
-.PHONY : test_combined_like/fast
+learn_matrix/fast:
+	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/build
+.PHONY : learn_matrix/fast
 
-test_combined_like.o: test_combined_like.cpp.o
-.PHONY : test_combined_like.o
+learn_matrix.o: learn_matrix.cpp.o
+.PHONY : learn_matrix.o
 
 # target to build an object file
-test_combined_like.cpp.o:
-	$(MAKE) -f CMakeFiles/test_combined_like.dir/build.make CMakeFiles/test_combined_like.dir/test_combined_like.cpp.o
-.PHONY : test_combined_like.cpp.o
+learn_matrix.cpp.o:
+	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.o
+.PHONY : learn_matrix.cpp.o
 
-test_combined_like.i: test_combined_like.cpp.i
-.PHONY : test_combined_like.i
+learn_matrix.i: learn_matrix.cpp.i
+.PHONY : learn_matrix.i
 
 # target to preprocess a source file
-test_combined_like.cpp.i:
-	$(MAKE) -f CMakeFiles/test_combined_like.dir/build.make CMakeFiles/test_combined_like.dir/test_combined_like.cpp.i
-.PHONY : test_combined_like.cpp.i
+learn_matrix.cpp.i:
+	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.i
+.PHONY : learn_matrix.cpp.i
 
-test_combined_like.s: test_combined_like.cpp.s
-.PHONY : test_combined_like.s
+learn_matrix.s: learn_matrix.cpp.s
+.PHONY : learn_matrix.s
 
 # target to generate assembly for a file
-test_combined_like.cpp.s:
-	$(MAKE) -f CMakeFiles/test_combined_like.dir/build.make CMakeFiles/test_combined_like.dir/test_combined_like.cpp.s
-.PHONY : test_combined_like.cpp.s
+learn_matrix.cpp.s:
+	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.s
+.PHONY : learn_matrix.cpp.s
 
 # Help Target
 help:
@@ -146,10 +146,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_combined_like"
-	@echo "... test_combined_like.o"
-	@echo "... test_combined_like.i"
-	@echo "... test_combined_like.s"
+	@echo "... learn_matrix"
+	@echo "... learn_matrix.o"
+	@echo "... learn_matrix.i"
+	@echo "... learn_matrix.s"
 .PHONY : help
 
 

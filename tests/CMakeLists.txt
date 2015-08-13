@@ -81,10 +81,18 @@ add_definitions(-DVERBOSE1)
 add_definitions(-DCHECKS_ON)
 
 # compile combined likelihood test 
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(test_combined_like test_combined_like.cpp)
+#target_link_libraries(test_combined_like ${COSMOPPLIB})
+#target_link_libraries(test_combined_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_combined_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(test_combined_like ${CLASSLIB})
+#target_link_libraries(test_combined_like ${PLANCKLIB})
+
+# compile learn_matrix
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(test_combined_like test_combined_like.cpp)
-target_link_libraries(test_combined_like ${COSMOPPLIB})
-target_link_libraries(test_combined_like ${MPI_CXX_LIBRARIES})
-target_link_libraries(test_combined_like ${LAPACK_LIB_FLAGS})
-target_link_libraries(test_combined_like ${CLASSLIB})
-target_link_libraries(test_combined_like ${PLANCKLIB})
+add_executable(learn_matrix learn_matrix.cpp)
+target_link_libraries(learn_matrix ${COSMOPPLIB})
+target_link_libraries(learn_matrix ${MPI_CXX_LIBRARIES})
+target_link_libraries(learn_matrix ${LAPACK_LIB_FLAGS})
+

@@ -1,0 +1,1 @@
+/sw/bin/g++-fsf-5    -std=c++11 -fpic -fopenmp -O2 -ffast-math -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/learn_matrix.dir/learn_matrix.cpp.o  -o learn_matrix  /Volumes/Data1/COSMO++/cosmo_pp_private/build/lib/libcosmopp.a /usr/local/lib/libmpi_cxx.dylib /usr/local/lib/libmpi.dylib -framework Accelerate 
