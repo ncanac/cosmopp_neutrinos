@@ -38,16 +38,16 @@ int main(int argc, char *argv[])
     // Uncomment this block for LCDM+neutrinos
     MetropolisHastings mh(9, combinedLike, root);
 
-    mh.setParam(0, "ombh2", 0.01, 0.04, 0.022, 0.002, 0.0002);
-    mh.setParam(1, "omch2", 0.05, 0.3, 0.12, 0.004, 0.0004);
-    mh.setParam(2, "h", 0.4, 1.0, 0.7, 0.02, 0.002);
-    mh.setParam(3, "tau", 0.05, 0.2, 0.1, 0.01, 0.001);
-    mh.setParam(4, "ns", 0.9, 1.1, 1.0, 0.02, 0.002);
-    mh.setParam(5, "As", 2.7, 4.0, 3.0, 0.02, 0.002);
-    mh.setParam(6, "nEff", 1.5, 5.0, 3.0, 0.1, 0.01);
-    mh.setParam(7, "sumMNu", 0.01, 2.0, 0.5, 0.2, 0.02);
+    mh.setParam(0, "ombh2", 0.02, 0.025, 0.022, 0.002, 0.0002);
+    mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.005, 0.0005);
+    mh.setParam(2, "h", 0.64, 0.74, 0.69, 0.02, 0.002);
+    mh.setParam(3, "tau", 0.02, 0.16, 0.09, 0.02, 0.002);
+    mh.setParam(4, "ns", 0.9, 1.04, 0.97, 0.03, 0.005);
+    mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.02, 0.004);
+    mh.setParam(6, "nEff", 1.0, 4.0, 3.0, 0.2, 0.02);
+    mh.setParam(7, "sumMNu", 0.001, 2.0, 0.5, 0.3, 0.03);
 
-    mh.setParamGauss(8, "A_planck", 1.0, 0.0025, 1.0, 0.01, 0.001);
+    mh.setParamGauss(8, "A_planck", 1.0, 0.0025, 1.0, 0.02, 0.002);
 
     DegenerateNeutrinosParams params(0.022, 0.12, 0.7, 0.1, 1.0, std::exp(3.0) / 1e10, pivot, 3.046, 1, 0.5);
     ///////////////////////////////////////////////
