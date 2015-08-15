@@ -5,7 +5,12 @@
 
 int main()
 {
+    // Initialize a column vector with n x m elements initialized to zero
+    int n = 3;
+    int m = 4;
+    Math::Matrix<double> mat(n, m, 0);
     std::vector<double> vec {2, 3, -1};
+    // Initialize a row vector
     Math::Matrix<double> mat(vec, false);
     Math::Matrix<double> matT = mat.getTranspose();
 
