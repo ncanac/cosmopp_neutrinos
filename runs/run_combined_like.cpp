@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
     MetropolisHastings mh(9, combinedLike, root);
 
     mh.setParam(0, "ombh2", 0.02, 0.025, 0.022, 0.002, 0.0002);
-    mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.005, 0.0005);
-    mh.setParam(2, "h", 0.64, 0.74, 0.69, 0.02, 0.002);
-    mh.setParam(3, "tau", 0.02, 0.16, 0.09, 0.02, 0.002);
-    mh.setParam(4, "ns", 0.9, 1.04, 0.97, 0.03, 0.005);
-    mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.02, 0.004);
+    mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.004, 0.0004);
+    mh.setParam(2, "h", 0.64, 0.74, 0.69, 0.01, 0.001);
+    mh.setParam(3, "tau", 0.02, 0.16, 0.09, 0.01, 0.001);
+    mh.setParam(4, "ns", 0.9, 1.04, 0.97, 0.03, 0.004);
+    mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.03, 0.003);
     mh.setParam(6, "nEff", 1.0, 4.0, 3.0, 0.2, 0.02);
     mh.setParam(7, "sumMNu", 0.001, 2.0, 0.5, 0.3, 0.03);
 
