@@ -85,16 +85,19 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
 
         // Read in window functions
         n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1;
-        std::vector< std::vector<double> > window(n_size, std::vector<double>(k_size));
+        Math::Matrix<double> window(n_size, k_size, 0);
+        //std::vector< std::vector<double> > window(n_size, std::vector<double>(k_size));
         datafile.open("lrgdr7_windows.txt");
         for(int i = 0; i < num_mpk_points_use_; ++i)
             for(int j = 0; j < k_size; ++j)
-                datafile >> window[i][j];
+                datafile >> window(i, j);
         datafile.close()
 
         // Read in measurements
-        std::vector<double> P_obs(n_size);
-        std::vector<double> P_err(n_size);
+        Math::Matrix<double> P_obs(n_size_, 1, 0);
+        Math::Matrix<double> P_err(n_size_, 1, 0);
+        //std::vector<double> P_obs(n_size);
+        //std::vector<double> P_err(n_size);
         datafile.open("lrgdr7_ccmeasurements.txt");
         std::string line;
         // Skip first two lines
@@ -108,27 +111,32 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
                 std::istringstream iss(line);
                 double kdum, klodum, khidum, pdum, errdum, dum;
                 iss >> kdum >> klodum >> khidum >> pdum >> errdum >> dum;
-                P_obs[i-min_mpk_points_use_+1] = pdum;
-                P_err[i-min_mpk_points_use_+1] = errdum;
+                P_obs(i-min_mpk_points_use_+1, 0) = pdum;
+                P_err(i-min_mpk_points_use_+1, 0) = errdum;
             }
         }
         datafile.close();
 
         // Read in inverse covariance matrix
-        std::vector< std::vector<double> > invcov(n_size, std::vector<double>(n_size));
+        Math::Matrix<double> invcov(n_size_, n_size_, 0);
+        //std::vector< std::vector<double> > invcov(n_size, std::vector<double>(n_size));
         datafile.open("lrgdr7_invcov.txt");
         for(int i = 0; i < num_mpk_points_full_; ++i)
             if((i+2 > min_mpk_points_use_) && (i < max_mpk_points_use_))
                 for(int j = 0; j < num_mpk_points_full_; ++j)
                     if((j+2 > min_mpk_points_use_) && (j < max_mpk_points_use_))
-                        datafile >> invcov[i][j];
+                        datafile >> invcov(i, j);
         datafile.close();
 
         // Read in fiducial model again, but different from first time
-        std::vector<double> k_fid(k_fid_size);
-        std::vector<double> Plin_fid(k_fid_size); 
-        std::vector<double> Psmooth_fid(k_fid_size);
-        std::vector<double> rationwhalofit_fid(k_fid_size);
+        Math::Matrix<double> k_fid(k_fid_size, 1, 0);
+        Math::Matrix<double> Plin_fid(k_fid_size, 1, 0);
+        Math::Matrix<double> Psmooth_fid(k_fid_size, 1, 0);
+        Math::Matrix<double> rationwhalofit_fid(k_fid_size, 1, 0);
+        //std::vector<double> k_fid(k_fid_size);
+        //std::vector<double> Plin_fid(k_fid_size); 
+        //std::vector<double> Psmooth_fid(k_fid_size);
+        //std::vector<double> rationwhalofit_fid(k_fid_size);
         datafile.open("lrgdr7fiducialmodel_matterpowerzNEAR.dat"); // Need to do this for NEAR, MID, and FAR? What about z0?
         //Skip first ifid_discard lines
         for(int i = 0; i < ifid_discard; ++i)
@@ -139,10 +147,10 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
             std::istringstream iss(line);
             double kdummy, plindummy, psmoothdummy, ratiodummy;
             iss >> kdummy, plindummy, psmoothdummy, ratiodummy; 
-            k_fid[i] = kdummy;
-            Plin_fid[i] = plindummy;
-            Psmooth_fid[i] = psmoothdummy;
-            rationwhalofit[i] = ratiodummy;
+            k_fid(i, 0) = kdummy;
+            Plin_fid(i, 0) = plindummy;
+            Psmooth_fid(i, 0) = psmoothdummy;
+            rationwhalofit(i, 0) = ratiodummy;
         }
         datafile.close()
     }
@@ -165,23 +173,38 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
         // evaluated at values of k given in k_.
         Math::TableFunction<double, double> P_lin_function;
         cosmo.getMatterPs(redshift_, &P_lin_function);
-        std::vector<double> P_lin(k_size_);
+        Math::Matrix<double> P_lin(k_size_, 1, 0);
+        //std::vector<double> P_lin(k_size_);
         for(i = 0; i < k_size_; ++i)
-            P_lin[i] = P_lin_function.evaluate(k_[i]);
+            P_lin(i, 0) = P_lin_function.evaluate(k_[i]);
 
         // Power spectrum data
-        std::vector<double> P_data(n_size_);
+        Math::Matrix<double> P_data(n_size_, 1, 0);
+        //std::vector<double> P_data(n_size_);
         // Windowed matter power spectrum
-        std::vector<double> W_P_th(n_size_);
+        Math::Matrix<double> W_P_th(n_size_, 1, 0);
+        //std::vector<double> W_P_th(n_size_);
         // Something covariance?
-        std::vector<double> cov_dat(n_size_);
-        std::vector<double> cov_th(n_size_);
+        Math::Matrix<double> cov_dat(n_size_, 1, 0);
+        Math::Matrix<double> cov_th(n_size_, 1, 0);
+        //std::vector<double> cov_dat(n_size_);
+        //std::vector<double> cov_th(n_size_);
         
-        std::vector<double> P_th(k_size_);
+        Math::Matrix<double> P_th(k_size_, 1, 0);
+        //std::vector<double> P_th(k_size_);
         P_th = P_lin; // Can we just replace P_lin with P_th earlier?
 
         // Fill in windowed power spectrum
-        W_P_th = dot(window, P_th); // TODO Figure out how to do this in C++
+        Math::Matrix<double>::multiplyMatrices(window, P_th, &W_P_th);
+
+        for(int i = 0; i < n_size_; ++i)
+        {
+            //TODO convert to C++
+            P_data_large[imin+i] = P_obs[i];
+            W_P_th_large[imin+i] = W_P_th[i];
+            cov_dat_large[imin+i] = dot(invcov[i,:], P_obs[:]);
+            cov_th_large[imin+i] = dot(invcov[i,:], W_P_th[:]);
+        }
 
     }
 
