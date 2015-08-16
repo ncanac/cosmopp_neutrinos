@@ -15,8 +15,11 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
     LRGDR7Likelihood() 
     {
         cosmo_ = new Cosmo;
-        lMax = 2;
-        cosmo_->preInitialize(lMax, false, false, false, lMax);
+        lMax_ = 2;
+        cosmo_->preInitialize(lMax_, false, false, false, lMax_);
+
+        // TODO: set redshift
+        redshift_ = 0;
 
         // Number of points and kbands in the input files
         num_mpk_points_full_ = 45;
@@ -40,7 +43,7 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
                 datafile >> kh[i-min_mpk_kbands_use_+1];
         datafile.close();
 
-        double khmax = kh[k_size-1];
+        double khmax = kh[k_size_-1];
 
         // Read in data file containing fiducial power spectrum
         // to determine k_fid_size and ifid_discard. These are
@@ -77,27 +80,27 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
         k_fid_size = line_number - ifid_discard + 1;
         khmax = kdum;
 
-        khmax = khmax * 2; // If using halofit. Why?
+        //khmax = khmax * 2; // If using halofit. Why?
 
-        int num_regions = 1;
-        int num_regions_used = 1;
-        bool used_region = true;
+        //int num_regions = 1;
+        //int num_regions_used = 1;
+        //bool used_region = true;
 
         // Read in window functions
         n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1;
-        Math::Matrix<double> window(n_size, k_size, 0);
-        //std::vector< std::vector<double> > window(n_size, std::vector<double>(k_size));
+        window_.resize(n_size_, k_size_, 0);
+        //std::vector< std::vector<double> > window(n_size_, std::vector<double>(k_size_));
         datafile.open("lrgdr7_windows.txt");
         for(int i = 0; i < num_mpk_points_use_; ++i)
-            for(int j = 0; j < k_size; ++j)
-                datafile >> window(i, j);
+            for(int j = 0; j < k_size_; ++j)
+                datafile >> window_(i, j);
         datafile.close()
 
         // Read in measurements
-        Math::Matrix<double> P_obs(n_size_, 1, 0);
-        Math::Matrix<double> P_err(n_size_, 1, 0);
-        //std::vector<double> P_obs(n_size);
-        //std::vector<double> P_err(n_size);
+        P_obs_.resize(n_size_, 1, 0);
+        P_err_.resize(n_size_, 1, 0);
+        //std::vector<double> P_obs(n_size_);
+        //std::vector<double> P_err(n_size_);
         datafile.open("lrgdr7_ccmeasurements.txt");
         std::string line;
         // Skip first two lines
@@ -118,21 +121,21 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
         datafile.close();
 
         // Read in inverse covariance matrix
-        Math::Matrix<double> invcov(n_size_, n_size_, 0);
-        //std::vector< std::vector<double> > invcov(n_size, std::vector<double>(n_size));
+        invcov_.resize(n_size_, n_size_, 0);
+        //std::vector< std::vector<double> > invcov(n_size_, std::vector<double>(n_size_));
         datafile.open("lrgdr7_invcov.txt");
         for(int i = 0; i < num_mpk_points_full_; ++i)
             if((i+2 > min_mpk_points_use_) && (i < max_mpk_points_use_))
                 for(int j = 0; j < num_mpk_points_full_; ++j)
                     if((j+2 > min_mpk_points_use_) && (j < max_mpk_points_use_))
-                        datafile >> invcov(i, j);
+                        datafile >> invcov_(i, j);
         datafile.close();
 
         // Read in fiducial model again, but different from first time
-        Math::Matrix<double> k_fid(k_fid_size, 1, 0);
-        Math::Matrix<double> Plin_fid(k_fid_size, 1, 0);
-        Math::Matrix<double> Psmooth_fid(k_fid_size, 1, 0);
-        Math::Matrix<double> rationwhalofit_fid(k_fid_size, 1, 0);
+        k_fid_.resize(k_fid_size, 1, 0);
+        Plin_fid_.resize(k_fid_size, 1, 0);
+        Psmooth_fid_.resize(k_fid_size, 1, 0);
+        rationwhalofit_.resize(k_fid_size, 1, 0);
         //std::vector<double> k_fid(k_fid_size);
         //std::vector<double> Plin_fid(k_fid_size); 
         //std::vector<double> Psmooth_fid(k_fid_size);
@@ -147,10 +150,10 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
             std::istringstream iss(line);
             double kdummy, plindummy, psmoothdummy, ratiodummy;
             iss >> kdummy, plindummy, psmoothdummy, ratiodummy; 
-            k_fid(i, 0) = kdummy;
-            Plin_fid(i, 0) = plindummy;
-            Psmooth_fid(i, 0) = psmoothdummy;
-            rationwhalofit(i, 0) = ratiodummy;
+            k_fid_(i, 0) = kdummy;
+            Plin_fid_(i, 0) = plindummy;
+            Psmooth_fid_(i, 0) = psmoothdummy;
+            rationwhalofit_(i, 0) = ratiodummy;
         }
         datafile.close()
     }
@@ -167,6 +170,16 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
 
     double likelihood()
     {
+        /*
+        Data structures defined in this function:
+        P_lin = a k_size_ x 1 column vector containing the linear power spectrum computed from Class
+        P_data = a n_size_ x 1 column vector containing
+        W_P_th = a n_size_ x 1 column vector containing
+        cov_dat = a n_size_ x 1 column vector containing
+        cov_th = a n_size_ x 1 column vector containing
+        P_th = a k_size_ x 1 column vector containing
+        window_ = an 
+        */
         double h = modelParams_.getH();
 
         // Create a vector containing linear matter power spectrum
@@ -177,6 +190,8 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
         //std::vector<double> P_lin(k_size_);
         for(i = 0; i < k_size_; ++i)
             P_lin(i, 0) = P_lin_function.evaluate(k_[i]);
+
+        // TODO: I think rescaling goes here. Use fiducial model.
 
         // Power spectrum data
         Math::Matrix<double> P_data(n_size_, 1, 0);
@@ -194,18 +209,34 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
         //std::vector<double> P_th(k_size_);
         P_th = P_lin; // Can we just replace P_lin with P_th earlier?
 
-        // Fill in windowed power spectrum
-        Math::Matrix<double>::multiplyMatrices(window, P_th, &W_P_th);
+        // Fill in theoretical windowed power spectrum
+        Math::Matrix<double>::multiplyMatrices(window_, P_th, &W_P_th);
+        
+        // Set covariance matrices
+        Math::Matrix::multiplyMatrices(invcov_, P_obs_, &cov_dat);
+        Math::Matrix::multiplyMatrices(invcov_, W_P_th, &cov_th);
+        
+        // Calculate normV
+        double normV = 0;
+        Math::Matrix<double> tempMat;
+        Math::Matrix<double>::multiplyMatrices(W_P_th.getTranspose(), cov_th, &tempMat);
+        normV = normV + tempMat(0, 0);
 
-        for(int i = 0; i < n_size_; ++i)
-        {
-            //TODO convert to C++
-            P_data_large[imin+i] = P_obs[i];
-            W_P_th_large[imin+i] = W_P_th[i];
-            cov_dat_large[imin+i] = dot(invcov[i,:], P_obs[:]);
-            cov_th_large[imin+i] = dot(invcov[i,:], W_P_th[:]);
-        }
+        // Calculate bias factor
+        //double b_out = 0;
+        //Math::Matrix<double>::multiplyMatrices(W_P_th.getTranspose(), cov_dat, &tempMat);
+        //b_out = b_out + tempMat(0, 0);
+        //Math::Matrix<double>::multiplyMatrices(W_P_th.getTranspose(), cov_th, &tempMat);
+        //b_out = b_out / tempMat(0, 0);
 
+        // Calculate chi-squared
+        double chisq = 0;
+        Math::Matrix<double>::multiplyMatrices(P_obs_.getTranspose(), cov_dat, &tempMat);
+        chisq = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(W_P_th, cov_dat, &tempMat); 
+        chisq = chisq - pow(tempMat(0, 0), 2.0) / normV;
+
+        return chisq;
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -222,7 +253,7 @@ class LRGDR7Likelihood : public Math::LikelihoodFunction
     }
 
 private;
-    int lMax;
+    int lMax_;
     Cosmo* cosmo_;
 
     const CosmologicalParams* params_;
@@ -245,12 +276,20 @@ private;
     // Data vectors
     std::vector<double> kh_;
     std::vector<double> k_;
-    std::vector< std::vector<double> > window_;
-    std::vector<double> P_obs_;
-    std::vector<double> P_err_;
-    std::vector< std::vector<double> > invcov_;
-    std::vector<double> k_fid_;
-    std::vector<double> Plin_fid_;
-    std::vector<double> Psmooth_fid_;
-    std::vector<double> rationwhalofit_;
+    Math::Matrix<double> window_;
+    //std::vector< std::vector<double> > window_;
+    Math::Matrix<double> P_obs_;
+    //std::vector<double> P_obs_;
+    Math::Matrix<double> P_err_;
+    //std::vector<double> P_err_;
+    Math::Matrix<double> invcov_;
+    //std::vector< std::vector<double> > invcov_;
+    Math::Matrix<double> k_fid_;
+    //std::vector<double> k_fid_;
+    Math::Matrix<double> Plin_fid_;
+    //std::vector<double> Plin_fid_;
+    Math::Matrix<double> Psmooth_fid_;
+    //std::vector<double> Psmooth_fid_;
+    Math::Matrix<double> rationwhalofit_;
+    //std::vector<double> rationwhalofit_;
 };
