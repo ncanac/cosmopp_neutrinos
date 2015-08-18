@@ -90,9 +90,17 @@ add_definitions(-DCHECKS_ON)
 #target_link_libraries(test_combined_like ${PLANCKLIB})
 
 # compile learn_matrix
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(learn_matrix learn_matrix.cpp)
+#target_link_libraries(learn_matrix ${COSMOPPLIB})
+#target_link_libraries(learn_matrix ${MPI_CXX_LIBRARIES})
+#target_link_libraries(learn_matrix ${LAPACK_LIB_FLAGS})
+
+# compile LRG DR7 likelihood test
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(learn_matrix learn_matrix.cpp)
-target_link_libraries(learn_matrix ${COSMOPPLIB})
-target_link_libraries(learn_matrix ${MPI_CXX_LIBRARIES})
-target_link_libraries(learn_matrix ${LAPACK_LIB_FLAGS})
+add_executable(test_lrgdr7_like test_lrgdr7_like.cpp)
+target_link_libraries(test_lrgdr7_like ${COSMOPPLIB})
+target_link_libraries(test_lrgdr7_like ${MPI_CXX_LIBRARIES})
+target_link_libraries(test_lrgdr7_like ${LAPACK_LIB_FLAGS})
+target_link_libraries(test_lrgdr7_like ${CLASSLIB})
 

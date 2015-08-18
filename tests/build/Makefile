@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named learn_matrix
+# Target rules for targets named test_lrgdr7_like
 
 # Build rule for target.
-learn_matrix: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 learn_matrix
-.PHONY : learn_matrix
+test_lrgdr7_like: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_lrgdr7_like
+.PHONY : test_lrgdr7_like
 
 # fast build rule for target.
-learn_matrix/fast:
-	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/build
-.PHONY : learn_matrix/fast
+test_lrgdr7_like/fast:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/build
+.PHONY : test_lrgdr7_like/fast
 
-learn_matrix.o: learn_matrix.cpp.o
-.PHONY : learn_matrix.o
+test_lrgdr7_like.o: test_lrgdr7_like.cpp.o
+.PHONY : test_lrgdr7_like.o
 
 # target to build an object file
-learn_matrix.cpp.o:
-	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.o
-.PHONY : learn_matrix.cpp.o
+test_lrgdr7_like.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o
+.PHONY : test_lrgdr7_like.cpp.o
 
-learn_matrix.i: learn_matrix.cpp.i
-.PHONY : learn_matrix.i
+test_lrgdr7_like.i: test_lrgdr7_like.cpp.i
+.PHONY : test_lrgdr7_like.i
 
 # target to preprocess a source file
-learn_matrix.cpp.i:
-	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.i
-.PHONY : learn_matrix.cpp.i
+test_lrgdr7_like.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.i
+.PHONY : test_lrgdr7_like.cpp.i
 
-learn_matrix.s: learn_matrix.cpp.s
-.PHONY : learn_matrix.s
+test_lrgdr7_like.s: test_lrgdr7_like.cpp.s
+.PHONY : test_lrgdr7_like.s
 
 # target to generate assembly for a file
-learn_matrix.cpp.s:
-	$(MAKE) -f CMakeFiles/learn_matrix.dir/build.make CMakeFiles/learn_matrix.dir/learn_matrix.cpp.s
-.PHONY : learn_matrix.cpp.s
+test_lrgdr7_like.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.s
+.PHONY : test_lrgdr7_like.cpp.s
 
 # Help Target
 help:
@@ -146,10 +146,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... learn_matrix"
-	@echo "... learn_matrix.o"
-	@echo "... learn_matrix.i"
-	@echo "... learn_matrix.s"
+	@echo "... test_lrgdr7_like"
+	@echo "... test_lrgdr7_like.o"
+	@echo "... test_lrgdr7_like.i"
+	@echo "... test_lrgdr7_like.s"
 .PHONY : help
 
 
