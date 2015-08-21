@@ -13,7 +13,7 @@ public:
 
     ~DegenerateNeutrinosParams() {}
 
-    virtual double getNEff() const { return nEff_; }
+    virtual double getNEff() const { return nEff_ - nMassive_; }
     virtual int getNumNCDM() const { return nMassive_; }
     double getSumMNu() const { return sumMNu_; }
     virtual double getNCDMParticleMass(int i) const
