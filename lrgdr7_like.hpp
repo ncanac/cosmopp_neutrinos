@@ -12,6 +12,8 @@
 #include <matrix_impl.hpp>
 #include <cubic_spline.hpp>
 
+#include <class.h>
+
 #include <gsl/gsl_bspline.h>
 #include <gsl/gsl_multifit.h>
 
@@ -231,11 +233,6 @@ public:
             P_lin(i, 0) = P_lin_function.evaluate(k_[i]);
 
         // Initialize P_nw (linear power spectrum with "no wiggles") based on spline method in BR09
-        // Procedure:
-        // -Fit a cubic b-spline to Plin*k^1.5
-        // -Eight equally spaced nodes starting at k = 0.0175 Mpc^-1 to 0.262 Mpc^-1. In log space?
-        // -One additional node at k = 0.0007 Mpc^-1
-        // TODO: Don't use Math::CubicSpline... not the same as b-spline. Use b-spline code from original LRG code.
         // Temporary arrays to pass to function dopksmoothbspline_
         double kvals[k_size_];
         double lnP_lin[k_size_];
@@ -257,6 +254,19 @@ public:
         for(int i = 0; i < k_size_; ++i)
             outTest << k_[i] << " " << P_lin(i,0) << " " << P_nw(i,0) << std::endl;
         outTest.close();
+
+        // Compute P_damp according to eq. 10 in BR09
+        // TODO: What is value of sigma?
+        const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
+        Math::Matrix<double> P_damp(k_size_, 1, 0);
+        for(int i = 0; i < k_size_; ++i)
+            P_damp[i] = P_lin * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
+                        + P_nw * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
+
+        // Compute P_halofit,nw
+        P_halofitnw
+        nonlinear_halofit(P_nw);
+        Math::Matrix<double> Phalofitnw(k_size_, 1, 0);
 
         // TODO: I think some rescaling goes here. Use fiducial model.
 
@@ -338,6 +348,10 @@ public:
 
 private:
     // Copied from BR09 LRG likelihood code, which was copied from http://www.gnu.org/software/gsl/manual/html_node/Basis-Splines.html
+    // Procedure:
+    // -Fit a cubic b-spline to Plin*k^1.5
+    // -Eight equally spaced nodes starting at k = 0.0175 Mpc^-1 to 0.262 Mpc^-1.
+    // -One additional node at k = 0.0007 Mpc^-1
     // Inputs:
     // kvals is an array containing the values of k to evaluate the power spectra at
     // lnpklinear is the natural logarithm of the linear power spectrum
