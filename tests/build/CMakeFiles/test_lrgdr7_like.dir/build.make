@@ -85,6 +85,8 @@ test_lrgdr7_like: /Volumes/Data1/COSMO++/cosmo_pp_private/build/lib/libcosmopp.a
 test_lrgdr7_like: /usr/local/lib/libmpi_cxx.dylib
 test_lrgdr7_like: /usr/local/lib/libmpi.dylib
 test_lrgdr7_like: /usr/local/lib/libclass.a
+test_lrgdr7_like: /sw/lib/libgsl.dylib
+test_lrgdr7_like: /sw/lib/libgslcblas.dylib
 test_lrgdr7_like: CMakeFiles/test_lrgdr7_like.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable test_lrgdr7_like"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_lrgdr7_like.dir/link.txt --verbose=$(VERBOSE)

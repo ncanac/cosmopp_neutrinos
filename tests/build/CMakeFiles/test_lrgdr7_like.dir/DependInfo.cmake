@@ -33,6 +33,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/Volumes/Data1/Planck2015/plc-2.0/include"
   "/Volumes/Data1/class_public-2.4.2/include"
   "/Volumes/Data1/COSMO++/cosmo_pp_private/include"
+  "../GSL_INCLUDE_DIRS"
   "/usr/local/include"
   "/Volumes/Data1/ncanac/cosmopp_neutrinos"
   )

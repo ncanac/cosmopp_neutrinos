@@ -58,6 +58,10 @@ find_package(OpenMP REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 add_definitions(-DCOSMO_OMP)
 
+# GSL
+find_package(GSL REQUIRED)
+include_directories(GSL_INCLUDE_DIRS)
+
 # check for MPI
 find_package(MPI REQUIRED)
 add_definitions(-DCOSMO_MPI)
@@ -103,4 +107,11 @@ target_link_libraries(test_lrgdr7_like ${COSMOPPLIB})
 target_link_libraries(test_lrgdr7_like ${MPI_CXX_LIBRARIES})
 target_link_libraries(test_lrgdr7_like ${LAPACK_LIB_FLAGS})
 target_link_libraries(test_lrgdr7_like ${CLASSLIB})
+target_link_libraries(test_lrgdr7_like ${GSL_LIBRARIES})
 
+# compile nonlinear test
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(test_nonlinear test_nonlinear.cpp)
+#target_link_libraries(test_nonlinear ${COSMOPPLIB})
+#target_link_libraries(test_nonlinear ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_nonlinear ${CLASSLIB})
