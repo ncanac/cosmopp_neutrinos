@@ -1,11 +1,8 @@
-#include <vector>
 #include <string>
-#include <sstream>
 
+#include <macros.hpp>
 #include <mcmc.hpp>
 #include <combined_like.hpp>
-#include <markov_chain.hpp>
-#include <numerics.hpp>
 #include <timer.hpp>
 #include <neutrino_cosmology_params.hpp>
 
@@ -17,6 +14,7 @@ int main(int argc, char *argv[])
 
     CombinedLikelihood combinedLike(true, true);
     const double pivot = 0.05;
+    const double nMassive = 1;
 
     ///////////////////////////////////////////////
     // LambdaCDM
@@ -38,18 +36,29 @@ int main(int argc, char *argv[])
     // Uncomment this block for LCDM+neutrinos
     MetropolisHastings mh(9, combinedLike, root);
 
-    mh.setParam(0, "ombh2", 0.02, 0.025, 0.022, 0.002, 0.0002);
-    mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.004, 0.0004);
-    mh.setParam(2, "h", 0.64, 0.74, 0.69, 0.01, 0.001);
-    mh.setParam(3, "tau", 0.02, 0.16, 0.09, 0.01, 0.001);
-    mh.setParam(4, "ns", 0.9, 1.04, 0.97, 0.03, 0.004);
-    mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.03, 0.003);
-    mh.setParam(6, "nEff", 1.0, 4.0, 3.0, 0.2, 0.02);
-    mh.setParam(7, "sumMNu", 0.001, 2.0, 0.5, 0.3, 0.03);
+    //mh.setParam(0, "ombh2", 0.02, 0.025, 0.022, 0.001, 0.0002);
+    //mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.004, 0.0004);
+    //mh.setParam(2, "h", 0.64, 0.74, 0.673, 0.02, 0.003);
+    //mh.setParam(3, "tau", 0.02, 0.16, 0.07, 0.02, 0.003);
+    //mh.setParam(4, "ns", 0.9, 1.04, 0.96, 0.02, 0.004);
+    //mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.03, 0.003);
+    //mh.setParam(6, "nEff", 1.0, 4.0, 2.04, 0.2, 0.02);
+    //mh.setParam(7, "sumMNu", 0.001, 2.0, 0.1, 0.2, 0.03);
+
+    //mh.setParamGauss(8, "A_planck", 1.0, 0.0025, 1.0, 0.02, 0.002);
+
+    mh.setParam(0, "ombh2", 0.02, 0.025, 0.022, 0.001, 0.0002);
+    mh.setParam(1, "omch2", 0.1, 0.14, 0.12, 0.003, 0.0006);
+    mh.setParam(2, "h", 0.60, 0.75, 0.67, 0.02, 0.004);
+    mh.setParam(3, "tau", 0.02, 0.12, 0.07, 0.02, 0.005);
+    mh.setParam(4, "ns", 0.9, 1.04, 0.97, 0.03, 0.006);
+    mh.setParam(5, "As", 2.9, 3.3, 3.1, 0.02, 0.004);
+    mh.setParam(6, "nEff", 2.0, 4.0, 3.04, 0.1, 0.02);
+    mh.setParam(7, "sumMNu", 0.001, 2.0, 0.1, 0.1, 0.03);
 
     mh.setParamGauss(8, "A_planck", 1.0, 0.0025, 1.0, 0.02, 0.002);
 
-    DegenerateNeutrinosParams params(0.022, 0.12, 0.7, 0.1, 1.0, std::exp(3.0) / 1e10, pivot, 3.046, 1, 0.5);
+    DegenerateNeutrinosParams params(0.022, 0.12, 0.67, 0.07, 0.97, std::exp(3.1) / 1e10, pivot, 3.04, nMassive, 0.1);
     ///////////////////////////////////////////////
 
     combinedLike.setModelCosmoParams(&params);
