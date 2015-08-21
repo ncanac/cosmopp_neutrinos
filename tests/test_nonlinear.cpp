@@ -1,3 +1,6 @@
+#include <iostream>
+#include <fstream>
+
 #include <macros.hpp>
 #include <cosmological_params.hpp>
 #include <cosmo.hpp>
@@ -41,7 +44,21 @@ int main(int argc, char *argv[])
     cosmo.initialize(params, true, false, false, true);
     output_screen("OK" << std::endl);
 
-    cosmo.getR_NL();
+    Math::TableFunction<double, double> P_lin;
+    Math::TableFunction<double, double> P_nw;
+
+    cosmo.getMatterPs(0.0, &P_lin);
+    cosmo.getLRGPs(0.0, &P_nw);
+
+    std::ofstream outPlin("P_lin.txt");
+    for(auto const point : P_lin)
+        outPlin << point.first << " " << point.second << std::endl;
+    outPlin.close();
+
+    std::ofstream outPnw("P_nw.txt");
+    for(auto const point : P_nw)
+        outPnw << point.first << " " << point.second << std::endl;
+    outPnw.close();
 
     return 0;
 }
