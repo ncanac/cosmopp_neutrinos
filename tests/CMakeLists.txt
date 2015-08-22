@@ -9,7 +9,10 @@ endif (NOT CMAKE_BUILD_TYPE)
 
 # Set directories
 set(CLASS_DIR /Volumes/Data1/class_public-2.4.2)
-set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
+# Shared install
+#set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
+# Locall install
+set(COSMOPP_DIR /Users/ncanac/Codes/cosmo_pp_private)
 set(PLANCK_DIR /Volumes/Data1/Planck2015/plc-2.0)
 set(PLANCK_DATA_DIR "/Volumes/Data1/Planck2015/plc-2.0")
 set(PLANCK_2015 ON)

@@ -45,20 +45,20 @@ int main(int argc, char *argv[])
     output_screen("OK" << std::endl);
 
     Math::TableFunction<double, double> P_lin;
-    Math::TableFunction<double, double> P_nw;
+    Math::TableFunction<double, double> P_lrg;
 
     cosmo.getMatterPs(0.0, &P_lin);
-    cosmo.getLRGPs(0.0, &P_nw);
+    cosmo.getLRGPs(0.0, &P_lrg);
 
     std::ofstream outPlin("P_lin.txt");
     for(auto const point : P_lin)
         outPlin << point.first << " " << point.second << std::endl;
     outPlin.close();
 
-    std::ofstream outPnw("P_nw.txt");
-    for(auto const point : P_nw)
-        outPnw << point.first << " " << point.second << std::endl;
-    outPnw.close();
+    std::ofstream outPlrg("P_lrg.txt");
+    for(auto const point : P_lrg)
+        outPlrg << point.first << " " << point.second << std::endl;
+    outPlrg.close();
 
     return 0;
 }

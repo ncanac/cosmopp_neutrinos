@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/cmb.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/cmb.hpp
 vector
 -
 table_function.hpp
@@ -14,7 +14,7 @@ table_function.hpp
 cosmological_params.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/cosmological_params.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/cosmological_params.hpp
 cmath
 -
 string
@@ -28,7 +28,7 @@ unit_conversions.hpp
 power_spectrum.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/cubic_spline.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/cubic_spline.hpp
 vector
 -
 set
@@ -38,17 +38,17 @@ function.hpp
 macros.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/exception_handler.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/exception_handler.hpp
 exception
 -
 string
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/function.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/function.hpp
 vector
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/macros.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/macros.hpp
 fstream
 -
 string
@@ -68,13 +68,13 @@ iostream
 omp.h
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/math_constants.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/math_constants.hpp
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/phys_constants.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/phys_constants.hpp
 math_constants.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/power_spectrum.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/power_spectrum.hpp
 vector
 -
 cmath
@@ -86,7 +86,7 @@ table_function.hpp
 cubic_spline.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/table_function.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/table_function.hpp
 istream
 -
 map
@@ -96,7 +96,7 @@ function.hpp
 macros.hpp
 -
 
-/Volumes/Data1/COSMO++/cosmo_pp_private/include/unit_conversions.hpp
+/Users/ncanac/Codes/cosmo_pp_private/include/unit_conversions.hpp
 phys_constants.hpp
 -
 

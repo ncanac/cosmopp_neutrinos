@@ -81,7 +81,7 @@ test_nonlinear_EXTERNAL_OBJECTS =
 
 test_nonlinear: CMakeFiles/test_nonlinear.dir/test_nonlinear.cpp.o
 test_nonlinear: CMakeFiles/test_nonlinear.dir/build.make
-test_nonlinear: /Volumes/Data1/COSMO++/cosmo_pp_private/build/lib/libcosmopp.a
+test_nonlinear: /Users/ncanac/Codes/cosmo_pp_private/build/lib/libcosmopp.a
 test_nonlinear: /usr/local/lib/libmpi_cxx.dylib
 test_nonlinear: /usr/local/lib/libmpi.dylib
 test_nonlinear: /usr/local/lib/libclass.a
