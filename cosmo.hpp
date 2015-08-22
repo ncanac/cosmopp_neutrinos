@@ -72,7 +72,6 @@ public:
         int n = P_lin.size();
         double kvals[n];
         double lnP_lin[n];
-        double lnP_nw[n];
         //for(std::map<double, double>::iterator ps_it = P_lin.begin(); ps_it != P_lin.end(); ++ps_it)
         int i = 0;
         for(auto const &point : P_lin)
@@ -82,12 +81,27 @@ public:
             ++i;
         }
         
+        // Initialize P_nw (linear power spectrum with "no wiggles") based on spline method used in BR09        
+        double lnP_nw[n];
+        double P_nw[n];
         dopksmoothbspline_(kvals, lnP_lin, lnP_nw, n);
+        for(int i = 0; i < n; ++i)
+            P_nw[i] = std::exp(lnP_nw[i]);
+
+        // Apply halofit model for nonlinear structure growth to P_nw to generate P_halofitnw
+        // I think tau is the conformal time at whatever z you're evaluating the power spectrum at
+        // k_nl is the value of k where power spectrum becomes nonlinear at tau(z)
+        double P_halofitnw[n];
+        double tau;
+        double k_nl;
+        nonlinear_k_nl_at_z(br_, nl_, z, &k_nl);
+        background_tau_of_z(br_, z, &tau);
+        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nw, P_halofitnw, &k_nl);
 
         ps->clear();
 
         for(i = 0; i < n; ++i)
-            (*ps)[kvals[i]] = std::exp(lnP_nw[i]);
+            (*ps)[kvals[i]] = P_halofitnw[i];
     }
 
     double getR_NL()
