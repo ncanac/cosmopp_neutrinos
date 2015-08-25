@@ -1,7 +1,9 @@
 #include <fstream>
+#include <sstream>
 #include <cmath>
 
 #include <cmb.hpp>
+#include <cubic_spline.hpp>
 #include <class.h>
 
 #include <gsl/gsl_bspline.h>
@@ -65,18 +67,20 @@ public:
         check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
 
         // Get linear matter power spectrum
-        Math::TableFunction<double, double> P_lin;
-        getMatterPs(z, &P_lin);
+        Math::TableFunction<double, double> P_lin_func;
+        getMatterPs(z, &P_lin_func);
 
-        // Create some temporary arrays to pass to dopksmoothbspline
-        int n = P_lin.size();
+        // Create some arrays to store the various power spectra
+        int n = P_lin_func.size();
         double kvals[n];
+        double P_lin[n];
         double lnP_lin[n];
-        //for(std::map<double, double>::iterator ps_it = P_lin.begin(); ps_it != P_lin.end(); ++ps_it)
+        //for(std::map<double, double>::iterator ps_it = P_lin_func.begin(); ps_it != P_lin_func.end(); ++ps_it)
         int i = 0;
-        for(auto const &point : P_lin)
+        for(auto const &point : P_lin_func)
         {
             kvals[i] = point.first;
+            P_lin[i] = point.second;
             lnP_lin[i] = std::log(point.second);
             ++i;
         }
@@ -88,9 +92,20 @@ public:
         for(int i = 0; i < n; ++i)
             P_nw[i] = std::exp(lnP_nw[i]);
 
+        // Calculate P_damp using eq. 10 from BR09
+        std::vector<double> P_damp(n, 0.0);
+        const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
+        for(int i = 0; i < n; ++i)
+            P_damp[i] = P_lin[i] * std::exp(-1.0 * pow(kvals[i], 2) * sigma2BAONEAR * 0.5)
+                        + P_nw[i] * (1.0 - std::exp(-1.0 * pow(kvals[i], 2) * sigma2BAONEAR * 0.5));
+
+        // Initalize a cubic spline for P_damp to be used for calculating P_halo
+        std::vector<double> kvec(kvals, kvals + sizeof(kvals) / sizeof(double));
+        Math::CubicSpline P_damp_spline(kvec, P_damp);
+
         // Apply halofit model for nonlinear structure growth to P_nw to generate P_halofitnw
-        // I think tau is the conformal time at whatever z you're evaluating the power spectrum at
-        // k_nl is the value of k where power spectrum becomes nonlinear at tau(z)
+        // Tau is the conformal time at z
+        // k_nl is the value of k where power spectrum becomes nonlinear
         double P_halofitnw[n];
         double tau;
         double k_nl;
@@ -98,10 +113,80 @@ public:
         background_tau_of_z(br_, z, &tau);
         nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nw, P_halofitnw, &k_nl);
 
-        ps->clear();
+        // Calculate factor r_halofit, the ratio of P_halofitnw to P_nw
+        // Then P_DMhalofit = P_damp * r_halofit
+        double r_halofit[n];
+        double P_DMhalofit[n];
+        double temp;
+        for(int i = 0; i < n; ++i)
+        {
+            temp = P_halofitnw[i]/P_nw[i];
+            r_halofit[i] = temp;
+            P_DMhalofit[i] = P_damp[i] * temp;
+        }
 
-        for(i = 0; i < n; ++i)
-            (*ps)[kvals[i]] = P_halofitnw[i];
+        // Calculate r_DMdamp, model for ratio of nonlinear matter power spectrum
+        // to damped linear power spectrum.
+        // r_DMdamp = (r_halofit/r_halofitfid) * (P_DMfid/P_dampfid)
+        // TODO: What is r_halofitfid, P_DMfid, and P_dampfid?
+
+        // Now include halo bias
+        // Calculate r_haloDMfid (P_halofid/P_damp) / (P_DMfid/P_damp)
+        // P_halo = P_damp*r_DMdamp * r_haloDMfid * F_nuis
+        // In BR09 likelihood code P_halo = psmear*nlrat*fidpolys
+        // where psmear = P_damp, I think?
+        // nlrat = outpowerrationwhalofit/ratio_power_nw_nl_fid **
+        // fidpoly = hard coded polynomial fits to near, mid, and far subsamples calculated in LRGtoICsmooth
+        // **
+        // ratio_power_nw_nl_fid is rationwhalofit from lrgdr7fiducialmodel_matterpowerz*.dat
+        // outpowerrationwhalofit is rationwhalofit from lrgdr7model_matterpowerz*.dat, maybe this is just r_halofit?
+        std::vector<double> k_fid;
+        std::vector<double> r_fid;
+        std::string root = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/";
+        std::ifstream datafile(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat"); // Need to do this for NEAR, MID, and FAR? What about z0?
+        // Skip first line
+        std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            r_fid.push_back(ratiodummy);
+        }
+        datafile.close();
+        int k_size = r_fid.size();
+
+        // Now calculate P_halo as P_damp * r_fid * fid_polys
+        std::vector<double> P_halo(k_size, 0.0);
+        std::ofstream out("k_Pdamp_rfid_fidpoly.txt");
+        for(int i = 0; i < k_size; ++i)
+        {
+            std::vector<double> fidpolys;
+            LRGtoICsmooth(k_fid[i], fidpolys);
+            out << k_fid[i] << " " << P_damp_spline.evaluate(k_fid[i]) << " " << r_fid[i] << " " << fidpolys[0] << std::endl; 
+            P_halo[i] = P_damp_spline.evaluate(k_fid[i]) * r_fid[i] * fidpolys[0];
+        }
+        out.close();
+
+        // Generate linear and nonlinear power spectra from Class for comparison
+        //int ksize = sp_->ln_k_size;
+        //double pk_nl[100000];
+        //spectra_pk_nl_at_z(br_, sp_, linear, z, pk_nl);
+        //std::ofstream out("pk_nl_class.txt");
+        //for(int i = 0; i < nl_->k_size; ++i)
+        //    out << std::exp(sp_->ln_k[i]) << " " << " " << pk_nl[i] << std::endl; 
+        //out.close();
+
+        // Store LRG power spectrum in table function
+        ps->clear();
+        for(i = 0; i < k_size; ++i)
+            (*ps)[k_fid[i]] = P_halo[i];
     }
 
     double getR_NL()
@@ -266,5 +351,32 @@ private:
 	    gsl_vector_free(w);
 	    gsl_matrix_free(cov);
 	    gsl_multifit_linear_free(mw);
+    }
+
+    // Copied form BR09 likelihood code
+    // Hard coding of polynomial fits to near, mid, and far subsamples.
+    void LRGtoICsmooth(double k, std::vector<double>& fidpolys)
+    {
+        double fidNEAR, fidMID, fidFAR;
+        fidpolys.resize(3);
+
+        if(k < 0.194055)
+            fidNEAR = (1.0 - 0.680886*k + 6.48151*k*k);
+        else
+            fidNEAR = (1.0 - 2.13627*k + 21.0537*k*k - 50.1167*pow(k, 3) + 36.8155*pow(k,4)) * 1.04482;
+
+        if(k < 0.19431)
+            fidMID = (1.0 - 0.530799*k + 6.31822*k*k);
+        else
+            fidMID = (1.0 - 1.97873*k + 20.8551*k*k - 50.0376*pow(k, 3) + 36.4056*(k, 4)) * 1.04384;
+
+        if(k < 0.19148)
+            fidFAR = (1.0 - 0.475028*k + 6.69004*k*k);
+        else
+            fidFAR = (1.0 - 1.84891*k + 21.3479*k*k - 52.4846*pow(k, 3) + 38.9541*pow(k, 4)) * 1.03753;
+
+        fidpolys[0] = fidNEAR;
+        fidpolys[1] = fidMID;
+        fidpolys[2] = fidFAR;
     }
 };
