@@ -95,10 +95,23 @@ public:
         // Calculate P_damp for NEAR, MID, and FAR using eq. 10 from BR09
         std::vector< std::vector<double> > P_damp(3, std::vector<double>(n));
         std::vector<double> sigma2BAO {86.9988, 85.1374, 84.5958};
+        std::vector<double> powerscaletoz0(3);
+        double getabstransferscalez0 = 162.71; // TODO: Figure out what these are
+        double getabstransferscaleNEAR = 144.31;
+        double getabstransferscaleMID = 136.64;
+        double getabstransferscaleFAR = 131.3;
+        powerscaletoz0[0] = pow(getabstransferscalez0, 2.0)/pow(getabstransferscaleNEAR, 2.0);
+        powerscaletoz0[1] = pow(getabstransferscalez0, 2.0)/pow(getabstransferscaleMID, 2.0);
+        powerscaletoz0[2] = pow(getabstransferscalez0, 2.0)/pow(getabstransferscaleFAR, 2.0);
         for(int i = 0; i < 3; ++i)
+        {
             for(int j = 0; j < n; ++j)
-                P_damp[i][j] = P_lin[j] * std::exp(-1.0 * pow(kvals[j], 2) * sigma2BAO[i] * 0.5)
-                            + P_nw[j] * (1.0 - std::exp(-1.0 * pow(kvals[j], 2) * sigma2BAO[i] * 0.5));
+            {
+                double expval = std::exp(-1.0 * pow(kvals[j], 2) * sigma2BAO[i] * 0.5);
+                P_damp[i][j] = P_lin[j] * expval + P_nw[j] * (1.0 - expval);
+                P_damp[i][j] = P_damp[i][j] * powerscaletoz0[i];
+            }
+        }
         output_screen("Checkpoint 1" << std::endl);
         // Initalize a cubic spline for each P_damp to be used for calculating P_halo later
         //std::vector<double> kvec(kvals, kvals + sizeof(kvals) / sizeof(double));
@@ -127,8 +140,8 @@ public:
 
         // Calculate factor r_halofit, the ratio of P_halofitnw to P_nw
         // Then P_DMhalofit = P_damp * r_halofit
-        double r_halofit[n];
-        double P_DMhalofit[n];
+        std::vector<double> r_halofit(n);
+        std::vector<double> P_DMhalofit(n);
         double temp;
         for(int i = 0; i < n; ++i)
         {
@@ -136,6 +149,8 @@ public:
             r_halofit[i] = temp;
             //P_DMhalofit[i] = P_damp[i] * temp;
         }
+        // Create a cubic spline for r_halofit for use later
+        Math::CubicSpline r_halofit_spline(kvec, r_halofit);
         output_screen("Checkpoint 3" << std::endl);
 
         // Calculate r_DMdamp, model for ratio of nonlinear matter power spectrum
@@ -153,6 +168,7 @@ public:
         // **
         // ratio_power_nw_nl_fid is rationwhalofit from lrgdr7fiducialmodel_matterpowerz*.dat
         // outpowerrationwhalofit is rationwhalofit from lrgdr7model_matterpowerz*.dat, maybe this is just r_halofit?
+        // TODO: I don't think the above is true, but using it for now...
         std::vector<double> k_fid; // k values should be identical so only need one
         std::vector< std::vector<double> > r_fid(3); // two dimensional vector to hold ratio of nw to nl for NEAR, MID, and FAR
         std::string root = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/";
@@ -241,13 +257,25 @@ public:
         //    }
         //}
         //out.close();
+        std::ofstream out("r_halofit.txt");
+        for(int i = 0; i < k_size; ++i)
+        {
+            out << k_fid[i] << " " << r_halofit_spline.evaluate(k_fid[i]) << std::endl;
+        }
+        out.close();
         for(int i = 0; i < k_size; ++i)
         {
             std::vector<double> fidpolys;
             LRGtoICsmooth(k_fid[i], fidpolys);
-            P_halo[i] = zweight[0] * P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0]
-                        + zweight[1] * P_damp_splineMID.evaluate(k_fid[i]) * r_fid[1][i] * fidpolys[1]
-                        + zweight[2] * P_damp_splineFAR.evaluate(k_fid[i]) * r_fid[2][i] * fidpolys[2];
+            double nlratNEAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[0][i];
+            double nlratMID = r_halofit_spline.evaluate(k_fid[i]) / r_fid[1][i];
+            double nlratFAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[2][i];
+            //P_halo[i] = zweight[0] * P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0]
+            //            + zweight[1] * P_damp_splineMID.evaluate(k_fid[i]) * r_fid[1][i] * fidpolys[1]
+            //            + zweight[2] * P_damp_splineFAR.evaluate(k_fid[i]) * r_fid[2][i] * fidpolys[2];
+            P_halo[i] = zweight[0] * P_damp_splineNEAR.evaluate(k_fid[i]) * nlratNEAR * fidpolys[0]
+                        + zweight[1] * P_damp_splineMID.evaluate(k_fid[i]) * nlratMID * fidpolys[1]
+                        + zweight[2] * P_damp_splineFAR.evaluate(k_fid[i]) * nlratFAR * fidpolys[2];
             //P_halo[i] = P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0];
         }
 
