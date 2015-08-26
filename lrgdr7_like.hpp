@@ -217,7 +217,8 @@ public:
         // Create a vector containing linear matter power spectrum
         // evaluated at values of k given in k_.
         Math::TableFunction<double, double> P_lin_function;
-        cosmo_->getMatterPs(redshift_, &P_lin_function);
+        //cosmo_->getMatterPs(redshift_, &P_lin_function);
+        cosmo_->getLRGPs(redshift_, &P_lin_function);
 
         // Writing P_lin_function to file
         //std::ofstream outTest(root_ + "models/test.txt");
@@ -234,39 +235,39 @@ public:
 
         // Initialize P_nw (linear power spectrum with "no wiggles") based on spline method in BR09
         // Temporary arrays to pass to function dopksmoothbspline_
-        double kvals[k_size_];
-        double lnP_lin[k_size_];
-        double lnP_nw[k_size_];
+        //double kvals[k_size_];
+        //double lnP_lin[k_size_];
+        //double lnP_nw[k_size_];
         // initialize arrays with values in k_ and P_lin
-        for(int i = 0; i < k_size_; ++i)
-        {
-            kvals[i] = k_[i];
-            lnP_lin[i] = log(P_lin(i,0));
-        }
-        dopksmoothbspline_(kvals, lnP_lin, lnP_nw, k_size_);
+        //for(int i = 0; i < k_size_; ++i)
+        //{
+        //    kvals[i] = k_[i];
+        //    lnP_lin[i] = log(P_lin(i,0));
+        //}
+        //dopksmoothbspline_(kvals, lnP_lin, lnP_nw, k_size_);
         // Store result of smoothing in P_nw
-        Math::Matrix<double> P_nw(k_size_, 1, 0);
-        for(int i = 0; i < k_size_; ++i)
-            P_nw(i, 0) = exp(lnP_nw[i]);
+        //Math::Matrix<double> P_nw(k_size_, 1, 0);
+        //for(int i = 0; i < k_size_; ++i)
+        //    P_nw(i, 0) = exp(lnP_nw[i]);
 
         // Writing P_lin and P_nw to file
-        std::ofstream outTest("test.txt");
-        for(int i = 0; i < k_size_; ++i)
-            outTest << k_[i] << " " << P_lin(i,0) << " " << P_nw(i,0) << std::endl;
-        outTest.close();
+        //std::ofstream outTest("test.txt");
+        //for(int i = 0; i < k_size_; ++i)
+        //    outTest << k_[i] << " " << P_lin(i,0) << " " << P_nw(i,0) << std::endl;
+        //outTest.close();
 
         // Compute P_damp according to eq. 10 in BR09
         // TODO: What is value of sigma?
-        const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
-        Math::Matrix<double> P_damp(k_size_, 1, 0);
-        for(int i = 0; i < k_size_; ++i)
-            P_damp[i] = P_lin * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
-                        + P_nw * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
+        //const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
+        //Math::Matrix<double> P_damp(k_size_, 1, 0);
+        //for(int i = 0; i < k_size_; ++i)
+        //    P_damp[i] = P_lin * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
+        //                + P_nw * exp(-1.0 * pow(k_[i], 2) * sigma2BAONEAR * 0.5)
 
         // Compute P_halofit,nw
-        P_halofitnw
-        nonlinear_halofit(P_nw);
-        Math::Matrix<double> Phalofitnw(k_size_, 1, 0);
+        //P_halofitnw
+        //nonlinear_halofit(P_nw);
+        //Math::Matrix<double> Phalofitnw(k_size_, 1, 0);
 
         // TODO: I think some rescaling goes here. Use fiducial model.
 
@@ -289,12 +290,12 @@ public:
         //P_th = P_lin; // Can we just replace P_lin with P_th earlier?
 
         // Writing P_th to file
-        std::ofstream out(root_ + "models/test_pth.txt");
-        for(int i = 0; i < k_size_; ++i)
-        {
-            out << k_[i] << " " << P_th(i, 0) << std::endl;
-        }
-        out.close();
+        //std::ofstream out(root_ + "models/test_pth.txt");
+        //for(int i = 0; i < k_size_; ++i)
+        //{
+        //    out << k_[i] << " " << P_th(i, 0) << std::endl;
+        //}
+        //out.close();
 
         output_screen("Checkpoint 2" << std::endl);
 
