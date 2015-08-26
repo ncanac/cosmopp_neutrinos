@@ -92,16 +92,28 @@ public:
         for(int i = 0; i < n; ++i)
             P_nw[i] = std::exp(lnP_nw[i]);
 
-        // Calculate P_damp using eq. 10 from BR09
-        std::vector<double> P_damp(n, 0.0);
-        const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
-        for(int i = 0; i < n; ++i)
-            P_damp[i] = P_lin[i] * std::exp(-1.0 * pow(kvals[i], 2) * sigma2BAONEAR * 0.5)
-                        + P_nw[i] * (1.0 - std::exp(-1.0 * pow(kvals[i], 2) * sigma2BAONEAR * 0.5));
-
-        // Initalize a cubic spline for P_damp to be used for calculating P_halo
+        // Calculate P_damp for NEAR, MID, and FAR using eq. 10 from BR09
+        std::vector< std::vector<double> > P_damp(3, std::vector<double>(n));
+        std::vector<double> sigma2BAO {86.9988, 85.1374, 84.5958};
+        for(int i = 0; i < 3; ++i)
+            for(int j = 0; j < n; ++j)
+                P_damp[i][j] = P_lin[j] * std::exp(-1.0 * pow(kvals[j], 2) * sigma2BAO[i] * 0.5)
+                            + P_nw[j] * (1.0 - std::exp(-1.0 * pow(kvals[j], 2) * sigma2BAO[i] * 0.5));
+        output_screen("Checkpoint 1" << std::endl);
+        // Initalize a cubic spline for each P_damp to be used for calculating P_halo later
+        //std::vector<double> kvec(kvals, kvals + sizeof(kvals) / sizeof(double));
+        //std::vector<Math::CubicSpline*> P_damp_spline(3);
+        //for(int i = 0; i < 3; ++i)
+        //{
+        //    Math::CubicSpline tempSpline(kvec, P_damp[i]);
+        //    P_damp_spline[i] = &tempSpline;
+        //}
         std::vector<double> kvec(kvals, kvals + sizeof(kvals) / sizeof(double));
-        Math::CubicSpline P_damp_spline(kvec, P_damp);
+        Math::CubicSpline P_damp_splineNEAR(kvec, P_damp[0]);
+        Math::CubicSpline P_damp_splineMID(kvec, P_damp[1]);
+        Math::CubicSpline P_damp_splineFAR(kvec, P_damp[2]);
+        
+        output_screen("Checkpoint 2" << std::endl);
 
         // Apply halofit model for nonlinear structure growth to P_nw to generate P_halofitnw
         // Tau is the conformal time at z
@@ -122,8 +134,9 @@ public:
         {
             temp = P_halofitnw[i]/P_nw[i];
             r_halofit[i] = temp;
-            P_DMhalofit[i] = P_damp[i] * temp;
+            //P_DMhalofit[i] = P_damp[i] * temp;
         }
+        output_screen("Checkpoint 3" << std::endl);
 
         // Calculate r_DMdamp, model for ratio of nonlinear matter power spectrum
         // to damped linear power spectrum.
@@ -140,39 +153,105 @@ public:
         // **
         // ratio_power_nw_nl_fid is rationwhalofit from lrgdr7fiducialmodel_matterpowerz*.dat
         // outpowerrationwhalofit is rationwhalofit from lrgdr7model_matterpowerz*.dat, maybe this is just r_halofit?
-        std::vector<double> k_fid;
-        std::vector<double> r_fid;
+        std::vector<double> k_fid; // k values should be identical so only need one
+        std::vector< std::vector<double> > r_fid(3); // two dimensional vector to hold ratio of nw to nl for NEAR, MID, and FAR
         std::string root = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/";
-        std::ifstream datafile(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat"); // Need to do this for NEAR, MID, and FAR? What about z0?
+        // Read in NEAR model
+        std::ifstream datafile(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat");
         // Skip first line
         std::string line;
         std::getline(datafile, line);
         // Read in rest of data file
+        //std::vector<double> temp_vec;
         while(!datafile.eof())
         {
             std::getline(datafile, line);
             std::istringstream iss(line);
             double kdummy, plindummy, psmoothdummy, ratiodummy;
             iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
-            k_fid.push_back(kdummy);
+            k_fid.push_back(kdummy); // Only need to do this once
             //Plin_fid[i] = plindummy;
             //Psmooth_fid[i] = psmoothdummy;
-            r_fid.push_back(ratiodummy);
+            //temp_vec.push_back(ratiodummy);
+            r_fid[0].push_back(ratiodummy);
         }
+        //r_fid.push_back(temp_vec);
         datafile.close();
-        int k_size = r_fid.size();
+        // Read in MID model
+        datafile.open(root + "models/lrgdr7fiducialmodel_matterpowerzMID.dat");
+        // Skip first line
+        //std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        //temp_vec.clear();
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            //k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            //temp_vec.push_back(ratiodummy);
+            r_fid[1].push_back(ratiodummy);
+        }
+        //r_fid.push_back(temp_vec);
+        datafile.close();
+        // Read in FAR model
+        datafile.open(root + "models/lrgdr7fiducialmodel_matterpowerzFAR.dat");
+        // Skip first line
+        //std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        //temp_vec.clear()
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            //k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            r_fid[2].push_back(ratiodummy);
+        }
+        //r_fid.push_back(temp_vec);
+        datafile.close();
+        output_screen("Checkpoint 4" << std::endl);
+        
+        // Set number of k values in fiducial model
+        int k_size = k_fid.size();
+
+        // Set weights to do weighted sum for P_halo as in eq. 17 of BR09
+        std::vector<double> zweight {0.395, 0.355, 0.250};
 
         // Now calculate P_halo as P_damp * r_fid * fid_polys
         std::vector<double> P_halo(k_size, 0.0);
-        std::ofstream out("k_Pdamp_rfid_fidpoly.txt");
+        //std::ofstream out("k_Pdamp_rfid_fidpoly.txt");
+        //for(int i = 0; i < k_size; ++i)
+        //{
+        //    for(int j = 0; j < 3; ++j)
+        //    {
+        //        std::vector<double> fidpolys;
+        //        LRGtoICsmooth(k_fid[i], fidpolys);
+        //        //out << k_fid[i] << " " << P_damp_spline[j]->evaluate(k_fid[i]) << " " << r_fid[j][i] << " " << fidpolys[j] << std::endl; 
+        //        P_halo[i] += zweight[j] * (P_damp_spline[j])->evaluate(k_fid[i]) * r_fid[j][i] * fidpolys[j];
+        //        //P_halo[i] += zweight[j] * r_fid[j][i] * fidpolys[j];
+        //    }
+        //}
+        //out.close();
         for(int i = 0; i < k_size; ++i)
         {
             std::vector<double> fidpolys;
             LRGtoICsmooth(k_fid[i], fidpolys);
-            out << k_fid[i] << " " << P_damp_spline.evaluate(k_fid[i]) << " " << r_fid[i] << " " << fidpolys[0] << std::endl; 
-            P_halo[i] = P_damp_spline.evaluate(k_fid[i]) * r_fid[i] * fidpolys[0];
+            P_halo[i] = zweight[0] * P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0]
+                        + zweight[1] * P_damp_splineMID.evaluate(k_fid[i]) * r_fid[1][i] * fidpolys[1]
+                        + zweight[2] * P_damp_splineFAR.evaluate(k_fid[i]) * r_fid[2][i] * fidpolys[2];
+            //P_halo[i] = P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0];
         }
-        out.close();
+
+        output_screen("Checkpoint 5" << std::endl);
 
         // Generate linear and nonlinear power spectra from Class for comparison
         //int ksize = sp_->ln_k_size;
