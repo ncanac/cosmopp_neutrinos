@@ -211,8 +211,12 @@ public:
         output_screen("Checkpoint 0" << std::endl);
 
         double h = params_->getH();
-        // TODO: might need to rescale and make sure units throughout and consistent
+        // Rescale k_ and P_obs with correct factors of h
         k_ = kh_;
+        for(int i = 0; i < k_size_; ++i)
+            k_[i] = k_[i]/h;
+        for(int i = 0; i < n_size_; ++i)
+            P_obs_(i, 0) = P_obs_(i, 0)*h*h*h;
 
         // Create a vector containing linear matter power spectrum
         // evaluated at values of k given in k_.
@@ -322,6 +326,14 @@ public:
         //b_out = b_out / tempMat(0, 0);
 
         // Calculate chi-squared
+        //double chisq = 0;
+        //Math::Matrix<double> delta(n_size_, 1, 0);
+        //for(int i = 0; i < n_size_; ++i)
+        //    delta(i, 0) = P_obs_(i, 0) - W_P_th(i, 0);
+        //Math::Matrix<double>::multiplyMatrices(delta.getTranspose(), invcov_, &tempMat);
+        //Math::Matrix<double> tempMat2;
+        //Math::Matrix<double>::multiplyMatrices(tempMat, delta, &tempMat2);
+        //chisq = tempMat2(0, 0); 
         double chisq = 0;
         Math::Matrix<double>::multiplyMatrices(P_obs_.getTranspose(), cov_dat, &tempMat);
         chisq = tempMat(0, 0);
