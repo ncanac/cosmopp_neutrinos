@@ -346,6 +346,85 @@ public:
         return chisq;
     }
 
+    double likelihoodBR09()
+    {
+        double h = params_->getH();
+
+        Math::Matrix<double> mpk_raw(k_size_, 1, 0);
+        Math::Matrix<double> mpk_Pth(k_size_, 1, 0);
+        Math::Matrix<double> mpk_Pth_k(k_size_, 1, 0);
+        Math::Matrix<double> mpk_Pth_k2(k_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth(k_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth_k(k_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth_k2(k_size_, 1, 0);
+        Math::Matrix<double> k_scaled(k_size_, 1, 0); // Includes 1/h
+
+        // TODO: Compute scaling factor
+        double a_scl = 1.0;
+
+        // Initialize k_
+        for(int i = 0; i < k_size_; ++i)
+            k_[i] = kh_[i]/h;
+
+        // Initialize halopowerlrgtheory
+        Math::TableFunction<double, double> halopowerlrgtheory;
+        cosmo_->getLRGPs(redshift_, &halopowerlrgtheory);
+
+        // TODO: Do this like in BR09
+        // Calculate k_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at k_scaled
+        for(int i = 0; i < k_size_; ++i)
+        {
+            k_scaled(i, 0) = a_scl * kh_[i];
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(k_scaled(i, 0) * h / pow(a_scl, 3.0));
+        }
+
+        // Initialize
+        mpk_Pth = mpk_raw;
+        for(int i = 0; i < k_size_; ++i)
+        {
+            mpk_Pth_k(i, 0) = mpk_Pth(i, 0) * k_scaled(i, 0);
+            mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(k_scaled(i, 0), 2.0);
+        }
+        // TODO: Check that mpk_W is the same as window_ and check that all dimensions work out
+        Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth, &mpk_WPth);
+        Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k, &mpk_WPth_k);
+        Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k2, &mpk_WPth_k2);
+
+        // TODO: Read in zerowindow files and write this in C++
+        double sumzerow_Pth = sum(mpk_zerowindowfxn*mpk_Pth)/mpk_zerowindowfxnsubtractdatnorm
+        double sumzerow_Pth_k = sum(mpk_zerowindowfxn*mpk_Pth_k)/mpk_zerowindowfxnsubtractdatnorm
+        double sumzerow_Pth_k2 = sum(mpk_zerowindowfxn*mpk_Pth_k2)/mpk_zerowindowfxnsubtractdatnorm
+
+        Math::Matrix<double> covdat(n_size_, 1, 0);
+        Math::Matrix<double> covth(n_size_, 1, 0);
+        Math::Matrix<double> covth_k(n_size_, 1, 0);
+        Math::Matrix<double> covth_k2(n_size_, 1, 0);
+        Math::Matrix<double> covth_zerowin(n_size_, 1, 0);
+        Math::Matrix<double>::multiplyMatrices(invcov_, P_obs_, &covdat);
+        Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth, &covth);
+        Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k, &covth_k);
+        Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k2, &covth_k2);
+        Math::Matrix<double>::multiplyMatrices(invcov_, mpk_zerowindowfxnsubtractdat, &covth_zerowin);
+
+        // Convert to C++
+        sumDD = sum(mset%mpk_P*covdat)
+        sumDT = sum(mset%mpk_P*covth)
+        sumDT_k = sum(mset%mpk_P*covth_k)
+        sumDT_k2 = sum(mset%mpk_P*covth_k2)
+        sumDT_zerowin = sum(mset%mpk_P*covth_zerowin)
+        
+        sumTT = sum(mpk_WPth*covth)
+        sumTT_k = sum(mpk_WPth*covth_k)
+        sumTT_k2 = sum(mpk_WPth*covth_k2)
+        sumTT_k_k = sum(mpk_WPth_k*covth_k)
+        sumTT_k_k2 = sum(mpk_WPth_k*covth_k2)
+        sumTT_k2_k2 = sum(mpk_WPth_k2*covth_k2)
+        sumTT_zerowin = sum(mpk_WPth*covth_zerowin)
+        sumTT_k_zerowin = sum(mpk_WPth_k*covth_zerowin)
+        sumTT_k2_zerowin = sum(mpk_WPth_k2*covth_zerowin)
+        sumTT_zerowin_zerowin = sum(mset%mpk_zerowindowfxnsubtractdat*covth_zerowin)
+    }
+
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
@@ -473,6 +552,11 @@ private:
 	    gsl_multifit_linear_free(mw);
     }
 
+    double LRGPowerAt(const Math::Matrix<double>& halopowerlrgtheory, double kh)
+    {
+        return 0;
+    }
+
     int lMax_;
     Cosmo* cosmo_;
 
@@ -491,7 +575,7 @@ private:
 
     int k_size_;
     int n_size_;
-    double redshift_; // TODO need to initialize this
+    double redshift_; // TODO need to initialize this... is it even used though?
 
     // Data vectors
     std::vector<double> kh_;

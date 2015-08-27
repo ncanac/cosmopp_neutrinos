@@ -234,6 +234,68 @@ public:
         }
         //r_fid.push_back(temp_vec);
         datafile.close();
+
+        // Hard coded for testing purposes. TODO: delete later
+        // Read in data from model files for r_nwhalofit
+        std::vector< std::vector<double> > r_nwhalofit(3);
+        datafile.open(root + "models/lrgdr7model_matterpowerzNEAR.dat");
+        // Skip first line
+        //std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        //temp_vec.clear()
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            //k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            r_nwhalofit[0].push_back(ratiodummy);
+        }
+        //r_fid.push_back(temp_vec);
+        datafile.close();
+        datafile.open(root + "models/lrgdr7model_matterpowerzMID.dat");
+        // Skip first line
+        //std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        //temp_vec.clear()
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            //k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            r_nwhalofit[1].push_back(ratiodummy);
+        }
+        //r_fid.push_back(temp_vec);
+        datafile.close();
+        datafile.open(root + "models/lrgdr7model_matterpowerzFAR.dat");
+        // Skip first line
+        //std::string line;
+        std::getline(datafile, line);
+        // Read in rest of data file
+        //temp_vec.clear()
+        while(!datafile.eof())
+        {
+            std::getline(datafile, line);
+            std::istringstream iss(line);
+            double kdummy, plindummy, psmoothdummy, ratiodummy;
+            iss >> kdummy >> plindummy >> psmoothdummy >> ratiodummy; 
+            //k_fid.push_back(kdummy);
+            //Plin_fid[i] = plindummy;
+            //Psmooth_fid[i] = psmoothdummy;
+            r_nwhalofit[2].push_back(ratiodummy);
+        }
+        //r_fid.push_back(temp_vec);
+        datafile.close();
+
         output_screen("Checkpoint 4" << std::endl);
         
         // Set number of k values in fiducial model
@@ -267,9 +329,12 @@ public:
         {
             std::vector<double> fidpolys;
             LRGtoICsmooth(k_fid[i], fidpolys);
-            double nlratNEAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[0][i];
-            double nlratMID = r_halofit_spline.evaluate(k_fid[i]) / r_fid[1][i];
-            double nlratFAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[2][i];
+            //double nlratNEAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[0][i];
+            //double nlratMID = r_halofit_spline.evaluate(k_fid[i]) / r_fid[1][i];
+            //double nlratFAR = r_halofit_spline.evaluate(k_fid[i]) / r_fid[2][i];
+            double nlratNEAR = r_nwhalofit[0][i] / r_fid[0][i];
+            double nlratMID = r_nwhalofit[1][i] / r_fid[1][i];
+            double nlratFAR = r_nwhalofit[2][i] / r_fid[2][i];
             //P_halo[i] = zweight[0] * P_damp_splineNEAR.evaluate(k_fid[i]) * r_fid[0][i] * fidpolys[0]
             //            + zweight[1] * P_damp_splineMID.evaluate(k_fid[i]) * r_fid[1][i] * fidpolys[1]
             //            + zweight[2] * P_damp_splineFAR.evaluate(k_fid[i]) * r_fid[2][i] * fidpolys[2];
