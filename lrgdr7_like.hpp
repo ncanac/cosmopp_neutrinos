@@ -44,6 +44,16 @@ public:
         k_.resize(k_size_);
         kh_.resize(k_size_);
 
+        // Set parameters associated with nuisance parameters
+        k1_ = 0.1;
+        k2_ = 0.2;
+        s1_ = 0.04;
+        s2_ = 0.1;
+        a1maxval_ = 1.1482;
+        nptsa1_ = 41;
+        nptsa2 = 41;
+        nptstot_ = 325;
+
         // Read in data file containing kbands
         root_ = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/";
         std::ifstream datafile(root_ + "data/lrgdr7_kbands.txt");
@@ -97,13 +107,26 @@ public:
         //bool used_region = true;
 
         // Read in window functions
-        n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1;
+        n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1; // 45
         window_.resize(n_size_, k_size_, 0);
         //std::vector< std::vector<double> > window(n_size_, std::vector<double>(k_size_));
         datafile.open(root_ + "data/lrgdr7_windows.txt");
         for(int i = 0; i < num_mpk_points_full_; ++i)
             for(int j = 0; j < k_size_; ++j)
                 datafile >> window_(i, j);
+        datafile.close();
+
+        zerowindowfxn_.resize(k_size_, 1, 0);
+        datafile.open(root_ + "data/lrgdr7_zerowindowfxn.txt");
+        for(int i = 0; i < k_size_; ++i)
+            datafile >> zerowindowfxn_(i, 0);
+        datafile.close();
+
+        zerowindowfxnsubdat_.resize(n_size_, 1, 0);
+        datafile.open(root_ + "lrgdr7_zerowindowfxnsubtractdat.txt:");
+        datafile >> zerowindowfxnsubdatnorm_;
+        for(int i = 0; i < n_size_; ++i)
+            datafile >> zerowindowfxnsubdat_(i, 0);
         datafile.close();
 
         // Read in measurements
@@ -348,15 +371,17 @@ public:
 
     double likelihoodBR09()
     {
+        // num_mpk_points_use = n_size_ = 45
+        // num_mpk_kbands_use = k_size_ = 250
         double h = params_->getH();
 
         Math::Matrix<double> mpk_raw(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth_k(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth_k2(k_size_, 1, 0);
-        Math::Matrix<double> mpk_WPth(k_size_, 1, 0);
-        Math::Matrix<double> mpk_WPth_k(k_size_, 1, 0);
-        Math::Matrix<double> mpk_WPth_k2(k_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth(n_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth_k(n_size_, 1, 0);
+        Math::Matrix<double> mpk_WPth_k2(n_size_, 1, 0);
         Math::Matrix<double> k_scaled(k_size_, 1, 0); // Includes 1/h
 
         // TODO: Compute scaling factor
@@ -385,15 +410,19 @@ public:
             mpk_Pth_k(i, 0) = mpk_Pth(i, 0) * k_scaled(i, 0);
             mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(k_scaled(i, 0), 2.0);
         }
-        // TODO: Check that mpk_W is the same as window_ and check that all dimensions work out
+
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth, &mpk_WPth);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k, &mpk_WPth_k);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k2, &mpk_WPth_k2);
 
-        // TODO: Read in zerowindow files and write this in C++
-        double sumzerow_Pth = sum(mpk_zerowindowfxn*mpk_Pth)/mpk_zerowindowfxnsubtractdatnorm
-        double sumzerow_Pth_k = sum(mpk_zerowindowfxn*mpk_Pth_k)/mpk_zerowindowfxnsubtractdatnorm
-        double sumzerow_Pth_k2 = sum(mpk_zerowindowfxn*mpk_Pth_k2)/mpk_zerowindowfxnsubtractdatnorm
+        Math::Matrix<double> tempMat;
+        Math::Matrix<double> zerowindowfxn_transpose = zerowindowfxn_.getTranspose();
+        Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth, &tempMat);
+        double sumzerow_Pth = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
+        Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k, &tempMat);
+        double sumzerow_Pth_k = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
+        Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k2, &tempMat);
+        double sumzerow_Pth_k2 = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
 
         Math::Matrix<double> covdat(n_size_, 1, 0);
         Math::Matrix<double> covth(n_size_, 1, 0);
@@ -404,25 +433,52 @@ public:
         Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth, &covth);
         Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k, &covth_k);
         Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k2, &covth_k2);
-        Math::Matrix<double>::multiplyMatrices(invcov_, mpk_zerowindowfxnsubtractdat, &covth_zerowin);
+        Math::Matrix<double>::multiplyMatrices(invcov_, zerowindowfxnsubdat_, &covth_zerowin);
 
-        // Convert to C++
-        sumDD = sum(mset%mpk_P*covdat)
-        sumDT = sum(mset%mpk_P*covth)
-        sumDT_k = sum(mset%mpk_P*covth_k)
-        sumDT_k2 = sum(mset%mpk_P*covth_k2)
-        sumDT_zerowin = sum(mset%mpk_P*covth_zerowin)
-        
-        sumTT = sum(mpk_WPth*covth)
-        sumTT_k = sum(mpk_WPth*covth_k)
-        sumTT_k2 = sum(mpk_WPth*covth_k2)
-        sumTT_k_k = sum(mpk_WPth_k*covth_k)
-        sumTT_k_k2 = sum(mpk_WPth_k*covth_k2)
-        sumTT_k2_k2 = sum(mpk_WPth_k2*covth_k2)
-        sumTT_zerowin = sum(mpk_WPth*covth_zerowin)
-        sumTT_k_zerowin = sum(mpk_WPth_k*covth_zerowin)
-        sumTT_k2_zerowin = sum(mpk_WPth_k2*covth_zerowin)
-        sumTT_zerowin_zerowin = sum(mset%mpk_zerowindowfxnsubtractdat*covth_zerowin)
+        Math::Matrix<double> P_obs_transpose = P_obs_.getTranspose();
+        Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covdat, &tempMat);
+        double sumDD = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth, &tempMat);
+        double sumDT = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_k, &tempMat);
+        double sumDT_k = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_k2, &tempMat);
+        double sumDT_k2 = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_zerowin, &tempMat);
+        double sumDT_zerowin = tempMat(0, 0);
+
+        Math::Matrix<double> mpk_WPth_transpose = mpk_WPth.getTranspose();
+        Math::Matrix<double> mpk_WPth_k_transpose = mpk_WPth_k.getTranspose();
+        Math::Matrix<double> mpk_WPth_k2_transpose = mpk_WPth_k2.getTranspose();
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_transpose, covth, &tempMat);
+        double sumTT = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_transpose, covth_k, &tempMat);
+        double sumTT_k = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_transpose, covth_k2, &tempMat);
+        double sumTT_k2 = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_k_transpose, covth_k, &tempMat);
+        double sumTT_k_k = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_k_transpose, covth_k2, &tempMat);
+        double sumTT_k_k2 = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_k2_transpose, covth_k2, &tempMat);
+        double sumTT_k2_k2 = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_transpose, covth_zerowin, &tempMat);
+        double sumTT_zerowin = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_k_transpose, covth_zerowin, &tempMat);
+        double sumTT_k_zerowin = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(mpk_WPth_k2_transpose, covth_zerowin, &tempMat);
+        double sumTT_k2_zerowin = tempMat(0, 0);
+        Math::Matrix<double>::multiplyMatrices(zerowindowfxnsubdat_, covth_zerowin, &tempMat);
+        double sumTT_zerowin_zerowin = tempMat(0, 0);
+
+        // Nuisance parameter integration
+        double k1 = 0.1, k2 = 0.2, s1 = 0.04, s2 = 0.1, a1maxval = 1.1482;
+        double nptsa1 = 41, nptsa1 = 41, nptstot = 325;
+        double currminchisq = 1000.0;
+        for(int i = 0; i < nptstot; ++i)
+        {
+
+        }
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -552,9 +608,129 @@ private:
 	    gsl_multifit_linear_free(mw);
     }
 
-    double LRGPowerAt(const Math::Matrix<double>& halopowerlrgtheory, double kh)
+    void nuisance_init(std::vector<double>& a1list, std::vector<double>& a2list)
     {
-        return 0;
+        double a1val, a2val;
+        double da1, da2;
+        int countcheck = 0;
+        
+        da1 = a1maxval_ / (nptsa1_ / 2.0);
+        da2 = a2maxpos(-1.0*a1maxval_) / (nptsa2 / 2.0);
+        for(int i = -1 * nptsa1_ / 2; i <= nptsa1_ / 2; ++i)
+        {
+            for(int j = -1 * nptsa2_ / 2; j <= nptsa2_ / 2; ++j)
+            {
+                a1val = da1*j;
+                a2val = da2*j;
+                if((a2val >= 0.0 && a2val <= a2maxpos(a1val) && a2val >= a2minfinalpos(a1val)) ||
+                   (a2val <= 0.0 && a2val <= a2maxfinalneg(a1val) && a2val >= a2minneg(a1val)))
+                {
+                    check(testa1a2(a1val, a2val), "a1, a2 failure");
+                    ++countcheck;
+                    check(countcheck <=  nptstot, "countcheck > nptstot failure");
+                    a1list[countcheck] = a1val;
+                    a2list[countcheck] = a2val;
+                }
+            }
+        }
+        check(countcheck == nptstot, "countcheck failure");
+    }
+
+    double a2maxpos_(double a1val)
+    {
+        double a2max = -1.0;
+        if(a1val <= std::min(s1_/k1_, s2_/k2_))
+            a2max = std::min(s1_/pow(k1_, 2.0) - a1val/k1_, s2_/pow(k2_, 2.0) - a1val/k2_);
+        return a2max;
+    }
+
+    double a2min1pos_(double a1val)
+    {
+        double a2min1 = 0.0;
+        if(a1val <= 0.0)
+            a2min1 = std::max(-1.0*s1/pow(k1_, 2.0) - a1val/k1_, -1.0*s2_/pow(k2, 2.0) - a1val/k2_, 0.0);
+        return a2min1;
+    }
+
+    double a2min2pos_(double a1val)
+    {
+        double a2min2 = 0.0;
+        if(std::abs(a1val) >= 2.0*s1_/k1_ && a1val <= 0.0)
+            a2min2 = pow(a1val, 2.0)/s1_*0.25;
+        return a2min2;
+    }
+
+    double a2min3pos_(double a1val)
+    {
+        double a2min3 = 0.0;
+        if(std::(a1val) >= 2.0*s2_/k2_ && a1val <= 0.0)
+            a2min3 = pow(a1val, 2.0)/s2_*0.25;
+        return a2min3;
+    }
+
+    double a2minfinalpos_(double a1val)
+    {
+        return std::max(std::max(a2min1pos_(a1val), a2min2pos_(a1val)), a2min3pos_(a1val));
+    }
+
+    double a2minneg_(double a1val)
+    {
+        double a2min;
+        if((a1val >= std::max(-1.0*s1_/k1_,-1.0*s2_/k2_))
+            a2min = std::max(-1.0*s1_/pow(k1_, 2.0) - a1val/k1_, -1.0*s2_/pow(k2_, 2.0) - a1val/k2_);
+        else
+            a2min = 1.0;
+        return a2min;
+    }
+
+    double a2max1neg_(double a1val)
+    {
+        double a2max1;
+        if(a1val >= 0.0)
+            a2max1 = std::min(s1_/pow(k1_, 2.0) - a1val/k1_, s2_/pow(k2_, 2.0) - a1val/k2_, 0.0)
+        else
+            a2max1 = 0.0;
+        return a2max1;
+    }
+
+    double a2max2neg_(double a1val)
+    {
+        double a2max2 = 0.0;
+        if(std::abs(a1val) >= 2.0*s1_/k1_ && a1val >= 0.0)
+            a2max2 = -1.0*pow(a1val, 2.0)/s1_*0.25;
+        return a2max2;
+    }
+
+    double a2max3neg_(double a1val)
+    {
+        double a2max3 = 0.0;
+        if(std::abs(a1val) >= 2.0*s2_/k2_ && a1val >= 0.0)
+            a2max3 = -1.0*pow(a1val, 2.0)/s2_*0.25;
+        return a2max3;
+    }
+
+    double a2maxfinalneg_(double a1val)
+    {
+        return std::min(std::min(a2max1neg_(a1val), a2max2neg_(a1val)) ,a2max3neg_(a1val));
+    }
+
+    double testa1a2_(double a1val, a2val)
+    {
+        bool testresult = true;
+
+        double kext = -1.0*a1val/2.0/a2val;
+        double diffval = std::abs(a1val*kext + a2val*pow(kext, 2.0));
+
+        if(kext > 0.0 && kext <= k1_ && diffval > s1_)
+            testresult = false;
+        if(kext > 0.0 && kext <= k2_ && diffval > s2_)
+            testresult = false;
+        if (std::abs(a1val*k1_ + a2val*pow(k1_, 2.0)) > s1_)
+            testresult = false;
+        if (std::abs(a1val*k2_ + a2val*pow(k2_, 2.0)) > s2_)
+            testresult = false;
+
+        return testresult;
     }
 
     int lMax_;
@@ -576,11 +752,14 @@ private:
     int k_size_;
     int n_size_;
     double redshift_; // TODO need to initialize this... is it even used though?
+    double zerowindowfxnsubdatnorm_;
 
     // Data vectors
     std::vector<double> kh_;
     std::vector<double> k_;
     Math::Matrix<double> window_;
+    Math::Matrix<double> zerowindowfxn_;
+    Math::Matrix<double> zerowindowfxnsubdat_;
     //std::vector< std::vector<double> > window_;
     Math::Matrix<double> P_obs_;
     //std::vector<double> P_obs_;
@@ -599,4 +778,8 @@ private:
 
     // Location of data/model files
     std::string root_;
+
+    // Variables associated with nuisance parameters
+    double k1_, k2_, s1_, s2_, a1maxval_;
+    double nptsa1_, nptsa2_, nptstot_;
 };
