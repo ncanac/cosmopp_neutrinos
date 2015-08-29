@@ -51,7 +51,7 @@ public:
         s2_ = 0.1;
         a1maxval_ = 1.1482;
         nptsa1_ = 41;
-        nptsa2 = 41;
+        nptsa2_ = 41;
         nptstot_ = 325;
 
         // Read in data file containing kbands
@@ -472,13 +472,64 @@ public:
         double sumTT_zerowin_zerowin = tempMat(0, 0);
 
         // Nuisance parameter integration
-        double k1 = 0.1, k2 = 0.2, s1 = 0.04, s2 = 0.1, a1maxval = 1.1482;
-        double nptsa1 = 41, nptsa1 = 41, nptstot = 325;
-        double currminchisq = 1000.0;
-        for(int i = 0; i < nptstot; ++i)
-        {
+        std::vector<double> chisq(nptstot_);
+        std::vector<double> chisqmarg(nptstot_);
+        double minchisq, maxchisq, deltaL;
+        int myminchisqindx;
+        double currminchisq, currminchisqmarg, minchisqtheoryamp, chisqnonuis;
+        double minchisqtheoryampnonuis, minchisqtheoryampminnuis;
+        double a1val, a2val, zerowinsub;
+        std::vector<double> a1list;
+        std::vector<double> a2list;
+        nuisance_init(a1list, a2list);
 
+        double sumDT_tot, sumTT_tot;
+        currminchisq = 1000.0;
+        for(int i = 0; i < nptstot_; ++i)
+        {
+            a1val = a1list[i];
+            a2val = a2list[i];
+            zerowinsub = -1.0*(sumzerow_Pth + a1val*sumzerow_Pth_k + a2val*sumzerow_Pth_k2);
+
+            sumDT_tot = sumDT + a1val*sumDT_k + a2val*sumDT_k2 + zerowinsub*sumDT_zerowin;
+            sumTT_tot = sumTT + pow(a1val, 2.0)*sumTT_k_k + pow(a2val, 2.0)*sumTT_k2_k2 +
+                        pow(zerowinsub, 2.0)*sumTT_zerowin_zerowin +
+                        2.0*a1val*sumTT_k + 2.0*a2val*sumTT_k2 + 2.0*a1val*a2val*sumTT_k_k2 +
+                        2.0*zerowinsub*sumTT_zerowin + 2.0*zerowinsub*a1val*sumTT_k_zerowin +
+                        2.0*zerowinsub*a2val*sumTT_k2_zerowin;
+            minchisqtheoryamp = sumDT_tot/sumTT_tot;
+            chisq[i] = sumDD - 2.0*minchisqtheoryamp*sumDT_tot + pow(minchisqtheoryamp, 2.0)*sumTT_tot;
+            // TODO: check to see that erf is the same as in BR09 code
+            chisqmarg[i] = sumDD - pow(sumDT_tot, 2.0)/sumTT_tot + std::log(sumTT_tot) -
+                           2.0*std::log(1.0 + erf(sumDT_tot/2.0/sqrt(sumTT_tot)));
+            
+            if(i == 1 || chisq[i] < currminchisq)
+            {
+                myminchisqindx = i;
+                currminchisq = chisq[i];
+                currminchisqmarg = chisqmarg[i];
+                minchisqtheoryampminnuis = minchisqtheoryamp;
+            }
+
+            // TODO: Check that integer division works as it should
+            if(i == (int)((float)nptstot_ / 2.0 + 1.0))
+            {
+                chisqnonuis = chisq[i];
+                minchisqtheoryampnonuis = minchisqtheoryamp;
+                check(std::abs(a2val) <= 0.001 && std::abs(a2val) <= 0.001, "a1 or a2 > 0.001 failure");
+            }
         }
+
+        // Numerically marginalize over a1, a2 now using values stored in chisq
+        minchisq = *std::min_element(std::begin(chisqmarg), std::end(chisqmarg));
+        maxchisq = *std::max_element(std::begin(chisqmarg), std::end(chisqmarg));
+
+        double LnLike = 0;
+        for(int i = 0; i < nptstot_; ++i)
+            LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0) / (float)nptstot_;
+        deltaL = (maxchisq - minchisq) * 0.5;
+
+        return LnLike;
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -615,25 +666,25 @@ private:
         int countcheck = 0;
         
         da1 = a1maxval_ / (nptsa1_ / 2.0);
-        da2 = a2maxpos(-1.0*a1maxval_) / (nptsa2 / 2.0);
+        da2 = a2maxpos_(-1.0*a1maxval_) / (nptsa2_ / 2.0);
         for(int i = -1 * nptsa1_ / 2; i <= nptsa1_ / 2; ++i)
         {
             for(int j = -1 * nptsa2_ / 2; j <= nptsa2_ / 2; ++j)
             {
                 a1val = da1*j;
                 a2val = da2*j;
-                if((a2val >= 0.0 && a2val <= a2maxpos(a1val) && a2val >= a2minfinalpos(a1val)) ||
-                   (a2val <= 0.0 && a2val <= a2maxfinalneg(a1val) && a2val >= a2minneg(a1val)))
+                if((a2val >= 0.0 && a2val <= a2maxpos_(a1val) && a2val >= a2minfinalpos_(a1val)) ||
+                   (a2val <= 0.0 && a2val <= a2maxfinalneg_(a1val) && a2val >= a2minneg_(a1val)))
                 {
-                    check(testa1a2(a1val, a2val), "a1, a2 failure");
+                    check(testa1a2_(a1val, a2val), "a1, a2 failure");
                     ++countcheck;
-                    check(countcheck <=  nptstot, "countcheck > nptstot failure");
+                    check(countcheck <=  nptstot_, "countcheck > nptstot failure");
                     a1list[countcheck] = a1val;
                     a2list[countcheck] = a2val;
                 }
             }
         }
-        check(countcheck == nptstot, "countcheck failure");
+        check(countcheck == nptstot_, "countcheck failure");
     }
 
     double a2maxpos_(double a1val)
@@ -648,7 +699,7 @@ private:
     {
         double a2min1 = 0.0;
         if(a1val <= 0.0)
-            a2min1 = std::max(-1.0*s1/pow(k1_, 2.0) - a1val/k1_, -1.0*s2_/pow(k2, 2.0) - a1val/k2_, 0.0);
+            a2min1 = std::max(std::max(-1.0*s1_/pow(k1_, 2.0) - a1val/k1_, -1.0*s2_/pow(k2_, 2.0) - a1val/k2_), 0.0);
         return a2min1;
     }
 
@@ -663,7 +714,7 @@ private:
     double a2min3pos_(double a1val)
     {
         double a2min3 = 0.0;
-        if(std::(a1val) >= 2.0*s2_/k2_ && a1val <= 0.0)
+        if(std::abs(a1val) >= 2.0*s2_/k2_ && a1val <= 0.0)
             a2min3 = pow(a1val, 2.0)/s2_*0.25;
         return a2min3;
     }
@@ -676,7 +727,7 @@ private:
     double a2minneg_(double a1val)
     {
         double a2min;
-        if((a1val >= std::max(-1.0*s1_/k1_,-1.0*s2_/k2_))
+        if(a1val >= std::max(-1.0*s1_/k1_, -1.0*s2_/k2_))
             a2min = std::max(-1.0*s1_/pow(k1_, 2.0) - a1val/k1_, -1.0*s2_/pow(k2_, 2.0) - a1val/k2_);
         else
             a2min = 1.0;
@@ -687,7 +738,7 @@ private:
     {
         double a2max1;
         if(a1val >= 0.0)
-            a2max1 = std::min(s1_/pow(k1_, 2.0) - a1val/k1_, s2_/pow(k2_, 2.0) - a1val/k2_, 0.0)
+            a2max1 = std::min(std::min(s1_/pow(k1_, 2.0) - a1val/k1_, s2_/pow(k2_, 2.0) - a1val/k2_), 0.0);
         else
             a2max1 = 0.0;
         return a2max1;
@@ -714,7 +765,7 @@ private:
         return std::min(std::min(a2max1neg_(a1val), a2max2neg_(a1val)) ,a2max3neg_(a1val));
     }
 
-    double testa1a2_(double a1val, a2val)
+    double testa1a2_(double a1val, double a2val)
     {
         bool testresult = true;
 
@@ -781,5 +832,5 @@ private:
 
     // Variables associated with nuisance parameters
     double k1_, k2_, s1_, s2_, a1maxval_;
-    double nptsa1_, nptsa2_, nptstot_;
+    int nptsa1_, nptsa2_, nptstot_;
 };
