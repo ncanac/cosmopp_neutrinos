@@ -123,7 +123,7 @@ public:
         datafile.close();
 
         zerowindowfxnsubdat_.resize(n_size_, 1, 0);
-        datafile.open(root_ + "lrgdr7_zerowindowfxnsubtractdat.txt:");
+        datafile.open(root_ + "data/lrgdr7_zerowindowfxnsubtractdat.txt");
         datafile >> zerowindowfxnsubdatnorm_;
         for(int i = 0; i < n_size_; ++i)
             datafile >> zerowindowfxnsubdat_(i, 0);
@@ -235,9 +235,8 @@ public:
 
         double h = params_->getH();
         // Rescale k_ and P_obs with correct factors of h
-        k_ = kh_;
         for(int i = 0; i < k_size_; ++i)
-            k_[i] = k_[i]/h;
+            k_[i] = kh_[i]/h;
         for(int i = 0; i < n_size_; ++i)
             P_obs_(i, 0) = P_obs_(i, 0)*h*h*h;
 
@@ -245,7 +244,7 @@ public:
         // evaluated at values of k given in k_.
         Math::TableFunction<double, double> P_lin_function;
         //cosmo_->getMatterPs(redshift_, &P_lin_function);
-        cosmo_->getLRGPs(redshift_, &P_lin_function);
+        cosmo_->getLRGHaloPs(redshift_, &P_lin_function);
 
         // Writing P_lin_function to file
         //std::ofstream outTest(root_ + "models/test.txt");
@@ -284,7 +283,6 @@ public:
         //outTest.close();
 
         // Compute P_damp according to eq. 10 in BR09
-        // TODO: What is value of sigma?
         //const double sigma2BAONEAR = 86.9988, sigma2BAOMID = 85.1374, sigma2BAOFAR = 84.5958 ;
         //Math::Matrix<double> P_damp(k_size_, 1, 0);
         //for(int i = 0; i < k_size_; ++i)
@@ -371,6 +369,7 @@ public:
 
     double likelihoodBR09()
     {
+        //output_screen("Checkpoint 0" << std::endl);
         // num_mpk_points_use = n_size_ = 45
         // num_mpk_kbands_use = k_size_ = 250
         double h = params_->getH();
@@ -382,39 +381,81 @@ public:
         Math::Matrix<double> mpk_WPth(n_size_, 1, 0);
         Math::Matrix<double> mpk_WPth_k(n_size_, 1, 0);
         Math::Matrix<double> mpk_WPth_k2(n_size_, 1, 0);
-        Math::Matrix<double> k_scaled(k_size_, 1, 0); // Includes 1/h
+        Math::Matrix<double> kh_scaled(k_size_, 1, 0); // h^-1 Mpc^-1
 
         // TODO: Compute scaling factor
-        double a_scl = 1.0;
+        double a_scl = 1.012937; // Hard coded for now for fiducial model
 
-        // Initialize k_
+        // Initialize k_ in units of 1/Mpc
         for(int i = 0; i < k_size_; ++i)
-            k_[i] = kh_[i]/h;
+            k_[i] = kh_[i]*h;
 
         // Initialize halopowerlrgtheory
-        Math::TableFunction<double, double> halopowerlrgtheory;
-        cosmo_->getLRGPs(redshift_, &halopowerlrgtheory);
+        //Math::TableFunction<double, double> halopowerlrgtheory;
+        // zNEAR = 0.235, zMID = 0.342, zFAR = 0.421  
+        // aNEAR = 0.809717d0, aMID = 0.745156d0, aFAR = 0.70373d0
+        // zeffDR7 = 0.312782  !! redshift at which a_scl is evaluated.
+        //cosmo_->getLRGHaloPs(0.312782, &halopowerlrgtheory);
+
+        //*************************************************************
+        // Debugging code
+
+        int numlrg = 300;
+        std::vector<double> halokvec(300);
+        std::vector<double> halopowervec(300);
+        std::ifstream datafile(root_ + "models/halopowerlrgtheory.txt");
+        for(int i = 0; i < numlrg; ++i)
+        {
+            datafile >> halokvec[i];
+            datafile >> halopowervec[i];
+        }
+        datafile.close();
+        Math::CubicSpline halopowerlrgtheory(halokvec, halopowervec);
+
+        //std::ifstream datafile(root_ + "models/mpk_raw.txt");
+        //for(int i = 0; i < k_size_; ++i)
+        //{
+        //    datafile >> kh_scaled(i, 0);
+        //    datafile >> mpk_raw(i, 0);
+        //}
+        //datafile.close();
+
+        //*************************************************************
 
         // TODO: Do this like in BR09
-        // Calculate k_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at k_scaled
+        // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
+        // mpk_raw is in units of h^3 Mpc^3
         for(int i = 0; i < k_size_; ++i)
         {
-            k_scaled(i, 0) = a_scl * kh_[i];
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(k_scaled(i, 0) * h / pow(a_scl, 3.0));
+            kh_scaled(i, 0) = a_scl * kh_[i];
+            //mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) * h / pow(a_scl, 3.0)) * pow(h, 3.0);
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
         }
+
+        
+        //output_screen("Checkpoint 1" << std::endl);
 
         // Initialize
         mpk_Pth = mpk_raw;
         for(int i = 0; i < k_size_; ++i)
         {
-            mpk_Pth_k(i, 0) = mpk_Pth(i, 0) * k_scaled(i, 0);
-            mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(k_scaled(i, 0), 2.0);
+            mpk_Pth_k(i, 0) = mpk_Pth(i, 0) * kh_scaled(i, 0);
+            mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(kh_scaled(i, 0), 2.0);
         }
 
+        std::ofstream outTest("test.txt");
+        outTest << zerowindowfxnsubdatnorm_ << std::endl;
+        for(int i = 0; i < n_size_; ++i)
+            outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
+            //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
+        outTest.close();
+
+        //output_screen("Checkpoint 2" << std::endl);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth, &mpk_WPth);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k, &mpk_WPth_k);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k2, &mpk_WPth_k2);
 
+        //output_screen("Checkpoint 3" << std::endl);
         Math::Matrix<double> tempMat;
         Math::Matrix<double> zerowindowfxn_transpose = zerowindowfxn_.getTranspose();
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth, &tempMat);
@@ -424,6 +465,7 @@ public:
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k2, &tempMat);
         double sumzerow_Pth_k2 = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
 
+        //output_screen("Checkpoint 4" << std::endl);
         Math::Matrix<double> covdat(n_size_, 1, 0);
         Math::Matrix<double> covth(n_size_, 1, 0);
         Math::Matrix<double> covth_k(n_size_, 1, 0);
@@ -435,6 +477,7 @@ public:
         Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k2, &covth_k2);
         Math::Matrix<double>::multiplyMatrices(invcov_, zerowindowfxnsubdat_, &covth_zerowin);
 
+        //output_screen("Checkpoint 5" << std::endl);
         Math::Matrix<double> P_obs_transpose = P_obs_.getTranspose();
         Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covdat, &tempMat);
         double sumDD = tempMat(0, 0);
@@ -447,6 +490,7 @@ public:
         Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_zerowin, &tempMat);
         double sumDT_zerowin = tempMat(0, 0);
 
+        //output_screen("Checkpoint 6" << std::endl);
         Math::Matrix<double> mpk_WPth_transpose = mpk_WPth.getTranspose();
         Math::Matrix<double> mpk_WPth_k_transpose = mpk_WPth_k.getTranspose();
         Math::Matrix<double> mpk_WPth_k2_transpose = mpk_WPth_k2.getTranspose();
@@ -468,9 +512,10 @@ public:
         double sumTT_k_zerowin = tempMat(0, 0);
         Math::Matrix<double>::multiplyMatrices(mpk_WPth_k2_transpose, covth_zerowin, &tempMat);
         double sumTT_k2_zerowin = tempMat(0, 0);
-        Math::Matrix<double>::multiplyMatrices(zerowindowfxnsubdat_, covth_zerowin, &tempMat);
+        Math::Matrix<double>::multiplyMatrices(zerowindowfxnsubdat_.getTranspose(), covth_zerowin, &tempMat);
         double sumTT_zerowin_zerowin = tempMat(0, 0);
 
+        //output_screen("Checkpoint 7" << std::endl);
         // Nuisance parameter integration
         std::vector<double> chisq(nptstot_);
         std::vector<double> chisqmarg(nptstot_);
@@ -479,9 +524,10 @@ public:
         double currminchisq, currminchisqmarg, minchisqtheoryamp, chisqnonuis;
         double minchisqtheoryampnonuis, minchisqtheoryampminnuis;
         double a1val, a2val, zerowinsub;
-        std::vector<double> a1list;
-        std::vector<double> a2list;
-        nuisance_init(a1list, a2list);
+        std::vector<double> a1list(nptstot_);
+        std::vector<double> a2list(nptstot_);
+        //output_screen("Checkpoint 7.1" << std::endl);
+        nuisance_init_(a1list, a2list);
 
         double sumDT_tot, sumTT_tot;
         currminchisq = 1000.0;
@@ -499,11 +545,10 @@ public:
                         2.0*zerowinsub*a2val*sumTT_k2_zerowin;
             minchisqtheoryamp = sumDT_tot/sumTT_tot;
             chisq[i] = sumDD - 2.0*minchisqtheoryamp*sumDT_tot + pow(minchisqtheoryamp, 2.0)*sumTT_tot;
-            // TODO: check to see that erf is the same as in BR09 code
             chisqmarg[i] = sumDD - pow(sumDT_tot, 2.0)/sumTT_tot + std::log(sumTT_tot) -
                            2.0*std::log(1.0 + erf(sumDT_tot/2.0/sqrt(sumTT_tot)));
             
-            if(i == 1 || chisq[i] < currminchisq)
+            if(i == 0 || chisq[i] < currminchisq)
             {
                 myminchisqindx = i;
                 currminchisq = chisq[i];
@@ -511,8 +556,7 @@ public:
                 minchisqtheoryampminnuis = minchisqtheoryamp;
             }
 
-            // TODO: Check that integer division works as it should
-            if(i == (int)((float)nptstot_ / 2.0 + 1.0))
+            if(i == (nptstot_ / 2))
             {
                 chisqnonuis = chisq[i];
                 minchisqtheoryampnonuis = minchisqtheoryamp;
@@ -520,13 +564,22 @@ public:
             }
         }
 
+        //output_screen(chisq[0] << " " << chisq[150] << " " <<chisq[300] << std::endl);
+        //output_screen(chisqmarg[0] << " " << chisqmarg[150] << " " <<chisqmarg[300] << std::endl);
+
         // Numerically marginalize over a1, a2 now using values stored in chisq
         minchisq = *std::min_element(std::begin(chisqmarg), std::end(chisqmarg));
         maxchisq = *std::max_element(std::begin(chisqmarg), std::end(chisqmarg));
 
+        //output_screen(minchisq << std::endl);
+        //output_screen(maxchisq << std::endl);
+
         double LnLike = 0;
         for(int i = 0; i < nptstot_; ++i)
-            LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0) / (float)nptstot_;
+            LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0);
+        LnLike = LnLike / (float)nptstot_;
+        check(LnLike != 0, "LRG LnLike LogZero error");
+        LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
         deltaL = (maxchisq - minchisq) * 0.5;
 
         return LnLike;
@@ -536,7 +589,7 @@ public:
     {
         params_ = &params;
         // Does wantT need to be true?
-        cosmo_->initialize(params, true, false, false, true);
+        cosmo_->initialize(params, true, false, false, true, 0.5);
     }
 
     void setModelCosmoParams(CosmologicalParams *params)
@@ -659,28 +712,30 @@ private:
 	    gsl_multifit_linear_free(mw);
     }
 
-    void nuisance_init(std::vector<double>& a1list, std::vector<double>& a2list)
+    void nuisance_init_(std::vector<double>& a1list, std::vector<double>& a2list)
     {
+        a1list.resize(nptstot_);
+        a2list.resize(nptstot_);
         double a1val, a2val;
         double da1, da2;
         int countcheck = 0;
         
-        da1 = a1maxval_ / (nptsa1_ / 2.0);
-        da2 = a2maxpos_(-1.0*a1maxval_) / (nptsa2_ / 2.0);
+        da1 = a1maxval_ / (nptsa1_ / 2);
+        da2 = a2maxpos_(-1.0*a1maxval_) / (nptsa2_ / 2);
         for(int i = -1 * nptsa1_ / 2; i <= nptsa1_ / 2; ++i)
         {
             for(int j = -1 * nptsa2_ / 2; j <= nptsa2_ / 2; ++j)
             {
-                a1val = da1*j;
+                a1val = da1*i;
                 a2val = da2*j;
                 if((a2val >= 0.0 && a2val <= a2maxpos_(a1val) && a2val >= a2minfinalpos_(a1val)) ||
                    (a2val <= 0.0 && a2val <= a2maxfinalneg_(a1val) && a2val >= a2minneg_(a1val)))
                 {
                     check(testa1a2_(a1val, a2val), "a1, a2 failure");
-                    ++countcheck;
-                    check(countcheck <=  nptstot_, "countcheck > nptstot failure");
+                    check(countcheck <  nptstot_, "countcheck >= nptstot failure");
                     a1list[countcheck] = a1val;
                     a2list[countcheck] = a2val;
+                    ++countcheck;
                 }
             }
         }
@@ -762,7 +817,7 @@ private:
 
     double a2maxfinalneg_(double a1val)
     {
-        return std::min(std::min(a2max1neg_(a1val), a2max2neg_(a1val)) ,a2max3neg_(a1val));
+        return std::min(std::min(a2max1neg_(a1val), a2max2neg_(a1val)), a2max3neg_(a1val));
     }
 
     double testa1a2_(double a1val, double a2val)
