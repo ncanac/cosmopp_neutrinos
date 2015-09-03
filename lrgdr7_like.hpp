@@ -244,7 +244,7 @@ public:
         // evaluated at values of k given in k_.
         Math::TableFunction<double, double> P_lin_function;
         //cosmo_->getMatterPs(redshift_, &P_lin_function);
-        cosmo_->getLRGHaloPs(redshift_, &P_lin_function);
+        cosmo_->getLRGHaloPs(&P_lin_function);
 
         // Writing P_lin_function to file
         //std::ofstream outTest(root_ + "models/test.txt");
@@ -391,26 +391,33 @@ public:
             k_[i] = kh_[i]*h;
 
         // Initialize halopowerlrgtheory
-        //Math::TableFunction<double, double> halopowerlrgtheory;
+        Math::TableFunction<double, double> halopowerlrgtheory;
         // zNEAR = 0.235, zMID = 0.342, zFAR = 0.421  
         // aNEAR = 0.809717d0, aMID = 0.745156d0, aFAR = 0.70373d0
         // zeffDR7 = 0.312782  !! redshift at which a_scl is evaluated.
-        //cosmo_->getLRGHaloPs(0.312782, &halopowerlrgtheory);
+        cosmo_->getLRGHaloPs(&halopowerlrgtheory);
+
+        //std::ofstream outTest("test.txt");
+        //outTest << zerowindowfxnsubdatnorm_ << std::endl;
+        //for(int i = 0; i < n_size_; ++i)
+        //    outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
+        //    //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
+        //outTest.close();
 
         //*************************************************************
         // Debugging code
 
-        int numlrg = 300;
-        std::vector<double> halokvec(300);
-        std::vector<double> halopowervec(300);
-        std::ifstream datafile(root_ + "models/halopowerlrgtheory.txt");
-        for(int i = 0; i < numlrg; ++i)
-        {
-            datafile >> halokvec[i];
-            datafile >> halopowervec[i];
-        }
-        datafile.close();
-        Math::CubicSpline halopowerlrgtheory(halokvec, halopowervec);
+        //int numlrg = 300;
+        //std::vector<double> halokvec(300);
+        //std::vector<double> halopowervec(300);
+        //std::ifstream datafile(root_ + "models/halopowerlrgtheory.txt");
+        //for(int i = 0; i < numlrg; ++i)
+        //{
+        //    datafile >> halokvec[i];
+        //    datafile >> halopowervec[i];
+        //}
+        //datafile.close();
+        //Math::CubicSpline halopowerlrgtheory(halokvec, halopowervec);
 
         //std::ifstream datafile(root_ + "models/mpk_raw.txt");
         //for(int i = 0; i < k_size_; ++i)
@@ -428,10 +435,15 @@ public:
         for(int i = 0; i < k_size_; ++i)
         {
             kh_scaled(i, 0) = a_scl * kh_[i];
-            //mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) * h / pow(a_scl, 3.0)) * pow(h, 3.0);
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) * h / pow(a_scl, 3.0)) * pow(h, 3.0);
+            //mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
         }
 
+        // Debugging code: output mpk_raw to a file for testing purposes
+        std::ofstream outMpk("mpk_raw_model.txt");
+        for(int i = 0; i < k_size_; ++i)
+            outMpk << kh_[i] << " " << mpk_raw(i, 0) << std::endl;
+        outMpk.close();
         
         //output_screen("Checkpoint 1" << std::endl);
 
@@ -443,12 +455,12 @@ public:
             mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(kh_scaled(i, 0), 2.0);
         }
 
-        std::ofstream outTest("test.txt");
-        outTest << zerowindowfxnsubdatnorm_ << std::endl;
-        for(int i = 0; i < n_size_; ++i)
-            outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
-            //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
-        outTest.close();
+        //std::ofstream outTest("test.txt");
+        //outTest << zerowindowfxnsubdatnorm_ << std::endl;
+        //for(int i = 0; i < n_size_; ++i)
+        //    outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
+        //    //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
+        //outTest.close();
 
         //output_screen("Checkpoint 2" << std::endl);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth, &mpk_WPth);
