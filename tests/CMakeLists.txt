@@ -112,10 +112,10 @@ target_link_libraries(test_lrgdr7_like ${LAPACK_LIB_FLAGS})
 target_link_libraries(test_lrgdr7_like ${CLASSLIB})
 target_link_libraries(test_lrgdr7_like ${GSL_LIBRARIES})
 
-# compile nonlinear test
+# compile LRGHaloPs test
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#add_executable(test_nonlinear test_nonlinear.cpp)
-#target_link_libraries(test_nonlinear ${COSMOPPLIB})
-#target_link_libraries(test_nonlinear ${MPI_CXX_LIBRARIES})
-#target_link_libraries(test_nonlinear ${CLASSLIB})
-#target_link_libraries(test_nonlinear ${GSL_LIBRARIES})
+#add_executable(test_LRGHaloPs test_LRGHaloPs.cpp)
+#target_link_libraries(test_LRGHaloPs ${COSMOPPLIB})
+#target_link_libraries(test_LRGHaloPs ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_LRGHaloPs ${CLASSLIB})
+#target_link_libraries(test_LRGHaloPs ${GSL_LIBRARIES})

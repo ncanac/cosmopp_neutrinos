@@ -45,16 +45,9 @@ int main(int argc, char *argv[])
     cosmo.initialize(params, true, false, false, true);
     output_screen("OK" << std::endl);
 
-    Math::TableFunction<double, double> P_lin;
     Math::TableFunction<double, double> P_lrg;
 
-    cosmo.getMatterPs(0.0, &P_lin);
-    cosmo.getLRGPs(0.0, &P_lrg);
-
-    std::ofstream outPlin("P_lin.txt");
-    for(auto const point : P_lin)
-        outPlin << point.first << " " << point.second << std::endl;
-    outPlin.close();
+    cosmo.getLRGHaloPs(&P_lrg);
 
     std::ofstream outPlrg("P_lrg.txt");
     for(auto const point : P_lrg)
