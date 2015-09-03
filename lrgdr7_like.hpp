@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 #include <cmath>
+#include <iostream>
+#include <iomanip>
 
 #include <macros.hpp>
 #include <cosmo.hpp>
@@ -25,9 +27,6 @@ public:
         cosmo_ = new Cosmo;
         lMax_ = 3000;
         cosmo_->preInitialize(lMax_, false, false, false, lMax_);
-
-        // TODO: set redshift
-        redshift_ = 0;
 
         // Number of points and kbands in the input files
         num_mpk_points_full_ = 45;
@@ -369,11 +368,6 @@ public:
 
     double likelihoodBR09()
     {
-        //output_screen("Checkpoint 0" << std::endl);
-        // num_mpk_points_use = n_size_ = 45
-        // num_mpk_kbands_use = k_size_ = 250
-        double h = params_->getH();
-
         Math::Matrix<double> mpk_raw(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth_k(k_size_, 1, 0);
@@ -383,70 +377,32 @@ public:
         Math::Matrix<double> mpk_WPth_k2(n_size_, 1, 0);
         Math::Matrix<double> kh_scaled(k_size_, 1, 0); // h^-1 Mpc^-1
 
-        // TODO: Compute scaling factor
-        double a_scl = 1.012937; // Hard coded for now for fiducial model
-
-        // Initialize k_ in units of 1/Mpc
-        for(int i = 0; i < k_size_; ++i)
-            k_[i] = kh_[i]*h;
+        // Compute scaling factor
+        const double zeffDR7 = 0.312782; // redshift at which a_scl is evaluated.
+        const double dvfid = 1211.884207; // value of dv for fiducial model
+        double da = cosmo_->getAngularDistance(zeffDR7);
+        double dr = zeffDR7 / cosmo_->getHubble(zeffDR7);
+        double dv = pow(da*da*(1 + zeffDR7)*(1 + zeffDR7)*dr,1.0/3.0);
+        double a_scl = dv/dvfid; // Value in BR09 example model = 1.012937
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
-        // zNEAR = 0.235, zMID = 0.342, zFAR = 0.421  
-        // aNEAR = 0.809717d0, aMID = 0.745156d0, aFAR = 0.70373d0
-        // zeffDR7 = 0.312782  !! redshift at which a_scl is evaluated.
         cosmo_->getLRGHaloPs(&halopowerlrgtheory);
 
-        //std::ofstream outTest("test.txt");
-        //outTest << zerowindowfxnsubdatnorm_ << std::endl;
-        //for(int i = 0; i < n_size_; ++i)
-        //    outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
-        //    //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
-        //outTest.close();
-
-        //*************************************************************
-        // Debugging code
-
-        //int numlrg = 300;
-        //std::vector<double> halokvec(300);
-        //std::vector<double> halopowervec(300);
-        //std::ifstream datafile(root_ + "models/halopowerlrgtheory.txt");
-        //for(int i = 0; i < numlrg; ++i)
-        //{
-        //    datafile >> halokvec[i];
-        //    datafile >> halopowervec[i];
-        //}
-        //datafile.close();
-        //Math::CubicSpline halopowerlrgtheory(halokvec, halopowervec);
-
-        //std::ifstream datafile(root_ + "models/mpk_raw.txt");
-        //for(int i = 0; i < k_size_; ++i)
-        //{
-        //    datafile >> kh_scaled(i, 0);
-        //    datafile >> mpk_raw(i, 0);
-        //}
-        //datafile.close();
-
-        //*************************************************************
-
-        // TODO: Do this like in BR09
         // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
         // mpk_raw is in units of h^3 Mpc^3
         for(int i = 0; i < k_size_; ++i)
         {
             kh_scaled(i, 0) = a_scl * kh_[i];
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) * h / pow(a_scl, 3.0)) * pow(h, 3.0);
-            //mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) / pow(a_scl, 3.0));
         }
 
         // Debugging code: output mpk_raw to a file for testing purposes
         std::ofstream outMpk("mpk_raw_model.txt");
         for(int i = 0; i < k_size_; ++i)
-            outMpk << kh_[i] << " " << mpk_raw(i, 0) << std::endl;
+            outMpk << kh_scaled(i, 0) << " " << mpk_raw(i, 0) << std::endl;
         outMpk.close();
         
-        //output_screen("Checkpoint 1" << std::endl);
-
         // Initialize
         mpk_Pth = mpk_raw;
         for(int i = 0; i < k_size_; ++i)
@@ -455,19 +411,10 @@ public:
             mpk_Pth_k2(i, 0) = mpk_Pth(i, 0) * pow(kh_scaled(i, 0), 2.0);
         }
 
-        //std::ofstream outTest("test.txt");
-        //outTest << zerowindowfxnsubdatnorm_ << std::endl;
-        //for(int i = 0; i < n_size_; ++i)
-        //    outTest << zerowindowfxnsubdat_(i, 0) << std::endl;
-        //    //outTest << k_[i] << " " << " " << zerowindowfxn_(i, 0) << " " <<  mpk_Pth(i,0) << std::endl;
-        //outTest.close();
-
-        //output_screen("Checkpoint 2" << std::endl);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth, &mpk_WPth);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k, &mpk_WPth_k);
         Math::Matrix<double>::multiplyMatrices(window_, mpk_Pth_k2, &mpk_WPth_k2);
 
-        //output_screen("Checkpoint 3" << std::endl);
         Math::Matrix<double> tempMat;
         Math::Matrix<double> zerowindowfxn_transpose = zerowindowfxn_.getTranspose();
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth, &tempMat);
@@ -477,7 +424,6 @@ public:
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k2, &tempMat);
         double sumzerow_Pth_k2 = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
 
-        //output_screen("Checkpoint 4" << std::endl);
         Math::Matrix<double> covdat(n_size_, 1, 0);
         Math::Matrix<double> covth(n_size_, 1, 0);
         Math::Matrix<double> covth_k(n_size_, 1, 0);
@@ -489,7 +435,6 @@ public:
         Math::Matrix<double>::multiplyMatrices(invcov_, mpk_WPth_k2, &covth_k2);
         Math::Matrix<double>::multiplyMatrices(invcov_, zerowindowfxnsubdat_, &covth_zerowin);
 
-        //output_screen("Checkpoint 5" << std::endl);
         Math::Matrix<double> P_obs_transpose = P_obs_.getTranspose();
         Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covdat, &tempMat);
         double sumDD = tempMat(0, 0);
@@ -502,7 +447,6 @@ public:
         Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_zerowin, &tempMat);
         double sumDT_zerowin = tempMat(0, 0);
 
-        //output_screen("Checkpoint 6" << std::endl);
         Math::Matrix<double> mpk_WPth_transpose = mpk_WPth.getTranspose();
         Math::Matrix<double> mpk_WPth_k_transpose = mpk_WPth_k.getTranspose();
         Math::Matrix<double> mpk_WPth_k2_transpose = mpk_WPth_k2.getTranspose();
@@ -527,7 +471,6 @@ public:
         Math::Matrix<double>::multiplyMatrices(zerowindowfxnsubdat_.getTranspose(), covth_zerowin, &tempMat);
         double sumTT_zerowin_zerowin = tempMat(0, 0);
 
-        //output_screen("Checkpoint 7" << std::endl);
         // Nuisance parameter integration
         std::vector<double> chisq(nptstot_);
         std::vector<double> chisqmarg(nptstot_);
@@ -538,7 +481,6 @@ public:
         double a1val, a2val, zerowinsub;
         std::vector<double> a1list(nptstot_);
         std::vector<double> a2list(nptstot_);
-        //output_screen("Checkpoint 7.1" << std::endl);
         nuisance_init_(a1list, a2list);
 
         double sumDT_tot, sumTT_tot;
@@ -576,15 +518,9 @@ public:
             }
         }
 
-        //output_screen(chisq[0] << " " << chisq[150] << " " <<chisq[300] << std::endl);
-        //output_screen(chisqmarg[0] << " " << chisqmarg[150] << " " <<chisqmarg[300] << std::endl);
-
         // Numerically marginalize over a1, a2 now using values stored in chisq
         minchisq = *std::min_element(std::begin(chisqmarg), std::end(chisqmarg));
         maxchisq = *std::max_element(std::begin(chisqmarg), std::end(chisqmarg));
-
-        //output_screen(minchisq << std::endl);
-        //output_screen(maxchisq << std::endl);
 
         double LnLike = 0;
         for(int i = 0; i < nptstot_; ++i)
@@ -592,7 +528,7 @@ public:
         LnLike = LnLike / (float)nptstot_;
         check(LnLike != 0, "LRG LnLike LogZero error");
         LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
-        deltaL = (maxchisq - minchisq) * 0.5;
+        //deltaL = (maxchisq - minchisq) * 0.5;
 
         return LnLike;
     }
@@ -869,7 +805,6 @@ private:
 
     int k_size_;
     int n_size_;
-    double redshift_; // TODO need to initialize this... is it even used though?
     double zerowindowfxnsubdatnorm_;
 
     // Data vectors
