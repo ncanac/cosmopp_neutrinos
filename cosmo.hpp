@@ -445,10 +445,10 @@ private:
         }
 
         // Output k, P_lin, P_nw, and r_halofit for NEAR to a file for debugging
-        std::ofstream out("fidmodelNEAR.txt");
-        for(int i = 0; i < k_size; ++i)
-            out << kh_fid[i] << " " << P_lin_atfid[0][i] << " " << P_nw_atfid[0][i] << " " << r_nwhalofit_atfid[0][i] << std::endl;
-        out.close();
+        //std::ofstream out("fidmodelNEAR.txt");
+        //for(int i = 0; i < k_size; ++i)
+        //    out << kh_fid[i] << " " << P_lin_atfid[0][i] << " " << P_nw_atfid[0][i] << " " << r_nwhalofit_atfid[0][i] << std::endl;
+        //out.close();
 
         // Set weights to do weighted sum for P_halo as in eq. 17 of BR09
         std::vector<double> zweight {0.395, 0.355, 0.250};
