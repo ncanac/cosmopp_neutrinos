@@ -10,7 +10,7 @@
 
 #include <macros.hpp>
 #include <cosmo.hpp>
-#include <likelihood_function.hpp>
+#include <cosmo_likelihood.hpp>
 #include <matrix_impl.hpp>
 #include <cubic_spline.hpp>
 
@@ -19,7 +19,7 @@
 #include <gsl/gsl_bspline.h>
 #include <gsl/gsl_multifit.h>
 
-class LRGDR7Likelihood : public Math::LikelihoodFunction
+class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
 public:
     LRGDR7Likelihood() 
@@ -214,11 +214,12 @@ public:
         // Set the cosmological parameters to modelParams_.
         setCosmoParams(*modelParams_);
     
-        return likelihood();
+        return likelihoodBR09();
     }
 
     double likelihood()
     {
+        check(false, "Don't run me!");
         /*
         Data structures used:
         P_lin = a k_size_ x 1 column vector containing the linear power spectrum computed from Class
@@ -230,8 +231,6 @@ public:
         window_ = an 
         */
 
-        output_screen("Checkpoint 0" << std::endl);
-
         double h = params_->getH();
         // Rescale k_ and P_obs with correct factors of h
         for(int i = 0; i < k_size_; ++i)
@@ -242,7 +241,7 @@ public:
         // Create a vector containing linear matter power spectrum
         // evaluated at values of k given in k_.
         Math::TableFunction<double, double> P_lin_function;
-        //cosmo_->getMatterPs(redshift_, &P_lin_function);
+        //cosmo_->getMatterPs(0.3, &P_lin_function);
         cosmo_->getLRGHaloPs(&P_lin_function);
 
         // Writing P_lin_function to file
@@ -295,8 +294,6 @@ public:
 
         // TODO: I think some rescaling goes here. Use fiducial model.
 
-        output_screen("Checkpoint 1" << std::endl);
-
         // Power spectrum data
         Math::Matrix<double> P_data(n_size_, 1, 0);
         //std::vector<double> P_data(n_size_);
@@ -321,8 +318,6 @@ public:
         //}
         //out.close();
 
-        output_screen("Checkpoint 2" << std::endl);
-
         // Fill in theoretical windowed power spectrum
         Math::Matrix<double>::multiplyMatrices(window_, P_th, &W_P_th);
         
@@ -335,8 +330,6 @@ public:
         Math::Matrix<double> tempMat;
         Math::Matrix<double>::multiplyMatrices(W_P_th.getTranspose(), cov_th, &tempMat);
         normV = normV + tempMat(0, 0);
-
-        output_screen("Checkpoint 3" << std::endl);
 
         // Calculate bias factor
         //double b_out = 0;
@@ -359,8 +352,6 @@ public:
         chisq = tempMat(0, 0);
         Math::Matrix<double>::multiplyMatrices(W_P_th.getTranspose(), cov_dat, &tempMat); 
         chisq = chisq - pow(tempMat(0, 0), 2.0) / normV;
-
-        output_screen("Checkpoint 4" << std::endl);
 
         // Return -2ln(L)
         return chisq;
@@ -398,10 +389,10 @@ public:
         }
 
         // Debugging code: output mpk_raw to a file for testing purposes
-        std::ofstream outMpk("mpk_raw_model.txt");
-        for(int i = 0; i < k_size_; ++i)
-            outMpk << kh_scaled(i, 0) << " " << mpk_raw(i, 0) << std::endl;
-        outMpk.close();
+        //std::ofstream outMpk("mpk_raw_model.txt");
+        //for(int i = 0; i < k_size_; ++i)
+        //    outMpk << kh_scaled(i, 0) << " " << mpk_raw(i, 0) << std::endl;
+        //outMpk.close();
         
         // Initialize
         mpk_Pth = mpk_raw;
@@ -530,7 +521,7 @@ public:
         LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
         //deltaL = (maxchisq - minchisq) * 0.5;
 
-        return LnLike;
+        return 2.0*(LnLike);
     }
 
     void setCosmoParams(const CosmologicalParams& params)
