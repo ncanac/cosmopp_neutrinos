@@ -1,3 +1,4 @@
+#pragma once
 #ifdef COSMO_MPI
 #include <mpi.h>
 #endif
@@ -6,27 +7,47 @@
 #include <fstream>
 
 #include <macros.hpp>
-#include <likelihood_function.hpp>
 #include <planck_like.hpp>
+#include <wmap9_like.hpp>
 #include <bao_like.hpp>
+#include <lrgdr7_like.hpp>
+#include <numerics.hpp>
+#include <cosmo_likelihood.hpp>
 
-class CombinedLikelihood : public Math::LikelihoodFunction
+class CombinedLikelihood : public Math::CosmoLikelihood
 {
 public:
-    CombinedLikelihood(bool usePlanck, bool useBAO) : usePlanck_(usePlanck), useBAO_(useBAO)
+    CombinedLikelihood(bool usePlanck, bool useWMAP, bool useBAO, bool useLRG) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG)
     {
+        nLikes_ = 0;
+        check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
+        check(!(useBAO_ && useLRG_), "Both BAO and LRG likelihoods should not be used at the same time.");
         if(usePlanck_)
             planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 5);
+        if(useWMAP_)
+            wmapLike_ = new WMAP9Likelihood(true, true, true, true, true, true);
+        //if(useBAO_)
+        //    BAOLike_ = new BAOLikelihood;
         if(useBAO_)
-            BAOLike_ = new BAOLikelihood;
+        {
+            likes_.push_back(new BAOLikelihood);
+            ++nLikes_;
+        }
+        if(useLRG_)
+        {
+            likes_.push_back(new LRGDR7Likelihood);
+            ++nLikes_;
+        }
     }
 
     ~CombinedLikelihood()
     {
         if(usePlanck_)
             delete planckLike_;
-        if(useBAO_)
-            delete BAOLike_;     
+        if(useWMAP_)
+            delete wmapLike_;
+        //if(useBAO_)
+        //    delete BAOLike_;     
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -34,8 +55,15 @@ public:
         params_ = &params;
         if(usePlanck_)
             planckLike_->setCosmoParams(params);
-        if(useBAO_)
-            BAOLike_->setCosmoParams(params);
+        if(useWMAP_)
+        {
+            wmapLike_->setCosmoParams(params);
+            wmapLike_->calculateCls();
+        }
+        //if(useBAO_)
+        //    BAOLike_->setCosmoParams(params);
+        for(int i = 0; i < nLikes_; ++i)
+            likes_[i]->setCosmoParams(params);
     }
 
     double likelihood()
@@ -43,8 +71,12 @@ public:
         double lnLike = 0; // This is -2*ln(likelihood)
         if(usePlanck_)
             lnLike = lnLike + planckLike_->likelihood();
-        if(useBAO_)
-            lnLike = lnLike + BAOLike_->likelihood();
+        if(useWMAP_)
+            lnLike = lnLike + wmapLike_->likelihood();
+        //if(useBAO_)
+        //    lnLike = lnLike + BAOLike_->likelihood();
+        for(int i = 0; i < nLikes_; ++i)
+            lnLike += likes_[i]->likelihood();
         return lnLike;
     }
 
@@ -92,9 +124,14 @@ private:
     std::vector<double> vModel_; // modelParams_ as a vector
 
     // Specifies which likelihoods to include
-    bool usePlanck_, useBAO_;
+    bool usePlanck_, useWMAP_, useBAO_, useLRG_;
 
     // Likelihood objects
     PlanckLikelihood* planckLike_;
-    BAOLikelihood* BAOLike_;
+    WMAP9Likelihood* wmapLike_;
+    std::vector<Math::CosmoLikelihood*> likes_;
+    //BAOLikelihood* BAOLike_;
+
+    // Number of likelihood objects excluding Planck and WMAP
+    int nLikes_;
 };

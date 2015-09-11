@@ -1,3 +1,4 @@
+#pragma once
 #ifdef COSMO_MPI
 #include <mpi.h>
 #endif

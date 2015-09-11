@@ -1,4 +1,6 @@
+#pragma once
 #include <likelihood_function.hpp>
+#include <cosmological_params.hpp>
 
 namespace Math
 {
