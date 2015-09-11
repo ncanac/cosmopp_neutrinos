@@ -1,0 +1,632 @@
+lMax = 1200
+lMax = 1200
+lMax = 1200
+ Initializing WMAP likelihood, version v5
+ Initializing WMAP likelihood, version v5
+ Initializing WMAP likelihood, version v5
+MPI process 0 / 3:	Starting the timer MCMC WMAP+LRG...
+MPI process 1 / 3:	Starting the timer MCMC WMAP+LRG...
+MPI process 2 / 3:	Starting the timer MCMC WMAP+LRG...
+MPI process 2 / 3:	No resume file found (or the resume file is not complete), starting from scratch.
+Running the MPI version of MetropolisHastings with 3 tasks!!!
+
+MPI process 1 / 3:	No resume file found (or the resume file is not complete), starting from scratch.
+MPI process 0 / 3:	No resume file found (or the resume file is not complete), starting from scratch.
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 100
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.43
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.38
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.37
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.29
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.46
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.45
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 100
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.51
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.5
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.28
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.38
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.55
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.49
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 100
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.49
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.39
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.38
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.41
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.43
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.41
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 200
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.4
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.51
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.31
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.495
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.43
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.31
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 200
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.41
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.585
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.27
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.435
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.48
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.395
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 200
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.42
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.41
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.36
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.36
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.5
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.455
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 300
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.366667
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.543333
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.326667
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.52
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.39
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.31
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 300
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.33
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.576667
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.31
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.473333
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.456667
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.356667
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 300
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.363333
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.48
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.376667
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.436667
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.45
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.373333
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 400
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.34
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.59
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.325
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.4975
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.45
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.3425
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 400
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.3625
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.4975
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.3775
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.4475
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.415
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.335
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 400
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.3625
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.56
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.3525
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.505
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.395
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.29
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 500
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.346
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.614
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.352
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.516
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.458
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.338
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 500
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.336
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.588
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.392
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.524
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.432
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.264
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 500
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.344
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.526
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.406
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.47
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.406
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.328
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 600
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.353333
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.603333
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.418333
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.555
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.431667
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.261667
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 600
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.365
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.633333
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.373333
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.543333
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.463333
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.33
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 600
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.346667
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.563333
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.423333
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.491667
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.406667
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.32
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 700
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.374286
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.612857
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.434286
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.564286
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.428571
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.28
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 700
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.388571
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.647143
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.401429
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.55
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.474286
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.334286
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 700
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.351429
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.572857
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.447143
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.51
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.427143
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.33
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 800
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.38125
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.63
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.44875
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.56625
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.43375
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.28625
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 800
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.3925
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.64625
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.41875
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.56375
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.4775
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.3425
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 800
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.37625
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.5775
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.46
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.5225
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.43375
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.33125
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 900
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.391111
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.637778
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.462222
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.581111
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.436667
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.3
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 900
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.412222
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.655556
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.422222
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.572222
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.487778
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.352222
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 900
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.384444
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.585556
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.472222
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.523333
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.448889
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.331111
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1000
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.395
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.634
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.478
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.588
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.452
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.309
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1000
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.426
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.661
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.445
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.577
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.485
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.358
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1000
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.392
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.597
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.493
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.54
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.452
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.334
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1100
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.404545
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.643636
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.49
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.596364
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.453636
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.318182
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1100
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.439091
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.667273
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.462727
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.58
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.493636
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.357273
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1100
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.4
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.599091
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.505455
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.545455
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.457273
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.334545
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1200
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.415
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.653333
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.495
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.61
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.461667
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.3275
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1200
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.451667
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.674167
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.4725
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.590833
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.505
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.359167
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1200
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.413333
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.605
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.510833
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.561667
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.464167
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.34
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1300
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.421538
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.654615
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.500769
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.616923
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.464615
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.337692
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1300
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.446923
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.674615
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.486154
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.599231
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.512308
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.359231
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1300
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.426923
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.611538
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.516923
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.57
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.463077
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.343846
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1400
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.428571
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.662857
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.505714
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.619286
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.473571
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.346429
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1400
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.460714
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.676429
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.492857
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.607143
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.51
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.367143
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1400
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.425714
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.621429
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.521429
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.577857
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.468571
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.35
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1500
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.436667
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.667333
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.51
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.623333
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.483333
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.357333
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1500
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.468
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.677333
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.497333
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.612
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.514667
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.372
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1500
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.430667
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.626667
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.526
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.586
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.473333
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.355333
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1600
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.441875
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.67
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.511875
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.625625
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.486875
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.363125
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1600
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.435
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.630625
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.535
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.59875
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.4725
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.36
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 1.
+MPI process 0 / 3:	Sending the covariance matrix update to chain 2.
+MPI process 0 / 3:	
+MPI process 0 / 3:	
+MPI process 0 / 3:	Total iterations: 1600
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.47625
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.67875
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.508125
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.61875
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.514375
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.375
+MPI process 0 / 3:	Received an update from chain 1.
+MPI process 0 / 3:	Received an update from chain 2.
+MPI process 0 / 3:	Sending stop request to chain 1.
+MPI process 0 / 3:	Sending stop request to chain 2.
+MPI process 0 / 3:	The chain has converged to the requested accuracy after 1600 iterations, stopping!
+MPI process 0 / 3:	Acceptance rate for parameter block 0 = 0.47625
+MPI process 0 / 3:	Acceptance rate for parameter block 1 = 0.67875
+MPI process 0 / 3:	Acceptance rate for parameter block 2 = 0.508125
+MPI process 0 / 3:	Acceptance rate for parameter block 3 = 0.61875
+MPI process 0 / 3:	Acceptance rate for parameter block 4 = 0.514375
+MPI process 0 / 3:	Acceptance rate for parameter block 5 = 0.375
+MPI process 1 / 3:	Sending updates about progress to master.
+MPI process 1 / 3:	Received an updated covariance matrix from the master.
+MPI process 1 / 3:	Received stop request.
+MPI process 1 / 3:	
+MPI process 1 / 3:	
+MPI process 1 / 3:	Total iterations: 1700
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.450588
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.672941
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.514706
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.628824
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.494706
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.370588
+MPI process 0 / 3:	Heard from chain 1 that it has stopped.
+MPI process 1 / 3:	Received stop signal from the master, stopping!
+MPI process 1 / 3:	Acceptance rate for parameter block 0 = 0.450588
+MPI process 1 / 3:	Acceptance rate for parameter block 1 = 0.672941
+MPI process 1 / 3:	Acceptance rate for parameter block 2 = 0.514706
+MPI process 1 / 3:	Acceptance rate for parameter block 3 = 0.628824
+MPI process 1 / 3:	Acceptance rate for parameter block 4 = 0.494706
+MPI process 1 / 3:	Acceptance rate for parameter block 5 = 0.370588
+MPI process 1 / 3:	Informing master that I have stopped.
+MPI process 2 / 3:	Sending updates about progress to master.
+MPI process 2 / 3:	Received an updated covariance matrix from the master.
+MPI process 2 / 3:	Received stop request.
+MPI process 2 / 3:	
+MPI process 2 / 3:	
+MPI process 2 / 3:	Total iterations: 1700
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.441765
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.634706
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.538235
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.607059
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.475294
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.362353
+MPI process 2 / 3:	Received stop signal from the master, stopping!
+MPI process 2 / 3:	Acceptance rate for parameter block 0 = 0.441765
+MPI process 2 / 3:	Acceptance rate for parameter block 1 = 0.634706
+MPI process 2 / 3:	Acceptance rate for parameter block 2 = 0.538235
+MPI process 2 / 3:	Acceptance rate for parameter block 3 = 0.607059
+MPI process 2 / 3:	Acceptance rate for parameter block 4 = 0.475294
+MPI process 2 / 3:	Acceptance rate for parameter block 5 = 0.362353
+MPI process 2 / 3:	Informing master that I have stopped.
+MPI process 0 / 3:	Heard from chain 2 that it has stopped.
+MPI process 0 / 3:	The timer MCMC WMAP+LRG has ended.
+Duration: 33296007674 microseconds.
+MPI process 0 / 3:	MCMC WMAP+LRG took 33296 seconds.
+MPI process 2 / 3:	The timer MCMC WMAP+LRG has ended.
+Duration: 33296007666 microseconds.
+MPI process 2 / 3:	MCMC WMAP+LRG took 33296 seconds.
+MPI process 1 / 3:	The timer MCMC WMAP+LRG has ended.
+Duration: 33296007676 microseconds.
+MPI process 1 / 3:	MCMC WMAP+LRG took 33296 seconds.

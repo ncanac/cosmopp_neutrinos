@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8.10)
 
-project("bao" CXX)
+project("runs" CXX)
 
 # make sure that the default is a RELEASE
 if (NOT CMAKE_BUILD_TYPE)
@@ -9,11 +9,15 @@ endif (NOT CMAKE_BUILD_TYPE)
 
 # Set directories
 set(CLASS_DIR /Volumes/Data1/class_public-2.4.2)
-set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
+#set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
+set(COSMOPP_DIR /Users/ncanac/Codes/cosmo_pp_private)
 set(PLANCK_DIR /Volumes/Data1/Planck2015/plc-2.0)
-set(PLANCK_DATA_DIR "/Volumes/Data1/Planck2015/plc-2.0")
+set(PLANCK_DATA_DIR /Volumes/Data1/Planck2015/plc-2.0)
 set(PLANCK_2015 ON)
+#set(WMAP9_DIR /Volumes/Data1/WMAP9/wmap_likelihood_v5)
+set(WMAP9_DIR /Users/ncanac/Codes/wmap_likelihood_v5)
 set(PROJECT_DIR /Volumes/Data1/ncanac/cosmopp_neutrinos) 
+set(CFITSIO_DIR /usr/local/cfitsio)
 
 # compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fpic")
@@ -40,6 +44,17 @@ if(NOT PLANCKLIB)
 	message(FATAL_ERROR "clik library not found!")
 endif(NOT PLANCKLIB)
 
+# WMAP
+set(USE_FORT TRUE)
+enable_language(Fortran)
+get_filename_component(Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
+add_definitions(-DWMAP9_IFORT)
+add_definitions(-DCOSMO_WMAP9)
+find_library(WMAP9LIB wmap9 ${WMAP9_DIR} NO_DEFAULT_PATH)
+if(NOT WMAP9LIB)
+    message(FATAL_ERROR "WMAP9 library not found!")
+endif(NOT WMAP9LIB)
+
 # class
 include_directories(${CLASS_DIR}/include)
 add_definitions(-DCOSMO_CLASS)
@@ -58,6 +73,10 @@ find_package(OpenMP REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 add_definitions(-DCOSMO_OMP)
 
+# GSL
+find_package(GSL REQUIRED)
+include_directories(GSL_INCLUDE_DIRS)
+
 # check for MPI
 find_package(MPI REQUIRED)
 add_definitions(-DCOSMO_MPI)
@@ -71,6 +90,13 @@ endif(NOT MPI_CXX_LIBRARIES)
 # lapack
 set(LAPACK_LIB_FLAGS "-framework Accelerate")
 add_definitions(-DCOSMO_LAPACK)
+
+# cfitsio
+include_directories(${CFITSIO_DIR}/include)
+find_library(CFITSIOLIB cfitsio ${CFITSIO_DIR}/lib)
+if(NOT CFITSIOLIB)
+	message(FATAL_ERROR "cfitsio library not found!")
+endif(NOT CFITSIOLIB)
 
 # Add project directory
 include_directories(${PROJECT_DIR})
@@ -97,10 +123,32 @@ add_definitions(-DVERBOSE1)
 #target_link_libraries(run_planck_like ${PLANCKLIB})
 
 # combined
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_combined_like run_combined_like.cpp)
+#target_link_libraries(run_combined_like ${COSMOPPLIB})
+#target_link_libraries(run_combined_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_combined_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_combined_like ${CLASSLIB})
+#target_link_libraries(run_combined_like ${PLANCKLIB})
+
+# LRG
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_lrg_like run_lrg_like.cpp)
+#target_link_libraries(run_lrg_like ${COSMOPPLIB})
+#target_link_libraries(run_lrg_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_lrg_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_lrg_like ${CLASSLIB})
+#target_link_libraries(run_lrg_like ${GSL_LIBRARIES})
+
+# WMAP + LRG
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(run_combined_like run_combined_like.cpp)
-target_link_libraries(run_combined_like ${COSMOPPLIB})
-target_link_libraries(run_combined_like ${MPI_CXX_LIBRARIES})
-target_link_libraries(run_combined_like ${LAPACK_LIB_FLAGS})
-target_link_libraries(run_combined_like ${CLASSLIB})
-target_link_libraries(run_combined_like ${PLANCKLIB})
+add_executable(run_wmap+lrg_like run_wmap+lrg_like.cpp sample.f90)
+target_link_libraries(run_wmap+lrg_like ${COSMOPPLIB})
+target_link_libraries(run_wmap+lrg_like ${MPI_CXX_LIBRARIES})
+target_link_libraries(run_wmap+lrg_like ${LAPACK_LIB_FLAGS})
+target_link_libraries(run_wmap+lrg_like ${CLASSLIB})
+target_link_libraries(run_wmap+lrg_like ${GSL_LIBRARIES})
+target_link_libraries(run_wmap+lrg_like ${WMAP9LIB})
+target_link_libraries(run_wmap+lrg_like ${CFITSIOLIB})
+target_link_libraries(run_wmap+lrg_like ${PLANCKLIB})
+
