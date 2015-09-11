@@ -102,41 +102,65 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_lrgdr7_like
+# Target rules for targets named test_wmap_like
 
 # Build rule for target.
-test_lrgdr7_like: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_lrgdr7_like
-.PHONY : test_lrgdr7_like
+test_wmap_like: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_wmap_like
+.PHONY : test_wmap_like
 
 # fast build rule for target.
-test_lrgdr7_like/fast:
-	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/build
-.PHONY : test_lrgdr7_like/fast
+test_wmap_like/fast:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/build
+.PHONY : test_wmap_like/fast
 
-test_lrgdr7_like.o: test_lrgdr7_like.cpp.o
-.PHONY : test_lrgdr7_like.o
+sample.o: sample.f90.o
+.PHONY : sample.o
 
 # target to build an object file
-test_lrgdr7_like.cpp.o:
-	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o
-.PHONY : test_lrgdr7_like.cpp.o
+sample.f90.o:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/sample.f90.o
+.PHONY : sample.f90.o
 
-test_lrgdr7_like.i: test_lrgdr7_like.cpp.i
-.PHONY : test_lrgdr7_like.i
+sample.i: sample.f90.i
+.PHONY : sample.i
 
 # target to preprocess a source file
-test_lrgdr7_like.cpp.i:
-	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.i
-.PHONY : test_lrgdr7_like.cpp.i
+sample.f90.i:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/sample.f90.i
+.PHONY : sample.f90.i
 
-test_lrgdr7_like.s: test_lrgdr7_like.cpp.s
-.PHONY : test_lrgdr7_like.s
+sample.s: sample.f90.s
+.PHONY : sample.s
 
 # target to generate assembly for a file
-test_lrgdr7_like.cpp.s:
-	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.s
-.PHONY : test_lrgdr7_like.cpp.s
+sample.f90.s:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/sample.f90.s
+.PHONY : sample.f90.s
+
+test_wmap_like.o: test_wmap_like.cpp.o
+.PHONY : test_wmap_like.o
+
+# target to build an object file
+test_wmap_like.cpp.o:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/test_wmap_like.cpp.o
+.PHONY : test_wmap_like.cpp.o
+
+test_wmap_like.i: test_wmap_like.cpp.i
+.PHONY : test_wmap_like.i
+
+# target to preprocess a source file
+test_wmap_like.cpp.i:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/test_wmap_like.cpp.i
+.PHONY : test_wmap_like.cpp.i
+
+test_wmap_like.s: test_wmap_like.cpp.s
+.PHONY : test_wmap_like.s
+
+# target to generate assembly for a file
+test_wmap_like.cpp.s:
+	$(MAKE) -f CMakeFiles/test_wmap_like.dir/build.make CMakeFiles/test_wmap_like.dir/test_wmap_like.cpp.s
+.PHONY : test_wmap_like.cpp.s
 
 # Help Target
 help:
@@ -144,12 +168,15 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test_wmap_like"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_lrgdr7_like"
-	@echo "... test_lrgdr7_like.o"
-	@echo "... test_lrgdr7_like.i"
-	@echo "... test_lrgdr7_like.s"
+	@echo "... sample.o"
+	@echo "... sample.i"
+	@echo "... sample.s"
+	@echo "... test_wmap_like.o"
+	@echo "... test_wmap_like.i"
+	@echo "... test_wmap_like.s"
 .PHONY : help
 
 

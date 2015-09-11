@@ -1,12 +1,17 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
   "CXX"
+  "Fortran"
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/test_lrgdr7_like.cpp" "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o"
+  "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/test_wmap_like.cpp" "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles/test_wmap_like.dir/test_wmap_like.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_DEPENDS_CHECK_Fortran
+  "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/sample.f90" "/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles/test_wmap_like.dir/sample.f90.o"
+  )
+set(CMAKE_Fortran_COMPILER_ID "Intel")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS
@@ -17,9 +22,11 @@ set(CMAKE_TARGET_DEFINITIONS
   "COSMO_OMP"
   "COSMO_PLANCK"
   "COSMO_PLANCK_15"
+  "COSMO_WMAP9"
   "OUTPUT_LOG"
   "PLANCK_DATA_DIR=/Volumes/Data1/Planck2015/plc-2.0"
   "VERBOSE1"
+  "WMAP9_IFORT"
   )
 
 # Targets to which this target links.
@@ -35,6 +42,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/Users/ncanac/Codes/cosmo_pp_private/include"
   "../GSL_INCLUDE_DIRS"
   "/usr/local/include"
+  "/usr/local/cfitsio/include"
   "/Volumes/Data1/ncanac/cosmopp_neutrinos"
   )
 set(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

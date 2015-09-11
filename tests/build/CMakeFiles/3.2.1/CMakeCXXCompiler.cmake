@@ -57,7 +57,7 @@ set(CMAKE_CXX_SYSROOT_FLAG "-isysroot")
 set(CMAKE_CXX_OSX_DEPLOYMENT_TARGET_FLAG "-mmacosx-version-min=")
 
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/opt/intel/composer_xe_2015.2.132/compiler/lib;/opt/intel/composer_xe_2015.2.132/mkl/lib;/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Library/Frameworks;/System/Library/Frameworks")
 
 
