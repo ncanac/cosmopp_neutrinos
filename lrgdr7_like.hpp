@@ -389,12 +389,6 @@ public:
             mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) / pow(a_scl, 3.0));
         }
 
-        // Debugging code: output mpk_raw to a file for testing purposes
-        //std::ofstream outMpk("mpk_raw_model.txt");
-        //for(int i = 0; i < k_size_; ++i)
-        //    outMpk << kh_scaled(i, 0) << " " << mpk_raw(i, 0) << std::endl;
-        //outMpk.close();
-        
         // Initialize
         mpk_Pth = mpk_raw;
         for(int i = 0; i < k_size_; ++i)
