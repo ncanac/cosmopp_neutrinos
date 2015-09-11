@@ -1,3 +1,4 @@
+#pragma once
 #ifdef COSMO_MPI
 #include <mpi.h>
 #endif
@@ -7,9 +8,9 @@
 
 #include <macros.hpp>
 #include <cosmo.hpp>
-#include <likelihood_function.hpp>
+#include <cosmo_likelihood.hpp>
 
-class BAOLikelihood : public Math::LikelihoodFunction
+class BAOLikelihood : public Math::CosmoLikelihood
 {
 public:
     BAOLikelihood()

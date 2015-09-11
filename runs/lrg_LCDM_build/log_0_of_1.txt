@@ -1,0 +1,21 @@
+MCMC iteration 100:
+MCMC parameter 0: reached accuracy = -1 , expected accuracy = 2e-05
+MCMC parameter 1: reached accuracy = -1 , expected accuracy = 6e-05
+MCMC parameter 2: reached accuracy = -1 , expected accuracy = 0.0004
+MCMC parameter 3: reached accuracy = -1 , expected accuracy = 0.0005
+MCMC parameter 4: reached accuracy = -1 , expected accuracy = 0.0006
+MCMC parameter 5: reached accuracy = -1 , expected accuracy = 0.0004
+MCMC iteration 200:
+MCMC parameter 0: reached accuracy = -1 , expected accuracy = 2e-05
+MCMC parameter 1: reached accuracy = -1 , expected accuracy = 6e-05
+MCMC parameter 2: reached accuracy = -1 , expected accuracy = 0.0004
+MCMC parameter 3: reached accuracy = -1 , expected accuracy = 0.0005
+MCMC parameter 4: reached accuracy = -1 , expected accuracy = 0.0006
+MCMC parameter 5: reached accuracy = -1 , expected accuracy = 0.0004
+MCMC iteration 300:
+MCMC parameter 0: reached accuracy = -1 , expected accuracy = 2e-05
+MCMC parameter 1: reached accuracy = -1 , expected accuracy = 6e-05
+MCMC parameter 2: reached accuracy = -1 , expected accuracy = 0.0004
+MCMC parameter 3: reached accuracy = -1 , expected accuracy = 0.0005
+MCMC parameter 4: reached accuracy = -1 , expected accuracy = 0.0006
+MCMC parameter 5: reached accuracy = -1 , expected accuracy = 0.0004

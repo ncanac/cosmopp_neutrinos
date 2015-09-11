@@ -17,6 +17,8 @@ set(PLANCK_DIR /Volumes/Data1/Planck2015/plc-2.0)
 set(PLANCK_DATA_DIR "/Volumes/Data1/Planck2015/plc-2.0")
 set(PLANCK_2015 ON)
 set(PROJECT_DIR /Volumes/Data1/ncanac/cosmopp_neutrinos) 
+set(WMAP9_DIR /Users/ncanac/Codes/wmap_likelihood_v5)
+set(CFITSIO_DIR /usr/local/cfitsio)
 
 # compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fpic")
@@ -43,6 +45,18 @@ if(NOT PLANCKLIB)
 	message(FATAL_ERROR "clik library not found!")
 endif(NOT PLANCKLIB)
 
+# WMAP
+#include_directories(${WMAP9_DIR})
+set(USE_FORT TRUE)
+enable_language(Fortran)
+get_filename_component(Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
+add_definitions(-DWMAP9_IFORT)
+add_definitions(-DCOSMO_WMAP9)
+find_library(WMAP9LIB wmap9 ${WMAP9_DIR} NO_DEFAULT_PATH)
+if(NOT WMAP9LIB)
+    message(FATAL_ERROR "WMAP9 library not found!")
+endif(NOT WMAP9LIB)
+
 # class
 include_directories(${CLASS_DIR}/include)
 add_definitions(-DCOSMO_CLASS)
@@ -53,7 +67,7 @@ if(NOT CLASSLIB)
 endif(NOT CLASSLIB)
 
 # Cosmo++
-find_library(COSMOPPLIB cosmopp ${COSMOPP_DIR}/build/lib)
+find_library(COSMOPPLIB cosmopp ${COSMOPP_DIR}/lib)
 include_directories(${COSMOPP_DIR}/include)
 
 # openmp
@@ -78,6 +92,13 @@ endif(NOT MPI_CXX_LIBRARIES)
 # lapack
 set(LAPACK_LIB_FLAGS "-framework Accelerate")
 add_definitions(-DCOSMO_LAPACK)
+
+# cfitsio
+include_directories(${CFITSIO_DIR}/include)
+find_library(CFITSIOLIB cfitsio ${CFITSIO_DIR}/lib)
+if(NOT CFITSIOLIB)
+	message(FATAL_ERROR "cfitsio library not found!")
+endif(NOT CFITSIOLIB)
 
 # Add project directory
 include_directories(${PROJECT_DIR})
@@ -104,18 +125,30 @@ add_definitions(-DCHECKS_ON)
 #target_link_libraries(learn_matrix ${LAPACK_LIB_FLAGS})
 
 # compile LRG DR7 likelihood test
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(test_lrgdr7_like test_lrgdr7_like.cpp)
-target_link_libraries(test_lrgdr7_like ${COSMOPPLIB})
-target_link_libraries(test_lrgdr7_like ${MPI_CXX_LIBRARIES})
-target_link_libraries(test_lrgdr7_like ${LAPACK_LIB_FLAGS})
-target_link_libraries(test_lrgdr7_like ${CLASSLIB})
-target_link_libraries(test_lrgdr7_like ${GSL_LIBRARIES})
-
-# compile nonlinear test
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#add_executable(test_nonlinear test_nonlinear.cpp)
-#target_link_libraries(test_nonlinear ${COSMOPPLIB})
-#target_link_libraries(test_nonlinear ${MPI_CXX_LIBRARIES})
-#target_link_libraries(test_nonlinear ${CLASSLIB})
-#target_link_libraries(test_nonlinear ${GSL_LIBRARIES})
+#add_executable(test_lrgdr7_like test_lrgdr7_like.cpp)
+#target_link_libraries(test_lrgdr7_like ${COSMOPPLIB})
+#target_link_libraries(test_lrgdr7_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_lrgdr7_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(test_lrgdr7_like ${CLASSLIB})
+#target_link_libraries(test_lrgdr7_like ${GSL_LIBRARIES})
+
+# compile LRGHaloPs test
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(test_LRGHaloPs test_LRGHaloPs.cpp)
+#target_link_libraries(test_LRGHaloPs ${COSMOPPLIB})
+#target_link_libraries(test_LRGHaloPs ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_LRGHaloPs ${CLASSLIB})
+#target_link_libraries(test_LRGHaloPs ${GSL_LIBRARIES})
+
+# compile WMAP9 test
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+add_executable(test_wmap_like test_wmap_like.cpp sample.f90)
+target_link_libraries(test_wmap_like ${COSMOPPLIB})
+target_link_libraries(test_wmap_like ${MPI_CXX_LIBRARIES})
+target_link_libraries(test_wmap_like ${LAPACK_LIB_FLAGS})
+target_link_libraries(test_wmap_like ${CLASSLIB})
+target_link_libraries(test_wmap_like ${GSL_LIBRARIES})
+target_link_libraries(test_wmap_like ${WMAP9LIB})
+target_link_libraries(test_wmap_like ${CFITSIOLIB})
+

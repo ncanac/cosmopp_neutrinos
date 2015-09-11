@@ -1,3 +1,4 @@
+#pragma once
 #include <cosmological_params.hpp>
 
 class DegenerateNeutrinosParams : public LambdaCDMParams

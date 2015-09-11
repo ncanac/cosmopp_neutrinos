@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     output_screen("Calculating the likelihood..." << std::endl);
     // Calculate likelihood
-    double lnlike = lrgLike.likelihood();
+    double lnlike = lrgLike.likelihoodBR09();
 
     // Output the likelihood
     output_screen("Likelihood = " << lnlike << std::endl);

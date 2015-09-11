@@ -1,0 +1,31 @@
+MPI process 0 / 1:	Starting the timer MCMC LRG...
+Running the MPI version of MetropolisHastings with 1 tasks!!!
+
+MPI process 0 / 1:	No resume file found (or the resume file is not complete), starting from scratch.
+MPI process 0 / 1:	
+MPI process 0 / 1:	
+MPI process 0 / 1:	Total iterations: 100
+MPI process 0 / 1:	Acceptance rate for parameter block 0 = 0.99
+MPI process 0 / 1:	Acceptance rate for parameter block 1 = 0.91
+MPI process 0 / 1:	Acceptance rate for parameter block 2 = 0.85
+MPI process 0 / 1:	Acceptance rate for parameter block 3 = 1
+MPI process 0 / 1:	Acceptance rate for parameter block 4 = 0.9
+MPI process 0 / 1:	Acceptance rate for parameter block 5 = 0.98
+MPI process 0 / 1:	
+MPI process 0 / 1:	
+MPI process 0 / 1:	Total iterations: 200
+MPI process 0 / 1:	Acceptance rate for parameter block 0 = 0.985
+MPI process 0 / 1:	Acceptance rate for parameter block 1 = 0.945
+MPI process 0 / 1:	Acceptance rate for parameter block 2 = 0.89
+MPI process 0 / 1:	Acceptance rate for parameter block 3 = 1
+MPI process 0 / 1:	Acceptance rate for parameter block 4 = 0.885
+MPI process 0 / 1:	Acceptance rate for parameter block 5 = 0.99
+MPI process 0 / 1:	
+MPI process 0 / 1:	
+MPI process 0 / 1:	Total iterations: 300
+MPI process 0 / 1:	Acceptance rate for parameter block 0 = 0.866667
+MPI process 0 / 1:	Acceptance rate for parameter block 1 = 0.88
+MPI process 0 / 1:	Acceptance rate for parameter block 2 = 0.836667
+MPI process 0 / 1:	Acceptance rate for parameter block 3 = 0.94
+MPI process 0 / 1:	Acceptance rate for parameter block 4 = 0.85
+MPI process 0 / 1:	Acceptance rate for parameter block 5 = 0.99
