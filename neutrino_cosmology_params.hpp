@@ -113,13 +113,13 @@ public:
         v[2] = getH();
         v[3] = getTau();
         // kmin and kmax are fixed so don't return these
-        v[4] = amplitudes_[0];
+        v[4] = std::log(amplitudes_[0] * 1e10);
         for(int i = 1; i < kVals_.size() - 1; ++i)
         {
-            v.push_back(kVals_[i]);
-            v.push_back(amplitudes_[i]);
+            v.push_back(std::log(kVals_[i]));
+            v.push_back(std::log(amplitudes_[i] * 1e10));
         }
-        v.push_back(amplitudes_[amplitudes_.size() - 1]);
+        v.push_back(std::log(amplitudes_[amplitudes_.size() - 1] * 1e10));
     }
     virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
     {
