@@ -69,7 +69,7 @@ private:
     double sumMNu_;
 };
 
-class LinearSplineParams2 : public CosmologicalParams
+class LCDMwithLinearSplineParams : public CosmologicalParams
 {
     class DummyPS : public Math::RealFunction
     {
@@ -79,8 +79,8 @@ class LinearSplineParams2 : public CosmologicalParams
     };
 
 public:
-    LinearSplineParams2(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes) : CosmologicalParams(), omBH2_(omBH2), omCH2_(omCH2), h_(h), tau_(tau), ps_(kVals, amplitudes) {}
-    ~LinearSplineParams2() {}
+    LCDMwithLinearSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes) : CosmologicalParams(), omBH2_(omBH2), omCH2_(omCH2), h_(h), tau_(tau), kVals_(kVals), amplitudes_(amplitudes), ps_(kVals, amplitudes) {}
+    ~LCDMwithLinearSplineParams() {}
 
     virtual double getOmBH2() const { return omBH2_; }
     virtual double getOmCH2() const { return omCH2_; }
@@ -104,23 +104,56 @@ public:
     virtual const Math::RealFunction& powerSpectrum() const { return ps_; }
     virtual const Math::RealFunction& powerSpectrumTensor() const { return psTensor_; }
 
-    virtual std::string name() const { return "LinearSpline"; }
-    virtual void getAllParameters(std::vector<double>& v) const { check(false, "not implemented"); }
-    virtual void setAllParameters(const std::vector<double>& v) { check(false, "not implemented"); }
+    virtual std::string name() const { return "LCDMwithLinearSpline"; }
+    virtual void getAllParameters(std::vector<double>& v) const
+    {
+        v.resize(5);
+        v[0] = getOmBH2();
+        v[1] = getOmCH2();
+        v[2] = getH();
+        v[3] = getTau();
+        // kmin and kmax are fixed so don't return these
+        v[4] = amplitudes_[0];
+        for(int i = 1; i < kVals_.size() - 1; ++i)
+        {
+            v.push_back(kVals_[i]);
+            v.push_back(amplitudes_[i]);
+        }
+        v.push_back(amplitudes_[amplitudes_.size() - 1]);
+    }
+    virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
+    {
+        check(v.size() >= 6, "Not enough parameters");
+        omBH2_ = v[0];
+        omCH2_ = v[1];
+        h_ = v[2];
+        tau_ = v[3];
+        amplitudes_[0] = std::exp(v[4]) / 1e10;
+        for(int i = 1; i < kVals_.size() - 1; ++i)
+        {
+            kVals_[i] = std::exp(v[i + 4]);
+            amplitudes_[i] = std::exp(v[i + 5]) / 1e10;
+        }
+        amplitudes_[amplitudes_.size() - 1] = std::exp(v[v.size() - 1]) / 1e10;
+        ps_ = LinearSplinePowerSpectrum(kVals_, amplitudes_);
+        return true;
+    }
 
 private:
     double omBH2_;
     double omCH2_;
     double h_;
     double tau_;
+    std::vector<double> kVals_;
+    std::vector<double> amplitudes_;
     LinearSplinePowerSpectrum ps_;
     DummyPS psTensor_;
 };
 
-class NeutrinosAndLinearSplineParams : public LinearSplineParams2
+class NeutrinosAndLinearSplineParams : public LCDMwithLinearSplineParams
 {
 public:
-    NeutrinosAndLinearSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes, double nEff, int nMassive, double sumMNu) : LinearSplineParams2(omBH2, omCH2, h, tau, kVals, amplitudes), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu)
+    NeutrinosAndLinearSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes, double nEff, int nMassive, double sumMNu) : LCDMwithLinearSplineParams(omBH2, omCH2, h, tau, kVals, amplitudes), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu)
     {
         check(nEff > 0, "invalid nEff = " << nEff);
         check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
