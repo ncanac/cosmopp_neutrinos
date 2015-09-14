@@ -1,0 +1,513 @@
+The system is: Darwin - 14.5.0 - x86_64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /sw/bin/g++-fsf-5 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/3.2.1/CompilerIdCXX/a.out"
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3983204022/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3983204022.dir/build.make CMakeFiles/cmTryCompileExec3983204022.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3983204022.dir/testCXXCompiler.cxx.o
+/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3983204022.dir/testCXXCompiler.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec3983204022
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3983204022.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3983204022.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec3983204022  
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3157234628/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3157234628.dir/build.make CMakeFiles/cmTryCompileExec3157234628.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o
+/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o -c /sw/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec3157234628
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3157234628.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3157234628   
+Using built-in specs.
+COLLECT_GCC=/sw/bin/g++-fsf-5
+COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper
+Target: x86_64-apple-darwin14.1.0
+Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5
+Thread model: posix
+gcc version 5.1.0 (GCC) 
+COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/
+LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/
+COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec3157234628' '-shared-libgcc' '-mtune=core2'
+ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3157234628 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+collect2 version 5.1.0
+/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3157234628 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+Library search paths:
+	/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0
+	/sw/lib/gcc5/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+ /usr/bin/nm -n CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3157234628/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3157234628.dir/build.make CMakeFiles/cmTryCompileExec3157234628.dir/build]
+  ignore line: [/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o -c /sw/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec3157234628]
+  ignore line: [/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3157234628.dir/link.txt --verbose=1]
+  ignore line: [/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3157234628   ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/sw/bin/g++-fsf-5]
+  ignore line: [COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper]
+  ignore line: [Target: x86_64-apple-darwin14.1.0]
+  ignore line: [Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 5.1.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/]
+  ignore line: [LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec3157234628' '-shared-libgcc' '-mtune=core2']
+  link line: [ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3157234628 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v]
+    arg [/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.5] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3157234628] ==> ignore
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3157234628.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-no_compact_unwind] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+    arg [-v] ==> ignore
+  Library search paths: [;/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [gcc_ext.10.5]
+  remove lib [gcc]
+  remove lib [System]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [stdc++]
+  implicit dirs: [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec174397470/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec174397470.dir/build.make CMakeFiles/cmTryCompileExec174397470.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec174397470.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++14 -o CMakeFiles/cmTryCompileExec174397470.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec174397470
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec174397470.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec174397470.dir/feature_tests.cxx.o  -o cmTryCompileExec174397470  
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec457788006/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec457788006.dir/build.make CMakeFiles/cmTryCompileExec457788006.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec457788006.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++11 -o CMakeFiles/cmTryCompileExec457788006.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec457788006
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec457788006.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec457788006.dir/feature_tests.cxx.o  -o cmTryCompileExec457788006  
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3204685506/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3204685506.dir/build.make CMakeFiles/cmTryCompileExec3204685506.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3204685506.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++98 -o CMakeFiles/cmTryCompileExec3204685506.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec3204685506
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3204685506.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3204685506.dir/feature_tests.cxx.o  -o cmTryCompileExec3204685506  
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" succeeded.
+Compiler: /usr/bin/ifort 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the Fortran compiler identification source "CMakeFortranCompilerId.F" produced "a.out"
+
+The Fortran compiler identification is Intel, found in "/Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/3.2.1/CompilerIdFortran/a.out"
+
+Determining if the Fortran compiler works passed with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3160077592/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3160077592.dir/build.make CMakeFiles/cmTryCompileExec3160077592.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec3160077592.dir/testFortranCompiler.f.o
+/usr/bin/ifort    -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/testFortranCompiler.f -o CMakeFiles/cmTryCompileExec3160077592.dir/testFortranCompiler.f.o
+Linking Fortran executable cmTryCompileExec3160077592
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3160077592.dir/link.txt --verbose=1
+/usr/bin/ifort       CMakeFiles/cmTryCompileExec3160077592.dir/testFortranCompiler.f.o  -o cmTryCompileExec3160077592  
+
+
+Detecting Fortran compiler ABI info compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2503622619/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2503622619.dir/build.make CMakeFiles/cmTryCompileExec2503622619.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o
+/usr/bin/ifort    -c /sw/share/cmake-3.2/Modules/CMakeFortranCompilerABI.F -o CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o
+Linking Fortran executable cmTryCompileExec2503622619
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2503622619.dir/link.txt --verbose=1
+/usr/bin/ifort    -v -Wl,-v   CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o  -o cmTryCompileExec2503622619   
+ifort version 15.0.2
+/usr/bin/ifort-15.0-base/bin/intel64/fortcom    -mP1OPT_version=15.0-intel64 -mGLOB_diag_file=CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.diag -mGLOB_diag_use_message_catalog=FALSE -mGLOB_source_language=GLOB_SOURCE_LANGUAGE_F90 -mP2OPT_static_promotion -mP1OPT_print_version=FALSE -mCG_use_gas_got_workaround=F -mP2OPT_align_option_used=TRUE -mGLOB_gcc_version=490 "-mGLOB_options_string=-v -Wl,-v -o cmTryCompileExec2503622619" -mGLOB_position_independent_code -mGLOB_preemption_model=1 -mGLOB_no_compact_unwind=TRUE -mGLOB_cxx_limited_range=FALSE -mCG_extend_parms=FALSE -mGLOB_compiler_bin_directory=/usr/bin/ifort-15.0-base/bin/intel64 -mGLOB_as_output_backup_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortMI4Rntas_.s -mIPOPT_activate -mGLOB_em64t -mGLOB_product_id_code=0x22006d8f -mP3OPT_use_mspp_call_convention -mP2OPT_subs_out_of_bound=FALSE -mGLOB_ansi_alias -mPGOPTI_value_profile_use=T -mGLOB_opt_report_use_source_name -mP2OPT_il0_array_sections=TRUE -mP2OPT_hlo -mP2OPT_hpo_rtt_control=0 -mIPOPT_args_in_regs=0 -mP2OPT_disam_assume_nonstd_intent_in=FALSE -mGLOB_imf_mapping_library=/usr/bin/ifort-15.0-base/bin/intel64/libiml_attr.dylib -mPGOPTI_gen_threadsafe_level=0 -mIPOPT_link -mIPOPT_ipo_activate -mIPOPT_mo_activate -mIPOPT_source_files_list=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortslisWxcgJH -mIPOPT_mo_global_data "-mIPOPT_cmdline_link="-dynamic" "-arch" "x86_64" "-weak_reference_mismatches" "non-weak" "-macosx_version_min" "10.10.5" "-no_compact_unwind" "-o" "cmTryCompileExec2503622619" "/usr/bin/ifort-15.0-base/compiler/lib/for_main.o" "-L/usr/bin/ifort-15.0-base/compiler/lib" "-L/usr/lib" "-v" "CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o" "/usr/bin/ifort-15.0-base/compiler/lib/libifport.a" "/usr/bin/ifort-15.0-base/compiler/lib/libifcore.a" "/usr/bin/ifort-15.0-base/compiler/lib/libimf.a" "/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a" "/usr/bin/ifort-15.0-base/compiler/lib/libipgo.a" "-lSystem" "/usr/bin/ifort-15.0-base/compiler/lib/libirc.a" "-lpthread" "/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a"" -mIPOPT_il_in_obj -mIPOPT_ipo_activate_warn=FALSE -mIPOPT_obj_output_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ipo_ifortenJ5Sj.o -mIPOPT_whole_archive_fixup_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortwarchJodSx3 -mGLOB_long_size_64 -mGLOB_routine_pointer_size_64 -mGLOB_driver_tempfile_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/iforttempfile1tWPXg -mGLOB_os_target=GLOB_OS_TARGET_MACH -mGLOB_async_unwind_tables=TRUE -mGLOB_obj_output_file=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ipo_ifortenJ5Sj.o -mGLOB_source_dialect=GLOB_SOURCE_DIALECT_NONE -mP1OPT_source_file_name=ipo_out.f -mP2OPT_symtab_type_copy=true CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o -mIPOPT_object_files=T -mIPOPT_assembly_files=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortalisYYuwGj -mIPOPT_generated_tempfiles=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortelisefs3ur -mIPOPT_embedded_object_base_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/iforteobjcYGD2D
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld    -dynamic -arch x86_64 -weak_reference_mismatches non-weak -macosx_version_min 10.10.5 -no_compact_unwind -o cmTryCompileExec2503622619 /usr/bin/ifort-15.0-base/compiler/lib/for_main.o -L/usr/bin/ifort-15.0-base/compiler/lib -L/usr/lib CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o -v /usr/bin/ifort-15.0-base/compiler/lib/libifport.a /usr/bin/ifort-15.0-base/compiler/lib/libifcore.a /usr/bin/ifort-15.0-base/compiler/lib/libimf.a /usr/bin/ifort-15.0-base/compiler/lib/libsvml.a /usr/bin/ifort-15.0-base/compiler/lib/libipgo.a -lSystem /usr/bin/ifort-15.0-base/compiler/lib/libirc.a -lpthread /usr/bin/ifort-15.0-base/compiler/lib/libsvml.a /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+Library search paths:
+	/usr/bin/ifort-15.0-base/compiler/lib
+	/usr/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed Fortran implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec2503622619/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2503622619.dir/build.make CMakeFiles/cmTryCompileExec2503622619.dir/build]
+  ignore line: [/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building Fortran object CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o]
+  ignore line: [/usr/bin/ifort    -c /sw/share/cmake-3.2/Modules/CMakeFortranCompilerABI.F -o CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o]
+  ignore line: [Linking Fortran executable cmTryCompileExec2503622619]
+  ignore line: [/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2503622619.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/ifort    -v -Wl,-v   CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o  -o cmTryCompileExec2503622619   ]
+  ignore line: [ifort version 15.0.2]
+  ignore line: [/usr/bin/ifort-15.0-base/bin/intel64/fortcom    -mP1OPT_version=15.0-intel64 -mGLOB_diag_file=CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.diag -mGLOB_diag_use_message_catalog=FALSE -mGLOB_source_language=GLOB_SOURCE_LANGUAGE_F90 -mP2OPT_static_promotion -mP1OPT_print_version=FALSE -mCG_use_gas_got_workaround=F -mP2OPT_align_option_used=TRUE -mGLOB_gcc_version=490 "-mGLOB_options_string=-v -Wl,-v -o cmTryCompileExec2503622619" -mGLOB_position_independent_code -mGLOB_preemption_model=1 -mGLOB_no_compact_unwind=TRUE -mGLOB_cxx_limited_range=FALSE -mCG_extend_parms=FALSE -mGLOB_compiler_bin_directory=/usr/bin/ifort-15.0-base/bin/intel64 -mGLOB_as_output_backup_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortMI4Rntas_.s -mIPOPT_activate -mGLOB_em64t -mGLOB_product_id_code=0x22006d8f -mP3OPT_use_mspp_call_convention -mP2OPT_subs_out_of_bound=FALSE -mGLOB_ansi_alias -mPGOPTI_value_profile_use=T -mGLOB_opt_report_use_source_name -mP2OPT_il0_array_sections=TRUE -mP2OPT_hlo -mP2OPT_hpo_rtt_control=0 -mIPOPT_args_in_regs=0 -mP2OPT_disam_assume_nonstd_intent_in=FALSE -mGLOB_imf_mapping_library=/usr/bin/ifort-15.0-base/bin/intel64/libiml_attr.dylib -mPGOPTI_gen_threadsafe_level=0 -mIPOPT_link -mIPOPT_ipo_activate -mIPOPT_mo_activate -mIPOPT_source_files_list=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortslisWxcgJH -mIPOPT_mo_global_data "-mIPOPT_cmdline_link="-dynamic" "-arch" "x86_64" "-weak_reference_mismatches" "non-weak" "-macosx_version_min" "10.10.5" "-no_compact_unwind" "-o" "cmTryCompileExec2503622619" "/usr/bin/ifort-15.0-base/compiler/lib/for_main.o" "-L/usr/bin/ifort-15.0-base/compiler/lib" "-L/usr/lib" "-v" "CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o" "/usr/bin/ifort-15.0-base/compiler/lib/libifport.a" "/usr/bin/ifort-15.0-base/compiler/lib/libifcore.a" "/usr/bin/ifort-15.0-base/compiler/lib/libimf.a" "/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a" "/usr/bin/ifort-15.0-base/compiler/lib/libipgo.a" "-lSystem" "/usr/bin/ifort-15.0-base/compiler/lib/libirc.a" "-lpthread" "/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a"" -mIPOPT_il_in_obj -mIPOPT_ipo_activate_warn=FALSE -mIPOPT_obj_output_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ipo_ifortenJ5Sj.o -mIPOPT_whole_archive_fixup_file_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortwarchJodSx3 -mGLOB_long_size_64 -mGLOB_routine_pointer_size_64 -mGLOB_driver_tempfile_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/iforttempfile1tWPXg -mGLOB_os_target=GLOB_OS_TARGET_MACH -mGLOB_async_unwind_tables=TRUE -mGLOB_obj_output_file=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ipo_ifortenJ5Sj.o -mGLOB_source_dialect=GLOB_SOURCE_DIALECT_NONE -mP1OPT_source_file_name=ipo_out.f -mP2OPT_symtab_type_copy=true CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o -mIPOPT_object_files=T -mIPOPT_assembly_files=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortalisYYuwGj -mIPOPT_generated_tempfiles=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/ifortelisefs3ur -mIPOPT_embedded_object_base_name=/var/folders/k_/ttnzgy212zs2ksttpp7dy4600000gt/T/iforteobjcYGD2D]
+  link line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld    -dynamic -arch x86_64 -weak_reference_mismatches non-weak -macosx_version_min 10.10.5 -no_compact_unwind -o cmTryCompileExec2503622619 /usr/bin/ifort-15.0-base/compiler/lib/for_main.o -L/usr/bin/ifort-15.0-base/compiler/lib -L/usr/lib CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o -v /usr/bin/ifort-15.0-base/compiler/lib/libifport.a /usr/bin/ifort-15.0-base/compiler/lib/libifcore.a /usr/bin/ifort-15.0-base/compiler/lib/libimf.a /usr/bin/ifort-15.0-base/compiler/lib/libsvml.a /usr/bin/ifort-15.0-base/compiler/lib/libipgo.a -lSystem /usr/bin/ifort-15.0-base/compiler/lib/libirc.a -lpthread /usr/bin/ifort-15.0-base/compiler/lib/libsvml.a /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.5] ==> ignore
+    arg [-no_compact_unwind] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec2503622619] ==> ignore
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/for_main.o] ==> ignore
+    arg [-L/usr/bin/ifort-15.0-base/compiler/lib] ==> dir [/usr/bin/ifort-15.0-base/compiler/lib]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [CMakeFiles/cmTryCompileExec2503622619.dir/CMakeFortranCompilerABI.F.o] ==> ignore
+    arg [-v] ==> ignore
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libifport.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libifport.a]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libifcore.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libifcore.a]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libimf.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libimf.a]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libipgo.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libipgo.a]
+    arg [-lSystem] ==> lib [System]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libirc.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libirc.a]
+    arg [-lpthread] ==> lib [pthread]
+    arg [/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a] ==> lib [/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/bin/ifort-15.0-base/compiler/lib;/usr/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/bin/ifort-15.0-base/compiler/lib] ==> [/usr/bin/ifort-15.0-base/compiler/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/bin/ifort-15.0-base/compiler/lib] ==> [/usr/bin/ifort-15.0-base/compiler/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [/usr/bin/ifort-15.0-base/compiler/lib/libifport.a;/usr/bin/ifort-15.0-base/compiler/lib/libifcore.a;/usr/bin/ifort-15.0-base/compiler/lib/libimf.a;/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a;/usr/bin/ifort-15.0-base/compiler/lib/libipgo.a;/usr/bin/ifort-15.0-base/compiler/lib/libirc.a;pthread;/usr/bin/ifort-15.0-base/compiler/lib/libsvml.a;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/bin/ifort-15.0-base/compiler/lib;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+Determining if the Fortran compiler supports Fortran 90 passed with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec12958737/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec12958737.dir/build.make CMakeFiles/cmTryCompileExec12958737.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec12958737.dir/testFortranCompilerF90.f90.o
+/usr/bin/ifort    -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/testFortranCompilerF90.f90 -o CMakeFiles/cmTryCompileExec12958737.dir/testFortranCompilerF90.f90.o
+Linking Fortran executable cmTryCompileExec12958737
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec12958737.dir/link.txt --verbose=1
+/usr/bin/ifort       CMakeFiles/cmTryCompileExec12958737.dir/testFortranCompilerF90.f90.o  -o cmTryCompileExec12958737  
+
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3064365889/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3064365889.dir/build.make CMakeFiles/cmTryCompileExec3064365889.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3064365889.dir/src.cxx.o
+/sw/bin/g++-fsf-5    -std=c++11 -fpic -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec3064365889.dir/src.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3064365889
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3064365889.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5    -std=c++11 -fpic -DOpenMP_FLAG_DETECTED -fopenmp -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3064365889.dir/src.cxx.o  -o cmTryCompileExec3064365889  
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing Fortran SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec69953094/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec69953094.dir/build.make CMakeFiles/cmTryCompileExec69953094.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building Fortran object CMakeFiles/cmTryCompileExec69953094.dir/src.F.o
+/usr/bin/ifort   -DOpenMP_FLAG_DETECTED -openmp   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/runs/planck+BAO_LCDMwithLinearSpline_build/CMakeFiles/CMakeTmp/src.F -o CMakeFiles/cmTryCompileExec69953094.dir/src.F.o
+Linking Fortran executable cmTryCompileExec69953094
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec69953094.dir/link.txt --verbose=1
+/usr/bin/ifort      -DOpenMP_FLAG_DETECTED -openmp CMakeFiles/cmTryCompileExec69953094.dir/src.F.o  -o cmTryCompileExec69953094  
+
+Source file was:
+
+      program test
+      use omp_lib
+      integer :: n
+      n = omp_get_num_threads()
+      end program test
+  
