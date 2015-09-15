@@ -428,20 +428,36 @@ private:
         }
         datafile.close();
 
-        // Evaluate P_lin, P_nw, and r_nwhalofit as values of k_fid using cubic spline
+        // Evaluate P_lin, P_nw, and r_nwhalofit as values of k_fid using cubic spline in log space
+        // Note: Doing this in linear space doesn't seem to make a difference
+        int n = P_lin[0].size();
+        std::vector<double> lnP_lin(n);
+        std::vector<double> lnP_nw(n);
+        std::vector<double> lnkh(n);
+        for(int i = 0; i < n; ++i)
+            lnkh[i] = std::log(kh[i]);
         std::vector< std::vector<double> > P_lin_atfid(3, std::vector<double>(k_size));
         std::vector< std::vector<double> > P_nw_atfid(3, std::vector<double>(k_size));
         std::vector< std::vector<double> > r_nwhalofit_atfid(3, std::vector<double>(k_size));
         for(int i = 0; i < 3; ++i)
         {
-            Math::CubicSpline P_lin_spline(kh, P_lin[i]);
-            Math::CubicSpline P_nw_spline(kh, P_nw[i]);
-            Math::CubicSpline r_nwhalofit_spline(kh, r_nwhalofit[i]);
+            for(int j = 0; j < n; ++j)
+            {
+                lnP_lin[j] = std::log(P_lin[i][j]);
+                lnP_nw[j] = std::log(P_nw[i][j]);
+            }
+            //Math::CubicSpline P_lin_spline(kh, P_lin[i]);
+            //Math::CubicSpline P_nw_spline(kh, P_nw[i]);
+            Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
+            Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
+            Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
             for(int j = 0; j < k_size; ++j)
             {
-                P_lin_atfid[i][j] = P_lin_spline.evaluate(kh_fid[j]);
-                P_nw_atfid[i][j] = P_nw_spline.evaluate(kh_fid[j]);
-                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(kh_fid[j]);
+                //P_lin_atfid[i][j] = P_lin_spline.evaluate(kh_fid[j]);
+                P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(std::log(kh_fid[j])));
+                //P_nw_atfid[i][j] = P_nw_spline.evaluate(kh_fid[j]);
+                P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(std::log(kh_fid[j])));
+                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(std::log(kh_fid[j]));
             }
         }
 
