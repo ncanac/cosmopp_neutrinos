@@ -186,7 +186,7 @@ private:
     double sumMNu_;
 };
 
-class CubicSplineParams2 : public CosmologicalParams
+class LCDMwithCubicSplineParams : public CosmologicalParams
 {
     class DummyPS : public Math::RealFunction
     {
@@ -196,8 +196,8 @@ class CubicSplineParams2 : public CosmologicalParams
     };
 
 public:
-    CubicSplineParams2(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes) : CosmologicalParams(), omBH2_(omBH2), omCH2_(omCH2), h_(h), tau_(tau), ps_(kVals, amplitudes) {}
-    ~CubicSplineParams2() {}
+    LCDMwithCubicSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes) : CosmologicalParams(), omBH2_(omBH2), omCH2_(omCH2), h_(h), tau_(tau), ps_(kVals, amplitudes) {}
+    ~LCDMwithCubicSplineParams() {}
 
     virtual double getOmBH2() const { return omBH2_; }
     virtual double getOmCH2() const { return omCH2_; }
@@ -234,10 +234,10 @@ private:
     DummyPS psTensor_;
 };
 
-class NeutrinosAndCubicSplineParams : public CubicSplineParams2
+class NeutrinosAndCubicSplineParams : public LCDMwithCubicSplineParams
 {
 public:
-    NeutrinosAndCubicSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes, double nEff, int nMassive, double sumMNu) : CubicSplineParams2(omBH2, omCH2, h, tau, kVals, amplitudes), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu)
+    NeutrinosAndCubicSplineParams(double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes, double nEff, int nMassive, double sumMNu) : LCDMwithCubicSplineParams(omBH2, omCH2, h, tau, kVals, amplitudes), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu)
     {
         check(nEff > 0, "invalid nEff = " << nEff);
         check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
