@@ -958,3 +958,1543 @@ MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5022
 MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47356
 MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07506
 MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00376
+MCMC iteration 9700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00129
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02951
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.02295
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00442
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00718
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.50448
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47482
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07053
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00379
+MCMC iteration 9800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00096
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02807
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.02087
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00501
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00847
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.50599
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.473
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06875
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00313
+MCMC iteration 9900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00101
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02701
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.01992
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00555
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00992
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.50871
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47251
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06816
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00268
+MCMC iteration 10000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00083
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02532
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.01857
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00528
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01164
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.51073
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47244
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06507
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00226
+MCMC iteration 10100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00102
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02415
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.01676
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00671
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01374
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.51282
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47143
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06272
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00219
+MCMC iteration 10200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00091
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.02222
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0153
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00719
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01594
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.51569
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47233
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06078
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00218
+MCMC iteration 10300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00083
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01952
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.01354
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00878
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0177
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.51803
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.4723
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05851
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00156
+MCMC iteration 10400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00062
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01892
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.01266
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00923
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01986
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.52075
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47502
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05712
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00138
+MCMC iteration 10500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0005
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01713
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0112
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00869
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02146
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.52322
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.4743
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05648
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00118
+MCMC iteration 10600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00063
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01547
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00974
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00959
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02256
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.52509
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47274
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05589
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00099
+MCMC iteration 10700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0005
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01429
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00887
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00993
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02395
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.52762
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47176
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05499
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC iteration 10800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00057
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01372
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00813
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00919
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02524
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.53006
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47365
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05436
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00198
+MCMC iteration 10900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00067
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01223
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00707
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01037
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02593
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.53163
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47428
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05395
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00197
+MCMC iteration 11000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00074
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01171
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0069
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01243
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02655
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5347
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47646
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05435
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00204
+MCMC iteration 11100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00074
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01171
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0069
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01243
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02655
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5347
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47646
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05435
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00204
+MCMC iteration 11200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00051
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01211
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00735
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01302
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02726
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.53734
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47849
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05469
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00176
+MCMC iteration 11300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0008
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01257
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00733
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01465
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02878
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.54105
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48044
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05466
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00162
+MCMC iteration 11400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00133
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01225
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00659
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0166
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02981
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.54501
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48302
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05438
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00177
+MCMC iteration 11500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00229
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01131
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0053
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01817
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03158
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.54804
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48519
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05367
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0018
+MCMC iteration 11600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00293
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.01009
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00421
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01829
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0342
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55115
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48569
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05327
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00144
+MCMC iteration 11700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00337
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00846
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00316
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01916
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03641
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5538
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48713
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05318
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00124
+MCMC iteration 11800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00349
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00705
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00245
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0201
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0387
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55698
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48891
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05316
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00121
+MCMC iteration 11900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00333
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00636
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00215
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01985
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04105
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56068
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49254
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05354
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00091
+MCMC iteration 12000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00348
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00582
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00185
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02082
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04277
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56494
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49426
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05368
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00093
+MCMC iteration 12100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00357
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00581
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00182
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02056
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04485
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56943
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49629
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05361
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00081
+MCMC iteration 12200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00336
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00516
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00162
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02067
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04732
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.57458
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50004
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05298
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00082
+MCMC iteration 12300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00322
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00488
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00155
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02068
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04835
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.58031
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50411
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05282
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00075
+MCMC iteration 12400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0038
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00443
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00118
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02146
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0489
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5857
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50926
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0537
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00103
+MCMC iteration 12500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.004
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00403
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00106
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02127
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04657
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.59012
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5106
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05413
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00122
+MCMC iteration 12600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0034
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0041
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00127
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.02
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04503
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.59429
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51227
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05443
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00118
+MCMC iteration 12700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00331
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00407
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00132
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01991
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04299
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.59784
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51477
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05454
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00095
+MCMC iteration 12800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00331
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00411
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00134
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01997
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0418
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.60067
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51549
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05484
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00069
+MCMC iteration 12900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00377
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00432
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00142
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01888
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0414
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.60369
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.516
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05613
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00051
+MCMC iteration 13000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00372
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00446
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0015
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01742
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04205
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.60922
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51973
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0562
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00034
+MCMC iteration 13100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00354
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00422
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00142
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01676
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04153
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.61368
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52177
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05716
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00023
+MCMC iteration 13200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00327
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00423
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00147
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01529
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04198
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.61783
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52471
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.05917
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00022
+MCMC iteration 13300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00271
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0048
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00185
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0134
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04264
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.62219
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52849
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06038
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0002
+MCMC iteration 13400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00248
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00505
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00209
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01286
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04266
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.62721
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5331
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06049
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00017
+MCMC iteration 13500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00265
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00496
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00199
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01188
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04255
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.63049
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53559
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06191
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00018
+MCMC iteration 13600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00283
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00485
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00188
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.01088
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04254
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.63365
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53822
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06389
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00018
+MCMC iteration 13700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00284
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00501
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00193
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00961
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04286
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.63759
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54214
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06478
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00021
+MCMC iteration 13800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00261
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00471
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00195
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00894
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04158
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64074
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5445
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06533
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00029
+MCMC iteration 13900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0026
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00441
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00187
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0087
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04097
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64378
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54529
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06599
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0003
+MCMC iteration 14000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00265
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00365
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00162
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00845
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04073
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64488
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5436
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06656
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00018
+MCMC iteration 14100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0027
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00319
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00149
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00823
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04017
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64612
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54012
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06716
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00016
+MCMC iteration 14200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0026
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00312
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00161
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00848
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03913
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64773
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53916
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06797
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00021
+MCMC iteration 14300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00254
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00298
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00157
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00835
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03933
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64929
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53857
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06883
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00024
+MCMC iteration 14400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00244
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00232
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00125
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00781
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04014
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64959
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53521
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0689
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 14500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00213
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.002
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00105
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00843
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04086
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64998
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5337
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06971
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 14600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00219
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00179
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00087
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00883
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04122
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6504
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53266
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07026
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 14700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00224
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00151
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00073
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00854
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04168
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6518
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53097
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07005
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 14800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0023
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00085
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00053
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00803
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04273
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.65361
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52704
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06964
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999987
+MCMC iteration 14900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00209
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00073
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00045
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00801
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04372
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.65459
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5255
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07055
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999991
+MCMC iteration 15000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00205
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00053
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00053
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00758
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04413
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.65607
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52261
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07131
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 15100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00223
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00044
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00056
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00802
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04433
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6576
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51857
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07193
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 15200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00231
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0003
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00048
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00841
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04445
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66037
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51954
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07243
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 15300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00232
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00028
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00032
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00795
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04551
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66481
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52214
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07364
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 15400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00212
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00018
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00022
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00768
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04582
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66875
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52353
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07471
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999985
+MCMC iteration 15500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00229
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00009
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00023
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00728
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04493
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.67322
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52608
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07503
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999987
+MCMC iteration 15600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00254
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00007
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00035
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00701
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0437
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6767
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52709
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07542
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 15700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00248
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0005
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00718
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04154
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.68002
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52654
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07496
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 15800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0024
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00017
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00061
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00692
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.04051
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.68359
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52792
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07421
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 15900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00208
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00043
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00682
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03951
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6872
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53117
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0739
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 16000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00181
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00024
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00692
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03875
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69014
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53424
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0737
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 16100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00179
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999984
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00017
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00761
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03808
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69314
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53561
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07354
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999982
+MCMC iteration 16200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00182
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999969
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00791
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0378
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69599
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53884
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07324
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999999
+MCMC iteration 16300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00178
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999971
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00008
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0079
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0371
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69759
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54092
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07255
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.99998
+MCMC iteration 16400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00166
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999997
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00781
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0351
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69865
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54224
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0722
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999973
+MCMC iteration 16500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00136
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 0.999999
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00768
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03457
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.7001
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5445
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07196
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999974
+MCMC iteration 16600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00152
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999992
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00728
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03445
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70118
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5454
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07093
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999973
+MCMC iteration 16700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00172
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999976
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00006
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00659
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0337
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70196
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54513
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06986
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.99997
+MCMC iteration 16800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00174
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.99999
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00658
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03255
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70158
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5439
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06919
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999981
+MCMC iteration 16900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00012
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00688
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03087
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.7008
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54211
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.06913
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999985
+MCMC iteration 17000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00147
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 0.999998
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00714
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02969
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69981
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54215
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07024
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999978
+MCMC iteration 17100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00165
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00019
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00765
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02852
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69939
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54236
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07155
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999975
+MCMC iteration 17200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00176
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00022
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00798
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02747
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69998
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5415
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07265
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999979
+MCMC iteration 17300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00177
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00025
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00872
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02803
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70149
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54271
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0738
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999996
+MCMC iteration 17400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00181
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00031
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0086
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02886
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70306
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54445
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07377
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999993
+MCMC iteration 17500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00185
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00006
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0004
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00883
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02918
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70144
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54374
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07331
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999989
+MCMC iteration 17600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0018
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00034
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00875
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02877
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69972
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54207
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07268
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 17700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00197
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00039
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00843
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02881
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70074
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54176
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07291
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC iteration 17800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00217
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00062
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00809
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02913
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70282
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54217
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07348
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 17900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00234
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00032
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00095
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00851
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02957
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70483
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54188
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07453
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00006
+MCMC iteration 18000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00254
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00036
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0011
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00891
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02964
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70746
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54302
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07551
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00009
+MCMC iteration 18100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00252
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00045
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0012
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00925
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03031
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71038
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54502
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07637
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00022
+MCMC iteration 18200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00278
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00062
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00156
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00912
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03129
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71292
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54642
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07699
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00015
+MCMC iteration 18300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00264
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00067
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00158
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00868
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03175
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71468
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54746
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07693
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00023
+MCMC iteration 18400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00249
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00058
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0014
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00831
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03132
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71436
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54733
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07775
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00019
+MCMC iteration 18500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0023
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00062
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00139
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00804
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.03035
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.7127
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54615
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07797
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00015
+MCMC iteration 18600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00211
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00069
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00142
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00783
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02829
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71119
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54374
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07786
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00018
+MCMC iteration 18700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00218
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00079
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00157
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00755
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02686
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.71023
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54077
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07795
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0002
+MCMC iteration 18800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00206
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00076
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00151
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00733
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02538
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70997
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54036
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0784
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 18900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00208
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00081
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00158
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00729
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02395
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70955
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.54039
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07863
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC iteration 19000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00192
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00097
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00164
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0073
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02229
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70805
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.539
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07881
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC iteration 19100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00193
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00098
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00176
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00719
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02068
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70694
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53804
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08067
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00014
+MCMC iteration 19200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00194
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00087
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00165
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00682
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.02017
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70721
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53817
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08183
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 19300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00181
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00095
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0017
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00682
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01991
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70729
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53805
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08291
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00007
+MCMC iteration 19400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00167
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00091
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00164
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00669
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01984
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.70465
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53721
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08258
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 19500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00154
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00072
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00138
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0067
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01906
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69968
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53401
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08191
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00008
+MCMC iteration 19600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00155
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00076
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00143
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00645
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01758
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.69276
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.53
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08094
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC iteration 19700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00088
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00157
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00629
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01627
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.68582
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.52419
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08016
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00014
+MCMC iteration 19800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00092
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00156
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00654
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01481
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.68026
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51952
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07978
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00015
+MCMC iteration 19900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00148
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00085
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00142
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00681
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01355
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.67551
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51638
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07966
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00017
+MCMC iteration 20000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00136
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00078
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00129
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00685
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0127
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66976
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.51144
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07924
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 20100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00146
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00081
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00132
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.007
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01215
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66496
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.508
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07876
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC iteration 20200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00148
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00095
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00151
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00743
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01241
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.66048
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.5049
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07863
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00014
+MCMC iteration 20300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00147
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0011
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00165
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00718
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0125
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.65543
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50279
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07818
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00004
+MCMC iteration 20400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00138
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00113
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00163
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00655
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01328
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.6509
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50137
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07739
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 20500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00131
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00113
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00588
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0138
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64641
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.50012
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0764
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999993
+MCMC iteration 20600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00121
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00097
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00137
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0058
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01413
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.64129
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49798
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07577
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 20700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00134
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00095
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00146
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00623
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01398
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.63635
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49283
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07558
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 20800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00157
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0012
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00182
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00658
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01344
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.63159
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.49008
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07554
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 20900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00166
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00133
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.002
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00671
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01246
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.62552
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.48256
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07516
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 21000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00151
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00163
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00221
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00677
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0117
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.62015
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47915
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07487
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 21100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00131
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0018
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00229
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00689
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.01061
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.61434
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47566
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07455
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 21200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00114
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00177
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00214
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00701
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00969
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.60839
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.47322
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07409
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 21300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00097
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00158
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00191
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00683
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00879
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.60075
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.46797
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07339
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 21400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00105
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00152
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00195
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00658
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00819
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.59335
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.46184
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07274
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1
+MCMC iteration 21500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00112
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00148
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00203
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00642
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00743
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.58565
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.45592
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07224
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999987
+MCMC iteration 21600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00114
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00151
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00208
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.006
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00677
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.57862
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.44887
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07171
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999989
+MCMC iteration 21700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00113
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00145
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00201
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00557
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00604
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.57173
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.44352
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07114
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999994
+MCMC iteration 21800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00101
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00138
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00189
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00542
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00524
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56658
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43889
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07093
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999992
+MCMC iteration 21900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.001
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00136
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00187
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0053
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00465
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56523
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43815
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07081
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 22000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00096
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00129
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00179
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00521
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00439
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56446
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43779
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07107
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 22100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00094
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00126
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00178
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0049
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00395
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56307
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43679
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07124
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00009
+MCMC iteration 22200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00111
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0012
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00184
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00507
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00363
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56256
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43663
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07278
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC iteration 22300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00122
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0012
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00187
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00509
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00329
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56176
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43611
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07373
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00014
+MCMC iteration 22400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00121
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00116
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0018
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00482
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00301
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56086
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43519
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07507
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00013
+MCMC iteration 22500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00101
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00132
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00187
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0045
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00295
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56004
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43508
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07557
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC iteration 22600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00092
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00146
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00196
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00465
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00263
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55949
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43597
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07535
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00009
+MCMC iteration 22700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00068
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00165
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.002
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00415
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00224
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5584
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43509
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07489
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00006
+MCMC iteration 22800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00058
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00172
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00201
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0037
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00201
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55789
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43522
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07454
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 22900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00062
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00169
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00201
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00362
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00164
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55685
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43413
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07557
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999984
+MCMC iteration 23000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00056
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00158
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00186
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00347
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0013
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55621
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43332
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0767
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.99998
+MCMC iteration 23100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00049
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00141
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00168
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00294
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00116
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55612
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43422
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07681
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999983
+MCMC iteration 23200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00039
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0011
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00136
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00236
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00114
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55603
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43572
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07693
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999983
+MCMC iteration 23300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00037
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00093
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00117
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00193
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0011
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55543
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43418
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07739
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999987
+MCMC iteration 23400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00034
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00087
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00112
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00178
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00108
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55544
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43382
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07851
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00001
+MCMC iteration 23500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00027
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00083
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00105
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00178
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00113
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55611
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43435
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08003
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 23600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00028
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00067
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00086
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00167
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00124
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55735
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43571
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08097
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 23700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00028
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00057
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00074
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00164
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00137
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55769
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43688
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08139
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 0.999998
+MCMC iteration 23800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00032
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00067
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0008
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0018
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00154
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.5566
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43618
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08111
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 23900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00037
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00065
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0008
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00197
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55473
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43378
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08071
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00002
+MCMC iteration 24000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00046
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00066
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00078
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00204
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0015
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55431
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43147
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08034
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00003
+MCMC iteration 24100:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00046
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00063
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00074
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00203
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00155
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55392
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43014
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07998
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 24200:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00044
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00073
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00081
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00204
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00171
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55394
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.42926
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.07973
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00005
+MCMC iteration 24300:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00038
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00077
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.0008
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00202
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00183
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55463
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.42939
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.0811
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00007
+MCMC iteration 24400:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00036
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00086
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00084
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00186
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00175
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55602
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43043
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08274
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00011
+MCMC iteration 24500:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00037
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00084
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00083
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0017
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00158
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55761
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43103
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08371
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0001
+MCMC iteration 24600:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00034
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.0009
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00089
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00165
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00153
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.55959
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43151
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08377
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00015
+MCMC iteration 24700:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.0004
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00112
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00113
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00173
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.0015
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56165
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43262
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08496
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.0002
+MCMC iteration 24800:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00041
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00121
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00122
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00167
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00159
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56336
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43449
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08601
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00022
+MCMC iteration 24900:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00044
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00119
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00124
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.0014
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.00177
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.56569
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43724
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08581
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00025
+MCMC iteration 25000:
+MCMC parameter 0: Gelman-Rubin estimated potential scale reduction = 1.00039
+MCMC parameter 1: Gelman-Rubin estimated potential scale reduction = 1.00108
+MCMC parameter 2: Gelman-Rubin estimated potential scale reduction = 1.00111
+MCMC parameter 3: Gelman-Rubin estimated potential scale reduction = 1.00136
+MCMC parameter 4: Gelman-Rubin estimated potential scale reduction = 1.002
+MCMC parameter 5: Gelman-Rubin estimated potential scale reduction = 1.568
+MCMC parameter 6: Gelman-Rubin estimated potential scale reduction = 1.43954
+MCMC parameter 7: Gelman-Rubin estimated potential scale reduction = 1.08538
+MCMC parameter 8: Gelman-Rubin estimated potential scale reduction = 1.00026

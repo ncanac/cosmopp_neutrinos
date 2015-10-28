@@ -23,11 +23,9 @@ public:
         check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
         check(!(useBAO_ && useLRG_), "Both BAO and LRG likelihoods should not be used at the same time.");
         if(usePlanck_)
-            planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 5);
+            planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 100);
         if(useWMAP_)
             wmapLike_ = new WMAP9Likelihood(true, true, true, true, true, true);
-        //if(useBAO_)
-        //    BAOLike_ = new BAOLikelihood;
         if(useBAO_)
         {
             likes_.push_back(new BAOLikelihood);
@@ -46,8 +44,6 @@ public:
             delete planckLike_;
         if(useWMAP_)
             delete wmapLike_;
-        //if(useBAO_)
-        //    delete BAOLike_;     
     }
 
     void setCosmoParams(const CosmologicalParams& params)
@@ -60,8 +56,6 @@ public:
             wmapLike_->setCosmoParams(params);
             wmapLike_->calculateCls();
         }
-        //if(useBAO_)
-        //    BAOLike_->setCosmoParams(params);
         for(int i = 0; i < nLikes_; ++i)
             likes_[i]->setCosmoParams(params);
     }
@@ -73,8 +67,6 @@ public:
             lnLike = lnLike + planckLike_->likelihood();
         if(useWMAP_)
             lnLike = lnLike + wmapLike_->likelihood();
-        //if(useBAO_)
-        //    lnLike = lnLike + BAOLike_->likelihood();
         for(int i = 0; i < nLikes_; ++i)
             lnLike += likes_[i]->likelihood();
         return lnLike;

@@ -102,78 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named example_mh
+# Target rules for targets named example_mn_planck
 
 # Build rule for target.
-example_mh: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 example_mh
-.PHONY : example_mh
+example_mn_planck: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 example_mn_planck
+.PHONY : example_mn_planck
 
 # fast build rule for target.
-example_mh/fast:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/build
-.PHONY : example_mh/fast
+example_mn_planck/fast:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/build
+.PHONY : example_mn_planck/fast
 
-#=============================================================================
-# Target rules for targets named example_mh_chain
-
-# Build rule for target.
-example_mh_chain: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 example_mh_chain
-.PHONY : example_mh_chain
-
-# fast build rule for target.
-example_mh_chain/fast:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/build
-.PHONY : example_mh_chain/fast
-
-example_mh.o: example_mh.cpp.o
-.PHONY : example_mh.o
+example_mn_planck.o: example_mn_planck.cpp.o
+.PHONY : example_mn_planck.o
 
 # target to build an object file
-example_mh.cpp.o:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/example_mh.cpp.o
-.PHONY : example_mh.cpp.o
+example_mn_planck.cpp.o:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/example_mn_planck.cpp.o
+.PHONY : example_mn_planck.cpp.o
 
-example_mh.i: example_mh.cpp.i
-.PHONY : example_mh.i
-
-# target to preprocess a source file
-example_mh.cpp.i:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/example_mh.cpp.i
-.PHONY : example_mh.cpp.i
-
-example_mh.s: example_mh.cpp.s
-.PHONY : example_mh.s
-
-# target to generate assembly for a file
-example_mh.cpp.s:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/example_mh.cpp.s
-.PHONY : example_mh.cpp.s
-
-example_mh_chain.o: example_mh_chain.cpp.o
-.PHONY : example_mh_chain.o
-
-# target to build an object file
-example_mh_chain.cpp.o:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/example_mh_chain.cpp.o
-.PHONY : example_mh_chain.cpp.o
-
-example_mh_chain.i: example_mh_chain.cpp.i
-.PHONY : example_mh_chain.i
+example_mn_planck.i: example_mn_planck.cpp.i
+.PHONY : example_mn_planck.i
 
 # target to preprocess a source file
-example_mh_chain.cpp.i:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/example_mh_chain.cpp.i
-.PHONY : example_mh_chain.cpp.i
+example_mn_planck.cpp.i:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/example_mn_planck.cpp.i
+.PHONY : example_mn_planck.cpp.i
 
-example_mh_chain.s: example_mh_chain.cpp.s
-.PHONY : example_mh_chain.s
+example_mn_planck.s: example_mn_planck.cpp.s
+.PHONY : example_mn_planck.s
 
 # target to generate assembly for a file
-example_mh_chain.cpp.s:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/example_mh_chain.cpp.s
-.PHONY : example_mh_chain.cpp.s
+example_mn_planck.cpp.s:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/example_mn_planck.cpp.s
+.PHONY : example_mn_planck.cpp.s
 
 # Help Target
 help:
@@ -181,16 +144,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... example_mh"
+	@echo "... example_mn_planck"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... example_mh_chain"
-	@echo "... example_mh.o"
-	@echo "... example_mh.i"
-	@echo "... example_mh.s"
-	@echo "... example_mh_chain.o"
-	@echo "... example_mh_chain.i"
-	@echo "... example_mh_chain.s"
+	@echo "... example_mn_planck.o"
+	@echo "... example_mn_planck.i"
+	@echo "... example_mn_planck.s"
 .PHONY : help
 
 

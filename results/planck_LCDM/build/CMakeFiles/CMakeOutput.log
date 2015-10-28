@@ -1,0 +1,579 @@
+The system is: Darwin - 14.5.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /sw/bin/gcc-fsf-5 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/3.2.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /sw/bin/g++-fsf-5 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/3.2.1/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec837777425/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec837777425.dir/build.make CMakeFiles/cmTryCompileExec837777425.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec837777425.dir/testCCompiler.c.o
+/sw/bin/gcc-fsf-5    -o CMakeFiles/cmTryCompileExec837777425.dir/testCCompiler.c.o   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec837777425
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec837777425.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec837777425.dir/testCCompiler.c.o  -o cmTryCompileExec837777425  
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec458250210/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec458250210.dir/build.make CMakeFiles/cmTryCompileExec458250210.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o
+/sw/bin/gcc-fsf-5    -o CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o   -c /sw/share/cmake-3.2/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec458250210
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec458250210.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec458250210   
+Using built-in specs.
+COLLECT_GCC=/sw/bin/gcc-fsf-5
+COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper
+Target: x86_64-apple-darwin14.1.0
+Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5
+Thread model: posix
+gcc version 5.1.0 (GCC) 
+COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/
+LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/
+COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec458250210' '-mtune=core2'
+ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec458250210 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+collect2 version 5.1.0
+/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec458250210 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+Library search paths:
+	/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0
+	/sw/lib/gcc5/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+ /usr/bin/nm -n CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec458250210/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec458250210.dir/build.make CMakeFiles/cmTryCompileExec458250210.dir/build]
+  ignore line: [/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/sw/bin/gcc-fsf-5    -o CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o   -c /sw/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec458250210]
+  ignore line: [/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec458250210.dir/link.txt --verbose=1]
+  ignore line: [/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec458250210   ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/sw/bin/gcc-fsf-5]
+  ignore line: [COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper]
+  ignore line: [Target: x86_64-apple-darwin14.1.0]
+  ignore line: [Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 5.1.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/]
+  ignore line: [LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec458250210' '-mtune=core2']
+  link line: [ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec458250210 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v]
+    arg [/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.5] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec458250210] ==> ignore
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec458250210.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-no_compact_unwind] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+    arg [-v] ==> ignore
+  Library search paths: [;/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [gcc_ext.10.5]
+  remove lib [gcc]
+  remove lib [System]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: []
+  implicit dirs: [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3344660601/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3344660601.dir/build.make CMakeFiles/cmTryCompileExec3344660601.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3344660601.dir/feature_tests.c.o
+/sw/bin/gcc-fsf-5   -std=c11 -o CMakeFiles/cmTryCompileExec3344660601.dir/feature_tests.c.o   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec3344660601
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3344660601.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3344660601.dir/feature_tests.c.o  -o cmTryCompileExec3344660601  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2228977983/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2228977983.dir/build.make CMakeFiles/cmTryCompileExec2228977983.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2228977983.dir/feature_tests.c.o
+/sw/bin/gcc-fsf-5   -std=c99 -o CMakeFiles/cmTryCompileExec2228977983.dir/feature_tests.c.o   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec2228977983
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2228977983.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2228977983.dir/feature_tests.c.o  -o cmTryCompileExec2228977983  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec449975231/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec449975231.dir/build.make CMakeFiles/cmTryCompileExec449975231.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec449975231.dir/feature_tests.c.o
+/sw/bin/gcc-fsf-5   -std=c90 -o CMakeFiles/cmTryCompileExec449975231.dir/feature_tests.c.o   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec449975231
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec449975231.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec449975231.dir/feature_tests.c.o  -o cmTryCompileExec449975231  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3465510816/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3465510816.dir/build.make CMakeFiles/cmTryCompileExec3465510816.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3465510816.dir/testCXXCompiler.cxx.o
+/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3465510816.dir/testCXXCompiler.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec3465510816
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3465510816.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3465510816.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec3465510816  
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3793246330/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3793246330.dir/build.make CMakeFiles/cmTryCompileExec3793246330.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o
+/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o -c /sw/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec3793246330
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3793246330.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3793246330   
+Using built-in specs.
+COLLECT_GCC=/sw/bin/g++-fsf-5
+COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper
+Target: x86_64-apple-darwin14.1.0
+Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5
+Thread model: posix
+gcc version 5.1.0 (GCC) 
+COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/
+LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/
+COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec3793246330' '-shared-libgcc' '-mtune=core2'
+ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3793246330 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+collect2 version 5.1.0
+/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3793246330 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+Library search paths:
+	/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0
+	/sw/lib/gcc5/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+ /usr/bin/nm -n CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3793246330/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3793246330.dir/build.make CMakeFiles/cmTryCompileExec3793246330.dir/build]
+  ignore line: [/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/sw/bin/g++-fsf-5     -o CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o -c /sw/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec3793246330]
+  ignore line: [/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3793246330.dir/link.txt --verbose=1]
+  ignore line: [/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3793246330   ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/sw/bin/g++-fsf-5]
+  ignore line: [COLLECT_LTO_WRAPPER=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/lto-wrapper]
+  ignore line: [Target: x86_64-apple-darwin14.1.0]
+  ignore line: [Configured with: ../gcc-5.1.0/configure --prefix=/sw --prefix=/sw/lib/gcc5 --mandir=/sw/share/man --infodir=/sw/lib/gcc5/info --enable-languages=c,c++,fortran,lto,objc,obj-c++,java --with-gmp=/sw --with-libiconv-prefix=/sw --with-isl=/sw --with-mpc=/sw --with-system-zlib --x-includes=/usr/X11/include --x-libraries=/usr/X11/lib --program-suffix=-fsf-5]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 5.1.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/]
+  ignore line: [LIBRARY_PATH=/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/:/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../../:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.10.5' '-v' '-o' 'cmTryCompileExec3793246330' '-shared-libgcc' '-mtune=core2']
+  link line: [ /sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.10.5 -weak_reference_mismatches non-weak -o cmTryCompileExec3793246330 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0 -L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v]
+    arg [/sw/lib/gcc5/libexec/gcc/x86_64-apple-darwin14.1.0/5.1.0/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.5] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3793246330] ==> ignore
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+    arg [-L/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3793246330.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-no_compact_unwind] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+    arg [-v] ==> ignore
+  Library search paths: [;/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [gcc_ext.10.5]
+  remove lib [gcc]
+  remove lib [System]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0/../../..] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0] ==> [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0]
+  collapse library dir [/sw/lib/gcc5/lib] ==> [/sw/lib/gcc5/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [stdc++]
+  implicit dirs: [/sw/lib/gcc5/lib/gcc/x86_64-apple-darwin14.1.0/5.1.0;/sw/lib/gcc5/lib;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1570050193/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1570050193.dir/build.make CMakeFiles/cmTryCompileExec1570050193.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1570050193.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++14 -o CMakeFiles/cmTryCompileExec1570050193.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec1570050193
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1570050193.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1570050193.dir/feature_tests.cxx.o  -o cmTryCompileExec1570050193  
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3495051254/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3495051254.dir/build.make CMakeFiles/cmTryCompileExec3495051254.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3495051254.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++11 -o CMakeFiles/cmTryCompileExec3495051254.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec3495051254
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3495051254.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3495051254.dir/feature_tests.cxx.o  -o cmTryCompileExec3495051254  
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1350006815/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1350006815.dir/build.make CMakeFiles/cmTryCompileExec1350006815.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1350006815.dir/feature_tests.cxx.o
+/sw/bin/g++-fsf-5    -std=c++98 -o CMakeFiles/cmTryCompileExec1350006815.dir/feature_tests.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTryCompileExec1350006815
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1350006815.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1350006815.dir/feature_tests.cxx.o  -o cmTryCompileExec1350006815  
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates
+Performing C SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2419759321/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2419759321.dir/build.make CMakeFiles/cmTryCompileExec2419759321.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2419759321.dir/src.c.o
+/sw/bin/gcc-fsf-5   -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec2419759321.dir/src.c.o   -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec2419759321
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2419759321.dir/link.txt --verbose=1
+/sw/bin/gcc-fsf-5   -DOpenMP_FLAG_DETECTED -fopenmp -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2419759321.dir/src.c.o  -o cmTryCompileExec2419759321  
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeded with the following output:
+Change Dir: /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec302994022/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec302994022.dir/build.make CMakeFiles/cmTryCompileExec302994022.dir/build
+/sw/bin/cmake -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec302994022.dir/src.cxx.o
+/sw/bin/g++-fsf-5    -std=c++11 -fpic -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTryCompileExec302994022.dir/src.cxx.o -c /Volumes/Data1/ncanac/cosmopp_neutrinos/results/planck_LCDM/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec302994022
+/sw/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec302994022.dir/link.txt --verbose=1
+/sw/bin/g++-fsf-5    -std=c++11 -fpic -DOpenMP_FLAG_DETECTED -fopenmp -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec302994022.dir/src.cxx.o  -o cmTryCompileExec302994022  
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+

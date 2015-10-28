@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8.10)
 
-project("bao" CXX)
+project("test" CXX)
 
 # make sure that the default is a RELEASE
 if (NOT CMAKE_BUILD_TYPE)
@@ -9,16 +9,16 @@ endif (NOT CMAKE_BUILD_TYPE)
 
 # Set directories
 set(CLASS_DIR /Volumes/Data1/class_public-2.4.2)
-# Shared install
 #set(COSMOPP_DIR /Volumes/Data1/COSMO++/cosmo_pp_private)
-# Locall install
 set(COSMOPP_DIR /Users/ncanac/Codes/cosmo_pp_private)
 set(PLANCK_DIR /Volumes/Data1/Planck2015/plc-2.0)
-set(PLANCK_DATA_DIR "/Volumes/Data1/Planck2015/plc-2.0")
+set(PLANCK_DATA_DIR /Volumes/Data1/Planck2015/plc-2.0)
 set(PLANCK_2015 ON)
-set(PROJECT_DIR /Volumes/Data1/ncanac/cosmopp_neutrinos) 
+#set(WMAP9_DIR /Volumes/Data1/WMAP9/wmap_likelihood_v5)
 set(WMAP9_DIR /Users/ncanac/Codes/wmap_likelihood_v5)
+set(PROJECT_DIR /Volumes/Data1/ncanac/cosmopp_neutrinos) 
 set(CFITSIO_DIR /usr/local/cfitsio)
+set(MULTINEST_DIR /usr/local)
 
 # compiler options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fpic")
@@ -66,6 +66,22 @@ if(NOT CLASSLIB)
 	message(FATAL_ERROR "class library not found!")
 endif(NOT CLASSLIB)
 
+#multinest
+if(MULTINEST_DIR)
+	include_directories(${MULTINEST_DIR}/include)
+	add_definitions(-DCOSMO_MULTINEST)
+
+	if(MPI_FOUND)
+		find_library(MULTINESTLIB multinest_mpi ${MULTINEST_DIR}/lib)
+	else(MPI_FOUND)
+		find_library(MULTINESTLIB multinest ${MULTINEST_DIR}/lib)
+	endif(MPI_FOUND)
+
+	if(NOT MULTINESTLIB)
+		message(FATAL_ERROR "multinest library not found!")
+	endif(NOT MULTINESTLIB)
+endif(MULTINEST_DIR)
+
 # Cosmo++
 find_library(COSMOPPLIB cosmopp ${COSMOPP_DIR}/lib)
 include_directories(${COSMOPP_DIR}/include)
@@ -110,12 +126,16 @@ add_definitions(-DCHECKS_ON)
 
 # compile combined likelihood test 
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#add_executable(test_combined_like test_combined_like.cpp)
+#add_executable(test_combined_like test_combined_like.cpp sample.f90)
 #target_link_libraries(test_combined_like ${COSMOPPLIB})
 #target_link_libraries(test_combined_like ${MPI_CXX_LIBRARIES})
 #target_link_libraries(test_combined_like ${LAPACK_LIB_FLAGS})
 #target_link_libraries(test_combined_like ${CLASSLIB})
 #target_link_libraries(test_combined_like ${PLANCKLIB})
+#target_link_libraries(test_combined_like ${CLASSLIB})
+#target_link_libraries(test_combined_like ${GSL_LIBRARIES})
+#target_link_libraries(test_combined_like ${WMAP9LIB})
+#target_link_libraries(test_combined_like ${CFITSIOLIB})
 
 # compile learn_matrix
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -138,17 +158,27 @@ add_definitions(-DCHECKS_ON)
 #add_executable(test_LRGHaloPs test_LRGHaloPs.cpp)
 #target_link_libraries(test_LRGHaloPs ${COSMOPPLIB})
 #target_link_libraries(test_LRGHaloPs ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_LRGHaloPs ${LAPACK_LIB_FLAGS})
 #target_link_libraries(test_LRGHaloPs ${CLASSLIB})
 #target_link_libraries(test_LRGHaloPs ${GSL_LIBRARIES})
 
-# compile WMAP9 test
+# compile ps test
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(test_wmap_like test_wmap_like.cpp sample.f90)
-target_link_libraries(test_wmap_like ${COSMOPPLIB})
-target_link_libraries(test_wmap_like ${MPI_CXX_LIBRARIES})
-target_link_libraries(test_wmap_like ${LAPACK_LIB_FLAGS})
-target_link_libraries(test_wmap_like ${CLASSLIB})
-target_link_libraries(test_wmap_like ${GSL_LIBRARIES})
-target_link_libraries(test_wmap_like ${WMAP9LIB})
-target_link_libraries(test_wmap_like ${CFITSIOLIB})
+add_executable(test_ps test_ps.cpp)
+target_link_libraries(test_ps ${COSMOPPLIB})
+target_link_libraries(test_ps ${MPI_CXX_LIBRARIES})
+target_link_libraries(test_ps ${LAPACK_LIB_FLAGS})
+target_link_libraries(test_ps ${CLASSLIB})
+target_link_libraries(test_ps ${GSL_LIBRARIES})
+
+# compile WMAP9 test
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(test_wmap_like test_wmap_like.cpp sample.f90)
+#target_link_libraries(test_wmap_like ${COSMOPPLIB})
+#target_link_libraries(test_wmap_like ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_wmap_like ${LAPACK_LIB_FLAGS})
+#target_link_libraries(test_wmap_like ${CLASSLIB})
+#target_link_libraries(test_wmap_like ${GSL_LIBRARIES})
+#target_link_libraries(test_wmap_like ${WMAP9LIB})
+#target_link_libraries(test_wmap_like ${CFITSIOLIB})
 

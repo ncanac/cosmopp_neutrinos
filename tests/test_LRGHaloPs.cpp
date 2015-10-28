@@ -2,12 +2,12 @@
 #include <fstream>
 
 #include <macros.hpp>
-#include <cosmological_params.hpp>
+#include <neutrino_cosmology_params.hpp>
 #include <cosmo.hpp>
 
 int main(int argc, char *argv[])
 {
-    // Choose values of the cosmological parameters
+    // Set cosmological parameters
     // WMAP5 recommended LCDM values:
     const double h = 0.702;
     const double omBH2 = 0.02262;
@@ -24,30 +24,56 @@ int main(int argc, char *argv[])
     const int nMassive = 1;
     const double sumMNu = 0.5;
 
-    // Create an instance of CosmologicalParams. Can use other examples below (just uncomment the appropriate line and comment this line)
-    //LCDMWithTensorParams params(omBH2, omCH2, h, tau, ns, as, pivot, r, nt, pivot); 
-    //LCDMWithDegenerateNeutrinosParams params(omBH2, omCH2, h, tau, ns, as, pivot, nEff, nMassive, sumMNu);
-    LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
+    const int nKnots = 2;
+    const double kMin = 0.5e-6;
+    const double kMax = 1.5;
+    std::vector<double> kVals(nKnots + 2);
+    std::vector<double> amplitudes(nKnots + 2, 2e-9);
 
-    // Choose lMax and create vectors where the resulting cl values will be written
+    kVals[0] = kMin;
+    kVals.back() = kMax;
+
+    const double deltaLogK = (std::log(kMax) - std::log(kMin)) / (nKnots + 1);
+
+    for(int i = 1; i < kVals.size() - 1; ++i)
+        kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
+
+    for(int i = 0; i < amplitudes.size(); ++i)
+    {
+        amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
+        output_screen(kVals[i] << " " << amplitudes[i] << std::endl);
+    }
+
+    // Create an instance of CosmologicalParams
+    //LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
+    //LCDMWithDegenerateNeutrinosParams params(omBH2, omCH2, h, tau, ns, as, pivot, nEff, nMassive, sumMNu);
+    SplineWithDegenerateNeutrinosParams params(true, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, false, false);
+
     int lMax = 3000;
 
-    // Create a CMB instance.
+    // Create a Cosmo instance.
     Cosmo cosmo;
 
     output_screen("Pre-initializing CLASS..." << std::endl);
     // pre-initialize cosmo
-    cosmo.preInitialize(lMax, false, false, false, lMax);
+    cosmo.preInitialize(lMax, false, true, false, 0, 100, 0.8e-6, 1.2);
     output_screen("OK" << std::endl);
 
     output_screen("Initializing CLASS..." << std::endl);
     // initialize cosmo
-    cosmo.initialize(params, true, false, false, true);
+    cosmo.initialize(params, true, false, false, true, 0.5);
     output_screen("OK" << std::endl);
 
+    Math::TableFunction<double, double> Ps;
     Math::TableFunction<double, double> P_lrg;
 
+    cosmo.getMatterPs(0.0, &Ps);
     cosmo.getLRGHaloPs(&P_lrg);
+
+    std::ofstream outPs("Ps.txt");
+    for(auto const point : Ps)
+        outPs << point.first << " " << point.second << std::endl;
+    outPs.close();
 
     std::ofstream outPlrg("P_lrg.txt");
     for(auto const point : P_lrg)

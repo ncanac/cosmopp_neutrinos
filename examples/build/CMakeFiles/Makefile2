@@ -53,73 +53,38 @@ CMAKE_SOURCE_DIR = /Volumes/Data1/ncanac/cosmopp_neutrinos/examples
 CMAKE_BINARY_DIR = /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/example_mh.dir
+# Target rules for target CMakeFiles/example_mn_planck.dir
 
 # All Build rule for target.
-CMakeFiles/example_mh.dir/all:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/depend
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/build
+CMakeFiles/example_mn_planck.dir/all:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/depend
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles  1
-	@echo "Built target example_mh"
-.PHONY : CMakeFiles/example_mh.dir/all
+	@echo "Built target example_mn_planck"
+.PHONY : CMakeFiles/example_mn_planck.dir/all
 
 # Include target in all.
-all: CMakeFiles/example_mh.dir/all
+all: CMakeFiles/example_mn_planck.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/example_mh.dir/rule: cmake_check_build_system
+CMakeFiles/example_mn_planck.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/example_mh.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/example_mn_planck.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles 0
-.PHONY : CMakeFiles/example_mh.dir/rule
+.PHONY : CMakeFiles/example_mn_planck.dir/rule
 
 # Convenience name for target.
-example_mh: CMakeFiles/example_mh.dir/rule
-.PHONY : example_mh
+example_mn_planck: CMakeFiles/example_mn_planck.dir/rule
+.PHONY : example_mn_planck
 
 # clean rule for target.
-CMakeFiles/example_mh.dir/clean:
-	$(MAKE) -f CMakeFiles/example_mh.dir/build.make CMakeFiles/example_mh.dir/clean
-.PHONY : CMakeFiles/example_mh.dir/clean
+CMakeFiles/example_mn_planck.dir/clean:
+	$(MAKE) -f CMakeFiles/example_mn_planck.dir/build.make CMakeFiles/example_mn_planck.dir/clean
+.PHONY : CMakeFiles/example_mn_planck.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/example_mh.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/example_mh_chain.dir
-
-# All Build rule for target.
-CMakeFiles/example_mh_chain.dir/all:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/depend
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles  2
-	@echo "Built target example_mh_chain"
-.PHONY : CMakeFiles/example_mh_chain.dir/all
-
-# Include target in all.
-all: CMakeFiles/example_mh_chain.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/example_mh_chain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/example_mh_chain.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/examples/build/CMakeFiles 0
-.PHONY : CMakeFiles/example_mh_chain.dir/rule
-
-# Convenience name for target.
-example_mh_chain: CMakeFiles/example_mh_chain.dir/rule
-.PHONY : example_mh_chain
-
-# clean rule for target.
-CMakeFiles/example_mh_chain.dir/clean:
-	$(MAKE) -f CMakeFiles/example_mh_chain.dir/build.make CMakeFiles/example_mh_chain.dir/clean
-.PHONY : CMakeFiles/example_mh_chain.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/example_mh_chain.dir/clean
+clean: CMakeFiles/example_mn_planck.dir/clean
 .PHONY : clean
 
 #=============================================================================
