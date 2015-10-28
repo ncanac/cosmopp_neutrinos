@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     const double kMin = 0.8e-6;
     const double kMax = 1.2;
     std::vector<double> kVals(nKnots + 2);
-    std::vector<double> amplitudes(nKnots + 2, 2e-9);
+    std::vector<double> amplitudes(nKnots + 2);
 
     kVals[0] = kMin;
     kVals.back() = kMax;
