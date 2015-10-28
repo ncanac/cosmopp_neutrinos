@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
     const double sumMNu = 0.5;
 
     const int nKnots = 2;
-    const double kMin = 1.0e-6;
-    const double kMax = 1.0;
+    const double kMin = 0.8e-6;
+    const double kMax = 1.2;
     std::vector<double> kVals(nKnots + 2);
     std::vector<double> amplitudes(nKnots + 2, 2e-9);
 
