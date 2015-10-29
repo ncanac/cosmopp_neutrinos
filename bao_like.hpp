@@ -13,11 +13,11 @@
 class BAOLikelihood : public Math::CosmoLikelihood
 {
 public:
-    BAOLikelihood()
+    BAOLikelihood(bool primordialInitialize)
     {
         cosmo_ = new Cosmo;
         lMax = 2;
-        cosmo_->preInitialize(lMax, false, false, false, lMax);
+        cosmo_->preInitialize(lMax, false, primordialInitialize, false, 0);
     }
 
     ~BAOLikelihood()
