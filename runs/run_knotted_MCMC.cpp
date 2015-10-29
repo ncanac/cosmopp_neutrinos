@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
         const double aMax = 4;
 
         std::vector<double> kVals(nKnots + 2);
-        std::vector<double> amplitudes(nKnots + 2, 2e-9);
+        std::vector<double> amplitudes(nKnots + 2);
 
         kVals[0] = kMin;
         kVals.back() = kMax;
@@ -123,6 +123,12 @@ int main(int argc, char *argv[])
 
         for(int i = 1; i < kVals.size() - 1; ++i)
             kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
+    
+        const double as = 2.1955e-9;
+        const double ns = 0.9655;
+        const double pivot = 0.5;
+        for(int i = 0; i < amplitudes.size(); ++i)
+            amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
 
         int nMassive = 1;
         double sumMNu = 0.5;
@@ -134,7 +140,7 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(usePlanck, useWMAP, useBAO, useLRG);
+        CombinedLikelihood like(true, usePlanck, useWMAP, useBAO, useLRG);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -183,7 +189,7 @@ int main(int argc, char *argv[])
         {
             std::stringstream paramName;
             paramName << "a_" << i;
-            scanner.setParam(paramIndex++, paramName.str(), aMin, aMax, 1, 1, 0.1);
+            scanner.setParam(paramIndex++, paramName.str(), aMin, aMax, std::log(amplitudes[i]*1e10), 0.1, 0.01);
         }
         scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);
 

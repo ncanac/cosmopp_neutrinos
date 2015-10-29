@@ -207,7 +207,7 @@ add_definitions(-DVERBOSE1)
 #target_link_libraries(run_planck+lrg_mn_like ${CFITSIOLIB})
 #target_link_libraries(run_planck+lrg_mn_like ${MULTINESTLIB})
 
-# knotted
+# knotted MCMC
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_executable(run_knotted_MCMC run_knotted_MCMC.cpp sample.f90)
 target_link_libraries(run_knotted_MCMC ${COSMOPPLIB})
