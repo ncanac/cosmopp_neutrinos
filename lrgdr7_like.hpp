@@ -23,11 +23,11 @@
 class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
 public:
-    LRGDR7Likelihood() 
+    LRGDR7Likelihood(bool primordialInitialize) 
     {
         cosmo_ = new Cosmo;
         lMax_ = 3000;
-        cosmo_->preInitialize(lMax_, false, false, false, lMax_);
+        cosmo_->preInitialize(lMax_, false, primordialInitialize, false, 0);
 
         // Number of points and kbands in the input files
         num_mpk_points_full_ = 45;
