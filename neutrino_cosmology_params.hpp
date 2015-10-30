@@ -423,3 +423,112 @@ private:
     std::vector<double> kVals_, amplitudes_;
     std::vector<double> lcdmParams_;
 };
+
+class StandardPSDegenNuParams  : public LambdaCDMParams
+{
+public:
+    // the ns, as, and pivot values for the base class should not be used and are set to arbitrary values
+    StandardPSDegenNuParams(double omBH2, double omCH2, double h, double tau, double ns, double as,  double nEff, int nMassive, double sumMNu, bool varyNEff, bool varySumMNu) : LambdaCDMParams(omBH2, omCH2, h, tau, ns, as, 0.05), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu), lcdmParams_(6), varyNEff_(varyNEff), varySumMNu_(varySumMNu)
+    {
+        check(nEff > 0, "invalid nEff = " << nEff);
+        check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
+        check(nMassive >= 0, "number of massive neutrinos is negative: " << nMassive);
+        check(nEff > nMassive, "nEff needs to be more than the number of massive neutrinos");
+
+        check(kVals_.size() >= 2, "");
+        check(kVals_.size() == amplitudes.size(), "");
+
+        check(!varyNEff_ || nMassive_ > 0, "");
+
+        resetPS();
+    }
+
+    ~StandardPSDegenNuParams() {}
+
+    virtual double getNEff() const { return nEff_ - nMassive_; }
+    virtual int getNumNCDM() const { return nMassive_; }
+    virtual double getNCDMParticleMass(int i) const
+    {
+        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+        return sumMNu_ / nMassive_;
+    }
+
+    virtual double getNCDMParticleTemp(int i) const
+    {
+        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+        //return 0.715985;
+        return 0.713765855506013;
+    }
+
+    virtual const Math::RealFunction& powerSpectrum() const { return *ps_; }
+
+    virtual void getAllParameters(std::vector<double>& v) const
+    {
+        int nPar = 6;
+
+        if(varyNEff_)
+            ++nPar;
+        if(varySumMNu_)
+            ++nPar;
+
+        v.resize(nPar);
+
+        std::vector<double>::iterator it = v.begin();
+        *(it++) = getOmBH2();
+        *(it++) = getOmCH2();
+        *(it++) = getH();
+        *(it++) = getTau();
+        *(it++) = getNs();
+        *(it++) = std::log(getAs()*1e10);
+
+        if(varyNEff_)
+            *(it++) = nEff_;
+
+        if(varySumMNu_)
+            *(it++) = sumMNu_;
+
+        check(it == v.end(), "");
+    }
+
+    virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
+    {
+        int nPar = 6;
+
+        if(varyNEff_)
+            ++nPar;
+        if(varySumMNu_)
+            ++nPar;
+
+        check(v.size() == nPar, "");
+
+        check(lcdmParams_.size() == 6, "");
+
+        std::vector<double>::const_iterator it = v.begin();
+
+        for(int i = 0; i < 5; ++i)
+            lcdmParams_[i] = *(it++);
+
+        lcdmParams_[5] = std::exp(*(it++))/1e10; // as
+
+        if(!LambdaCDMParams::setAllParameters(lcdmParams_, badLike))
+            return false;
+
+        if(varyNEff_)
+            nEff_ = *(it++);
+
+        if(varySumMNu_)
+            sumMNu_ = *(it++);
+
+        return true;
+    }
+
+private:
+    double nEff_;
+    int nMassive_;
+    double sumMNu_;
+
+    const bool varyNEff_;
+    const bool varySumMNu_;
+
+    std::vector<double> lcdmParams_;
+};
