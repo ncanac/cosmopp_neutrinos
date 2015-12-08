@@ -31,6 +31,27 @@ else(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
 	set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 endif(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
 
+# check for MPI
+find_package(MPI REQUIRED)
+add_definitions(-DCOSMO_MPI)
+#set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
+#set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
+include_directories(SYSTEM ${MPI_INCLUDE_PATH})
+if(NOT MPI_CXX_LIBRARIES)
+	message(FATAL_ERROR "MPI found but the MPI C++ libraries not found!")
+endif(NOT MPI_CXX_LIBRARIES)
+
+# lapack
+set(LAPACK_LIB_FLAGS "-framework Accelerate")
+add_definitions(-DCOSMO_LAPACK)
+
+# cfitsio
+include_directories(${CFITSIO_DIR}/include)
+find_library(CFITSIOLIB cfitsio ${CFITSIO_DIR}/lib)
+if(NOT CFITSIOLIB)
+	message(FATAL_ERROR "cfitsio library not found!")
+endif(NOT CFITSIOLIB)
+
 # planck
 include_directories(${PLANCK_DIR}/include)
 add_definitions(-DCOSMO_PLANCK -DPLANCK_DATA_DIR=${PLANCK_DATA_DIR})
@@ -93,27 +114,6 @@ add_definitions(-DCOSMO_OMP)
 # GSL
 find_package(GSL REQUIRED)
 include_directories(GSL_INCLUDE_DIRS)
-
-# check for MPI
-find_package(MPI REQUIRED)
-add_definitions(-DCOSMO_MPI)
-#set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
-#set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
-include_directories(SYSTEM ${MPI_INCLUDE_PATH})
-if(NOT MPI_CXX_LIBRARIES)
-	message(FATAL_ERROR "MPI found but the MPI C++ libraries not found!")
-endif(NOT MPI_CXX_LIBRARIES)
-
-# lapack
-set(LAPACK_LIB_FLAGS "-framework Accelerate")
-add_definitions(-DCOSMO_LAPACK)
-
-# cfitsio
-include_directories(${CFITSIO_DIR}/include)
-find_library(CFITSIOLIB cfitsio ${CFITSIO_DIR}/lib)
-if(NOT CFITSIOLIB)
-	message(FATAL_ERROR "cfitsio library not found!")
-endif(NOT CFITSIOLIB)
 
 # Add project directory
 include_directories(${PROJECT_DIR})
