@@ -10,6 +10,7 @@
 #include <power_spectrum.hpp>
 #include <neutrino_cosmology_params.hpp>
 #include <mn_scanner.hpp>
+#include <timer.hpp>
 
 // argv[1] = c for cubic, anything else for linear
 // argv[2] = number of knots
@@ -114,7 +115,7 @@ int main(int argc, char *argv[])
         const double aMax = 4;
 
         std::vector<double> kVals(nKnots + 2);
-        std::vector<double> amplitudes(nKnots + 2, 2e-9);
+        std::vector<double> amplitudes(nKnots + 2);
 
         kVals[0] = kMin;
         kVals.back() = kMax;
@@ -123,6 +124,12 @@ int main(int argc, char *argv[])
 
         for(int i = 1; i < kVals.size() - 1; ++i)
             kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
+    
+        const double as = 2.1955e-9;
+        const double ns = 0.9655;
+        const double pivot = 0.5;
+        for(int i = 0; i < amplitudes.size(); ++i)
+            amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
 
         int nMassive = 1;
         double sumMNu = 0.5;
@@ -134,7 +141,7 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(usePlanck, useWMAP, useBAO, useLRG);
+        CombinedLikelihood like(true, usePlanck, useWMAP, useBAO, useLRG);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -156,21 +163,19 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
-        root << "_";
-        //PolyChord pc(nPar, planckLike, 300, root.str(), 3 * (4 + (varyNEff ? 1 : 0) + (varySumMNu ? 1 : 0)));
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
-        scanner.setParam(paramIndex++, "h", 0.55, 0.85);
-        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.14);
+        scanner.setParam(paramIndex++, "h", 0.55, 0.80);
+        scanner.setParam(paramIndex++, "tau", 0.04, 0.12);
         if(varyNEff)
             scanner.setParam(paramIndex++, "n_eff", 2.0, 5.0);
         if(varySumMNu)
-            scanner.setParam(paramIndex++, "sum_mnu", 0.001, 3.0);
+            scanner.setParam(paramIndex++, "sum_mnu", 0.01, 3.0);
 
         for(int i = 1; i < kVals.size() - 1; ++i)
         {
@@ -190,7 +195,11 @@ int main(int argc, char *argv[])
         check(paramIndex == nPar, "");
 
         output_screen("Running scan." << std::endl);
+        Timer timer("Multinest scan");
+        timer.start();
         scanner.run();
+        const unsigned long time = timer.end();
+        output_screen("Multinest scan took " << time / 1000000 << " seconds." << std::endl);
     } catch (std::exception& e)
     {
         output_screen("EXCEPTION CAUGHT!!! " << std::endl << e.what() << std::endl);

@@ -116,7 +116,7 @@ run_knotted_MCMC_EXTERNAL_OBJECTS =
 run_knotted_MCMC: CMakeFiles/run_knotted_MCMC.dir/run_knotted_MCMC.cpp.o
 run_knotted_MCMC: CMakeFiles/run_knotted_MCMC.dir/sample.f90.o
 run_knotted_MCMC: CMakeFiles/run_knotted_MCMC.dir/build.make
-run_knotted_MCMC: /Users/ncanac/Codes/cosmo_pp_private/build/lib/libcosmopp.a
+run_knotted_MCMC: /Users/ncanac/Codes/cosmo_pp_private/lib/libcosmopp.a
 run_knotted_MCMC: /usr/local/lib/libmpi_cxx.dylib
 run_knotted_MCMC: /usr/local/lib/libmpi.dylib
 run_knotted_MCMC: /usr/local/lib/libclass.a

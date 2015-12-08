@@ -10,10 +10,9 @@
 #include <power_spectrum.hpp>
 #include <neutrino_cosmology_params.hpp>
 #include <mn_scanner.hpp>
+#include <timer.hpp>
 
-// argv[1] = c for cubic, anything else for linear
-// argv[2] = number of knots
-// argv[3+] =   neff to vary n effective
+// argv[1+] =   neff to vary n effective
 //              sum_mnu to vary sum of neutrino masses
 //              planck to use planck data
 //              wmap to use wmap data
@@ -23,6 +22,13 @@ int main(int argc, char *argv[])
 {
     try {
         StandardException exc;
+
+        if(argc < 2)
+        {
+            std::string exceptionString = "Need to specify at least one data set to use (e.g., planck, wmap, bao, or lrg).";
+            exc.set(exceptionString);
+            throw exc;
+        }
 
         bool varyNEff = false;
         bool varySumMNu = false;
@@ -105,7 +111,8 @@ int main(int argc, char *argv[])
         const int nMassive = 1;
         const double sumMNu = 0.5;
 
-        StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, pivot, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
+        output_screen("Running with standard PPS and neutrinos." << std::endl);
+        StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
 //#ifdef COSMO_PLANCK_15
 //        PlanckLikelihood planckLike(true, true, true, false, true, false, false, false, 100);
@@ -113,11 +120,11 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(usePlanck, useWMAP, useBAO, useLRG);
+        CombinedLikelihood like(false, usePlanck, useWMAP, useBAO, useLRG);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
-        root << "standard_";
+        root << "standard";
         if(varyNEff)
             root << "_neff";
         if(varySumMNu)
@@ -130,16 +137,15 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
-        root << "_";
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
-        scanner.setParam(paramIndex++, "h", 0.55, 0.85);
-        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.14);
+        scanner.setParam(paramIndex++, "h", 0.55, 0.80);
+        scanner.setParam(paramIndex++, "tau", 0.04, 0.12);
         scanner.setParam(paramIndex++, "ns", 0.9, 1.1);
         scanner.setParam(paramIndex++, "as", 2.0, 4.0);
         if(varyNEff)
@@ -151,8 +157,11 @@ int main(int argc, char *argv[])
 
         check(paramIndex == nPar, "");
 
-        output_screen("Running scan." << std::endl);
+        Timer timer("Multinest scan");
+        timer.start();
         scanner.run();
+        const unsigned long time = timer.end();
+        output_screen("Multinest scan took " << time / 1000000 << " seconds." << std::endl);
     } catch (std::exception& e)
     {
         output_screen("EXCEPTION CAUGHT!!! " << std::endl << e.what() << std::endl);

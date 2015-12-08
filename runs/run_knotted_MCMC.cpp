@@ -162,7 +162,6 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
-        root << "_";
         //PolyChord pc(nPar, planckLike, 300, root.str(), 3 * (4 + (varyNEff ? 1 : 0) + (varySumMNu ? 1 : 0)));
         Math::MetropolisHastings scanner(nPar, like, root.str());
 

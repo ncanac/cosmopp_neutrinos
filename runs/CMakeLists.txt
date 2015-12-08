@@ -82,7 +82,7 @@ if(MULTINEST_DIR)
 endif(MULTINEST_DIR)
 
 # Cosmo++
-find_library(COSMOPPLIB cosmopp ${COSMOPP_DIR}/build/lib)
+find_library(COSMOPPLIB cosmopp ${COSMOPP_DIR}/lib)
 include_directories(${COSMOPP_DIR}/include)
 
 # openmp
@@ -220,3 +220,41 @@ target_link_libraries(run_knotted_MCMC ${WMAP9LIB})
 target_link_libraries(run_knotted_MCMC ${CFITSIOLIB})
 target_link_libraries(run_knotted_MCMC ${MULTINESTLIB})
 
+# LCDM multinest
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_LCDM_mn run_LCDM_mn.cpp sample.f90)
+#target_link_libraries(run_LCDM_mn ${COSMOPPLIB})
+#target_link_libraries(run_LCDM_mn ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_LCDM_mn ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_LCDM_mn ${CLASSLIB})
+#target_link_libraries(run_LCDM_mn ${PLANCKLIB})
+#target_link_libraries(run_LCDM_mn ${GSL_LIBRARIES})
+#target_link_libraries(run_LCDM_mn ${WMAP9LIB})
+#target_link_libraries(run_LCDM_mn ${CFITSIOLIB})
+#target_link_libraries(run_LCDM_mn ${MULTINESTLIB})
+
+# standard PPS multinest
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_standard_mn run_standard_mn.cpp sample.f90)
+#target_link_libraries(run_standard_mn ${COSMOPPLIB})
+#target_link_libraries(run_standard_mn ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_standard_mn ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_standard_mn ${CLASSLIB})
+#target_link_libraries(run_standard_mn ${PLANCKLIB})
+#target_link_libraries(run_standard_mn ${GSL_LIBRARIES})
+#target_link_libraries(run_standard_mn ${WMAP9LIB})
+#target_link_libraries(run_standard_mn ${CFITSIOLIB})
+#target_link_libraries(run_standard_mn ${MULTINESTLIB})
+
+# knotted multinest no neutrinos
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(run_knotted_mn run_knotted_mn.cpp sample.f90)
+#target_link_libraries(run_knotted_mn ${COSMOPPLIB})
+#target_link_libraries(run_knotted_mn ${MPI_CXX_LIBRARIES})
+#target_link_libraries(run_knotted_mn ${LAPACK_LIB_FLAGS})
+#target_link_libraries(run_knotted_mn ${CLASSLIB})
+#target_link_libraries(run_knotted_mn ${PLANCKLIB})
+#target_link_libraries(run_knotted_mn ${GSL_LIBRARIES})
+#target_link_libraries(run_knotted_mn ${WMAP9LIB})
+#target_link_libraries(run_knotted_mn ${CFITSIOLIB})
+#target_link_libraries(run_knotted_mn ${MULTINESTLIB})
