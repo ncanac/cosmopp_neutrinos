@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     output_screen("Initializing LRG DR7 likelihood..." << std::endl);
     // Create likelihood
-    LRGDR7Likelihood lrgLike;
+    LRGDR7Likelihood lrgLike(false);
     
     output_screen("Setting the cosmological parameters for likelihood calculation..." << std::endl);
     // Set the cosmological parameters

@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_ps
+# Target rules for targets named test_lrgdr7_like
 
 # Build rule for target.
-test_ps: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_ps
-.PHONY : test_ps
+test_lrgdr7_like: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_lrgdr7_like
+.PHONY : test_lrgdr7_like
 
 # fast build rule for target.
-test_ps/fast:
-	$(MAKE) -f CMakeFiles/test_ps.dir/build.make CMakeFiles/test_ps.dir/build
-.PHONY : test_ps/fast
+test_lrgdr7_like/fast:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/build
+.PHONY : test_lrgdr7_like/fast
 
-test_ps.o: test_ps.cpp.o
+test_lrgdr7_like.o: test_lrgdr7_like.cpp.o
 
-.PHONY : test_ps.o
+.PHONY : test_lrgdr7_like.o
 
 # target to build an object file
-test_ps.cpp.o:
-	$(MAKE) -f CMakeFiles/test_ps.dir/build.make CMakeFiles/test_ps.dir/test_ps.cpp.o
-.PHONY : test_ps.cpp.o
+test_lrgdr7_like.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o
+.PHONY : test_lrgdr7_like.cpp.o
 
-test_ps.i: test_ps.cpp.i
+test_lrgdr7_like.i: test_lrgdr7_like.cpp.i
 
-.PHONY : test_ps.i
+.PHONY : test_lrgdr7_like.i
 
 # target to preprocess a source file
-test_ps.cpp.i:
-	$(MAKE) -f CMakeFiles/test_ps.dir/build.make CMakeFiles/test_ps.dir/test_ps.cpp.i
-.PHONY : test_ps.cpp.i
+test_lrgdr7_like.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.i
+.PHONY : test_lrgdr7_like.cpp.i
 
-test_ps.s: test_ps.cpp.s
+test_lrgdr7_like.s: test_lrgdr7_like.cpp.s
 
-.PHONY : test_ps.s
+.PHONY : test_lrgdr7_like.s
 
 # target to generate assembly for a file
-test_ps.cpp.s:
-	$(MAKE) -f CMakeFiles/test_ps.dir/build.make CMakeFiles/test_ps.dir/test_ps.cpp.s
-.PHONY : test_ps.cpp.s
+test_lrgdr7_like.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.s
+.PHONY : test_lrgdr7_like.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_ps"
-	@echo "... test_ps.o"
-	@echo "... test_ps.i"
-	@echo "... test_ps.s"
+	@echo "... test_lrgdr7_like"
+	@echo "... test_lrgdr7_like.o"
+	@echo "... test_lrgdr7_like.i"
+	@echo "... test_lrgdr7_like.s"
 .PHONY : help
 
 
