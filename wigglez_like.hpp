@@ -20,40 +20,70 @@
 class WiggleZLikelihood : public Math::CosmoLikelihood
 {
 public:
-    WiggleZLikelihood() 
+    WiggleZLikelihood(std::string path, char redshift_bin) 
     {
         cosmo_ = new Cosmo;
         lMax_ = 3000;
         cosmo_->preInitialize(lMax_, false, false, false, lMax_);
 
+        bool Q_marge = false;
+        double Q_mid = 4.0;
+        double Q_sigma = 1.5;
+        double Ag = 1.4;
+        bool Use_jennings = false;
+        bool Use-simpledamp = false;
+        int giggleZ_fidpk_size = 500;
+        if(redshift_bin == 'a')
+        {
+            double d_angular_fid = 736.293;
+            double d_radial_fid = 3876.81;
+            double sigmav = 360; // or int?
+            std::vector<double> giggleZ_fidpoly {4.61900,-13.7787,58.9410,-175.240,284.321,-187.284};
+            double redshift = 0.22;
+        }
+        if(redshift_bin == 'b')
+        {
+            double d_angular_fid = 1134.87;
+            double d_radial_fid = 3511.96;
+            double sigmav = 308; // or int?
+            std::vector<double> giggleZ_fidpoly {4.63079, -12.6293, 42.9265, -91.8068, 97.808, -37.633};
+            double redshift = 0.41;
+        }
+        if(redshift_bin == 'c')
+        {
+            double d_angular_fid = 1396.05;
+            double d_radial_fid = 3160.38;
+            double sigmav = 325; // or int?
+            std::vector<double> giggleZ_fidpoly {4.69659, -12.7287, 42.5681, -89.5578, 96.664, -41.2564};
+            double redshift = 0.60;
+        }
+        if(redshift_bin == 'd')
+        {
+            double d_angular_fid = 1558.68;
+            double d_radial_fid = 2852.95;
+            double sigmav = 212; // or int?
+            std::vector<double> giggleZ_fidpoly {4.6849, -13.4747, 53.7172, -145.832, 216.638, -132.782};
+            double redshift = 0.78;
+        }
+
         // Number of points and kbands in the input files
-        num_mpk_points_full_ = 45;
-        num_mpk_kbands_full_ = 250;
+        num_mpk_points_full_ = 50;
+        num_mpk_kbands_full_ = 100;
 
         // Decide which bandpowers to use, min to max
-        min_mpk_points_use_ = 1;
-        max_mpk_points_use_ = 45;
+        min_mpk_points_use_ = 3;
+        max_mpk_points_use_ = 30;
         min_mpk_kbands_use_ = 1;
-        max_mpk_kbands_use_ = 250;
+        max_mpk_kbands_use_ = 100;
 
         k_size_ = max_mpk_kbands_use_ - min_mpk_kbands_use_ + 1;
         int mu_size = 1;
         k_.resize(k_size_);
         kh_.resize(k_size_);
 
-        // Set parameters associated with nuisance parameters
-        k1_ = 0.1;
-        k2_ = 0.2;
-        s1_ = 0.04;
-        s2_ = 0.1;
-        a1maxval_ = 1.1482;
-        nptsa1_ = 41;
-        nptsa2_ = 41;
-        nptstot_ = 325;
-
         // Read in data file containing kbands
-        root_ = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/WiggleZ/";
-        std::ifstream datafile(root_ + "data/lrgdr7_kbands.txt");
+        root_ = path + "data/WiggleZ/";
+        std::ifstream datafile(root_ + "wigglez_nov11_kbands.txt");
         for(int i = 0; i < num_mpk_kbands_full_; ++i)
             if((i+2 > min_mpk_kbands_use_) && (i < max_mpk_kbands_use_))
                 datafile >> kh_[i-min_mpk_kbands_use_+1];
@@ -68,28 +98,28 @@ public:
         // from the data.
         int k_fid_size;
         int ifid_discard;
-        datafile.open(root_ + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat"); // Need to do this for NEAR, MID, and FAR? What about z0?
-        // Skip first line
-        std::string line;
-        std::getline(datafile, line);
+        datafile.open(root_ + giggleZ_fidpk_file "gigglezfiducialmodel_matterpower_" + redshift_bin + ".dat");
+        // TODO: Start from line 1238, need to read in data files correctly.
+        //std::string line;
         double kdum, dum1, dum2, dum3;
-        // Read first "real" line
-        std::getline(datafile, line);
-        std::istringstream iss(line);
+        //std::getline(datafile, line);
+        //std::istringstream iss(line);
         datafile >> kdum >> dum1 >> dum2 >> dum3;
         int line_number = 1;
         while(kdum < kh_[0])
         {
-            std::getline(datafile, line);
-            std::istringstream iss(line);
+            check(line_numer <= 500, "read too many lines");
+            //std::getline(datafile, line);
+            //std::istringstream iss(line);
             datafile >> kdum >> dum1 >> dum2 >> dum3;
             line_number = line_number + 1;
         }
         ifid_discard = line_number - 2;
         while(kdum < khmax)
         {
-            std::getline(datafile, line);
-            std::istringstream iss(line);
+            check(line_numer <= 500, "read too many lines");
+            //std::getline(datafile, line);
+            //std::istringstream iss(line);
             datafile >> kdum >> dum1 >> dum2 >> dum3;
             line_number = line_number + 1;
         }
