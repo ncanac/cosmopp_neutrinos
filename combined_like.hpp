@@ -13,11 +13,12 @@
 #include <lrgdr7_like.hpp>
 #include <numerics.hpp>
 #include <cosmo_likelihood.hpp>
+#include <wigglez_like.hpp>
 
 class CombinedLikelihood : public Math::CosmoLikelihood
 {
 public:
-    CombinedLikelihood(bool primordialInitialize, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG)
+    CombinedLikelihood(std::string datapath, bool primordialInitialize, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
     {
         nLikes_ = 0;
         check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
@@ -33,8 +34,16 @@ public:
         }
         if(useLRG_)
         {
-            likes_.push_back(new LRGDR7Likelihood(primordialInitialize));
+            likes_.push_back(new LRGDR7Likelihood(datapath, primordialInitialize));
             ++nLikes_;
+        }
+        if(useWiggleZ_)
+        {
+            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'a')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'b')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'c')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'd')); 
+            nLikes_ += 4;
         }
     }
 
@@ -116,7 +125,7 @@ private:
     std::vector<double> vModel_; // modelParams_ as a vector
 
     // Specifies which likelihoods to include
-    bool usePlanck_, useWMAP_, useBAO_, useLRG_;
+    bool usePlanck_, useWMAP_, useBAO_, useLRG_, useWiggleZ_;
 
     // Likelihood objects
     PlanckLikelihood* planckLike_;

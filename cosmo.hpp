@@ -52,13 +52,45 @@ public:
         int last_index;
         double* pvecback;
 
-        pvecback = (double*) calloc(br_->bg_size,sizeof(double));
+        pvecback = (double*) calloc(br_->bg_size, sizeof(double));
         background_tau_of_z(br_, z, &tau);
         background_at_tau(br_, tau, br_->long_info, br_->inter_normal, &last_index, pvecback);
         
         free(pvecback);
         
         return pvecback[br_->index_bg_H];
+    }
+
+    std::vector<double> z_of_r(std::vector<double>& z_array)
+    {
+        double tau = 0.0;
+        int last_index = 0;
+        double* pvecback;
+        std::vector<double> r(z_array.size(), 0);
+        std::vector<double> dzdr(z_array.size(), 0);
+        std::vector<double> out(2*z_array.size(), 0);
+
+        pvecback = (double*) calloc(br_->bg_size, sizeof(double));
+
+        for(int i = 0; i < z_array.size(); ++i)
+        {
+            background_tau_of_z(br_, z_array[i], &tau);
+
+            background_at_tau(br_, tau, br_->long_info, br_->inter_normal, &last_index, pvecback);
+
+            // store r
+            r[i] = pvecback[br_->index_bg_conf_distance];
+            // store dz/dr = H
+            dzdr[i] = pvecback[br_->index_bg_H];
+        }
+
+        for(int i = 0; i < z_array.size(); ++i)
+        {
+            out[i] = r[i];
+            out[i+z_array.size()] = dzdr[i];
+        }
+
+        return out;
     }
 
     void getLRGHaloPs(Math::TableFunction<double, double>* ps)

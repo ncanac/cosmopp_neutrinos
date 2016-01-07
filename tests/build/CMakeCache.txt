@@ -179,9 +179,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/usr/bin/strip
 
-//If true, cmake will use relative paths in makefiles and projects.
-CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
-
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
@@ -198,7 +195,7 @@ GSL_CBLAS_LIBRARY:FILEPATH=/sw/lib/libgslcblas.dylib
 GSL_CBLAS_LIBRARY_DEBUG:FILEPATH=/sw/lib/libgslcblas.dylib
 
 //Path to a file.
-GSL_INCLUDE_DIR:PATH=/usr/local/include
+GSL_INCLUDE_DIR:PATH=/sw/include
 
 //Path to a library.
 GSL_LIBRARY:FILEPATH=/sw/lib/libgsl.dylib
@@ -243,26 +240,11 @@ MPI_CXX_LINK_FLAGS:STRING=
 //Extra MPI libraries to link against
 MPI_EXTRA_LIBRARY:STRING=/usr/local/lib/libmpi.dylib
 
-//Path to a program.
-MPI_Fortran_COMPILER:FILEPATH=/usr/local/bin/mpif90
-
-//MPI Fortran compilation flags
-MPI_Fortran_COMPILE_FLAGS:STRING=
-
-//MPI Fortran include path
-MPI_Fortran_INCLUDE_PATH:STRING=/usr/local/include;/usr/local/lib
-
-//MPI Fortran libraries to link against
-MPI_Fortran_LIBRARIES:STRING=/usr/local/lib/libmpi_usempif08.dylib;/usr/local/lib/libmpi_usempi_ignore_tkr.a;/usr/local/lib/libmpi_mpifh.dylib;/usr/local/lib/libmpi.dylib
-
-//MPI Fortran linking flags
-MPI_Fortran_LINK_FLAGS:STRING=-Wl,-flat_namespace  -Wl,-commons,use_dylibs
-
 //MPI library to link against
 MPI_LIBRARY:FILEPATH=/usr/local/lib/libmpi_cxx.dylib
 
 //Path to a library.
-MULTINESTLIB:FILEPATH=/usr/local/lib/libmultinest.dylib
+MULTINESTLIB:FILEPATH=/usr/local/lib/libmultinest_mpi.dylib
 
 //C++ compiler flags for OpenMP parallization
 OpenMP_CXX_FLAGS:STRING=-fopenmp
@@ -297,7 +279,7 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=3
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=4
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=0
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
@@ -378,7 +360,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -386,7 +368,7 @@ CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/sw/share/cmake-3.3
+CMAKE_ROOT:INTERNAL=/sw/share/cmake-3.4
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -415,16 +397,12 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //uname command
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
-//ADVANCED property for variable: CMAKE_USE_RELATIVE_PATHS
-CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding GSL
-FIND_PACKAGE_MESSAGE_DETAILS_GSL:INTERNAL=[/usr/local/include][/sw/lib/libgsl.dylib][/sw/lib/libgslcblas.dylib][v1.16()]
+FIND_PACKAGE_MESSAGE_DETAILS_GSL:INTERNAL=[/sw/include][/sw/lib/libgsl.dylib][/sw/lib/libgslcblas.dylib][v1.16()]
 //Details about finding MPI_CXX
 FIND_PACKAGE_MESSAGE_DETAILS_MPI_CXX:INTERNAL=[/usr/local/lib/libmpi_cxx.dylib;/usr/local/lib/libmpi.dylib][/usr/local/include][v()]
-//Details about finding MPI_Fortran
-FIND_PACKAGE_MESSAGE_DETAILS_MPI_Fortran:INTERNAL=[/usr/local/lib/libmpi_usempif08.dylib;/usr/local/lib/libmpi_usempi_ignore_tkr.a;/usr/local/lib/libmpi_mpifh.dylib;/usr/local/lib/libmpi.dylib][/usr/local/include;/usr/local/lib][v()]
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-qopenmp][v()]
 //Details about finding PkgConfig
@@ -437,13 +415,13 @@ GSL_CFLAGS:INTERNAL=-I/sw/include
 GSL_CFLAGS_I:INTERNAL=
 GSL_CFLAGS_OTHER:INTERNAL=
 GSL_FOUND:INTERNAL=1
-GSL_INCLUDEDIR:INTERNAL=/sw/include
+GSL_INCLUDEDIR:INTERNAL=
 //ADVANCED property for variable: GSL_INCLUDE_DIR
 GSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 GSL_INCLUDE_DIRS:INTERNAL=/sw/include
 GSL_LDFLAGS:INTERNAL=-L/sw/lib;-lgsl;-lgslcblas;-lm
 GSL_LDFLAGS_OTHER:INTERNAL=
-GSL_LIBDIR:INTERNAL=/sw/lib
+GSL_LIBDIR:INTERNAL=
 GSL_LIBRARIES:INTERNAL=gsl;gslcblas;m
 //ADVANCED property for variable: GSL_LIBRARY
 GSL_LIBRARY-ADVANCED:INTERNAL=1
@@ -454,7 +432,7 @@ GSL_LIBS:INTERNAL=
 GSL_LIBS_L:INTERNAL=
 GSL_LIBS_OTHER:INTERNAL=
 GSL_LIBS_PATHS:INTERNAL=
-GSL_PREFIX:INTERNAL=/sw
+GSL_PREFIX:INTERNAL=
 //ADVANCED property for variable: GSL_ROOT_DIR
 GSL_ROOT_DIR-ADVANCED:INTERNAL=1
 GSL_STATIC_CFLAGS:INTERNAL=-I/sw/include
@@ -497,16 +475,6 @@ MPI_CXX_INCLUDE_PATH-ADVANCED:INTERNAL=1
 MPI_CXX_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MPI_CXX_LINK_FLAGS
 MPI_CXX_LINK_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MPI_Fortran_COMPILER
-MPI_Fortran_COMPILER-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MPI_Fortran_COMPILE_FLAGS
-MPI_Fortran_COMPILE_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MPI_Fortran_INCLUDE_PATH
-MPI_Fortran_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MPI_Fortran_LIBRARIES
-MPI_Fortran_LIBRARIES-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MPI_Fortran_LINK_FLAGS
-MPI_Fortran_LINK_FLAGS-ADVANCED:INTERNAL=1
 //Scratch variable for MPI header detection
 MPI_HEADER_PATH:INTERNAL=MPI_HEADER_PATH-NOTFOUND
 //Scratch variable for MPI lib detection
@@ -520,4 +488,5 @@ OpenMP_Fortran_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 __pkg_config_checked_GSL:INTERNAL=1
+prefix_result:INTERNAL=/sw/lib
 

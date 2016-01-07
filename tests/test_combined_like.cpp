@@ -43,7 +43,28 @@ int main(int argc, char *argv[])
 
 
     // Create likelihoods
-    CombinedLikelihood like(true, false, false, false);
+    std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
+    bool primordialInit = false;
+    bool usePlanck = false;
+    bool useWMAP = false;
+    bool useBAO = false;
+    bool useLRG = false;
+    bool useWiggleZ = false;
+    for(int i = 1; i < argc; ++i)
+    {
+        if(std::string(argv[i]) == "planck")
+            usePlanck = true;
+        if(std::string(argv[i]) == "wmap")
+            useWMAP = true;
+        if(std::string(argv[i]) == "bao")
+            useBAO = true;
+        if(std::string(argv[i]) == "lrg")
+            useLRG = true;
+        if(std::string(argv[i]) == "wigglez")
+            useWiggleZ = true;
+    }
+
+    CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
     
     // Set the cosmological parameters
     like.setCosmoParams(params);
