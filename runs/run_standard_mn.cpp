@@ -18,6 +18,7 @@
 //              wmap to use wmap data
 //              bao to use bao data
 //              lrg to use lrg data
+//              wigglez to use wigglez data
 int main(int argc, char *argv[])
 {
     try {
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
         bool useWMAP = false;
         bool useBAO = false;
         bool useLRG = false;
+        bool useWiggleZ = false;
 
         for(int i = 1; i < argc; ++i)
         {
@@ -51,6 +53,8 @@ int main(int argc, char *argv[])
                 useBAO = true;
             if(std::string(argv[i]) == "lrg")
                 useLRG = true;
+            if(std::string(argv[i]) == "wigglez")
+                useWiggleZ = true;
         }
 
         // omBH2, omCH2, h, tau, ns, as
@@ -94,6 +98,10 @@ int main(int argc, char *argv[])
         {
             output_screen("Using LRG." << std::endl);
         }
+        if(useWiggleZ)
+        {
+            output_screen("Using WiggleZ." << std::endl);
+        }
 
         // Starting values for cosmological parameters
         const double h = 0.6731;
@@ -114,13 +122,9 @@ int main(int argc, char *argv[])
         output_screen("Running with standard PPS and neutrinos." << std::endl);
         StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
-//#ifdef COSMO_PLANCK_15
-//        PlanckLikelihood planckLike(true, true, true, false, true, false, false, false, 100);
-//#else
-//        ERROR NOT IMPLEMENTED;
-//#endif
-//        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(false, usePlanck, useWMAP, useBAO, useLRG);
+        std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
+        bool primordialInit = false;
+        CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -137,6 +141,9 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
+        if(useWiggleZ)
+            root << "_wigglez";
+        root << "_";
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;

@@ -10,11 +10,13 @@
 #include <power_spectrum.hpp>
 #include <cosmological_params.hpp>
 #include <mn_scanner.hpp>
+#include <timer.hpp>
 
 // argv[1+] =   planck to use planck data
 //              wmap to use wmap data
 //              bao to use bao data
 //              lrg to use lrg data
+//              wigglez to use wigglez data
 int main(int argc, char *argv[])
 {
     try {
@@ -30,6 +32,7 @@ int main(int argc, char *argv[])
         bool useWMAP = false;
         bool useBAO = false;
         bool useLRG = false;
+        bool useWiggleZ = false;
 
         for(int i = 1; i < argc; ++i)
         {
@@ -41,8 +44,11 @@ int main(int argc, char *argv[])
                 useBAO = true;
             if(std::string(argv[i]) == "lrg")
                 useLRG = true;
+            if(std::string(argv[i]) == "wigglez")
+                useWiggleZ = true;
         }
 
+        // omBH2, omCH2, h, tau, ns, as
         int nPar = 6;
 
         // Starting values for cosmological parameters
@@ -72,6 +78,10 @@ int main(int argc, char *argv[])
         {
             output_screen("Using LRG." << std::endl);
         }
+        if(useWiggleZ)
+        {
+            output_screen("Using WiggleZ." << std::endl);
+        }
 
         output_screen("Running with Lambda CDM cosmological parameters." << std::endl);
         LambdaCDMParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, pivot);
@@ -82,7 +92,9 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(false, usePlanck, useWMAP, useBAO, useLRG);
+        std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
+        bool primordialInit = false;
+        CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -95,6 +107,8 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
+        if(useWiggleZ)
+            root << "_wigglez";
         root << "_";
         //PolyChord pc(nPar, planckLike, 300, root.str(), 3 * (4 + (varyNEff ? 1 : 0) + (varySumMNu ? 1 : 0)));
         MnScanner scanner(nPar, like, 300, root.str());
@@ -113,8 +127,11 @@ int main(int argc, char *argv[])
 
         check(paramIndex == nPar, "");
 
-        output_screen("Running scan." << std::endl);
+        Timer timer("Multinest scan");
+        timer.start();
         scanner.run();
+        const unsigned long time = timer.end();
+        output_screen("Multinest scan took " << time / 1000000 << " seconds." << std::endl);
     } catch (std::exception& e)
     {
         output_screen("EXCEPTION CAUGHT!!! " << std::endl << e.what() << std::endl);
