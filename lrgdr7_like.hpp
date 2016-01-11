@@ -23,7 +23,7 @@
 class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
 public:
-    LRGDR7Likelihood(std::string path, bool primordialInitialize) 
+    LRGDR7Likelihood(std::string path, bool primordialInitialize)
     {
         cosmo_ = new Cosmo;
         lMax_ = 3000;
@@ -54,8 +54,8 @@ public:
         nptstot_ = 325;
 
         // Read in data file containing kbands
-        std::string root = path + "/data/LRGDR7/";
-        std::ifstream datafile(root + "data/lrgdr7_kbands.txt");
+        root_ = path + "/data/LRGDR7/";
+        std::ifstream datafile(root_ + "data/lrgdr7_kbands.txt");
         for(int i = 0; i < num_mpk_kbands_full_; ++i)
             if((i+2 > min_mpk_kbands_use_) && (i < max_mpk_kbands_use_))
                 datafile >> kh_[i-min_mpk_kbands_use_+1];
@@ -65,20 +65,20 @@ public:
         n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1; // 45
         window_.resize(n_size_, k_size_, 0);
         //std::vector< std::vector<double> > window(n_size_, std::vector<double>(k_size_));
-        datafile.open(root + "data/lrgdr7_windows.txt");
+        datafile.open(root_ + "data/lrgdr7_windows.txt");
         for(int i = 0; i < num_mpk_points_full_; ++i)
             for(int j = 0; j < k_size_; ++j)
                 datafile >> window_(i, j);
         datafile.close();
 
         zerowindowfxn_.resize(k_size_, 1, 0);
-        datafile.open(root + "data/lrgdr7_zerowindowfxn.txt");
+        datafile.open(root_ + "data/lrgdr7_zerowindowfxn.txt");
         for(int i = 0; i < k_size_; ++i)
             datafile >> zerowindowfxn_(i, 0);
         datafile.close();
 
         zerowindowfxnsubdat_.resize(n_size_, 1, 0);
-        datafile.open(root + "data/lrgdr7_zerowindowfxnsubtractdat.txt");
+        datafile.open(root_ + "data/lrgdr7_zerowindowfxnsubtractdat.txt");
         datafile >> zerowindowfxnsubdatnorm_;
         for(int i = 0; i < n_size_; ++i)
             datafile >> zerowindowfxnsubdat_(i, 0);
@@ -88,7 +88,7 @@ public:
         std::string line;
         P_obs_.resize(n_size_, 1, 0);
         P_err_.resize(n_size_, 1, 0);
-        datafile.open(root + "data/lrgdr7_ccmeasurements.txt");
+        datafile.open(root_ + "data/lrgdr7_ccmeasurements.txt");
         // Skip first two lines
         std::getline(datafile, line);
         std::getline(datafile, line);
@@ -108,7 +108,7 @@ public:
 
         // Read in inverse covariance matrix
         invcov_.resize(n_size_, n_size_, 0);
-        datafile.open(root + "data/lrgdr7_invcov.txt");
+        datafile.open(root_ + "data/lrgdr7_invcov.txt");
         for(int i = 0; i < num_mpk_points_full_; ++i)
             if((i+2 > min_mpk_points_use_) && (i < max_mpk_points_use_))
                 for(int j = 0; j < num_mpk_points_full_; ++j)
@@ -166,7 +166,7 @@ public:
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
-        cosmo_->getLRGHaloPs(&halopowerlrgtheory);
+        cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory);
 
         // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
         // mpk_raw is in units of h^3 Mpc^3
@@ -451,6 +451,8 @@ private:
     Cosmo* cosmo_;
 
     const CosmologicalParams* params_;
+
+    std::string root_;
 
     CosmologicalParams* modelParams_;
     std::vector<double> vModel_;

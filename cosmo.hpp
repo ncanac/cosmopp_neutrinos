@@ -93,7 +93,7 @@ public:
         return out;
     }
 
-    void getLRGHaloPs(Math::TableFunction<double, double>* ps)
+    void getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
         check(init_, "need to initialize first");
         check(pt_->has_pk_matter, "matter ps not requested");
@@ -256,7 +256,7 @@ public:
         std::vector<double> kh_fid;
         std::vector<double> P_halo;
         // Calculate P_halo by calling LRGTheory_()
-        LRGTheory_(kh, P_lin, P_nw, r_nwhalofit, getabstransferscale, kh_fid, P_halo);
+        LRGTheory_(root, kh, P_lin, P_nw, r_nwhalofit, getabstransferscale, kh_fid, P_halo);
 
         // Store LRG power spectrum in table function
         ps->clear();
@@ -407,14 +407,13 @@ private:
     }
 
     // Calculates the theoretical halo power spectrum
-    void LRGTheory_(const std::vector<double>& kh, const std::vector< std::vector<double> >& P_lin,
+    void LRGTheory_(std::string root, const std::vector<double>& kh, const std::vector< std::vector<double> >& P_lin,
                     const std::vector< std::vector<double> >& P_nw, const std::vector< std::vector<double> >& r_nwhalofit,
                     const std::vector<double>& getabstransferscale, std::vector<double>& kh_fid, std::vector<double>& P_halo)
     {
         const int k_size = 300;
         std::vector< std::vector<double> > r_fid(3, std::vector<double>(k_size, 0.0));
         kh_fid.resize(k_size);
-        std::string root = "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/";
         // Read in NEAR model
         std::ifstream datafile(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat");
         // Skip first line

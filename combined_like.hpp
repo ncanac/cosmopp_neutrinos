@@ -21,8 +21,8 @@ public:
     CombinedLikelihood(std::string datapath, bool primordialInitialize, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
     {
         nLikes_ = 0;
-        check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
-        check(!(useBAO_ && useLRG_), "Both BAO and LRG likelihoods should not be used at the same time.");
+        //check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
+        //check(!(useBAO_ && useLRG_), "Both BAO and LRG likelihoods should not be used at the same time.");
         if(usePlanck_)
             planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 100);
         if(useWMAP_)
