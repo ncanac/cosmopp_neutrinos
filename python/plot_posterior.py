@@ -1,4 +1,4 @@
-#from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 import numpy as np
 import sys
 
@@ -44,24 +44,30 @@ for row in posterior:
     xval = row[0]
     yval = row[1]
     likeval = row[2]
-    xi = int((xval - xmin) / xspc)
-    yi = int((yval - ymin) / yspc)
-    likelihood[xi, yi] += likeval
-    likelihood_counts[xi, yi] += 1.0
+    if xval > xmin and xval < xmax and yval > ymin and yval < ymax:
+        xi = int((xval - xmin) / xspc)
+        yi = int((yval - ymin) / yspc)
+        likelihood[xi, yi] += likeval
+        likelihood_counts[xi, yi] += 1.0
 
 likelihood = likelihood / likelihood_counts
-min_like = np.min(likelihood)
-likelihood = likelihood - min_like
+print likelihood
+max_like = np.max(likelihood)
+print max_like
+likelihood = -1.0*(likelihood - max_like)
+
+print likelihood
+print likelihood_counts
 
 fig, ax = plt.subplots(figsize=(10, 7.5))
-contour = ax.contourf(xx, yy, probs, 50, cmap="RdBu", vmin=0, vmax=1)
+contour = ax.contourf(x, y, likelihood, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
-ax_c = f.colorbar(contour)
+ax_c = fig.colorbar(contour)
 ax_c.set_label("$2 \Delta ln(L)$", size=20)
 #ax_c.set_ticks([0, 1.0, 3.0, 9.0, 16.0, 25.0, 1e6])
 
-plt.xlim(x1min - x1pad, x1max + x1pad)
-plt.ylim(x2min - x2pad, x2max + x2pad)
+#plt.xlim(xmin - xspc, xmax + xspc)
+#plt.ylim(ymin - yspc, ymax + yspc)
 plt.xlabel("$" + xpar + "$", size=20)
 plt.ylabel("$" + ypar + "$", size=20)
 plt.tight_layout()
