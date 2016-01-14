@@ -11,7 +11,7 @@ ymin = float(sys.argv[6]) # minimum value of y parameter
 ymax = float(sys.argv[7]) # maximum value of y parameter
 
 params_fname = root + ".paramnames"
-posterior_fname = root + "posterior.txt"
+samples_fname = root + "posterior.txt"
 
 paramnames = []
 f = open(params_fname, 'r')
@@ -21,55 +21,57 @@ f.close()
 
 xpar_idx = paramnames.index(xpar)
 ypar_idx = paramnames.index(ypar)
-lnlike_idx = len(paramnames)
+lnlike_idx = len(paramnames)+1
 
-posterior = []
-f = open(posterior_fname, 'r')
+samples = []
+f = open(samples_fname, 'r')
 for line in f:
     vals = line.split()
-    posterior.append([float(vals[xpar_idx]), float(vals[ypar_idx]), float(vals[lnlike_idx])])
+    samples.append([float(vals[xpar_idx]), float(vals[ypar_idx]), float(vals[lnlike_idx])])
 f.close()
 
-posterior = np.array(posterior)
+samples = np.array(samples)
 
-ndiv = 10.0
-xspc = (xmax - xmin) / ndiv
-yspc = (ymax - ymin) / ndiv
-x, y = np.meshgrid(np.arange(xmin, xmax, xspc), np.arange(ymin, ymax, yspc))
+ndiv = 40.0
+xbin = (xmax - xmin) / ndiv
+ybin = (ymax - ymin) / ndiv
+x_grid, y_grid = np.meshgrid(np.arange(xmin, xmax, xbin), np.arange(ymin, ymax, ybin))
 
-likelihood = np.zeros_like(x)
-likelihood_counts = np.zeros_like(x)
+prob = np.zeros_like(x_grid)
+counts = np.zeros_like(x_grid)
 
-for row in posterior:
+for row in samples:
     xval = row[0]
     yval = row[1]
-    likeval = row[2]
+    probval = row[2]
     if xval > xmin and xval < xmax and yval > ymin and yval < ymax:
-        xi = int((xval - xmin) / xspc)
-        yi = int((yval - ymin) / yspc)
-        likelihood[xi, yi] += likeval
-        likelihood_counts[xi, yi] += 1.0
+        xi = int((xval - xmin) / xbin)
+        yi = int((yval - ymin) / ybin)
+        prob[xi, yi] += probval
+        counts[xi, yi] += 1.0
 
-likelihood = likelihood / likelihood_counts
-print likelihood
-max_like = np.max(likelihood)
-print max_like
-likelihood = -1.0*(likelihood - max_like)
+levels = [0.0]
+sorted_prob = sorted(prob.flatten(), reverse=True)
+cum_prob = np.cumsum(sorted_prob)
+#levels.append(sorted_prob[np.where(cum_prob >= 0.9973)[0][0]])
+levels.append(sorted_prob[np.where(cum_prob >= 0.9545)[0][0]])
+levels.append(sorted_prob[np.where(cum_prob >= 0.6827)[0][0]])
+levels.append(sorted_prob[0])
 
-print likelihood
-print likelihood_counts
+#fig, ax = plt.subplots(figsize=(10, 7.5))
+plt.figure(figsize=(10, 7.5))
+maxvalue = np.max(prob)
+#levels = [0, maxvalue / 100, maxvalue / 30, maxvalue / 10, maxvalue / 3, maxvalue]
+cplot = plt.contourf(x_grid, y_grid, prob, levels=levels)#, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
-fig, ax = plt.subplots(figsize=(10, 7.5))
-contour = ax.contourf(x, y, likelihood, 50, cmap="RdBu")#, vmin=0, vmax=1)
-
-ax_c = fig.colorbar(contour)
-ax_c.set_label("$2 \Delta ln(L)$", size=20)
+cbar = plt.colorbar(cplot)
+#ax_c.set_label("$2 \Delta ln(L)$", size=20)
 #ax_c.set_ticks([0, 1.0, 3.0, 9.0, 16.0, 25.0, 1e6])
 
-#plt.xlim(xmin - xspc, xmax + xspc)
-#plt.ylim(ymin - yspc, ymax + yspc)
-plt.xlabel("$" + xpar + "$", size=20)
-plt.ylabel("$" + ypar + "$", size=20)
+#plt.xlim(xmin - xbin, xmax + xbin)
+#plt.ylim(ymin - ybin, ymax + ybin)
+plt.xlabel(xpar, size=20)
+plt.ylabel(ypar, size=20)
 plt.tight_layout()
 
 plt.show()

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python plot_posterior.py ../completed_runs/standard_Mnu_mn_build/standard_summnu_planck sum_mnu 0.0 1.25 h 0.6 0.72
+python plot_posterior.py ../completed_runs/standard_LCDM_mn_build/LCDM_planck omch2 0.1128 0.1261 h 0.65 0.71
