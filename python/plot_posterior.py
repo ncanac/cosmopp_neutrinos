@@ -1,8 +1,11 @@
 from matplotlib import pyplot as plt
 import numpy as np
 import sys
-from matplotlib.patches import Ellipse
+import scipy.ndimage
+from scipy.ndimage.filters import gaussian_filter
+import matplotlib.cm as cm
 from scipy.interpolate import griddata
+import itertools
 
 root = sys.argv[1] # directory + root for data files
 xpar = sys.argv[2] # x-axis parameter
@@ -55,7 +58,8 @@ for line in f:
 #ndiv = 40.0
 xbin = (xmax - xmin) / ndiv
 ybin = (ymax - ymin) / ndiv
-x_grid, y_grid = np.meshgrid(np.arange(xmin, xmax, xbin), np.arange(ymin, ymax, ybin))
+#x_grid, y_grid = np.meshgrid(np.arange(xmin, xmax, xbin), np.arange(ymin, ymax, ybin))
+x_grid, y_grid = np.mgrid[xmin:xmax:ndiv*1j, ymin:ymax:ndiv*1j]
 
 prob = np.zeros_like(x_grid)
 counts = np.zeros_like(x_grid)
@@ -70,6 +74,22 @@ for row in samples:
         prob[xi, yi] += probval
         counts[xi, yi] += 1.0
 
+#for row, col in itertools.product(list(range(len(x_grid))), list(range(len(y_grid)))):
+#    xc = x_grid[row,col]
+#    here_x = np.abs(samples[:, 0] - xc) < xbin / 2.0
+#    yc = y_grid[row,col]
+#    here_y = np.abs(samples[:, 1] - yc) < xbin / 2.0
+#
+#    zbin = samples[:, 2][np.logical_and(here_x, here_y)]
+#    if zbin.size != 0:
+#        prob[row,col] = zbin.sum()
+
+plt.figure(figsize=(10, 7.5))
+plt.xlim((xmin, xmax))
+plt.ylim((ymin, ymax))
+plt.imshow(prob.transpose(), origin='lower', aspect='auto', cmap=cm.gray_r, alpha = 0.8, extent=(xmin, xmax, ymin, ymax))
+plt.colorbar()
+
 levels = [0.0]
 sorted_prob = sorted(prob.flatten(), reverse=True)
 cum_prob = np.cumsum(sorted_prob)
@@ -82,7 +102,7 @@ levels.append(sorted_prob[0])
 plt.figure(figsize=(10, 7.5))
 maxvalue = np.max(prob)
 #levels = [0, maxvalue / 100, maxvalue / 30, maxvalue / 10, maxvalue / 3, maxvalue]
-cplot = plt.contourf(x_grid, y_grid, prob, levels=levels)#, 50, cmap="RdBu")#, vmin=0, vmax=1)
+cplot = plt.contourf(x_grid, y_grid, prob, levels=levels, cmap="jet")#, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
 cbar = plt.colorbar(cplot)
 #cbar.set_label("$2 \Delta ln(L)$", size=20)
