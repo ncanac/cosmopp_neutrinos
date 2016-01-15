@@ -13,17 +13,12 @@
 class BAOLikelihood : public Math::CosmoLikelihood
 {
 public:
-    BAOLikelihood(bool primordialInitialize)
+    BAOLikelihood(Cosmo& cosmo)
     {
-        cosmo_ = new Cosmo;
-        lMax = 2;
-        cosmo_->preInitialize(lMax, false, primordialInitialize, false, 0);
+        cosmo_ = &cosmo;
     }
 
-    ~BAOLikelihood()
-    {
-        delete cosmo_;
-    }
+    ~BAOLikelihood() {}
 
     void setCosmoParams(const CosmologicalParams& params)
     {
@@ -204,7 +199,6 @@ public:
     }
 
 private:
-    int lMax;
     Cosmo* cosmo_;
 
     const CosmologicalParams* params_; // Standard cosmological parameters

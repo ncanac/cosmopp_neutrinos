@@ -20,11 +20,9 @@
 class WiggleZLikelihood : public Math::CosmoLikelihood
 {
 public:
-    WiggleZLikelihood(std::string path, bool primordialInitialize, char redshift_bin) 
+    WiggleZLikelihood(std::string path, Cosmo& cosmo, char redshift_bin) 
     {
-        cosmo_ = new Cosmo;
-        lMax_ = 3000;
-        cosmo_->preInitialize(lMax_, false, primordialInitialize, false, 0);
+        cosmo_ = &cosmo;
 
         //bool Q_marge = false;
         //double Q_mid = 4.0;
@@ -236,10 +234,7 @@ public:
         datafile.close();
     }
 
-    ~WiggleZLikelihood()
-    {
-        delete cosmo_; 
-    }
+    ~WiggleZLikelihood() {}
 
     double calculate(double* params, int nPar)
     {
@@ -385,7 +380,6 @@ public:
     }
 
 private:
-    int lMax_;
     Cosmo* cosmo_;
 
     const CosmologicalParams* params_;

@@ -23,11 +23,9 @@
 class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
 public:
-    LRGDR7Likelihood(std::string path, bool primordialInitialize)
+    LRGDR7Likelihood(std::string path, Cosmo& cosmo)
     {
-        cosmo_ = new Cosmo;
-        lMax_ = 3000;
-        cosmo_->preInitialize(lMax_, false, primordialInitialize, false, 0);
+        cosmo_ = &cosmo;
 
         // Number of points and kbands in the input files
         num_mpk_points_full_ = 45;
@@ -117,10 +115,7 @@ public:
         datafile.close();
     }
 
-    ~LRGDR7Likelihood()
-    {
-        delete cosmo_; 
-    }
+    ~LRGDR7Likelihood() {}
 
     double calculate(double* params, int nPar)
     {
@@ -447,7 +442,6 @@ private:
         return testresult;
     }
 
-    int lMax_;
     Cosmo* cosmo_;
 
     const CosmologicalParams* params_;

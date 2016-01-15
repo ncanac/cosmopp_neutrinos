@@ -18,7 +18,7 @@
 class CombinedLikelihood : public Math::CosmoLikelihood
 {
 public:
-    CombinedLikelihood(std::string datapath, bool primordialInitialize, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
+    CombinedLikelihood(std::string datapath, Cosmo& cosmo, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
     {
         nLikes_ = 0;
         //check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
@@ -29,20 +29,20 @@ public:
             wmapLike_ = new WMAP9Likelihood(true, true, true, true, true, true);
         if(useBAO_)
         {
-            likes_.push_back(new BAOLikelihood(primordialInitialize));
+            likes_.push_back(new BAOLikelihood(cosmo));
             ++nLikes_;
         }
         if(useLRG_)
         {
-            likes_.push_back(new LRGDR7Likelihood(datapath, primordialInitialize));
+            likes_.push_back(new LRGDR7Likelihood(datapath, cosmo));
             ++nLikes_;
         }
         if(useWiggleZ_)
         {
-            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'a')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'b')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'c')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, primordialInitialize, 'd')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'a')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'b')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'c')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'd')); 
             nLikes_ += 4;
         }
     }
