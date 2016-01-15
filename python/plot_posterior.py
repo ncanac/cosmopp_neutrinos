@@ -46,7 +46,6 @@ samples = np.array(samples)
 f = open(constraints_fname, 'r')
 for line in f:
     vals = line.split()
-    print vals[0]
     if xpar == vals[0][:-1]:
         i = vals[2].find("+-")
         xmean = float(vals[2][:i])
@@ -107,20 +106,17 @@ levels.append(sorted_prob[0])
 if smooth:
     prob = gaussian_filter(prob, sigma=1.0)
 
-#fig, ax = plt.subplots(figsize=(10, 7.5))
-plt.figure(figsize=(10, 7.5))
-maxvalue = np.max(prob)
-#levels = [0, maxvalue / 100, maxvalue / 30, maxvalue / 10, maxvalue / 3, maxvalue]
-cplot = plt.contourf(x_grid, y_grid, prob, levels=levels, colors=['w', 'dodgerblue', 'blue'])#, 50, cmap="RdBu")#, vmin=0, vmax=1)
+fig, ax = plt.subplots(figsize=(10, 7.5))
+cplot = ax.contourf(x_grid, y_grid, prob, levels=levels, colors=['w', 'dodgerblue', 'blue'])#, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
-cbar = plt.colorbar(cplot)
-#cbar.set_label("$2 \Delta ln(L)$", size=20)
-#cbar.set_ticks([0, 1.0, 3.0, 9.0, 16.0, 25.0, 1e6])
+cbar = fig.colorbar(cplot)
+cbar.set_label("P", size=20)
+cbar.set_ticks(levels)
 
 #plt.xlim(xmin - xbin, xmax + xbin)
 #plt.ylim(ymin - ybin, ymax + ybin)
-plt.xlabel(xpar, size=20)
-plt.ylabel(ypar, size=20)
+ax.set_xlabel(xpar, size=20)
+ax.set_ylabel(ypar, size=20)
 plt.tight_layout()
 
 plt.show()
