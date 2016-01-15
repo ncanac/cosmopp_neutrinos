@@ -102,16 +102,20 @@ levels.append(sorted_prob[np.where(cum_prob >= 0.9545)[0][0]])
 levels.append(sorted_prob[np.where(cum_prob >= 0.6827)[0][0]])
 levels.append(sorted_prob[0])
 
+print np.sum(prob.flatten())
+
 # Smooth using gaussian filter
 if smooth:
     prob = gaussian_filter(prob, sigma=1.0)
 
+print np.sum(prob.flatten())
+
 fig, ax = plt.subplots(figsize=(10, 7.5))
 cplot = ax.contourf(x_grid, y_grid, prob, levels=levels, colors=['w', 'dodgerblue', 'blue'])#, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
-cbar = fig.colorbar(cplot)
-cbar.set_label("P", size=20)
-cbar.set_ticks(levels)
+#cbar = fig.colorbar(cplot)
+#cbar.set_label("P", size=20)
+#cbar.set_ticks(levels)
 
 #plt.xlim(xmin - xbin, xmax + xbin)
 #plt.ylim(ymin - ybin, ymax + ybin)
