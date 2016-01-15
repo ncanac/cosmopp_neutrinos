@@ -15,6 +15,10 @@ ypar = sys.argv[3] # y-axis parameter
 #ymin = float(sys.argv[6]) # minimum value of y parameter
 #ymax = float(sys.argv[7]) # maximum value of y parameter
 ndiv = float(sys.argv[4])
+smooth = False
+for arg in sys.argv[5:]:
+    if arg == "smooth":
+        smooth = True
 
 params_fname = root + ".paramnames"
 samples_fname = root + "posterior.txt"
@@ -28,13 +32,13 @@ f.close()
 
 xpar_idx = paramnames.index(xpar)
 ypar_idx = paramnames.index(ypar)
-lnlike_idx = len(paramnames)+1
+prob_idx = len(paramnames)+1
 
 samples = []
 f = open(samples_fname, 'r')
 for line in f:
     vals = line.split()
-    samples.append([float(vals[xpar_idx]), float(vals[ypar_idx]), float(vals[lnlike_idx])])
+    samples.append([float(vals[xpar_idx]), float(vals[ypar_idx]), float(vals[prob_idx])])
 f.close()
 
 samples = np.array(samples)
@@ -42,13 +46,14 @@ samples = np.array(samples)
 f = open(constraints_fname, 'r')
 for line in f:
     vals = line.split()
-    if xpar in vals[0]:
+    print vals[0]
+    if xpar == vals[0][:-1]:
         i = vals[2].find("+-")
         xmean = float(vals[2][:i])
         xsd = float(vals[2][i+2:])
         xmin = max(0.0, xmean - 3.0*xsd)
         xmax = xmean + 3.0*xsd
-    elif ypar in vals[0]:
+    if ypar == vals[0][:-1]:
         i = vals[2].find("+-")
         ymean = float(vals[2][:i])
         ysd = float(vals[2][i+2:])
@@ -84,11 +89,11 @@ for row in samples:
 #    if zbin.size != 0:
 #        prob[row,col] = zbin.sum()
 
-plt.figure(figsize=(10, 7.5))
-plt.xlim((xmin, xmax))
-plt.ylim((ymin, ymax))
-plt.imshow(prob.transpose(), origin='lower', aspect='auto', cmap=cm.gray_r, alpha = 0.8, extent=(xmin, xmax, ymin, ymax))
-plt.colorbar()
+#plt.figure(figsize=(10, 7.5))
+#plt.xlim((xmin, xmax))
+#plt.ylim((ymin, ymax))
+#plt.imshow(prob.transpose(), origin='lower', aspect='auto', cmap=cm.gray_r, alpha = 0.8, extent=(xmin, xmax, ymin, ymax))
+#plt.colorbar()
 
 levels = [0.0]
 sorted_prob = sorted(prob.flatten(), reverse=True)
@@ -98,11 +103,15 @@ levels.append(sorted_prob[np.where(cum_prob >= 0.9545)[0][0]])
 levels.append(sorted_prob[np.where(cum_prob >= 0.6827)[0][0]])
 levels.append(sorted_prob[0])
 
+# Smooth using gaussian filter
+if smooth:
+    prob = gaussian_filter(prob, sigma=1.0)
+
 #fig, ax = plt.subplots(figsize=(10, 7.5))
 plt.figure(figsize=(10, 7.5))
 maxvalue = np.max(prob)
 #levels = [0, maxvalue / 100, maxvalue / 30, maxvalue / 10, maxvalue / 3, maxvalue]
-cplot = plt.contourf(x_grid, y_grid, prob, levels=levels, cmap="jet")#, 50, cmap="RdBu")#, vmin=0, vmax=1)
+cplot = plt.contourf(x_grid, y_grid, prob, levels=levels, colors=['w', 'dodgerblue', 'blue'])#, 50, cmap="RdBu")#, vmin=0, vmax=1)
 
 cbar = plt.colorbar(cplot)
 #cbar.set_label("$2 \Delta ln(L)$", size=20)
