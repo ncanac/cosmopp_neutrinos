@@ -25,12 +25,6 @@ public:
         return th_->rs_d;   
     } 
 
-    double getrsdrag_fudge()
-    {
-        check(init_, "need to initialize first");
-        return th_->rs_d_fudge;
-    }
-
     double getAngularDistance(double z)
     {
         double tau;

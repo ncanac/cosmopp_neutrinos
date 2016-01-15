@@ -112,7 +112,7 @@ public:
         invcov[1][0] = invcov[0][1];
         invcov[1][1] = 86976.6;
 
-        double OmK, OmLambda, OmM, h, H0, w, rsdrag, rsdrag_fudge;
+        double OmK, OmLambda, OmM, h, H0, w, rsdrag;
         double dv1theory, dv2theory, hz1, hz2, DAz1, DAz2;
         double rstodvz1theorydelta, rstodvz2theorydelta, LnLike;
 
@@ -123,18 +123,8 @@ public:
         OmM = params_->getOmM();
         w = -1.0;
         rsdrag = cosmo_->getrsdrag();
-        rsdrag_fudge = cosmo_->getrsdrag_fudge();
         DAz1 = cosmo_->getAngularDistance(z1);
         DAz2 = cosmo_->getAngularDistance(z2);
-
-        // output_screen("H0: " << H0 << std::endl);
-        // output_screen("OmK: " << OmK << std::endl);
-        // output_screen("OmLambda: " << OmLambda << std::endl);
-        // output_screen("OmM: " << OmM << std::endl);
-        // output_screen("rsdrag: " << rsdrag << std::endl);
-        // output_screen("rsdrag_fudge: " << rsdrag_fudge << std::endl);
-        // output_screen("DAz1: " << DAz1 << std::endl);
-        // output_screen("DAz2: " << DAz2 << std::endl);
 
         hz1 = sqrt( OmM*pow(1.0+z1,3.0) + OmK*pow(1.0+z1,2.0) + OmLambda*pow(1.0+z1,3.0*(1.0+w)) );
         hz2 = sqrt( OmM*pow(1.0+z2,3.0) + OmK*pow(1.0+z2,2.0) + OmLambda*pow(1.0+z2,3.0*(1.0+w)) );
@@ -143,17 +133,9 @@ public:
         dv1theory = pow(dv1theory,(1.0/3.0));
         dv2theory = pow(dv2theory,(1.0/3.0));
 
-        // output_screen("hz1: " << hz1 << std::endl);
-        // output_screen("hz2: " << hz2 << std::endl);
-        // output_screen("dv1theory: " << dv1theory << std::endl);
-        // output_screen("dv2theory: " << dv2theory << std::endl);
-    
-        rstodvz1theorydelta = rsdrag_fudge/dv1theory - rstodvz1;
-        rstodvz2theorydelta = rsdrag_fudge/dv2theory - rstodvz2;
+        rstodvz1theorydelta = rsdrag/dv1theory - rstodvz1;
+        rstodvz2theorydelta = rsdrag/dv2theory - rstodvz2;
 
-        // output_screen("rstodvz1theorydelta: " << rstodvz1theorydelta << std::endl);
-        // output_screen("rstodvz2theorydetla: " << rstodvz2theorydelta << std::endl);
-    
         LnLike = 0.5*((rstodvz1theorydelta) * invcov[0][0] * (rstodvz1theorydelta)
                 + 2.0 * (rstodvz1theorydelta) * invcov[0][1] * (rstodvz2theorydelta)
                 + (rstodvz2theorydelta) * invcov[1][1] * (rstodvz2theorydelta));
