@@ -40,6 +40,12 @@ public:
         return pvecback[br_->index_bg_ang_distance];
     }
 
+    double getSigma8()
+    {
+        check(init_, "need to initialize first");
+        return sp_->sigma8;
+    }
+
     double getHubble(double z)
     {
         double tau;
