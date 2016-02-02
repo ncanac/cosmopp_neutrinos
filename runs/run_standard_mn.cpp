@@ -123,8 +123,9 @@ int main(int argc, char *argv[])
         StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
         std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
-        bool primordialInit = false;
-        CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
+        Cosmo cosmo;
+        cosmo.preInitialize(5000, false, false, false, 0);
+        CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;

@@ -51,15 +51,6 @@ int main(int argc, char *argv[])
         // omBH2, omCH2, h, tau, ns, as
         int nPar = 6;
 
-        // Starting values for cosmological parameters
-        const double h = 0.6731;
-        const double omBH2 = 0.02222;
-        const double omCH2 = 0.1197;
-        const double tau = 0.078;
-        const double ns = 0.9655;
-        const double as = 3.089; // ln(10^10*as), as ~ 2.196e-9
-        const double pivot = 0.05;
-
         if(usePlanck)
         {
             // for A_planck
@@ -83,7 +74,16 @@ int main(int argc, char *argv[])
             output_screen("Using WiggleZ." << std::endl);
         }
 
+        // Starting values for cosmological parameters
+        // From Planck 2015, Table 3, Column 4
         output_screen("Running with Lambda CDM cosmological parameters." << std::endl);
+        const double h = 0.6727;
+        const double omBH2 = 0.02225;
+        const double omCH2 = 0.1198;
+        const double tau = 0.079;
+        const double ns = 0.9645;
+        const double as = 3.094; // ln(10^10*as)
+        const double pivot = 0.05;
         LambdaCDMParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, pivot);
 
 //#ifdef COSMO_PLANCK_15
@@ -92,9 +92,12 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
+
+        Cosmo cosmo;
+        cosmo.preInitialize(5000, false, false, false, 0, 100, 1e-6, 1.0);
+
         std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
-        bool primordialInit = false;
-        CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
+        CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -117,13 +120,14 @@ int main(int argc, char *argv[])
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
-        scanner.setParam(paramIndex++, "h", 0.55, 0.85);
-        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.4);
+        scanner.setParam(paramIndex++, "h", 0.55, 0.80);
+        scanner.setParam(paramIndex++, "tau", 0.04, 0.12);
         scanner.setParam(paramIndex++, "ns", 0.9, 1.1);
         scanner.setParam(paramIndex++, "as", 2.7, 4.0);
 
-        scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);
+        if(usePlanck)
+            scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);
 
         check(paramIndex == nPar, "");
 
