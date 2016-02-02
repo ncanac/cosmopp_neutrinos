@@ -36,15 +36,13 @@ int main(int argc, char *argv[])
     
     // Create cosmological params
     LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
-    bool isLinear = true, varyNEff = true, varySumMNu = true;
-    int nMassive = 1;
-    double nEff = 3.046, sumMNu = 0.5;
-    // SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
+    //bool isLinear = true, varyNEff = true, varySumMNu = true;
+    //int nMassive = 1;
+    //double nEff = 3.046, sumMNu = 0.5;
+    //SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
-
-    // Create likelihoods
+    // Set likelihoods to use
     std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
-    bool primordialInit = false;
     bool usePlanck = false;
     bool useWMAP = false;
     bool useBAO = false;
@@ -64,7 +62,12 @@ int main(int argc, char *argv[])
             useWiggleZ = true;
     }
 
-    CombinedLikelihood like(datapath, primordialInit, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
+    // Create cosmology object
+    Cosmo cosmo;
+    cosmo.preInitialize(5000, false, false, false, 0);
+
+    // Create likelihood object
+    CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
     
     // Set the cosmological parameters
     like.setCosmoParams(params);

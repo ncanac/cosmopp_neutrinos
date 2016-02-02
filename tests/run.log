@@ -1,0 +1,682 @@
+Varying N_eff!
+Varying sum_mnu!
+Using Planck.
+Using LRG.
+Planck data dir = /Volumes/Data1/Planck2015/plc-2.0
+ BFLike Ntemp  =        2876
+ BFLike Nq     =        1407
+ BFLike Nu     =        1407
+ BFLike Nside  =          16
+ BFLike Nwrite =    32393560
+ cls file appears to have 5+ columns
+ assuming it is a CAMB file with l, TT, EE, BB, TE
+ info =            0
+----
+clik version 6dc2a8cf3965 MAKEFILE
+  bflike_smw
+Checking likelihood '/Volumes/Data1/Planck2015/plc-2.0/low_l/bflike/lowl_SMW_70_dx11d_2014_10_03_v5c_Ap.clik' on test data. got -5247.87 expected -5247.87 (diff 3.26225e-07)
+----
+Low likelihood has TT with l_max = 29
+Low likelihood has EE with l_max = 29
+Low likelihood has BB with l_max = 29
+Low likelihood has TE with l_max = 29
+Low likelihood has TB with l_max = -1
+Low likelihood has EB with l_max = -1
+ Initializing Planck likelihood, version Plik_v18_cmbonly_like
+----
+clik version 6dc2a8cf3965 MAKEFILE
+  plik_cmbonly
+Checking likelihood '/Volumes/Data1/Planck2015/plc-2.0/hi_l/plik_lite/plik_lite_v18_TT.clik' on test data. got -101.798 expected -101.798 (diff 1.03566e-08)
+----
+High likelihood has TT with l_max = 2508
+High likelihood has EE with l_max = -1
+High likelihood has BB with l_max = -1
+High likelihood has TE with l_max = -1
+High likelihood has TB with l_max = -1
+High likelihood has EB with l_max = -1
+Low l_max = 29
+High l_max = 2508
+Lensing l_max = 0
+Total l_max = 2508
+Setting parameters
+Running scan.
+Starting the timer Multinest scan...
+ MultiNest Warning: no resume file found, starting from scratch
+ *****************************************************
+ MultiNest v3.9
+ Copyright Farhan Feroz & Mike Hobson
+ Release Oct 2014
+ 
+ no. of live points =  300
+ dimensionality =   13
+ *****************************************************
+ Starting MultiNest
+ generating live points
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.023487
+MPI process 0 / 1:	0.115507
+MPI process 0 / 1:	0.561914
+MPI process 0 / 1:	0.0756763
+MPI process 0 / 1:	3.79711
+MPI process 0 / 1:	0.408803
+MPI process 0 / 1:	-0.84302
+MPI process 0 / 1:	-3.18741
+MPI process 0 / 1:	3.50054
+MPI process 0 / 1:	3.44947
+MPI process 0 / 1:	2.99261
+MPI process 0 / 1:	3.06848
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 250.218
+MPI process 0 / 1:	minchisq: 48.3341
+MPI process 0 / 1:	LnLike: 26.4539
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0227299
+MPI process 0 / 1:	0.109343
+MPI process 0 / 1:	0.598434
+MPI process 0 / 1:	0.117128
+MPI process 0 / 1:	4.52782
+MPI process 0 / 1:	0.967022
+MPI process 0 / 1:	-10.1908
+MPI process 0 / 1:	-5.47471
+MPI process 0 / 1:	3.30873
+MPI process 0 / 1:	3.09203
+MPI process 0 / 1:	3.01335
+MPI process 0 / 1:	3.40234
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 282.945
+MPI process 0 / 1:	minchisq: 46.6014
+MPI process 0 / 1:	LnLike: 25.5781
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.022483
+MPI process 0 / 1:	0.110746
+MPI process 0 / 1:	0.724134
+MPI process 0 / 1:	0.0771456
+MPI process 0 / 1:	4.14075
+MPI process 0 / 1:	0.101137
+MPI process 0 / 1:	-4.05318
+MPI process 0 / 1:	-2.48221
+MPI process 0 / 1:	3.16984
+MPI process 0 / 1:	3.50835
+MPI process 0 / 1:	3.03481
+MPI process 0 / 1:	3.27785
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 605.394
+MPI process 0 / 1:	minchisq: 82.492
+MPI process 0 / 1:	LnLike: 45.7039
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0219213
+MPI process 0 / 1:	0.113823
+MPI process 0 / 1:	0.599016
+MPI process 0 / 1:	0.0610205
+MPI process 0 / 1:	3.6971
+MPI process 0 / 1:	0.839756
+MPI process 0 / 1:	-11.1586
+MPI process 0 / 1:	-4.27535
+MPI process 0 / 1:	3.06386
+MPI process 0 / 1:	3.55605
+MPI process 0 / 1:	2.94077
+MPI process 0 / 1:	3.53678
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 334.409
+MPI process 0 / 1:	minchisq: 57.2994
+MPI process 0 / 1:	LnLike: 32.5104
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0234026
+MPI process 0 / 1:	0.13545
+MPI process 0 / 1:	0.661561
+MPI process 0 / 1:	0.0953697
+MPI process 0 / 1:	3.92717
+MPI process 0 / 1:	0.267032
+MPI process 0 / 1:	-12.2704
+MPI process 0 / 1:	-1.18528
+MPI process 0 / 1:	3.27937
+MPI process 0 / 1:	3.25444
+MPI process 0 / 1:	3.02979
+MPI process 0 / 1:	3.04924
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 305.344
+MPI process 0 / 1:	minchisq: 56.7145
+MPI process 0 / 1:	LnLike: 31.1732
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0200313
+MPI process 0 / 1:	0.115533
+MPI process 0 / 1:	0.621651
+MPI process 0 / 1:	0.0630334
+MPI process 0 / 1:	4.1434
+MPI process 0 / 1:	0.136633
+MPI process 0 / 1:	-2.66966
+MPI process 0 / 1:	-9.05825
+MPI process 0 / 1:	3.31828
+MPI process 0 / 1:	3.35685
+MPI process 0 / 1:	3.02632
+MPI process 0 / 1:	3.35308
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 325.718
+MPI process 0 / 1:	minchisq: 55.6265
+MPI process 0 / 1:	LnLike: 31.3881
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0205235
+MPI process 0 / 1:	0.12385
+MPI process 0 / 1:	0.654494
+MPI process 0 / 1:	0.0632054
+MPI process 0 / 1:	4.7249
+MPI process 0 / 1:	0.0841925
+MPI process 0 / 1:	-4.28659
+MPI process 0 / 1:	-2.58961
+MPI process 0 / 1:	3.04246
+MPI process 0 / 1:	3.36277
+MPI process 0 / 1:	3.45741
+MPI process 0 / 1:	3.23853
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 343.71
+MPI process 0 / 1:	minchisq: 51.335
+MPI process 0 / 1:	LnLike: 27.922
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0209378
+MPI process 0 / 1:	0.120661
+MPI process 0 / 1:	0.559781
+MPI process 0 / 1:	0.0683922
+MPI process 0 / 1:	2.46214
+MPI process 0 / 1:	0.809652
+MPI process 0 / 1:	-8.37992
+MPI process 0 / 1:	-3.71701
+MPI process 0 / 1:	3.22198
+MPI process 0 / 1:	3.19136
+MPI process 0 / 1:	2.91696
+MPI process 0 / 1:	3.50415
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 202.947
+MPI process 0 / 1:	minchisq: 52.6383
+MPI process 0 / 1:	LnLike: 29.0218
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.020227
+MPI process 0 / 1:	0.101829
+MPI process 0 / 1:	0.595419
+MPI process 0 / 1:	0.114413
+MPI process 0 / 1:	4.90091
+MPI process 0 / 1:	0.30277
+MPI process 0 / 1:	-0.955688
+MPI process 0 / 1:	-8.28897
+MPI process 0 / 1:	3.13041
+MPI process 0 / 1:	3.41381
+MPI process 0 / 1:	3.03767
+MPI process 0 / 1:	3.01134
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 326.201
+MPI process 0 / 1:	minchisq: 43.8345
+MPI process 0 / 1:	LnLike: 24.2522
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0246464
+MPI process 0 / 1:	0.109915
+MPI process 0 / 1:	0.79903
+MPI process 0 / 1:	0.110589
+MPI process 0 / 1:	4.27728
+MPI process 0 / 1:	0.0988341
+MPI process 0 / 1:	-12.6086
+MPI process 0 / 1:	-9.94928
+MPI process 0 / 1:	3.4899
+MPI process 0 / 1:	3.28089
+MPI process 0 / 1:	3.55369
+MPI process 0 / 1:	3.58431
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 1014.74
+MPI process 0 / 1:	minchisq: 44.8907
+MPI process 0 / 1:	LnLike: 24.8481
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0217929
+MPI process 0 / 1:	0.102391
+MPI process 0 / 1:	0.616358
+MPI process 0 / 1:	0.0471138
+MPI process 0 / 1:	2.85308
+MPI process 0 / 1:	0.108811
+MPI process 0 / 1:	-4.82611
+MPI process 0 / 1:	-7.81432
+MPI process 0 / 1:	3.42084
+MPI process 0 / 1:	2.99173
+MPI process 0 / 1:	2.99921
+MPI process 0 / 1:	3.48454
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 517.898
+MPI process 0 / 1:	minchisq: 45.5498
+MPI process 0 / 1:	LnLike: 24.7846
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0232073
+MPI process 0 / 1:	0.106436
+MPI process 0 / 1:	0.648854
+MPI process 0 / 1:	0.085426
+MPI process 0 / 1:	3.2385
+MPI process 0 / 1:	0.180119
+MPI process 0 / 1:	-6.23238
+MPI process 0 / 1:	-13.6761
+MPI process 0 / 1:	3.40618
+MPI process 0 / 1:	3.3739
+MPI process 0 / 1:	3.03808
+MPI process 0 / 1:	3.18047
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 563.25
+MPI process 0 / 1:	minchisq: 44.2552
+MPI process 0 / 1:	LnLike: 24.1934
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.023046
+MPI process 0 / 1:	0.120662
+MPI process 0 / 1:	0.645506
+MPI process 0 / 1:	0.105273
+MPI process 0 / 1:	4.73066
+MPI process 0 / 1:	0.297855
+MPI process 0 / 1:	-11.6317
+MPI process 0 / 1:	-13.622
+MPI process 0 / 1:	3.37783
+MPI process 0 / 1:	3.55416
+MPI process 0 / 1:	3.59566
+MPI process 0 / 1:	3.37313
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 467.631
+MPI process 0 / 1:	minchisq: 47.918
+MPI process 0 / 1:	LnLike: 25.911
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0221968
+MPI process 0 / 1:	0.114122
+MPI process 0 / 1:	0.6895
+MPI process 0 / 1:	0.0524052
+MPI process 0 / 1:	2.20225
+MPI process 0 / 1:	0.628654
+MPI process 0 / 1:	-10.342
+MPI process 0 / 1:	-1.44773
+MPI process 0 / 1:	3.35072
+MPI process 0 / 1:	3.4164
+MPI process 0 / 1:	3.34783
+MPI process 0 / 1:	3.19818
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 517.377
+MPI process 0 / 1:	minchisq: 48.3027
+MPI process 0 / 1:	LnLike: 27.3016
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0246207
+MPI process 0 / 1:	0.11209
+MPI process 0 / 1:	0.679607
+MPI process 0 / 1:	0.0524791
+MPI process 0 / 1:	4.33783
+MPI process 0 / 1:	0.69507
+MPI process 0 / 1:	-10.9549
+MPI process 0 / 1:	-3.10357
+MPI process 0 / 1:	3.4883
+MPI process 0 / 1:	3.42288
+MPI process 0 / 1:	3.29792
+MPI process 0 / 1:	3.31006
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 547.012
+MPI process 0 / 1:	minchisq: 410.263
+MPI process 0 / 1:	LnLike: 210.46
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0207779
+MPI process 0 / 1:	0.119437
+MPI process 0 / 1:	0.611273
+MPI process 0 / 1:	0.0445947
+MPI process 0 / 1:	2.87968
+MPI process 0 / 1:	0.622365
+MPI process 0 / 1:	-8.21438
+MPI process 0 / 1:	-8.36415
+MPI process 0 / 1:	2.95426
+MPI process 0 / 1:	2.9541
+MPI process 0 / 1:	3.58128
+MPI process 0 / 1:	3.49657
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 339.604
+MPI process 0 / 1:	minchisq: 45.2989
+MPI process 0 / 1:	LnLike: 24.2163
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0233721
+MPI process 0 / 1:	0.117203
+MPI process 0 / 1:	0.683161
+MPI process 0 / 1:	0.0686174
+MPI process 0 / 1:	4.62283
+MPI process 0 / 1:	0.13002
+MPI process 0 / 1:	-7.23354
+MPI process 0 / 1:	-13.3643
+MPI process 0 / 1:	3.51165
+MPI process 0 / 1:	2.90006
+MPI process 0 / 1:	3.38684
+MPI process 0 / 1:	3.50709
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 503.48
+MPI process 0 / 1:	minchisq: 45.9496
+MPI process 0 / 1:	LnLike: 25.3742
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.022659
+MPI process 0 / 1:	0.139644
+MPI process 0 / 1:	0.569313
+MPI process 0 / 1:	0.0413328
+MPI process 0 / 1:	4.08543
+MPI process 0 / 1:	0.537251
+MPI process 0 / 1:	-9.58017
+MPI process 0 / 1:	-6.09026
+MPI process 0 / 1:	3.52332
+MPI process 0 / 1:	3.18771
+MPI process 0 / 1:	3.07524
+MPI process 0 / 1:	3.10604
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 179.96
+MPI process 0 / 1:	minchisq: 62.7267
+MPI process 0 / 1:	LnLike: 34.0528
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0221012
+MPI process 0 / 1:	0.107735
+MPI process 0 / 1:	0.639529
+MPI process 0 / 1:	0.10602
+MPI process 0 / 1:	2.23653
+MPI process 0 / 1:	0.14101
+MPI process 0 / 1:	-8.27259
+MPI process 0 / 1:	-13.0114
+MPI process 0 / 1:	2.90513
+MPI process 0 / 1:	3.27338
+MPI process 0 / 1:	2.90669
+MPI process 0 / 1:	3.40099
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 376.52
+MPI process 0 / 1:	minchisq: 48.6853
+MPI process 0 / 1:	LnLike: 26.9567
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0243506
+MPI process 0 / 1:	0.118203
+MPI process 0 / 1:	0.559704
+MPI process 0 / 1:	0.111121
+MPI process 0 / 1:	4.55977
+MPI process 0 / 1:	0.114032
+MPI process 0 / 1:	-10.3539
+MPI process 0 / 1:	-6.90628
+MPI process 0 / 1:	3.15476
+MPI process 0 / 1:	3.01753
+MPI process 0 / 1:	3.44533
+MPI process 0 / 1:	3.5606
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 194.218
+MPI process 0 / 1:	minchisq: 51.5646
+MPI process 0 / 1:	LnLike: 27.8939
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0248498
+MPI process 0 / 1:	0.133364
+MPI process 0 / 1:	0.602675
+MPI process 0 / 1:	0.0564534
+MPI process 0 / 1:	3.514
+MPI process 0 / 1:	0.214049
+MPI process 0 / 1:	-7.36578
+MPI process 0 / 1:	-8.62594
+MPI process 0 / 1:	3.08806
+MPI process 0 / 1:	3.01006
+MPI process 0 / 1:	2.94107
+MPI process 0 / 1:	3.47553
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 208.113
+MPI process 0 / 1:	minchisq: 70.434
+MPI process 0 / 1:	LnLike: 38.4791
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0233256
+MPI process 0 / 1:	0.108524
+MPI process 0 / 1:	0.757013
+MPI process 0 / 1:	0.0928221
+MPI process 0 / 1:	3.27963
+MPI process 0 / 1:	0.469416
+MPI process 0 / 1:	-6.07403
+MPI process 0 / 1:	-2.50585
+MPI process 0 / 1:	3.5289
+MPI process 0 / 1:	3.18593
+MPI process 0 / 1:	3.34646
+MPI process 0 / 1:	2.9317
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 680.9
+MPI process 0 / 1:	minchisq: 52.4028
+MPI process 0 / 1:	LnLike: 28.4649
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0231304
+MPI process 0 / 1:	0.136454
+MPI process 0 / 1:	0.652932
+MPI process 0 / 1:	0.11084
+MPI process 0 / 1:	4.24379
+MPI process 0 / 1:	0.69754
+MPI process 0 / 1:	-5.80756
+MPI process 0 / 1:	-2.29439
+MPI process 0 / 1:	3.02396
+MPI process 0 / 1:	2.94835
+MPI process 0 / 1:	3.43629
+MPI process 0 / 1:	3.07649
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 224.342
+MPI process 0 / 1:	minchisq: 165.69
+MPI process 0 / 1:	LnLike: 87.7507
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0248853
+MPI process 0 / 1:	0.108016
+MPI process 0 / 1:	0.742092
+MPI process 0 / 1:	0.0585603
+MPI process 0 / 1:	3.99731
+MPI process 0 / 1:	0.871895
+MPI process 0 / 1:	-5.35936
+MPI process 0 / 1:	-13.9556
+MPI process 0 / 1:	2.91168
+MPI process 0 / 1:	3.37812
+MPI process 0 / 1:	3.47652
+MPI process 0 / 1:	3.43791
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 414.201
+MPI process 0 / 1:	minchisq: 477.188
+MPI process 0 / 1:	LnLike: 240.443
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0223283
+MPI process 0 / 1:	0.119894
+MPI process 0 / 1:	0.798106
+MPI process 0 / 1:	0.0907209
+MPI process 0 / 1:	2.09811
+MPI process 0 / 1:	0.6252
+MPI process 0 / 1:	-7.15868
+MPI process 0 / 1:	-6.40274
+MPI process 0 / 1:	3.45585
+MPI process 0 / 1:	3.38253
+MPI process 0 / 1:	3.1452
+MPI process 0 / 1:	3.45001
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 757.684
+MPI process 0 / 1:	minchisq: 56.2721
+MPI process 0 / 1:	LnLike: 31.2709
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0244473
+MPI process 0 / 1:	0.117207
+MPI process 0 / 1:	0.563931
+MPI process 0 / 1:	0.0767442
+MPI process 0 / 1:	2.78742
+MPI process 0 / 1:	0.90018
+MPI process 0 / 1:	-10.0618
+MPI process 0 / 1:	-9.49813
+MPI process 0 / 1:	3.40184
+MPI process 0 / 1:	2.95062
+MPI process 0 / 1:	3.12295
+MPI process 0 / 1:	3.18159
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 174.512
+MPI process 0 / 1:	minchisq: 49.8158
+MPI process 0 / 1:	LnLike: 27.5647
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0215114
+MPI process 0 / 1:	0.111923
+MPI process 0 / 1:	0.617385
+MPI process 0 / 1:	0.0828472
+MPI process 0 / 1:	3.67217
+MPI process 0 / 1:	0.640137
+MPI process 0 / 1:	-1.00989
+MPI process 0 / 1:	-13.7057
+MPI process 0 / 1:	2.92218
+MPI process 0 / 1:	3.49014
+MPI process 0 / 1:	3.33536
+MPI process 0 / 1:	3.55756
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 267.75
+MPI process 0 / 1:	minchisq: 44.237
+MPI process 0 / 1:	LnLike: 24.059
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0239457
+MPI process 0 / 1:	0.102185
+MPI process 0 / 1:	0.564424
+MPI process 0 / 1:	0.0583839
+MPI process 0 / 1:	2.5693
+MPI process 0 / 1:	0.697547
+MPI process 0 / 1:	-8.21694
+MPI process 0 / 1:	-1.10211
+MPI process 0 / 1:	3.04125
+MPI process 0 / 1:	2.91921
+MPI process 0 / 1:	3.16536
+MPI process 0 / 1:	3.41852
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 195.581
+MPI process 0 / 1:	minchisq: 44.7053
+MPI process 0 / 1:	LnLike: 24.1047
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.024017
+MPI process 0 / 1:	0.104321
+MPI process 0 / 1:	0.5638
+MPI process 0 / 1:	0.0445986
+MPI process 0 / 1:	2.09311
+MPI process 0 / 1:	0.430653
+MPI process 0 / 1:	-11.3776
+MPI process 0 / 1:	-2.56419
+MPI process 0 / 1:	3.51758
+MPI process 0 / 1:	3.03948
+MPI process 0 / 1:	3.009
+MPI process 0 / 1:	3.34274
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 213.137
+MPI process 0 / 1:	minchisq: 44.398
+MPI process 0 / 1:	LnLike: 24.1434
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0226413
+MPI process 0 / 1:	0.138588
+MPI process 0 / 1:	0.780677
+MPI process 0 / 1:	0.103752
+MPI process 0 / 1:	4.6452
+MPI process 0 / 1:	0.73922
+MPI process 0 / 1:	-13.3633
+MPI process 0 / 1:	-0.538691
+MPI process 0 / 1:	3.3483
+MPI process 0 / 1:	3.29715
+MPI process 0 / 1:	3.39974
+MPI process 0 / 1:	3.01165
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 539.271
+MPI process 0 / 1:	minchisq: 73.2213
+MPI process 0 / 1:	LnLike: 40.6211
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0249048
+MPI process 0 / 1:	0.111525
+MPI process 0 / 1:	0.63606
+MPI process 0 / 1:	0.0937504
+MPI process 0 / 1:	2.78737
+MPI process 0 / 1:	0.892344
+MPI process 0 / 1:	-7.44564
+MPI process 0 / 1:	-11.8327
+MPI process 0 / 1:	3.51228
+MPI process 0 / 1:	3.49317
+MPI process 0 / 1:	3.41457
+MPI process 0 / 1:	3.19665
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 359.527
+MPI process 0 / 1:	minchisq: 47.5026
+MPI process 0 / 1:	LnLike: 27.2345
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0215712
+MPI process 0 / 1:	0.106463
+MPI process 0 / 1:	0.602191
+MPI process 0 / 1:	0.0790848
+MPI process 0 / 1:	4.79955
+MPI process 0 / 1:	0.676234
+MPI process 0 / 1:	-5.49083
+MPI process 0 / 1:	-4.6778
+MPI process 0 / 1:	3.02117
+MPI process 0 / 1:	3.11904
+MPI process 0 / 1:	3.10556
+MPI process 0 / 1:	3.08002
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 817.628
+MPI process 0 / 1:	minchisq: 478.372
+MPI process 0 / 1:	LnLike: 241.117
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.02458
+MPI process 0 / 1:	0.129102
+MPI process 0 / 1:	0.646981
+MPI process 0 / 1:	0.0862536
+MPI process 0 / 1:	2.96986
+MPI process 0 / 1:	0.617982
+MPI process 0 / 1:	-13.1343
+MPI process 0 / 1:	-13.0517
+MPI process 0 / 1:	3.49081
+MPI process 0 / 1:	3.3534
+MPI process 0 / 1:	3.30563
+MPI process 0 / 1:	2.95792
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 293.446
+MPI process 0 / 1:	minchisq: 52.5079
+MPI process 0 / 1:	LnLike: 29.1685
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0210663
+MPI process 0 / 1:	0.115024
+MPI process 0 / 1:	0.666917
+MPI process 0 / 1:	0.0557913
+MPI process 0 / 1:	4.54905
+MPI process 0 / 1:	0.133658
+MPI process 0 / 1:	-11.5109
+MPI process 0 / 1:	-6.42962
+MPI process 0 / 1:	2.98079
+MPI process 0 / 1:	3.45335
+MPI process 0 / 1:	3.59212
+MPI process 0 / 1:	2.95792
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 544.743
+MPI process 0 / 1:	minchisq: 46.7427
+MPI process 0 / 1:	LnLike: 26.3039
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0235548
+MPI process 0 / 1:	0.104732
+MPI process 0 / 1:	0.767757
+MPI process 0 / 1:	0.117306
+MPI process 0 / 1:	4.27779
+MPI process 0 / 1:	0.262781
+MPI process 0 / 1:	-12.6165
+MPI process 0 / 1:	-5.20942
+MPI process 0 / 1:	3.08804
+MPI process 0 / 1:	3.06561
+MPI process 0 / 1:	3.22378
+MPI process 0 / 1:	3.37679
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 620.508
+MPI process 0 / 1:	minchisq: 48.292
+MPI process 0 / 1:	LnLike: 27.84
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0203287
+MPI process 0 / 1:	0.13233
+MPI process 0 / 1:	0.628884
+MPI process 0 / 1:	0.0655777
+MPI process 0 / 1:	2.61754
+MPI process 0 / 1:	0.234176
+MPI process 0 / 1:	-7.33095
+MPI process 0 / 1:	-9.65784
+MPI process 0 / 1:	3.28437
+MPI process 0 / 1:	3.54089
+MPI process 0 / 1:	3.33093
+MPI process 0 / 1:	3.47303
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 258.779
+MPI process 0 / 1:	minchisq: 78.9973
+MPI process 0 / 1:	LnLike: 43.4798
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.023899
+MPI process 0 / 1:	0.138164
+MPI process 0 / 1:	0.586746
+MPI process 0 / 1:	0.110766
+MPI process 0 / 1:	3.85804
+MPI process 0 / 1:	0.447162
+MPI process 0 / 1:	-9.15089
+MPI process 0 / 1:	-5.53363
+MPI process 0 / 1:	3.32347
+MPI process 0 / 1:	3.02785
+MPI process 0 / 1:	3.33989
+MPI process 0 / 1:	3.00425
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 174.263
+MPI process 0 / 1:	minchisq: 56.6872
+MPI process 0 / 1:	LnLike: 30.7203
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.024655
+MPI process 0 / 1:	0.1223
+MPI process 0 / 1:	0.623227
+MPI process 0 / 1:	0.114219
+MPI process 0 / 1:	3.81078
+MPI process 0 / 1:	0.671874
+MPI process 0 / 1:	-10.5563
+MPI process 0 / 1:	-6.96039
+MPI process 0 / 1:	3.08729
+MPI process 0 / 1:	3.2809
+MPI process 0 / 1:	3.31074
+MPI process 0 / 1:	3.45066
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 298.249
+MPI process 0 / 1:	minchisq: 48.4928
+MPI process 0 / 1:	LnLike: 26.4406
+MPI process 0 / 1:	Outputting parameters:
+MPI process 0 / 1:	0.0234809
+MPI process 0 / 1:	0.101424
+MPI process 0 / 1:	0.605874
+MPI process 0 / 1:	0.056079
+MPI process 0 / 1:	3.93749
+MPI process 0 / 1:	0.695119
+MPI process 0 / 1:	-9.55045
+MPI process 0 / 1:	-5.67477
+MPI process 0 / 1:	3.54208
+MPI process 0 / 1:	3.22229
+MPI process 0 / 1:	3.33657
+MPI process 0 / 1:	2.96151
+MPI process 0 / 1:	kh, P_halo: 9.99e-05, 20832.9
+MPI process 0 / 1:	minchisq: nan
+CHECK FAILED in /Volumes/Data1/ncanac/cosmopp_neutrinos/lrgdr7_like.hpp on line 305!!! LRG LnLike LogZero error
+Stopping execution!!!
+MPI process 0 / 1:	EXCEPTION CAUGHT!!! 
+std::exception
+MPI process 0 / 1:	Terminating!
