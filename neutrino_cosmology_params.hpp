@@ -272,172 +272,172 @@ private:
     double sumMNu_;
 };
 
-class SplineWithDegenerateNeutrinosParams : public LambdaCDMParams
-{
-public:
-    // the ns, as, and pivot values for the base class should not be used and are set to arbitrary values
-    SplineWithDegenerateNeutrinosParams(bool isLinear, double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes,  double nEff, int nMassive, double sumMNu, bool varyNEff, bool varySumMNu) : LambdaCDMParams(omBH2, omCH2, h, tau, 1.0, 2e-9, 0.05), isLinear_(isLinear), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu), kVals_(kVals), amplitudes_(amplitudes), lcdmParams_(6), varyNEff_(varyNEff), varySumMNu_(varySumMNu)
-    {
-        check(nEff > 0, "invalid nEff = " << nEff);
-        check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
-        check(nMassive >= 0, "number of massive neutrinos is negative: " << nMassive);
-        check(nEff > nMassive, "nEff needs to be more than the number of massive neutrinos");
-
-        check(kVals_.size() >= 2, "");
-        check(kVals_.size() == amplitudes.size(), "");
-
-        check(!varyNEff_ || nMassive_ > 0, "");
-
-        resetPS();
-    }
-
-    ~SplineWithDegenerateNeutrinosParams() {}
-
-    virtual double getNEff() const { return nEff_ - nMassive_; }
-    virtual int getNumNCDM() const { return nMassive_; }
-    virtual double getNCDMParticleMass(int i) const
-    {
-        check(i >= 0 && i < nMassive_, "invalid index = " << i);
-        return sumMNu_ / nMassive_;
-    }
-
-    virtual double getNCDMParticleTemp(int i) const
-    {
-        check(i >= 0 && i < nMassive_, "invalid index = " << i);
-        //return 0.715985;
-        return 0.713765855506013;
-    }
-
-    virtual const Math::RealFunction& powerSpectrum() const { return *ps_; }
-
-    virtual void getAllParameters(std::vector<double>& v) const
-    {
-        check(kVals_.size() >= 2, "");
-        check(kVals_.size() == amplitudes_.size(), "");
-
-        int nPar = 4 + 2 * kVals_.size() - 2;
-
-        if(varyNEff_)
-            ++nPar;
-        if(varySumMNu_)
-            ++nPar;
-
-        v.resize(nPar);
-
-        std::vector<double>::iterator it = v.begin();
-        *(it++) = getOmBH2();
-        *(it++) = getOmCH2();
-        *(it++) = getH();
-        *(it++) = getTau();
-
-        if(varyNEff_)
-            *(it++) = nEff_;
-
-        if(varySumMNu_)
-            *(it++) = sumMNu_;
-
-        for(int i = 1; i < kVals_.size() - 1; ++i)
-        {
-            check(it < v.end(), "");
-            *(it++) = std::log(kVals_[i]);
-        }
-
-        for(int i = 0; i < amplitudes_.size(); ++i)
-        {
-            check(it < v.end(), "");
-            *(it++) = std::log(amplitudes_[i] * 1e10);
-        }
-
-        check(it == v.end(), "");
-    }
-
-    virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
-    {
-        int nPar = 4 + 2 * kVals_.size() - 2;
-
-        if(varyNEff_)
-            ++nPar;
-        if(varySumMNu_)
-            ++nPar;
-
-        check(v.size() == nPar, "");
-        check(kVals_.size() >= 2, "");
-        check(kVals_.size() == amplitudes_.size(), "");
-
-        check(lcdmParams_.size() == 6, "");
-
-        std::vector<double>::const_iterator it = v.begin();
-
-        for(int i = 0; i < 4; ++i)
-            lcdmParams_[i] = *(it++);
-
-        lcdmParams_[4] = 1.0; // arbitrary ns, doesn't matter
-        lcdmParams_[5] = 2e-9; // arbitrary as, doesn't matter
-
-        if(!LambdaCDMParams::setAllParameters(lcdmParams_, badLike))
-            return false;
-
-        if(varyNEff_)
-            nEff_ = *(it++);
-
-        if(varySumMNu_)
-            sumMNu_ = *(it++);
-
-        for(int i = 1; i < kVals_.size() - 1; ++i)
-        {
-            check(it < v.end(), "");
-            kVals_[i] = std::exp(*(it++));
-        }
-
-        // check if the k values are in order
-        double outOfOrder = 0;
-        for(int i = 1; i < kVals_.size(); ++i)
-        {
-            if(kVals_[i] < kVals_[i - 1])
-                outOfOrder += kVals_[i - 1] - kVals_[i];
-        }
-
-        if(outOfOrder > 0)
-        {
-            if(badLike)
-                *badLike = outOfOrder * 1e10;
-            return false;
-        }
-
-        for(int i = 0; i < amplitudes_.size(); ++i)
-        {
-            check(it < v.end(), "");
-            amplitudes_[i] = std::exp(*(it++)) / 1e10;
-        }
-
-        resetPS();
-
-        return true;
-    }
-
-private:
-    void resetPS()
-    {
-        if(isLinear_)
-            ps_.reset(new LinearSplinePowerSpectrum(kVals_, amplitudes_));
-        else
-            ps_.reset(new CubicSplinePowerSpectrum(kVals_, amplitudes_));
-    }
-
-private:
-    const bool isLinear_;
-
-    double nEff_;
-    int nMassive_;
-    double sumMNu_;
-
-    const bool varyNEff_;
-    const bool varySumMNu_;
-
-    std::unique_ptr<Math::RealFunction> ps_;
-    std::vector<double> kVals_, amplitudes_;
-    std::vector<double> lcdmParams_;
-};
+//class SplineWithDegenerateNeutrinosParams : public LambdaCDMParams
+//{
+//public:
+//    // the ns, as, and pivot values for the base class should not be used and are set to arbitrary values
+//    SplineWithDegenerateNeutrinosParams(bool isLinear, double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes,  double nEff, int nMassive, double sumMNu, bool varyNEff, bool varySumMNu) : LambdaCDMParams(omBH2, omCH2, h, tau, 1.0, 2e-9, 0.05), isLinear_(isLinear), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu), kVals_(kVals), amplitudes_(amplitudes), lcdmParams_(6), varyNEff_(varyNEff), varySumMNu_(varySumMNu)
+//    {
+//        check(nEff > 0, "invalid nEff = " << nEff);
+//        check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
+//        check(nMassive >= 0, "number of massive neutrinos is negative: " << nMassive);
+//        check(nEff > nMassive, "nEff needs to be more than the number of massive neutrinos");
+//
+//        check(kVals_.size() >= 2, "");
+//        check(kVals_.size() == amplitudes.size(), "");
+//
+//        check(!varyNEff_ || nMassive_ > 0, "");
+//
+//        resetPS();
+//    }
+//
+//    ~SplineWithDegenerateNeutrinosParams() {}
+//
+//    virtual double getNEff() const { return nEff_ - nMassive_; }
+//    virtual int getNumNCDM() const { return nMassive_; }
+//    virtual double getNCDMParticleMass(int i) const
+//    {
+//        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+//        return sumMNu_ / nMassive_;
+//    }
+//
+//    virtual double getNCDMParticleTemp(int i) const
+//    {
+//        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+//        //return 0.715985;
+//        return 0.713765855506013;
+//    }
+//
+//    virtual const Math::RealFunction& powerSpectrum() const { return *ps_; }
+//
+//    virtual void getAllParameters(std::vector<double>& v) const
+//    {
+//        check(kVals_.size() >= 2, "");
+//        check(kVals_.size() == amplitudes_.size(), "");
+//
+//        int nPar = 4 + 2 * kVals_.size() - 2;
+//
+//        if(varyNEff_)
+//            ++nPar;
+//        if(varySumMNu_)
+//            ++nPar;
+//
+//        v.resize(nPar);
+//
+//        std::vector<double>::iterator it = v.begin();
+//        *(it++) = getOmBH2();
+//        *(it++) = getOmCH2();
+//        *(it++) = getH();
+//        *(it++) = getTau();
+//
+//        if(varyNEff_)
+//            *(it++) = nEff_;
+//
+//        if(varySumMNu_)
+//            *(it++) = sumMNu_;
+//
+//        for(int i = 1; i < kVals_.size() - 1; ++i)
+//        {
+//            check(it < v.end(), "");
+//            *(it++) = std::log(kVals_[i]);
+//        }
+//
+//        for(int i = 0; i < amplitudes_.size(); ++i)
+//        {
+//            check(it < v.end(), "");
+//            *(it++) = std::log(amplitudes_[i] * 1e10);
+//        }
+//
+//        check(it == v.end(), "");
+//    }
+//
+//    virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
+//    {
+//        int nPar = 4 + 2 * kVals_.size() - 2;
+//
+//        if(varyNEff_)
+//            ++nPar;
+//        if(varySumMNu_)
+//            ++nPar;
+//
+//        check(v.size() == nPar, "");
+//        check(kVals_.size() >= 2, "");
+//        check(kVals_.size() == amplitudes_.size(), "");
+//
+//        check(lcdmParams_.size() == 6, "");
+//
+//        std::vector<double>::const_iterator it = v.begin();
+//
+//        for(int i = 0; i < 4; ++i)
+//            lcdmParams_[i] = *(it++);
+//
+//        lcdmParams_[4] = 1.0; // arbitrary ns, doesn't matter
+//        lcdmParams_[5] = 2e-9; // arbitrary as, doesn't matter
+//
+//        if(!LambdaCDMParams::setAllParameters(lcdmParams_, badLike))
+//            return false;
+//
+//        if(varyNEff_)
+//            nEff_ = *(it++);
+//
+//        if(varySumMNu_)
+//            sumMNu_ = *(it++);
+//
+//        for(int i = 1; i < kVals_.size() - 1; ++i)
+//        {
+//            check(it < v.end(), "");
+//            kVals_[i] = std::exp(*(it++));
+//        }
+//
+//        // check if the k values are in order
+//        double outOfOrder = 0;
+//        for(int i = 1; i < kVals_.size(); ++i)
+//        {
+//            if(kVals_[i] < kVals_[i - 1])
+//                outOfOrder += kVals_[i - 1] - kVals_[i];
+//        }
+//
+//        if(outOfOrder > 0)
+//        {
+//            if(badLike)
+//                *badLike = outOfOrder * 1e10;
+//            return false;
+//        }
+//
+//        for(int i = 0; i < amplitudes_.size(); ++i)
+//        {
+//            check(it < v.end(), "");
+//            amplitudes_[i] = std::exp(*(it++)) / 1e10;
+//        }
+//
+//        resetPS();
+//
+//        return true;
+//    }
+//
+//private:
+//    void resetPS()
+//    {
+//        if(isLinear_)
+//            ps_.reset(new LinearSplinePowerSpectrum(kVals_, amplitudes_));
+//        else
+//            ps_.reset(new CubicSplinePowerSpectrum(kVals_, amplitudes_));
+//    }
+//
+//private:
+//    const bool isLinear_;
+//
+//    double nEff_;
+//    int nMassive_;
+//    double sumMNu_;
+//
+//    const bool varyNEff_;
+//    const bool varySumMNu_;
+//
+//    std::unique_ptr<Math::RealFunction> ps_;
+//    std::vector<double> kVals_, amplitudes_;
+//    std::vector<double> lcdmParams_;
+//};
 
 class StandardPSDegenNuParams  : public LambdaCDMParams
 {
@@ -654,3 +654,202 @@ private:
     std::vector<double> kVals_, amplitudes_;
     std::vector<double> lcdmParams_;
 };
+
+class SplineWithDegenerateNeutrinosParams : public LambdaCDMParams
+{
+public:
+    // the ns, as, and pivot values for the base class should not be used and are set to arbitrary values
+    SplineWithDegenerateNeutrinosParams(bool isLinear, double omBH2, double omCH2, double h, double tau, const std::vector<double>& kVals, const std::vector<double>& amplitudes,  double nEff, int nMassive, double sumMNu, bool varyNEff, bool varySumMNu) : LambdaCDMParams(omBH2, omCH2, h, tau, 1.0, 2e-9, 0.05), isLinear_(isLinear), nEff_(nEff), nMassive_(nMassive), sumMNu_(sumMNu), kVals_(kVals), amplitudes_(amplitudes), lcdmParams_(6), varyNEff_(varyNEff), varySumMNu_(varySumMNu)
+    {
+        check(nEff > 0, "invalid nEff = " << nEff);
+        check(sumMNu >= 0, "invalid sumMNu = " << sumMNu);
+        check(nMassive >= 0, "number of massive neutrinos is negative: " << nMassive);
+        check(nEff > nMassive, "nEff needs to be more than the number of massive neutrinos");
+
+        check(kVals_.size() >= 2, "");
+        check(kVals_.size() == amplitudes.size(), "");
+
+        check(!varyNEff_ || nMassive_ > 0, "");
+
+        resetPS();
+    }
+
+    ~SplineWithDegenerateNeutrinosParams() {}
+
+    virtual double getNEff() const { return nEff_ - nMassive_; }
+    virtual int getNumNCDM() const { return nMassive_; }
+    virtual double getNCDMParticleMass(int i) const
+    {
+        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+        return sumMNu_ / nMassive_;
+    }
+
+    virtual double getNCDMParticleTemp(int i) const
+    {
+        check(i >= 0 && i < nMassive_, "invalid index = " << i);
+        //return 0.715985;
+        return 0.713765855506013;
+    }
+
+    virtual const Math::RealFunction& powerSpectrum() const { return *ps_; }
+
+    virtual void getAllParameters(std::vector<double>& v) const
+    {
+        check(kVals_.size() >= 2, "");
+        check(kVals_.size() == amplitudes_.size(), "");
+
+        int nPar = 4 + 2 * kVals_.size() - 2;
+
+        if(varyNEff_)
+            ++nPar;
+        if(varySumMNu_)
+            ++nPar;
+
+        v.resize(nPar);
+
+        std::vector<double>::iterator it = v.begin();
+        *(it++) = getOmBH2();
+        *(it++) = getOmCH2();
+        *(it++) = getH();
+        *(it++) = getTau();
+
+        if(varyNEff_)
+            *(it++) = nEff_;
+
+        if(varySumMNu_)
+            *(it++) = sumMNu_;
+
+        for(int i = 1; i < kVals_.size() - 1; ++i)
+        {
+            check(it < v.end(), "");
+            *(it++) = std::log(kVals_[i]);
+        }
+
+        for(int i = 0; i < amplitudes_.size(); ++i)
+        {
+            check(it < v.end(), "");
+            *(it++) = std::log(amplitudes_[i] * 1e10);
+        }
+
+        check(it == v.end(), "");
+    }
+
+    virtual bool setAllParameters(const std::vector<double>& v, double *badLike = NULL)
+    {
+        int nPar = 4 + 2 * kVals_.size() - 2;
+
+        if(varyNEff_)
+            ++nPar;
+        if(varySumMNu_)
+            ++nPar;
+
+        check(v.size() == nPar, "");
+        check(kVals_.size() >= 2, "");
+        check(kVals_.size() == amplitudes_.size(), "");
+
+        check(lcdmParams_.size() == 6, "");
+
+        //output_screen("Outputting sample:" << std::endl);
+        //for(int i = 0; i < nPar; ++i)
+        //    output_screen(v[i] << std::endl);
+
+        std::vector<double>::const_iterator it = v.begin();
+
+        for(int i = 0; i < 4; ++i)
+            lcdmParams_[i] = *(it++);
+
+        lcdmParams_[4] = 1.0; // arbitrary ns, doesn't matter
+        lcdmParams_[5] = 2e-9; // arbitrary as, doesn't matter
+
+        if(!LambdaCDMParams::setAllParameters(lcdmParams_, badLike))
+            return false;
+
+        if(varyNEff_)
+            nEff_ = *(it++);
+
+        if(varySumMNu_)
+            sumMNu_ = *(it++);
+
+        for(int i = 1; i < kVals_.size() - 1; ++i)
+        {
+            check(it < v.end(), "");
+            kVals_[i] = std::exp(*(it++));
+        }
+
+        // check if the k values are in order
+        double outOfOrder = 0;
+        for(int i = 1; i < kVals_.size(); ++i)
+        {
+            if(kVals_[i] < kVals_[i - 1])
+                outOfOrder += kVals_[i - 1] - kVals_[i];
+        }
+
+        if(outOfOrder > 0)
+        {
+            if(badLike)
+                *badLike = outOfOrder * 1e20;
+            return false;
+        }
+
+        for(int i = 0; i < amplitudes_.size(); ++i)
+        {
+            check(it < v.end(), "");
+            amplitudes_[i] = std::exp(*(it++)) / 1e10;
+        }
+
+        resetPS();
+
+        // check if ps is crazy
+        double badPs = 0;
+        const double lkMin = std::log(kVals_[0]);
+        const double lkMax = std::log(kVals_.back());
+        const int nK = 1000;
+        const double deltaLK = (lkMax - lkMin) / nK;
+        const double psMin = 1e-12, psMax = 1e-7;
+        for(int i = 0; i <= nK; ++i)
+        {
+            double k = std::exp(lkMin + i * deltaLK);
+            if(i == 0)
+                k = kVals_[0];
+            if(i == nK)
+                k = kVals_.back();
+            const double p = ps_->evaluate(k);
+            if(p < psMin)
+                badPs += (psMin - p);
+            if(p > psMax)
+                badPs += (p - psMax);
+        }
+        if(badPs != 0)
+        {
+            if(badLike)
+                *badLike = badPs * 1e20;
+            return false;
+        }
+
+        return true;
+    }
+
+private:
+    void resetPS()
+    {
+        if(isLinear_)
+            ps_.reset(new LinearSplinePowerSpectrum(kVals_, amplitudes_));
+        else
+            ps_.reset(new CubicSplinePowerSpectrum(kVals_, amplitudes_));
+    }
+
+private:
+    const bool isLinear_;
+
+    double nEff_;
+    int nMassive_;
+    double sumMNu_;
+
+    const bool varyNEff_;
+    const bool varySumMNu_;
+
+    std::unique_ptr<Math::RealFunction> ps_;
+    std::vector<double> kVals_, amplitudes_;
+    std::vector<double> lcdmParams_;
+};
+

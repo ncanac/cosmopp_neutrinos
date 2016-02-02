@@ -102,20 +102,35 @@ public:
         if(usePlanck_)
             extraPar = 1;
         check(nPar == nModel + extraPar, "wrong number of model params");
-    
+
         // Set all the parameters in vModel_ to the values in params
         for(int i = 0; i < nModel; ++i)
             vModel_[i] = params[i];
-    
+
+        // Output parameters for debugging. Remove later.
+        //output_screen("Outputting parameters:" << std::endl);
+        //for(int i = 0; i < nModel; ++i)
+        //    output_screen(vModel_[i] << std::endl);
+   
         // Sets the parameters in modelParams_ to the values in vModel_
-        modelParams_->setAllParameters(vModel_);
+        double badLike = 0;
+        bool success = modelParams_->setAllParameters(vModel_, &badLike);
+
         // Set the cosmological parameters to modelParams_.
-        setCosmoParams(*modelParams_);
+        if(success)
+        {
+            setCosmoParams(*modelParams_);
+            check(badLike == 0, "badLike != 0");
+        }
 
         if(usePlanck_)
             planckLike_->setAPlanck(params[nModel]);
     
-        return likelihood();
+        if(success)
+            return likelihood();
+
+        check(badLike >= 0, "badLike < 0");
+        return 1e10 + badLike;
     }
 
 private:
