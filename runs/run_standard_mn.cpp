@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 
         const double nEff = 3.046; 
         const int nMassive = 1;
-        const double sumMNu = 0.5;
+        const double sumMNu = 0.1;
 
         output_screen("Running with standard PPS and neutrinos." << std::endl);
         StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);

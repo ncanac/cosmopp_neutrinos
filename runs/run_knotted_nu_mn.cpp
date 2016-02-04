@@ -20,6 +20,7 @@
 //              wmap to use wmap data
 //              bao to use bao data
 //              lrg to use lrg data
+//              wigglez use to wigglez data
 int main(int argc, char *argv[])
 {
     try {
@@ -51,6 +52,7 @@ int main(int argc, char *argv[])
         bool useWMAP = false;
         bool useBAO = false;
         bool useLRG = false;
+        bool useWiggleZ = false;
 
         for(int i = 3; i < argc; ++i)
         {
@@ -66,6 +68,8 @@ int main(int argc, char *argv[])
                 useBAO = true;
             if(std::string(argv[i]) == "lrg")
                 useLRG = true;
+            if(std::string(argv[i]) == "wigglez")
+                useWiggleZ = true;
         }
 
         int nPar = 4 + 2 * (nKnots + 2) - 2;
@@ -108,11 +112,26 @@ int main(int argc, char *argv[])
         {
             output_screen("Using LRG." << std::endl);
         }
+        if(useWiggleZ)
+        {
+            output_screen("Using WiggleZ." << std::endl);
+        }
+
+        const double h = 0.6727;
+        const double omBH2 = 0.02225;
+        const double omCH2 = 0.1198;
+        const double tau = 0.079;
+        const double ns = 0.9645;
+        const double as = 3.094; // ln(10^10*as)
+        const double pivot = 0.05;
+
+        int nMassive = 1;
+        double nEff = 3.046, sumMNu = 0.1;
 
         const double kMin = 0.8e-6;
         const double kMax = 1.2;
-        const double aMin = -2;
-        const double aMax = 4;
+        const double aMin = 2.0;
+        const double aMax = 4.0;
 
         std::vector<double> kVals(nKnots + 2);
         std::vector<double> amplitudes(nKnots + 2);
@@ -124,16 +143,11 @@ int main(int argc, char *argv[])
 
         for(int i = 1; i < kVals.size() - 1; ++i)
             kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
-    
-        const double as = 2.1955e-9;
-        const double ns = 0.9655;
-        const double pivot = 0.5;
+
         for(int i = 0; i < amplitudes.size(); ++i)
             amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
 
-        int nMassive = 1;
-        double sumMNu = 0.5;
-        SplineWithDegenerateNeutrinosParams params(isLinear, 0.022, 0.12, 0.7, 0.1, kVals, amplitudes, 3.046, nMassive, sumMNu, varyNEff, varySumMNu);
+        SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
 //#ifdef COSMO_PLANCK_15
 //        PlanckLikelihood planckLike(true, true, true, false, true, false, false, false, 100);
@@ -141,7 +155,12 @@ int main(int argc, char *argv[])
 //        ERROR NOT IMPLEMENTED;
 //#endif
 //        planckLike.setModelCosmoParams(&params);
-        CombinedLikelihood like(true, usePlanck, useWMAP, useBAO, useLRG);
+
+        Cosmo cosmo;
+        cosmo.preInitialize(5000, false, true, false, 0, 100, kMin/0.8, kMax/1.2);
+
+        std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
+        CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;
@@ -163,19 +182,20 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
+        root << "_";
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.14);
-        scanner.setParam(paramIndex++, "h", 0.55, 0.80);
-        scanner.setParam(paramIndex++, "tau", 0.04, 0.12);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.20);
+        scanner.setParam(paramIndex++, "h", 0.55, 0.85);
+        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
         if(varyNEff)
             scanner.setParam(paramIndex++, "n_eff", 2.0, 5.0);
         if(varySumMNu)
-            scanner.setParam(paramIndex++, "sum_mnu", 0.01, 3.0);
+            scanner.setParam(paramIndex++, "sum_mnu", 0.001, 3.0);
 
         for(int i = 1; i < kVals.size() - 1; ++i)
         {
@@ -190,7 +210,9 @@ int main(int argc, char *argv[])
             paramName << "a_" << i;
             scanner.setParam(paramIndex++, paramName.str(), aMin, aMax);
         }
-        scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);
+
+        if(usePlanck)
+            scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);
 
         check(paramIndex == nPar, "");
 
