@@ -136,7 +136,6 @@ public:
         {
             kvals[itemp] = point.first;
             double Pval = point.second;
-            check(std::isnan(Pval) == 0, "NEAR power is nan");
             //if(itemp == 0)
             //    output_screen("P_lin_NEAR[0]: " << Pval << std::endl);
             P_linNEAR[itemp] = Pval;
@@ -149,7 +148,6 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            check(std::isnan(Pval) == 0, "MID power is nan");
             //if(itemp == 0)
             //    output_screen("P_lin_MID[0]: " << Pval << std::endl);
             P_linMID[itemp] = Pval;
@@ -162,7 +160,6 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            check(std::isnan(Pval) == 0, "FAR power is nan");
             //if(itemp == 0)
             //    output_screen("P_lin_FAR[0]: " << Pval << std::endl);
             P_linFAR[itemp] = Pval;
@@ -175,13 +172,20 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            check(std::isnan(Pval) == 0, "z0 power is nan");
             //if(itemp == 0)
             //    output_screen("P_lin_z0[0]: " << Pval << std::endl);
             P_linz0[itemp] = Pval;
             ++itemp;
         }
         check(n == itemp, "number of k values mismatch");
+
+        /////////////////////////////////////////
+        // Debugging Code: Output linear power spectrum for near to file
+        std::ofstream outfile("P_linNEAR.txt");
+        for(int i = 0; i < n; ++i)
+            outfile << kvals[i] << " " << P_linNEAR[i] << std::endl;
+        outfile.close();
+        /////////////////////////////////////////
 
         // extract getabstransferscale for NEAR, MID, and FAR
         const double khmindata = 0.0221168;
@@ -220,6 +224,14 @@ public:
             P_nwFAR[i] = std::exp(lnP_nwFAR[i]);
         }
 
+        /////////////////////////////////////////
+        // Debugging Code: Output no wiggles spectrum for near to file
+        outfile.open("P_nwNEAR.txt");
+        for(int i = 0; i < n; ++i)
+            outfile << kvals[i] << " " << P_nwNEAR[i] << std::endl;
+        outfile.close();
+        /////////////////////////////////////////
+
         //output_screen("P_nwNEAR: " << P_nwNEAR[0] << std::endl);
         //output_screen("P_nwMID: " << P_nwMID[0] << std::endl);
         //output_screen("P_nwFAR: " << P_nwFAR[0] << std::endl);
@@ -249,6 +261,14 @@ public:
         background_tau_of_z(br_, zFAR, &tau);
         //output_screen("FAR tau, k_nl: " << tau << ", " << k_nl << std::endl);
         nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl);
+
+        /////////////////////////////////////////
+        // Debugging Code: Output halofit spectrum for near to file
+        outfile.open("P_halofitNEAR.txt");
+        for(int i = 0; i < n; ++i)
+            outfile << kvals[i] << " " << P_halofitnwNEAR[i] << std::endl;
+        outfile.close();
+        /////////////////////////////////////////
 
         // Make sure that P_halofitnw is positive everywhere
         for(int i = 0; i < n; ++i)
