@@ -12,7 +12,7 @@ if d >= 0:
     directory = root[:d+1]
     fname = root[d+1:]
 else:
-    directory = ""
+    directory = "./"
     fname = root
 
 # Read in the file names of the chains
