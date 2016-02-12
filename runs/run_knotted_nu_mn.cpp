@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.20);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
         scanner.setParam(paramIndex++, "h", 0.55, 0.85);
         scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
         if(varyNEff)

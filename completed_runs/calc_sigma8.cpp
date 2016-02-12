@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
         double dummy;
         while(iss >> dummy)
             vec.push_back(dummy);
-        std::vector<double> v(&vec[0], &vec[nPar]);
+        std::vector<double> v(&vec[2], &vec[vec.size()-1]);
         params.setAllParameters(v);
         cosmo.initialize(params, true, false, false, true);
         for(int i = 0; i < vec.size(); ++i)

@@ -163,13 +163,13 @@ add_definitions(-DCHECKS_ON)
 #target_link_libraries(test_wigglez_like ${CLASSLIB})
 
 # compile LRGHaloPs test
-#set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#add_executable(test_LRGHaloPs test_LRGHaloPs.cpp)
-#target_link_libraries(test_LRGHaloPs ${COSMOPPLIB})
-#target_link_libraries(test_LRGHaloPs ${MPI_CXX_LIBRARIES})
-#target_link_libraries(test_LRGHaloPs ${LAPACK_LIB_FLAGS})
-#target_link_libraries(test_LRGHaloPs ${CLASSLIB})
-#target_link_libraries(test_LRGHaloPs ${GSL_LIBRARIES})
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+add_executable(test_LRGHaloPs test_LRGHaloPs.cpp)
+target_link_libraries(test_LRGHaloPs ${COSMOPPLIB})
+target_link_libraries(test_LRGHaloPs ${MPI_CXX_LIBRARIES})
+target_link_libraries(test_LRGHaloPs ${LAPACK_LIB_FLAGS})
+target_link_libraries(test_LRGHaloPs ${CLASSLIB})
+target_link_libraries(test_LRGHaloPs ${GSL_LIBRARIES})
 
 # compile ps test
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -192,12 +192,12 @@ add_definitions(-DCHECKS_ON)
 #target_link_libraries(test_wmap_like ${CFITSIOLIB})
 
 # compile sigma8 test
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_executable(test_sigma8 test_sigma8.cpp)
-target_link_libraries(test_sigma8 ${COSMOPPLIB})
-target_link_libraries(test_sigma8 ${MPI_CXX_LIBRARIES})
-target_link_libraries(test_sigma8 ${LAPACK_LIB_FLAGS})
-target_link_libraries(test_sigma8 ${CLASSLIB})
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(test_sigma8 test_sigma8.cpp)
+#target_link_libraries(test_sigma8 ${COSMOPPLIB})
+#target_link_libraries(test_sigma8 ${MPI_CXX_LIBRARIES})
+#target_link_libraries(test_sigma8 ${LAPACK_LIB_FLAGS})
+#target_link_libraries(test_sigma8 ${CLASSLIB})
 
 # compiles knotted multinest test
 #set(CMAKE_INCLUDE_CURRENT_DIR ON)

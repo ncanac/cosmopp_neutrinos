@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 
         const double nEff = 3.046; 
         const int nMassive = 1;
-        const double sumMNu = 0.1;
+        const double sumMNu = 0.0;
 
         output_screen("Running with standard PPS and neutrinos." << std::endl);
         StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
@@ -151,9 +151,9 @@ int main(int argc, char *argv[])
 
         output_screen("Setting parameters" << std::endl);
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
-        scanner.setParam(paramIndex++, "omch2", 0.1, 0.14);
-        scanner.setParam(paramIndex++, "h", 0.55, 0.80);
-        scanner.setParam(paramIndex++, "tau", 0.04, 0.12);
+        scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
+        scanner.setParam(paramIndex++, "h", 0.55, 0.85);
+        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
         scanner.setParam(paramIndex++, "ns", 0.9, 1.1);
         scanner.setParam(paramIndex++, "as", 2.0, 4.0);
         if(varyNEff)

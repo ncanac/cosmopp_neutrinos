@@ -7,48 +7,68 @@
 
 int main(int argc, char *argv[])
 {
+    output_screen("Starting LRG Halo PS test." << std::endl);
     const double zNEAR = 0.235, zMID = 0.342, zFAR = 0.421;
     // Set cosmological parameters
     // WMAP5 recommended LCDM values:
-    double h = 0.702;
-    double omBH2 = 0.02262;
-    double omCH2 = 0.1138;
-    double tau = 0.088;
-    const double ns = 0.962;
-    const double as = 2.2154e-9;
+    //double h = 0.702;
+    //double omBH2 = 0.02262;
+    //double omCH2 = 0.1138;
+    //double tau = 0.088;
+    //const double ns = 0.962;
+    //const double as = 2.2154e-9;
+    //const double pivot = 0.05;
+
+    //const double r = 1e-10;
+    //const double nt = 0;
+
+    //double nEff = 3.046; 
+    //int nMassive = 1;
+    //double sumMNu = 0.1;
+
+    // Alternate params
+    double h = 0.837236;
+    double omBH2 = 0.0231525;
+    double omCH2 = 0.151403;
+    double tau = 0.199844;
+    const double ns = 0.957481117035;
+    const double as = 1.44122321213e-09;
     const double pivot = 0.05;
 
-    const double r = 1e-10;
-    const double nt = 0;
-
-    double nEff = 3.046; 
+    double nEff = 3.60541; 
     int nMassive = 1;
-    double sumMNu = 0.1;
+    double sumMNu = 1.65055;
 
-    const int nKnots = 2;
     const double kMin = 0.8e-6;
     const double kMax = 1.2;
-    std::vector<double> kVals(nKnots + 2);
-    std::vector<double> amplitudes(nKnots + 2, 2e-9);
+    std::vector<double> kVals {kMin, kMax};
+    std::vector<double> amplitudes {std::exp(3.13761)/1e10, std::exp(2.53295)/1e10};
 
-    kVals[0] = kMin;
-    kVals.back() = kMax;
+    //const int nKnots = 2;
+    //const double kMin = 0.8e-6;
+    //const double kMax = 1.2;
+    //std::vector<double> kVals(nKnots + 2);
+    //std::vector<double> amplitudes(nKnots + 2, 2e-9);
 
-    const double deltaLogK = (std::log(kMax) - std::log(kMin)) / (nKnots + 1);
+    //kVals[0] = kMin;
+    //kVals.back() = kMax;
 
-    for(int i = 1; i < kVals.size() - 1; ++i)
-        kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
+    //const double deltaLogK = (std::log(kMax) - std::log(kMin)) / (nKnots + 1);
 
-    for(int i = 0; i < amplitudes.size(); ++i)
-    {
-        amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
-        //output_screen(kVals[i] << " " << amplitudes[i] << std::endl);
-    }
+    //for(int i = 1; i < kVals.size() - 1; ++i)
+    //    kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
+
+    //for(int i = 0; i < amplitudes.size(); ++i)
+    //{
+    //    amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
+    //    //output_screen(kVals[i] << " " << amplitudes[i] << std::endl);
+    //}
 
     // Create an instance of CosmologicalParams
     //LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
     //LCDMWithDegenerateNeutrinosParams params(omBH2, omCH2, h, tau, ns, as, pivot, nEff, nMassive, sumMNu);
     SplineWithDegenerateNeutrinosParams params(true, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, true, true);
+    //StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, as, nEff, nMassive, sumMNu, true, true);
 
     int lMax = 5000;
 
@@ -62,7 +82,7 @@ int main(int argc, char *argv[])
 
     output_screen("Initializing CLASS..." << std::endl);
     // initialize cosmo
-    cosmo.initialize(params, true, false, false, true, 0.5);
+    cosmo.initialize(params, true, false, false, true, 1.0);
     output_screen("OK" << std::endl);
 
     //Math::TableFunction<double, double> Ps;
@@ -82,26 +102,26 @@ int main(int argc, char *argv[])
 
     // Choose different values of parameters and output P_lrg
 
-    h = 0.756994;
-    omBH2 = 0.0215047;
-    omCH2 = 0.119089;
-    tau = 0.0420033;
-    kVals = {0.8e-6, std::exp(-10.8105), std:exp(-5.56935), 1.2};
-    amplitudes = {std::exp(3.23493)/1e10, std::exp(3.03256)/1e10, std::exp(3.04898)/1e10, std::exp(3.09344)/1e10};
-    nMassive = 1;
-    nEff = 3.06841;
-    sumMNu = 0.96237;
+    //h = 0.756994;
+    //omBH2 = 0.0215047;
+    //omCH2 = 0.119089;
+    //tau = 0.0420033;
+    //kVals = {0.8e-6, std::exp(-10.8105), std:exp(-5.56935), 1.2};
+    //amplitudes = {std::exp(3.23493)/1e10, std::exp(3.03256)/1e10, std::exp(3.04898)/1e10, std::exp(3.09344)/1e10};
+    //nMassive = 1;
+    //nEff = 3.06841;
+    //sumMNu = 0.96237;
 
-    std::vector<double> v {omBH2, omCH2, h, tau, nEff, sumMNu, kVals[1], kVals[2], amplitudes[0], amplitudes[1], amplitudes[2], amplitudes[3]};
+    //std::vector<double> v {omBH2, omCH2, h, tau, nEff, sumMNu, kVals[1], kVals[2], amplitudes[0], amplitudes[1], amplitudes[2], amplitudes[3]};
 
-    params.setAllParameters(v);
-    cosmo.initialize(params, true, false, false, true, 0.5);
+    //params.setAllParameters(v);
+    //cosmo.initialize(params, true, false, false, true, 0.5);
 
-    cosmo.getLRGHaloPs("/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/", &P_lrg);
-    outPlrg.open("P_lrg2.txt");
-    for(auto const &point : P_lrg)
-        outPlrg << point.first << " " << point.second << std::endl;
-    outPlrg.close();
+    //cosmo.getLRGHaloPs("/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/", &P_lrg);
+    //outPlrg.open("P_lrg2.txt");
+    //for(auto const &point : P_lrg)
+    //    outPlrg << point.first << " " << point.second << std::endl;
+    //outPlrg.close();
 
     return 0;
 }

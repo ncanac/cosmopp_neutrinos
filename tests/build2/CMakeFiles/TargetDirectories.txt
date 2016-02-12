@@ -1,1 +1,0 @@
-/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build2/CMakeFiles/test_knotted_nu_mn.dir
