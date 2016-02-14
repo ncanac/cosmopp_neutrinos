@@ -75,15 +75,22 @@ int main(int argc, char *argv[])
         }
 
         // Starting values for cosmological parameters
-        // From Planck 2015, Table 3, Column 4
         output_screen("Running with Lambda CDM cosmological parameters." << std::endl);
-        const double h = 0.6727;
-        const double omBH2 = 0.02225;
-        const double omCH2 = 0.1198;
-        const double tau = 0.079;
-        const double ns = 0.9645;
-        const double as = 3.094; // ln(10^10*as)
+        const double h = 0.6731;
+        const double omBH2 = 0.02222;
+        const double omCH2 = 0.1197;
+        const double tau = 0.078;
+        const double ns = 0.9655;
+        const double as = 3.089; // ln(10^10 as), as ~ 2.196e-9
         const double pivot = 0.05;
+        // From Planck 2015, Table 3, Column 4
+        //const double h = 0.6727;
+        //const double omBH2 = 0.02225;
+        //const double omCH2 = 0.1198;
+        //const double tau = 0.079;
+        //const double ns = 0.9645;
+        //const double as = 3.094; // ln(10^10*as)
+        //const double pivot = 0.05;
         LambdaCDMParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, pivot);
 
 //#ifdef COSMO_PLANCK_15
@@ -112,7 +119,6 @@ int main(int argc, char *argv[])
             root << "_lrg";
         if(useWiggleZ)
             root << "_wigglez";
-        root << "_";
         //PolyChord pc(nPar, planckLike, 300, root.str(), 3 * (4 + (varyNEff ? 1 : 0) + (varySumMNu ? 1 : 0)));
         MnScanner scanner(nPar, like, 300, root.str());
 
@@ -122,9 +128,9 @@ int main(int argc, char *argv[])
         scanner.setParam(paramIndex++, "ombh2", 0.02, 0.025);
         scanner.setParam(paramIndex++, "omch2", 0.1, 0.2);
         scanner.setParam(paramIndex++, "h", 0.55, 0.85);
-        scanner.setParam(paramIndex++, "tau", 0.01, 0.30);
+        scanner.setParam(paramIndex++, "tau", 0.02, 0.20);
         scanner.setParam(paramIndex++, "ns", 0.9, 1.1);
-        scanner.setParam(paramIndex++, "as", 2.7, 4.0);
+        scanner.setParam(paramIndex++, "as", 2.0, 4.0);
 
         if(usePlanck)
             scanner.setParamGauss(paramIndex++, "A_planck", 1, 0.0025);

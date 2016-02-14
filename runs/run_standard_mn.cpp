@@ -144,7 +144,6 @@ int main(int argc, char *argv[])
             root << "_lrg";
         if(useWiggleZ)
             root << "_wigglez";
-        root << "_";
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;
