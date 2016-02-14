@@ -1,5 +1,5 @@
 """
-Calculates the new sample probability values
+Calculates the new sample probability values from root.txt
 for a chain file using a prior on Omega_b, sigma_8, and h
 and outputs values to stdout.
 """

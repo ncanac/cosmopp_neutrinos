@@ -1,5 +1,4 @@
 from getdist import plots
-from getdist import MCSamples
 from getdist import loadMCSamples
 
 dirs = [
