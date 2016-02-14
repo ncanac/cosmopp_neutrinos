@@ -2,17 +2,19 @@ from getdist import plots
 from getdist import loadMCSamples
 
 dirs = [
-        "../completed_runs/standard_Mnu_nEff_szclusters_mn/",
-        "../completed_runs/standard_Mnu_nEff_bao_szclusters_mn/",
-        "../completed_runs/standard_Mnu_nEff_lrg_szclusters_mn/",
-        "../completed_runs/standard_Mnu_nEff_wigglez_szclusters_mn/"
+        "../completed_runs/standard_Mnu_nEff_mn/",
+        "../completed_runs/standard_Mnu_nEff_bao_mn/",
+        "../completed_runs/standard_Mnu_nEff_lrg_mn/",
+        "../completed_runs/standard_Mnu_nEff_wigglez_mn/"#,
+        #"../completed_runs/standard_Mnu_nEff_szclusters_mn/"
         ]
 
 roots = [
-        "standard_neff_summnu_planck_szclusters",
-        "standard_neff_summnu_planck_bao_szclusters",
-        "standard_neff_summnu_planck_lrg_szclusters",
-        "standard_neff_summnu_planck_wigglez_szclusters"
+        "standard_neff_summnu_planck",
+        "standard_neff_summnu_planck_bao",
+        "standard_neff_summnu_planck_lrg",
+        "standard_neff_summnu_planck_wigglez"#,
+        #"standard_neff_summnu_planck_wigglez_sz"
         ]
 
 samples = []
