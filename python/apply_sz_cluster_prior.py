@@ -34,7 +34,7 @@ with open(filename, 'r') as f:
         sigma8 = vals[-1]
         omm = (ombh2 + omch2)/h**2.
         x = sigma8*(omm/0.27)**0.3
-        p *= norm.pdf(x)
+        p *= n.pdf(x)
         p_norm += p
         vals[0] = p
         params.append(vals)
