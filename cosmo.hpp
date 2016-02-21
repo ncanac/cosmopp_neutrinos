@@ -2,7 +2,6 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
-#include <cfloat>
 
 #include <cmb.hpp>
 #include <cubic_spline.hpp>
@@ -36,16 +35,10 @@ public:
         background_tau_of_z(br_, z, &tau);
         background_at_tau(br_, tau, br_->long_info, br_->inter_normal, &last_index, pvecback);
 
+        const double res = pvecback[br_->index_bg_ang_distance];
         free(pvecback);
-
-        return pvecback[br_->index_bg_ang_distance];
+        return res;
     }
-
-    //double getSigma8()
-    //{
-    //    check(init_, "need to initialize first");
-    //    return sp_->sigma8;
-    //}
 
     double getHubble(double z)
     {
@@ -57,9 +50,10 @@ public:
         background_tau_of_z(br_, z, &tau);
         background_at_tau(br_, tau, br_->long_info, br_->inter_normal, &last_index, pvecback);
         
+        const double res = pvecback[br_->index_bg_H];
         free(pvecback);
+        return res;
         
-        return pvecback[br_->index_bg_H];
     }
 
     std::vector<double> z_of_r(std::vector<double>& z_array)
@@ -91,27 +85,21 @@ public:
             out[i+z_array.size()] = dzdr[i];
         }
 
+        free(pvecback);
         return out;
     }
 
-    bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
+    void getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
         check(init_, "need to initialize first");
         check(pt_->has_pk_matter, "matter ps not requested");
 
         double h = params_->getH();
-        
-        //std::vector<double> v;
-        //params_->getAllParameters(v);
-
-        //for(int i = 0; i < v.size(); ++i)
-        //    output_screen(v[i] << std::endl);
 
         const double zNEAR = 0.235, zMID = 0.342, zFAR = 0.421;
         //const double aNEAR = 0.809717, aMID = 0.745156, aFAR = 0.70373;
 
         // Get linear matter power spectrum for NEAR, MID, and FAR
-        //Math::TableFunction<double, double> P_lrg;
         Math::TableFunction<double, double> P_lin_funcNEAR;
         Math::TableFunction<double, double> P_lin_funcMID;
         Math::TableFunction<double, double> P_lin_funcFAR;
@@ -136,8 +124,6 @@ public:
         {
             kvals[itemp] = point.first;
             double Pval = point.second;
-            //if(itemp == 0)
-            //    output_screen("P_lin_NEAR[0]: " << Pval << std::endl);
             P_linNEAR[itemp] = Pval;
             lnP_linNEAR[itemp] = std::log(Pval);
             ++itemp;
@@ -148,8 +134,6 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            //if(itemp == 0)
-            //    output_screen("P_lin_MID[0]: " << Pval << std::endl);
             P_linMID[itemp] = Pval;
             lnP_linMID[itemp] = std::log(Pval);
             ++itemp;
@@ -160,8 +144,6 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            //if(itemp == 0)
-            //    output_screen("P_lin_FAR[0]: " << Pval << std::endl);
             P_linFAR[itemp] = Pval;
             lnP_linFAR[itemp] = std::log(Pval);
             ++itemp;
@@ -172,25 +154,15 @@ public:
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
             double Pval = point.second;
-            //if(itemp == 0)
-            //    output_screen("P_lin_z0[0]: " << Pval << std::endl);
             P_linz0[itemp] = Pval;
             ++itemp;
         }
         check(n == itemp, "number of k values mismatch");
 
-        /////////////////////////////////////////
-        // Debugging Code: Output linear power spectrum for near to file
-        std::ofstream outfile("P_linNEAR.txt");
-        for(int i = 0; i < n; ++i)
-            outfile << kvals[i] << " " << P_linNEAR[i] << std::endl;
-        outfile.close();
-        /////////////////////////////////////////
-
         // extract getabstransferscale for NEAR, MID, and FAR
         const double khmindata = 0.0221168;
         std::vector<double> getabstransferscale(4);
-        //double getabstransferscaleNEAR, getabstransferscaleMID, getabstransferscaleFAR;
+        double getabstransferscaleNEAR, getabstransferscaleMID, getabstransferscaleFAR;
         itemp = 0;
         while(kvals[itemp]/h < khmindata && itemp < n)
             ++itemp;
@@ -212,29 +184,10 @@ public:
         dopksmoothbspline_(kvals, lnP_linFAR, lnP_nwFAR, n);
         for(int i = 0; i < n; ++i)
         {
-            check(std::isnan(lnP_nwNEAR[i]) == 0 || std::isnan(lnP_nwMID[i]) == 0 || std::isnan(lnP_nwFAR[i]) == 0, "No wiggles power is nan");
-            //if(i == 0)
-            //{
-            //    output_screen("lnP_nwNEAR[0]: " << lnP_nwNEAR[i] << std::endl);
-            //    output_screen("lnP_nwMID[0]: " << lnP_nwMID[i] << std::endl);
-            //    output_screen("lnP_nwFAR[0]: " << lnP_nwFAR[i] << std::endl);
-            //}
             P_nwNEAR[i] = std::exp(lnP_nwNEAR[i]);
             P_nwMID[i] = std::exp(lnP_nwMID[i]);
             P_nwFAR[i] = std::exp(lnP_nwFAR[i]);
         }
-
-        /////////////////////////////////////////
-        // Debugging Code: Output no wiggles spectrum for near to file
-        outfile.open("P_nwNEAR.txt");
-        for(int i = 0; i < n; ++i)
-            outfile << kvals[i] << " " << P_nwNEAR[i] << std::endl;
-        outfile.close();
-        /////////////////////////////////////////
-
-        //output_screen("P_nwNEAR: " << P_nwNEAR[0] << std::endl);
-        //output_screen("P_nwMID: " << P_nwMID[0] << std::endl);
-        //output_screen("P_nwFAR: " << P_nwFAR[0] << std::endl);
 
         // Apply halofit model for nonlinear structure growth to P_nw to generate P_halofitnw
         // Tau is the conformal time at z
@@ -246,29 +199,16 @@ public:
         double k_nl;
         // Apply halofit model to P_nw for NEAR
         nonlinear_k_nl_at_z(br_, nl_, zNEAR, &k_nl);
-        //if(k_nl < pr_->halofit_min_k_nonlinear)
-        //    k_nl = 0.3; 
         background_tau_of_z(br_, zNEAR, &tau);
-        //output_screen("NEAR tau, k_nl: " << tau << ", " << k_nl << std::endl);
         nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl);
         // Apply halofit model to P_nw for MID 
         nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
         background_tau_of_z(br_, zMID, &tau);
-        //output_screen("MID tau, k_nl: " << tau << ", " << k_nl << std::endl);
         nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl);
         // Apply halofit model to P_nw for FAR 
         nonlinear_k_nl_at_z(br_, nl_, zFAR, &k_nl);
         background_tau_of_z(br_, zFAR, &tau);
-        //output_screen("FAR tau, k_nl: " << tau << ", " << k_nl << std::endl);
         nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl);
-
-        /////////////////////////////////////////
-        // Debugging Code: Output halofit spectrum for near to file
-        outfile.open("P_halofitNEAR.txt");
-        for(int i = 0; i < n; ++i)
-            outfile << kvals[i] << " " << P_halofitnwNEAR[i] << std::endl;
-        outfile.close();
-        /////////////////////////////////////////
 
         // Make sure that P_halofitnw is positive everywhere
         for(int i = 0; i < n; ++i)
@@ -279,20 +219,6 @@ public:
                 return false;
             }
         }
-        //double sumNEAR = 0;
-        //double sumMID = 0;
-        //double sumFAR = 0;
-        //for(int i = 0; i < n; ++i)
-        //{
-        //    sumNEAR += P_halofitnwNEAR[i];
-        //    sumMID += P_halofitnwMID[i];
-        //    sumFAR += P_halofitnwFAR[i];
-        //}
-        //if(sumNEAR < 1 || sumMID < 1 || sumFAR < 1)
-        //{
-        //    output_screen("BADHALOFIT" << std::endl);
-        //    return false;
-        //}
         output_screen("GOODHALOFIT" << std::endl);
 
         // Calculate factor r_halofit, the ratio of P_halofitnw to P_nw
@@ -301,22 +227,9 @@ public:
         std::vector<double> r_halofitFAR(n);
         for(int i = 0; i < n; ++i)
         {
-            //if(i == 0)
-            //{
-            //    output_screen("P_halofitnwNEAR, P_nwNEAR: " << P_halofitnwNEAR[i] << ", " << P_nwNEAR[i] << std::endl);
-            //    output_screen("P_halofitnwMID, P_nwMID: " << P_halofitnwMID[i] << ", " << P_nwMID[i] << std::endl);
-            //    output_screen("P_halofitnwFAR, P_nwFAR: " << P_halofitnwFAR[i] << ", " << P_nwFAR[i] << std::endl);
-            //}
             r_halofitNEAR[i] = P_halofitnwNEAR[i]/P_nwNEAR[i];
             r_halofitMID[i] = P_halofitnwMID[i]/P_nwMID[i];
             r_halofitFAR[i] = P_halofitnwFAR[i]/P_nwFAR[i];
-            check(std::isnan(r_halofitNEAR[i]) == 0 || std::isnan(r_halofitMID[i]) == 0 || std::isnan(r_halofitFAR[i]) == 0, "halofit power is nan");
-            //if(i == 0)
-            //{
-            //    output_screen("r_halofitNEAR[0]: " << r_halofitNEAR[i] << std::endl);
-            //    output_screen("r_halofitMID[0]: " << r_halofitMID[i] << std::endl);
-            //    output_screen("r_halofitFAR[0]: " << r_halofitFAR[i] << std::endl);
-            //}
         }
 
         // Initialize all arrays to be passed to LRGTheory_()
@@ -350,25 +263,12 @@ public:
         std::vector<double> kh_fid;
         std::vector<double> P_halo;
         // Calculate P_halo by calling LRGTheory_()
-        //output_screen(kh[0] << " " << P_lin[0][0] << " " << P_nw[0][0] << " " << r_nwhalofit[0][0] << std::endl);
-        //output_screen(kh[0] << " " << P_lin[1][0] << " " << P_nw[1][0] << " " << r_nwhalofit[1][0] << std::endl);
-        //output_screen(kh[0] << " " << P_lin[2][0] << " " << P_nw[2][0] << " " << r_nwhalofit[2][0] << std::endl);
-        //output_screen(getabstransferscale[0] << " " << getabstransferscale[1] << " " << getabstransferscale[2] << " " << getabstransferscale[3] << std::endl);
         LRGTheory_(root, kh, P_lin, P_nw, r_nwhalofit, getabstransferscale, kh_fid, P_halo);
-        //output_screen("kh, P_halo: " << kh_fid[0] << ", " << P_halo[0] << std::endl);
 
         // Store LRG power spectrum in table function
         ps->clear();
         for(int i = 0; i < kh_fid.size(); ++i)
-        {
-            check(!std::isnan(P_halo[i]), "P_halo is nan");
-            //if(i == 0)
-                //output_screen("P_halo[0]: " << P_halo[i] << std::endl);
-            const double k = kh_fid[i];
-            (*ps)[k] = P_halo[i];
-        }
-
-        return true;
+            (*ps)[kh_fid[i]] = P_halo[i];
     }
 
 private:
@@ -522,7 +422,6 @@ private:
         std::vector< std::vector<double> > r_fid(3, std::vector<double>(k_size, 0.0));
         kh_fid.resize(k_size);
         // Read in NEAR model
-        //check(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat" == "/Volumes/Data1/ncanac/cosmopp_neutrinos/data/LRGDR7/models/lrgdr7fiducialmodel_matterpowerzNEAR.dat", "NEAR fiducial model file name error: " << root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat");
         std::ifstream datafile(root + "models/lrgdr7fiducialmodel_matterpowerzNEAR.dat");
         // Skip first line
         std::string line;
@@ -537,7 +436,6 @@ private:
             kh_fid[i] = kdummy; // Only need to do this once
             r_fid[0][i] = ratiodummy;
         }
-        check(kh_fid[0] == 0.99900E-04 && kh_fid[k_size-1] == 0.78557, "NEAR fiducial model read error!");
         datafile.close();
         // Read in MID model
         datafile.open(root + "models/lrgdr7fiducialmodel_matterpowerzMID.dat");
@@ -568,7 +466,7 @@ private:
         }
         datafile.close();
 
-        // Evaluate P_lin, P_nw, and r_nwhalofit at values of k_fid using cubic spline in log space
+        // Evaluate P_lin, P_nw, and r_nwhalofit as values of k_fid using cubic spline in log space
         // Note: Doing this in linear space doesn't seem to make a difference
         int n = P_lin[0].size();
         std::vector<double> lnP_lin(n);
@@ -576,12 +474,9 @@ private:
         std::vector<double> lnkh(n);
         for(int i = 0; i < n; ++i)
             lnkh[i] = std::log(kh[i]);
-        //output_screen("lnkh: (" << lnkh[0] << ", " << lnkh[n-1] << ")" << std::endl);
-        //output_screen("lnkhfid: (" << std::log(kh_fid[0]) << ", " << std::log(kh_fid[k_size-1]) << ")" << std::endl);
         std::vector< std::vector<double> > P_lin_atfid(3, std::vector<double>(k_size));
         std::vector< std::vector<double> > P_nw_atfid(3, std::vector<double>(k_size));
         std::vector< std::vector<double> > r_nwhalofit_atfid(3, std::vector<double>(k_size));
-        //output_screen("r_nwhalofit[0][0]: " << r_nwhalofit[0][0] << std::endl);
         for(int i = 0; i < 3; ++i)
         {
             for(int j = 0; j < n; ++j)
@@ -591,34 +486,18 @@ private:
             }
             //Math::CubicSpline P_lin_spline(kh, P_lin[i]);
             //Math::CubicSpline P_nw_spline(kh, P_nw[i]);
-            //Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
-            //Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
-            //Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
-            Math::TableFunction<double, double> lnP_lin_spline;
-            Math::TableFunction<double, double> lnP_nw_spline;
-            Math::TableFunction<double, double> r_nwhalofit_spline;
-            for(int j = 0; j < n; ++j)
-            {
-                lnP_lin_spline[lnkh[j]] = lnP_lin[j];
-                lnP_nw_spline[lnkh[j]] = lnP_nw[j];
-                r_nwhalofit_spline[lnkh[j]] = r_nwhalofit[i][j];
-            }
+            Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
+            Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
+            Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
             for(int j = 0; j < k_size; ++j)
             {
                 //P_lin_atfid[i][j] = P_lin_spline.evaluate(kh_fid[j]);
-                double lnkhj = std::log(kh_fid[j]);
-                check(lnkhj > lnkh[0] && lnkhj < lnkh[n-1], "lnkh: (" << lnkh[0] << ", " << lnkh[n-1] << "), requested value: " << lnkhj);
-                P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(lnkhj));
+                P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(std::log(kh_fid[j])));
                 //P_nw_atfid[i][j] = P_nw_spline.evaluate(kh_fid[j]);
-                P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(lnkhj));
-                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(lnkhj);
+                P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(std::log(kh_fid[j])));
+                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(std::log(kh_fid[j]));
             }
         }
-
-        //output_screen("P_lin_atfid/P_nw_atfid/r_nwhalofit_atfid:" << std::endl);
-        //output_screen(P_lin_atfid[0][0] << " " << P_nw_atfid[0][0] << " " << r_nwhalofit_atfid[0][0] << std::endl);
-        //output_screen(P_lin_atfid[1][0] << " " << P_nw_atfid[1][0] << " " << r_nwhalofit_atfid[1][0] << std::endl);
-        //output_screen(P_lin_atfid[2][0] << " " << P_nw_atfid[2][0] << " " << r_nwhalofit_atfid[2][0] << std::endl);
 
         // Set weights to do weighted sum for P_halo as in eq. 17 of BR09
         std::vector<double> zweight {0.395, 0.355, 0.250};
@@ -631,7 +510,6 @@ private:
 
         // Calculate P_halo for NEAR, MID, and FAR using eq. 10 from BR09
         P_halo.resize(k_size);
-        //output_screen("P_halo_init: " << P_halo[0] << std::endl);
         for(int i = 0; i < k_size; ++i)
         {
             double khval = kh_fid[i];
@@ -640,15 +518,9 @@ private:
                 double expval = std::exp(-1.0*pow(khval, 2.0)*sigma2BAO[j]*0.5);
                 double psmear = (P_lin_atfid[j][i])*expval + (P_nw_atfid[j][i])*(1.0-expval);
                 psmear = psmear*powerscaletoz0[j];
-                //if(i == 0)
-                //    output_screen("r_nwhalofit_atfid/r_fid: " << r_nwhalofit_atfid[j][i] << " " << r_fid[j][i] << std::endl);
                 double nlrat = r_nwhalofit_atfid[j][i]/r_fid[j][i];
-                //if(i == 0)
-                //    output_screen("psmear/nlrat: " << psmear << " " << nlrat << std::endl);
                 std::vector<double> fidpolys(3, 0.0);
                 LRGtoICsmooth_(khval, fidpolys);
-                //if(i == 0)
-                //    output_screen("fidpolys: " << fidpolys[0] << " " << fidpolys[1] << " " << fidpolys[2] << std::endl);
                 P_halo[i] = P_halo[i] + zweight[j]*psmear*nlrat*fidpolys[j];
             }
         }

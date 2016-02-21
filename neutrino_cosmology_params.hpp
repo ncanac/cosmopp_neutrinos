@@ -749,10 +749,6 @@ public:
 
         check(lcdmParams_.size() == 6, "");
 
-        //output_screen("Outputting sample:" << std::endl);
-        //for(int i = 0; i < nPar; ++i)
-        //    output_screen(v[i] << std::endl);
-
         std::vector<double>::const_iterator it = v.begin();
 
         for(int i = 0; i < 4; ++i)
@@ -852,4 +848,3 @@ private:
     std::vector<double> kVals_, amplitudes_;
     std::vector<double> lcdmParams_;
 };
-

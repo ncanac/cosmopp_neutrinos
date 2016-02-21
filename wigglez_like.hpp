@@ -20,7 +20,7 @@
 class WiggleZLikelihood : public Math::CosmoLikelihood
 {
 public:
-    WiggleZLikelihood(std::string path, Cosmo& cosmo, char redshift_bin) 
+    WiggleZLikelihood(std::string path, Cosmo& cosmo, char redshift_bin, bool initializeCosmoAtEachStep = true) : initializeCosmoAtEachStep_(initializeCosmoAtEachStep) 
     {
         cosmo_ = &cosmo;
 
@@ -370,7 +370,8 @@ public:
     {
         params_ = &params;
         // Does wantT need to be true?
-        cosmo_->initialize(params, true, false, false, true, 1.0);
+        if(initializeCosmoAtEachStep_)
+            cosmo_->initialize(params, true, false, false, true, 1.0);
     }
 
     void setModelCosmoParams(CosmologicalParams *params)
@@ -381,6 +382,7 @@ public:
 
 private:
     Cosmo* cosmo_;
+    const bool initializeCosmoAtEachStep_;
 
     const CosmologicalParams* params_;
 

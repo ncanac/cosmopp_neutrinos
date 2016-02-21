@@ -13,7 +13,7 @@
 class BAOLikelihood : public Math::CosmoLikelihood
 {
 public:
-    BAOLikelihood(Cosmo& cosmo)
+    BAOLikelihood(Cosmo& cosmo, bool initializeCosmoAtEachStep = true) : initializeCosmoAtEachStep_(initializeCosmoAtEachStep)
     {
         cosmo_ = &cosmo;
     }
@@ -23,7 +23,8 @@ public:
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
-        cosmo_->initialize(params, true, false, false, false);
+        if(initializeCosmoAtEachStep_)
+            cosmo_->initialize(params, true, false, false, false);
     }
 
     double bao_boss_likelihood()
@@ -182,6 +183,7 @@ public:
 
 private:
     Cosmo* cosmo_;
+    const bool initializeCosmoAtEachStep_;
 
     const CosmologicalParams* params_; // Standard cosmological parameters
     

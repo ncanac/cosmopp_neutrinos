@@ -23,7 +23,7 @@
 class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
 public:
-    LRGDR7Likelihood(std::string path, Cosmo& cosmo)
+    LRGDR7Likelihood(std::string path, Cosmo& cosmo, bool initializeCosmoAtEachStep = true) : initializeCosmoAtEachStep_(initializeCosmoAtEachStep)
     {
         cosmo_ = &cosmo;
 
@@ -58,7 +58,6 @@ public:
             if((i+2 > min_mpk_kbands_use_) && (i < max_mpk_kbands_use_))
                 datafile >> kh_[i-min_mpk_kbands_use_+1];
         datafile.close();
-        check(kh_[0] == 0.001 && kh_[k_size_-1] == 0.499, "kbands file read error!");
 
         // Read in window functions
         n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1; // 45
@@ -69,14 +68,12 @@ public:
             for(int j = 0; j < k_size_; ++j)
                 datafile >> window_(i, j);
         datafile.close();
-        check(window_(0, 0) == 0 && window_(n_size_-1, k_size_-1) == 0.000111888, "windows file read error!");
 
         zerowindowfxn_.resize(k_size_, 1, 0);
         datafile.open(root_ + "data/lrgdr7_zerowindowfxn.txt");
         for(int i = 0; i < k_size_; ++i)
             datafile >> zerowindowfxn_(i, 0);
         datafile.close();
-        check(zerowindowfxn_(0, 0) == 0.0199647 && zerowindowfxn_(k_size_-1, 0) == 7.73898e-5, "zerowindowfxn file read error!");
 
         zerowindowfxnsubdat_.resize(n_size_, 1, 0);
         datafile.open(root_ + "data/lrgdr7_zerowindowfxnsubtractdat.txt");
@@ -84,8 +81,6 @@ public:
         for(int i = 0; i < n_size_; ++i)
             datafile >> zerowindowfxnsubdat_(i, 0);
         datafile.close();
-        check(zerowindowfxnsubdatnorm_ == 3.63052e6, "zerowindowfxnsubdatnorm file read error!");
-        check(zerowindowfxnsubdat_(0, 0) == 7490.05 && zerowindowfxnsubdat_(n_size_-1, 0) == 3.14117, "zerowindowfxnsubtractdat file read error!");
 
         // Read in measurements
         std::string line;
@@ -108,7 +103,6 @@ public:
             }
         }
         datafile.close();
-        check(P_obs_(0, 0) == 27415.6 && P_obs_(n_size_-1, 0) == 2507.45, "ccmeasurements file read error!");
 
         // Read in inverse covariance matrix
         invcov_.resize(n_size_, n_size_, 0);
@@ -119,7 +113,6 @@ public:
                     if((j+2 > min_mpk_points_use_) && (j < max_mpk_points_use_))
                         datafile >> invcov_(i, j);
         datafile.close();
-        check(invcov_(0, 0) == 0.13897E-06 && invcov_(n_size_-1, n_size_-1) == 0.19855E-03, "invcov file read error!");
     }
 
     ~LRGDR7Likelihood() {}
@@ -134,25 +127,17 @@ public:
         
         // Check that number of parameters passed in is same as number of parameters in nModel
         check(nPar == nModel, "");
-
+    
         // Set all the parameters in vModel_ to the values in params
         for(int i = 0; i < nModel; ++i)
             vModel_[i] = params[i];
     
         // Sets the parameters in modelParams_ to the values in vModel_
-        double badLike = 0;
-        bool success = modelParams_->setAllParameters(vModel_, &badLike);
-
+        modelParams_->setAllParameters(vModel_);
         // Set the cosmological parameters to modelParams_.
-        if(success)
-        {
-            setCosmoParams(*modelParams_);
-            check(badLike == 0, "badLike != 0");
-            return likelihood();
-        }
-        
-        check(badLike >= 0, "badLike < 0"); 
-        return 1e10 + badLike;
+        setCosmoParams(*modelParams_);
+    
+        return likelihood();
     }
 
     double likelihood()
@@ -176,15 +161,14 @@ public:
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
-        if(!cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory))
-            return 1e10;
+        cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory);
 
         // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
         // mpk_raw is in units of h^3 Mpc^3
         for(int i = 0; i < k_size_; ++i)
         {
             kh_scaled(i, 0) = a_scl * kh_[i];
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) / pow(a_scl, 3.0));
         }
 
         // Initialize
@@ -298,7 +282,7 @@ public:
             {
                 chisqnonuis = chisq[i];
                 minchisqtheoryampnonuis = minchisqtheoryamp;
-                check(std::abs(a1val) <= 0.001 && std::abs(a2val) <= 0.001, "a1 or a2 > 0.001 failure");
+                check(std::abs(a2val) <= 0.001 && std::abs(a2val) <= 0.001, "a1 or a2 > 0.001 failure");
             }
         }
 
@@ -306,16 +290,13 @@ public:
         minchisq = *std::min_element(std::begin(chisqmarg), std::end(chisqmarg));
         maxchisq = *std::max_element(std::begin(chisqmarg), std::end(chisqmarg));
 
-        //output_screen("minchisq: " << minchisq << std::endl);
-
         double LnLike = 0;
         for(int i = 0; i < nptstot_; ++i)
             LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0);
-        check(LnLike != 0, "LRG LnLike LogZero error");
         LnLike = LnLike / (float)nptstot_;
+        check(LnLike != 0, "LRG LnLike LogZero error");
         LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
         //deltaL = (maxchisq - minchisq) * 0.5;
-        //output_screen("LnLike: " << LnLike << std::endl);
 
         return 2.0*(LnLike);
     }
@@ -323,15 +304,9 @@ public:
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
-        // Output parameters for debugging. Remove later.
-        std::vector<double> v;
-        params_->getAllParameters(v);
-        output_screen("Outputting parameters:" << std::endl);
-        for(int i = 0; i < v.size(); ++i)
-            output_screen(v[i] << std::endl);
-
         // Does wantT need to be true?
-        cosmo_->initialize(params, true, false, false, true, 0.5);
+        if(initializeCosmoAtEachStep_)
+            cosmo_->initialize(params, true, false, false, true, 0.5);
     }
 
     void setModelCosmoParams(CosmologicalParams *params)
@@ -469,6 +444,7 @@ private:
     }
 
     Cosmo* cosmo_;
+    const bool initializeCosmoAtEachStep_;
 
     const CosmologicalParams* params_;
 

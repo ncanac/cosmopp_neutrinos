@@ -18,31 +18,32 @@
 class CombinedLikelihood : public Math::CosmoLikelihood
 {
 public:
-    CombinedLikelihood(std::string datapath, Cosmo& cosmo, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
+    CombinedLikelihood(std::string datapath, bool usePlanck, bool useWMAP, bool useBAO, bool useLRG, bool useWiggleZ) : usePlanck_(usePlanck), useWMAP_(useWMAP), useBAO_(useBAO), useLRG_(useLRG), useWiggleZ_(useWiggleZ)
     {
+        cosmo_.preInitialize(3500, false, true, false);
         nLikes_ = 0;
         //check(!(usePlanck_ && useWMAP_), "Both Planck and WMAP likelihoods should not be used at the same time.");
         //check(!(useBAO_ && useLRG_), "Both BAO and LRG likelihoods should not be used at the same time.");
         if(usePlanck_)
-            planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 100);
+            planckLike_ = new PlanckLikelihood(true, true, true, false, true, false, false, false, 100, false);
         if(useWMAP_)
             wmapLike_ = new WMAP9Likelihood(true, true, true, true, true, true);
         if(useBAO_)
         {
-            likes_.push_back(new BAOLikelihood(cosmo));
+            likes_.push_back(new BAOLikelihood(cosmo_, false));
             ++nLikes_;
         }
         if(useLRG_)
         {
-            likes_.push_back(new LRGDR7Likelihood(datapath, cosmo));
+            likes_.push_back(new LRGDR7Likelihood(datapath, cosmo_, false));
             ++nLikes_;
         }
         if(useWiggleZ_)
         {
-            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'a')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'b')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'c')); 
-            likes_.push_back(new WiggleZLikelihood(datapath, cosmo, 'd')); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo_, 'a', false)); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo_, 'b', false)); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo_, 'c', false)); 
+            likes_.push_back(new WiggleZLikelihood(datapath, cosmo_, 'd', false)); 
             nLikes_ += 4;
         }
     }
@@ -58,8 +59,13 @@ public:
     void setCosmoParams(const CosmologicalParams& params)
     {
         params_ = &params;
+        cosmo_.initialize(params, true, true, true, true, 1.0);
         if(usePlanck_)
-            planckLike_->setCosmoParams(params);
+        {
+            cosmo_.getLensedCl(&clTT_, &clEE_, &clTE_, &clBB_);
+            cosmo_.getCl(NULL, NULL, NULL, &clPP_, NULL, NULL);
+            planckLike_->setCls(&clTT_, &clEE_, &clTE_, &clBB_, &clPP_);
+        }
         if(useWMAP_)
         {
             wmapLike_->setCosmoParams(params);
@@ -102,40 +108,38 @@ public:
         if(usePlanck_)
             extraPar = 1;
         check(nPar == nModel + extraPar, "wrong number of model params");
-
+    
         // Set all the parameters in vModel_ to the values in params
         for(int i = 0; i < nModel; ++i)
             vModel_[i] = params[i];
-
-        // Output parameters for debugging. Remove later.
-        //output_screen("Outputting parameters:" << std::endl);
-        //for(int i = 0; i < nModel; ++i)
-        //    output_screen(vModel_[i] << std::endl);
-   
+    
         // Sets the parameters in modelParams_ to the values in vModel_
         double badLike = 0;
-        bool success = modelParams_->setAllParameters(vModel_, &badLike);
+        const bool success = modelParams_->setAllParameters(vModel_, &badLike);
+        if(!success)
+        {
+            check(badLike >= 0, "");
+            return 1e10 + badLike;
+        }
+
+        check(badLike == 0, "");
 
         // Set the cosmological parameters to modelParams_.
-        if(success)
-        {
-            setCosmoParams(*modelParams_);
-            check(badLike == 0, "badLike != 0");
-        }
+        setCosmoParams(*modelParams_);
 
         if(usePlanck_)
             planckLike_->setAPlanck(params[nModel]);
     
-        if(success)
-            return likelihood();
-
-        check(badLike >= 0, "badLike < 0");
-        return 1e10 + badLike;
+        return likelihood();
     }
 
 private:
+    Cosmo cosmo_;
     const CosmologicalParams* params_; // Cosmological parameters for initialization
     
+
+    std::vector<double> clTT_, clEE_, clTE_, clBB_, clPP_;
+
     CosmologicalParams* modelParams_; // Cosmological parameters in test models
     std::vector<double> vModel_; // modelParams_ as a vector
 
