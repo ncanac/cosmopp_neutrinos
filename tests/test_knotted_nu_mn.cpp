@@ -125,8 +125,9 @@ int main(int argc, char *argv[])
         const double ns = 0.9655;
         const double pivot = 0.05;
 
-        int nMassive = 1;
-        double nEff = 3.046, sumMNu = 0.1;
+        const double nEff = 3.046; 
+        const int nMassive = (varySumMNu ? 1 : 0);
+        const double sumMNu = 0.0;
 
         const double kMin = 0.8e-6;
         const double kMax = 1.2;
@@ -156,11 +157,11 @@ int main(int argc, char *argv[])
 //#endif
 //        planckLike.setModelCosmoParams(&params);
 
-        Cosmo cosmo;
-        cosmo.preInitialize(5000, false, true, false, 0, 100, kMin/0.8, kMax/1.2);
+        //Cosmo cosmo;
+        //cosmo.preInitialize(5000, false, true, false, 0, 100, kMin/0.8, kMax/1.2);
 
         std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
-        CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
+        CombinedLikelihood like(datapath, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;

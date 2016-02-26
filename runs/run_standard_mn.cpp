@@ -116,16 +116,14 @@ int main(int argc, char *argv[])
         const double nt = 0;
 
         const double nEff = 3.046; 
-        const int nMassive = 1;
+        const int nMassive = (varySumMNu ? 1 : 0);
         const double sumMNu = 0.0;
 
         output_screen("Running with standard PPS and neutrinos." << std::endl);
         StandardPSDegenNuParams params(omBH2, omCH2, h, tau, ns, std::exp(as)/1e10, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
         std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
-        Cosmo cosmo;
-        cosmo.preInitialize(5000, false, false, false, 0);
-        CombinedLikelihood like(datapath, cosmo, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
+        CombinedLikelihood like(datapath, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
         like.setModelCosmoParams(&params);
 
         std::stringstream root;

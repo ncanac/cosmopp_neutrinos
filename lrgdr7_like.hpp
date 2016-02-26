@@ -161,14 +161,15 @@ public:
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
-        cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory);
+        if(!cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory))
+            return 1e10;
 
         // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
         // mpk_raw is in units of h^3 Mpc^3
         for(int i = 0; i < k_size_; ++i)
         {
             kh_scaled(i, 0) = a_scl * kh_[i];
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0) / pow(a_scl, 3.0));
+            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
         }
 
         // Initialize

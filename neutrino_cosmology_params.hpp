@@ -669,7 +669,7 @@ public:
         check(kVals_.size() >= 2, "");
         check(kVals_.size() == amplitudes.size(), "");
 
-        check(!varyNEff_ || nMassive_ > 0, "");
+        check(!varySumMNu_ || nMassive_ > 0, "");
 
         resetPS();
     }

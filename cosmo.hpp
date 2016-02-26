@@ -53,7 +53,6 @@ public:
         const double res = pvecback[br_->index_bg_H];
         free(pvecback);
         return res;
-        
     }
 
     std::vector<double> z_of_r(std::vector<double>& z_array)
@@ -89,7 +88,7 @@ public:
         return out;
     }
 
-    void getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
+    bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
         check(init_, "need to initialize first");
         check(pt_->has_pk_matter, "matter ps not requested");
@@ -269,6 +268,8 @@ public:
         ps->clear();
         for(int i = 0; i < kh_fid.size(); ++i)
             (*ps)[kh_fid[i]] = P_halo[i];
+
+        return true;
     }
 
 private:

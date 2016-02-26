@@ -123,8 +123,6 @@ sstream
 -
 cmath
 -
-cfloat
--
 cmb.hpp
 -
 cubic_spline.hpp

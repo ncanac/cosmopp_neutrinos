@@ -60,39 +60,40 @@ CMAKE_SOURCE_DIR = /Volumes/Data1/ncanac/cosmopp_neutrinos/tests
 CMAKE_BINARY_DIR = /Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_LRGHaloPs.dir
+# Target rules for target CMakeFiles/test_knotted_nu_mn.dir
 
 # All Build rule for target.
-CMakeFiles/test_LRGHaloPs.dir/all:
-	$(MAKE) -f CMakeFiles/test_LRGHaloPs.dir/build.make CMakeFiles/test_LRGHaloPs.dir/depend
-	$(MAKE) -f CMakeFiles/test_LRGHaloPs.dir/build.make CMakeFiles/test_LRGHaloPs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles --progress-num=1,2 "Built target test_LRGHaloPs"
-.PHONY : CMakeFiles/test_LRGHaloPs.dir/all
+CMakeFiles/test_knotted_nu_mn.dir/all:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/depend
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/requires
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles --progress-num=1,2,3 "Built target test_knotted_nu_mn"
+.PHONY : CMakeFiles/test_knotted_nu_mn.dir/all
 
 # Include target in all.
-all: CMakeFiles/test_LRGHaloPs.dir/all
+all: CMakeFiles/test_knotted_nu_mn.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_LRGHaloPs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_LRGHaloPs.dir/all
+CMakeFiles/test_knotted_nu_mn.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_knotted_nu_mn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/Data1/ncanac/cosmopp_neutrinos/tests/build/CMakeFiles 0
-.PHONY : CMakeFiles/test_LRGHaloPs.dir/rule
+.PHONY : CMakeFiles/test_knotted_nu_mn.dir/rule
 
 # Convenience name for target.
-test_LRGHaloPs: CMakeFiles/test_LRGHaloPs.dir/rule
+test_knotted_nu_mn: CMakeFiles/test_knotted_nu_mn.dir/rule
 
-.PHONY : test_LRGHaloPs
-
-# clean rule for target.
-CMakeFiles/test_LRGHaloPs.dir/clean:
-	$(MAKE) -f CMakeFiles/test_LRGHaloPs.dir/build.make CMakeFiles/test_LRGHaloPs.dir/clean
-.PHONY : CMakeFiles/test_LRGHaloPs.dir/clean
+.PHONY : test_knotted_nu_mn
 
 # clean rule for target.
-clean: CMakeFiles/test_LRGHaloPs.dir/clean
+CMakeFiles/test_knotted_nu_mn.dir/clean:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/clean
+.PHONY : CMakeFiles/test_knotted_nu_mn.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/test_knotted_nu_mn.dir/clean
 
 .PHONY : clean
 
