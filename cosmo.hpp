@@ -88,6 +88,106 @@ public:
         return out;
     }
 
+    void getMatterPsNL(double z, Math::TableFunction<double, double>* ps)
+    {
+        StandardException exc;
+        check(init_, "need to initialize first");
+        check(pt_->has_pk_matter, "matter ps not requested");
+        check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
+        const int kSize = sp_->ln_k_size;
+        check(kSize > 0, "");
+    
+        // To be done better
+        check(kSize < 10000, "");
+        double outTot[100000];
+        double outIc[100000];
+        double outTotNL[100000];
+        double tau;
+        double k_nl;
+    
+        if(spectra_pk_at_z(br_, sp_, linear, z, outTot, outIc) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: spectra_pk_at_z failed!" << std::endl << sp_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+
+        if(background_tau_of_z(br_, z, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, outTot, outTotNL, &k_nl) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: nonlinear_halofit failed!" << std::endl << nl_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+
+        ps->clear();
+    
+        for(int i = 0; i < kSize; ++i)
+        {
+            const double k = std::exp(sp_->ln_k[i]);
+            (*ps)[k] = outTotNL[i];
+        }
+    }
+
+    void getMatterPsNL2(double z, Math::TableFunction<double, double>* ps)
+    {
+        StandardException exc;
+        check(init_, "need to initialize first");
+        check(pt_->has_pk_matter, "matter ps not requested");
+        check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
+        const int kSize = sp_->ln_k_size;
+        check(kSize > 0, "");
+    
+        // To be done better
+        check(kSize < 10000, "");
+        double outTot[100000];
+    
+        if(spectra_pk_nl_at_z(br_, sp_, linear, z, outTot) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: spectra_pk_nl_at_z failed!" << std::endl << sp_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+
+        ps->clear();
+    
+        for(int i = 0; i < kSize; ++i)
+        {
+            const double k = std::exp(sp_->ln_k[i]);
+            (*ps)[k] = outTot[i];
+        }
+    }
+
+    double getPkNLatk(double k, double z)
+    {
+        StandardException exc;
+        check(init_, "need to initialize first");
+        check(pt_->has_pk_matter, "matter ps not requested");
+        check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
+
+        double pk;
+    
+        if(spectra_pk_nl_at_k_and_z(br_, pm_, sp_, k, z, &pk) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: spectra_pk_nl_at_k_and_z failed!" << std::endl << sp_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+
+        return pk;
+    }
+
     bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
         check(init_, "need to initialize first");
