@@ -1,67 +1,59 @@
+#include <combined_like.hpp>
+
+#include <cstdlib>
+
 #include <macros.hpp>
-#include <wigglez_like.hpp>
-#include <neutrino_cosmology_params.hpp>
+#include <cosmological_params.hpp>
 
 int main(int argc, char *argv[])
 {
-    // Choose values of the cosmological parameters
-    const double h = 0.702;
-    const double omBH2 = 0.02262;
-    const double omCH2 = 0.1138;
-    const double tau = 0.088;
-    const double ns = 0.962;
-    const double as = 2.2154e-9;
-    const double pivot = 0.05;
-    
-    output_screen("Creating instance of cosmological parameters..." << std::endl);
-    // Create cosmological params
-    // LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
-    bool isLinear = true;
-    const double kMin = 0.8e-6;
-    const double kMax = 1.2;
-    std::vector<double> kVals {std::exp(std::log(kMin)), std::exp(std::log(kMax))};
-    std::vector<double> amplitudes {as * pow(kVals[0]/pivot, ns - 1.0), as * pow(kVals[1]/pivot, ns - 1.0)};
-    const double nEff = 3.046;
-    const double nMassive = 0;
-    const double sumMNu = 0.0;
-    const double varyNEff = false;
-    const double varySumMNu = false;
-    SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
+    try {
+        double ombh2 = 0.02225;
+        double omch2 = 0.1198;
+        double h = 0.6727;
+        double tau = 0.079;
+        double ns = 0.9645;
+        double as = 2.196e-9;
+        const double pivot = 0.05;
 
-    output_screen("Initializing WiggleZ likelihood..." << std::endl);
-    // Create likelihood
-    bool primordialInit = true;
-    WiggleZLikelihood likea(primordialInit, "/Volumes/Data1/ncanac/cosmopp_neutrinos", 'a');
-    WiggleZLikelihood likeb(primordialInit, "/Volumes/Data1/ncanac/cosmopp_neutrinos", 'b');
-    WiggleZLikelihood likec(primordialInit, "/Volumes/Data1/ncanac/cosmopp_neutrinos", 'c');
-    WiggleZLikelihood liked(primordialInit, "/Volumes/Data1/ncanac/cosmopp_neutrinos", 'd');
-    
-    output_screen("Setting the cosmological parameters for likelihood calculation..." << std::endl);
-    // Set the cosmological parameters
-    likea.setCosmoParams(params);
-    likeb.setCosmoParams(params);
-    likec.setCosmoParams(params);
-    liked.setCosmoParams(params);
+        if(argc >= 7)
+        {
+            ombh2 = std::atof(argv[1]);
+            omch2 = std::atof(argv[2]);
+            h = std::atof(argv[3]);
+            tau = std::atof(argv[4]);
+            ns = std::atof(argv[6]);
+            as = std::atof(argv[5]);
+        }
 
-    output_screen("Calculating the likelihood..." << std::endl);
-    // Calculate likelihood
-    double lnlike = 0.0;
-    double lnliketot = 0.0;
-    lnlike = likea.likelihood();
-    lnliketot += lnlike;
-    output_screen("WiggleZ a likelihood = " << lnlike << std::endl);
-    lnlike = likeb.likelihood();
-    lnliketot += lnlike;
-    output_screen("WiggleZ b likelihood = " << lnlike << std::endl);
-    lnlike = likec.likelihood();
-    lnliketot += lnlike;
-    output_screen("WiggleZ c likelihood = " << lnlike << std::endl);
-    lnlike = liked.likelihood();
-    lnliketot += lnlike;
-    output_screen("WiggleZ d likelihood = " << lnlike << std::endl);
+        Cosmo cosmo;
+        cosmo.preInitialize(3500, false, false, false);
+        std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
+        WiggleZLikelihood likeA(datapath, cosmo, 'a');
+        //WiggleZLikelihood likeB(datapath, cosmo, 'b');
+        //WiggleZLikelihood likeC(datapath, cosmo, 'c');
+        //WiggleZLikelihood likeD(datapath, cosmo, 'd');
+        
+        LambdaCDMParams params(ombh2, omch2, h, tau, ns, as, pivot);
+        likeA.setCosmoParams(params);
+        //likeB.setCosmoParams(params);
+        //likeC.setCosmoParams(params);
+        //likeD.setCosmoParams(params);
 
-    // Output the likelihood
-    output_screen("Likelihood = " << lnliketot << std::endl);
+        const double like1 = likeA.likelihood();
+        //const double like2 = likeB.likelihood();
+        //const double like3 = likeC.likelihood();
+        //const double like4 = likeD.likelihood();
 
+        output_screen("Likelihood A = " << like1 << std::endl);
+        //output_screen("Likelihood B = " << like2 << std::endl);
+        //output_screen("Likelihood C = " << like3 << std::endl);
+        //output_screen("Likelihood D = " << like4 << std::endl);
+    } catch (std::exception& e)
+    {
+        output_screen("EXCEPTION CAUGHT!!! " << std::endl << e.what() << std::endl);
+        output_screen("Terminating!" << std::endl);
+        return 1;
+    }
     return 0;
 }

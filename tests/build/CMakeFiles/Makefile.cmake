@@ -107,5 +107,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/test_knotted_nu_mn.dir/DependInfo.cmake"
+  "CMakeFiles/test_wigglez_like.dir/DependInfo.cmake"
   )
