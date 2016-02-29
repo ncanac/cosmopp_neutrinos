@@ -263,31 +263,38 @@ public:
     {
         double h = params_->getH();
 
+        //output_screen("h: " << h << std::endl);
+
         double d_angular = cosmo_->getAngularDistance(redshift_);
+
+        //output_screen("d_angular: " << d_angular << std::endl);
 
         std::vector<double> z_array {redshift_};
         std::vector<double> rHz = cosmo_->z_of_r(z_array);
         double r = rHz[0];
         double Hz = rHz[1];
+        //output_screen("r, Hz: " << r << " " << Hz << std::endl);
         double d_radial = 1.0/Hz;
+        //output_screen("d_radial: " << d_radial << std::endl);
 
         double scaling = pow(pow(d_angular_fid_/d_angular, 2.0)*(d_radial_fid_/d_radial), 1.0/3.0);
         // Rescale k_ and P_obs with correct factors of h
         for(int i = 0; i < k_size_; ++i)
             k_[i] = kh_[i]*h*scaling;
 
-        // Create a vector containing linear matter power spectrum
-        // evaluated at values of k given in k_.
+        // Calculate the matter power spectrum
         Math::Matrix<double> P(k_fid_size_, 1, 0);
         Math::TableFunction<double, double> P_function;
-        cosmo_->getMatterPs(redshift_, &P_function);
+        cosmo_->getMatterPsNL2(redshift_, &P_function);
         for(int i = 0; i < k_fid_size_; ++i)
         {
             P(i, 0) = P_function.evaluate(k_fid_(i, 0)*h);
+            //P(i, 0) = cosmo_->getPkNL(k_fid_(i, 0)*h, redshift_);
+            output_screen(k_fid_(i, 0) << " " << P(i, 0) << std::endl);
             double power = 0;
             for(int j = 0; j < 6; ++j)
                 power += giggleZ_fidpoly_[j]*pow(k_fid_(i, 0), j);
-            // rescale P by fiducil model convert to (Mpc/h)^3
+            // rescale P by fiducial model convert to (Mpc/h)^3
             P(i, 0) = P(i, 0) * pow(10.0, power) * pow(h/scaling, 3.0) / P_fid_(i, 0);
         }
 
