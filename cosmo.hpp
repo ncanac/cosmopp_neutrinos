@@ -190,6 +190,7 @@ public:
 
     bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
+        StandardException exc;
         check(init_, "need to initialize first");
         check(pt_->has_pk_matter, "matter ps not requested");
 
@@ -296,29 +297,74 @@ public:
         double P_halofitnwFAR[n];
         double tau;
         double k_nl;
+        bool halofit_success = true;
         // Apply halofit model to P_nw for NEAR
-        nonlinear_k_nl_at_z(br_, nl_, zNEAR, &k_nl);
-        background_tau_of_z(br_, zNEAR, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl);
+        //nonlinear_k_nl_at_z(br_, nl_, zNEAR, &k_nl);
+        //background_tau_of_z(br_, zNEAR, &tau);
+        //nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl);
+        if(background_tau_of_z(br_, zNEAR, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwNEAR[i] = P_nwNEAR[i];
+        }
         // Apply halofit model to P_nw for MID 
-        nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
-        background_tau_of_z(br_, zMID, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl);
+        //nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
+        //background_tau_of_z(br_, zMID, &tau);
+        //nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl);
+        if(background_tau_of_z(br_, zMID, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwMID[i] = P_nwMID[i];
+        }
         // Apply halofit model to P_nw for FAR 
-        nonlinear_k_nl_at_z(br_, nl_, zFAR, &k_nl);
-        background_tau_of_z(br_, zFAR, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl);
+        //nonlinear_k_nl_at_z(br_, nl_, zFAR, &k_nl);
+        //background_tau_of_z(br_, zFAR, &tau);
+        //nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl);
+        if(background_tau_of_z(br_, zFAR, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwFAR[i] = P_nwFAR[i];
+        }
+
+        if(!halofit_success)
+        {
+            output_screen("WARNING: nonlinear_halofit failed!" << std::endl);
+        }
 
         // Make sure that P_halofitnw is positive everywhere
-        for(int i = 0; i < n; ++i)
-        {
-            if(P_halofitnwNEAR[i] <= 0 || P_halofitnwMID[i] <= 0 || P_halofitnwFAR[i] <= 0)
-            {
-                output_screen("BADHALOFIT" << std::endl);
-                return false;
-            }
-        }
-        output_screen("GOODHALOFIT" << std::endl);
+        //for(int i = 0; i < n; ++i)
+        //{
+        //    if(P_halofitnwNEAR[i] <= 0 || P_halofitnwMID[i] <= 0 || P_halofitnwFAR[i] <= 0)
+        //    {
+        //        output_screen("BADHALOFIT" << std::endl);
+        //        return false;
+        //    }
+        //}
+        //output_screen("GOODHALOFIT" << std::endl);
 
         // Calculate factor r_halofit, the ratio of P_halofitnw to P_nw
         std::vector<double> r_halofitNEAR(n);
@@ -587,9 +633,18 @@ private:
             }
             //Math::CubicSpline P_lin_spline(kh, P_lin[i]);
             //Math::CubicSpline P_nw_spline(kh, P_nw[i]);
-            Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
-            Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
-            Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
+            //Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
+            //Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
+            //Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
+            Math::TableFunction<double, double> lnP_lin_spline;
+            Math::TableFunction<double, double> lnP_nw_spline;
+            Math::TableFunction<double, double> r_nwhalofit_spline;
+            for(int j = 0; j < n; ++j)
+            {
+                lnP_lin_spline[lnkh[j]] = lnP_lin[j];
+                lnP_nw_spline[lnkh[j]] = lnP_nw[j];
+                r_nwhalofit_spline[lnkh[j]] = r_nwhalofit[i][j];
+            }
             for(int j = 0; j < k_size; ++j)
             {
                 //P_lin_atfid[i][j] = P_lin_spline.evaluate(kh_fid[j]);

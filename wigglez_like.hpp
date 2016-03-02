@@ -284,13 +284,13 @@ public:
 
         // Calculate the matter power spectrum
         Math::Matrix<double> P(k_fid_size_, 1, 0);
-        Math::TableFunction<double, double> P_function;
-        cosmo_->getMatterPsNL2(redshift_, &P_function);
+        //Math::TableFunction<double, double> P_function;
+        //cosmo_->getMatterPsNL2(redshift_, &P_function);
         for(int i = 0; i < k_fid_size_; ++i)
         {
-            P(i, 0) = P_function.evaluate(k_fid_(i, 0)*h);
-            //P(i, 0) = cosmo_->getPkNL(k_fid_(i, 0)*h, redshift_);
-            output_screen(k_fid_(i, 0) << " " << P(i, 0) << std::endl);
+            //P(i, 0) = P_function.evaluate(k_fid_(i, 0)*h);
+            P(i, 0) = cosmo_->getPkNLatk(k_fid_(i, 0)*h, redshift_);
+            //output_screen(k_fid_(i, 0) << " " << P(i, 0) << std::endl);
             double power = 0;
             for(int j = 0; j < 6; ++j)
                 power += giggleZ_fidpoly_[j]*pow(k_fid_(i, 0), j);

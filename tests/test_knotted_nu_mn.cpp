@@ -130,9 +130,9 @@ int main(int argc, char *argv[])
         const double sumMNu = 0.0;
 
         const double kMin = 0.8e-6;
-        const double kMax = 1.2;
-        const double aMin = 2.8;
-        const double aMax = 4.0;
+        const double kMax = 12.0;
+        const double aMin = -2;
+        const double aMax = 4;
 
         std::vector<double> kVals(nKnots + 2);
         std::vector<double> amplitudes(nKnots + 2);
@@ -183,6 +183,8 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
+        if(useWiggleZ)
+            root << "_wigglez";
         root << "_";
         MnScanner scanner(nPar, like, 300, root.str());
 

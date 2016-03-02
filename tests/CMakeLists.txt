@@ -235,4 +235,3 @@ target_link_libraries(test_wigglez_like ${CLASSLIB})
 #target_link_libraries(test_knotted_nu_mn ${MULTINESTLIB})
 #target_link_libraries(test_knotted_nu_mn ${GSL_LIBRARIES})
 #target_link_libraries(test_knotted_nu_mn ${WMAP9LIB})
-
