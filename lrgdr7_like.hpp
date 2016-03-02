@@ -25,6 +25,7 @@ class LRGDR7Likelihood : public Math::CosmoLikelihood
 public:
     LRGDR7Likelihood(std::string path, Cosmo& cosmo, bool initializeCosmoAtEachStep = true) : initializeCosmoAtEachStep_(initializeCosmoAtEachStep)
     {
+        output_screen("LRGLike constructor Checkpoint 1" << std::endl);
         cosmo_ = &cosmo;
 
         // Number of points and kbands in the input files
@@ -58,6 +59,11 @@ public:
             if((i+2 > min_mpk_kbands_use_) && (i < max_mpk_kbands_use_))
                 datafile >> kh_[i-min_mpk_kbands_use_+1];
         datafile.close();
+
+        // Not sure about this. TODO
+        //double khmax = kh_[k_size_-1] * 2;
+        //khmax = 0.78557;
+        //cosmo_->setkMax(khmax, true);
 
         // Read in window functions
         n_size_ = max_mpk_points_use_ - min_mpk_points_use_ + 1; // 45
@@ -142,6 +148,7 @@ public:
 
     double likelihood()
     {
+        output_screen("Likelihood checkpoint 1" << std::endl);
         Math::Matrix<double> mpk_raw(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth_k(k_size_, 1, 0);
@@ -161,7 +168,7 @@ public:
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
-        if(!cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory))
+        if(!cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory, 0.78557))
             return 1e10;
 
         // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
@@ -295,6 +302,19 @@ public:
         for(int i = 0; i < nptstot_; ++i)
             LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0);
         LnLike = LnLike / (float)nptstot_;
+        if(LnLike == 0)
+        {
+            std::ofstream outfile("halopowerlrgtheory.txt");
+            for(auto const &point : halopowerlrgtheory)
+                outfile << point.first << ' ' << point.second << std::endl;
+            outfile.close();
+            std::vector<double> v;
+            params_->getAllParameters(v);
+            outfile.open("badparams.txt");
+            for(int i = 0; i < v.size(); ++i)
+                outfile << v[i] << std::endl;
+            outfile.close();
+        }
         check(LnLike != 0, "LRG LnLike LogZero error");
         LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
         //deltaL = (maxchisq - minchisq) * 0.5;

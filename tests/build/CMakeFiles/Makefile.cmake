@@ -107,5 +107,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/test_wigglez_like.dir/DependInfo.cmake"
+  "CMakeFiles/test_lrgdr7_like.dir/DependInfo.cmake"
   )

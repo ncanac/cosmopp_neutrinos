@@ -25,6 +25,15 @@ public:
         return th_->rs_d;   
     } 
 
+    void setkMax(double kMax, bool iskh=false)
+    {
+        double currentkMax = pt_->k_max_for_pk;
+        if(iskh)
+            pt_->k_max_for_pk = std::max(currentkMax, kMax*params_->getH());
+        else
+            pt_->k_max_for_pk = std::max(currentkMax, kMax);
+    }
+
     double getAngularDistance(double z)
     {
         double tau;
@@ -188,8 +197,9 @@ public:
         return pk;
     }
 
-    bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
+    bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps, double khmax)
     {
+        output_screen("getLRGHaloPs Checkpoint 1" << std::endl);
         check(init_, "need to initialize first");
         check(pt_->has_pk_matter, "matter ps not requested");
 
@@ -208,8 +218,20 @@ public:
         getMatterPs(zFAR, &P_lin_funcFAR);
         getMatterPs(0.0, &P_lin_funcz0);
 
+        output_screen("Checkpoint 2" << std::endl);
+        // Get value of k max and size of arrays
+        int n = 0;
+        Math::TableFunction<double, double>::iterator point;
+        point = P_lin_funcNEAR.begin();
+        while(point->first <= khmax*h && point != P_lin_funcNEAR.end())
+        {
+            ++point;
+            ++n;
+        }
+        ++n;
+        output_screen("point->first: " << point->first << std::endl);
+        check(point->first > khmax*h, "getMatterPs kmax too small");
         // Create some arrays to store the various power spectra and initialize them
-        int n = P_lin_funcNEAR.size();
         double kvals[n];
         double P_linNEAR[n];
         double P_linMID[n];
@@ -218,51 +240,83 @@ public:
         double lnP_linNEAR[n];
         double lnP_linMID[n];
         double lnP_linFAR[n];
-        int itemp = 0;
-        for(auto const &point : P_lin_funcNEAR)
+        //int itemp = 0;
+        //for(auto const &point : P_lin_funcNEAR)
+        point = P_lin_funcNEAR.begin();
+        kvals[0] = point->first;
+        P_linNEAR[0] = point->second;
+        lnP_linNEAR[0] = std::log(point->second);
+        for(int i = 1; i < n; ++i)
         {
-            kvals[itemp] = point.first;
-            double Pval = point.second;
-            P_linNEAR[itemp] = Pval;
-            lnP_linNEAR[itemp] = std::log(Pval);
-            ++itemp;
+            ++point;
+            kvals[i] = point->first;
+            double Pval = point->second;
+            P_linNEAR[i] = Pval;
+            lnP_linNEAR[i] = std::log(Pval);
+            //++itemp;
         }
-        check(n == itemp, "number of k values mismatch");
-        itemp = 0;
-        for(auto const &point : P_lin_funcMID)
+        output_screen("max kval = " << kvals[n-1] << std::endl);
+        //check(n == itemp, "number of k values mismatch");
+        check(kvals[n-1] > khmax*h, "k values mismatch");
+        //itemp = 0;
+        //for(auto const &point : P_lin_funcMID)
+        point = P_lin_funcMID.begin();
+        P_linMID[0] = point->second;
+        lnP_linMID[0] = std::log(point->second);
+        for(int i = 1; i < n; ++i)
         {
-            check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
-            double Pval = point.second;
-            P_linMID[itemp] = Pval;
-            lnP_linMID[itemp] = std::log(Pval);
-            ++itemp;
+            ++point;
+            check(std::abs(kvals[i] - point->first) < 0.01*kvals[i], "kvals should be identical");
+            double Pval = point->second;
+            P_linMID[i] = Pval;
+            lnP_linMID[i] = std::log(Pval);
+            //++itemp;
         }
-        check(n == itemp, "number of k values mismatch");
-        itemp = 0;
-        for(auto const &point : P_lin_funcFAR)
+        //check(n == itemp, "number of k values mismatch");
+        //itemp = 0;
+        //for(auto const &point : P_lin_funcFAR)
+        point = P_lin_funcFAR.begin();
+        P_linFAR[0] = point->second;
+        lnP_linFAR[0] = std::log(point->second);
+        for(int i = 1; i < n; ++i)
         {
-            check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
-            double Pval = point.second;
-            P_linFAR[itemp] = Pval;
-            lnP_linFAR[itemp] = std::log(Pval);
-            ++itemp;
+            ++point;
+            check(std::abs(kvals[i] - point->first) < 0.01*kvals[i], "kvals should be identical");
+            double Pval = point->second;
+            P_linFAR[i] = Pval;
+            lnP_linFAR[i] = std::log(Pval);
+            //++itemp;
         }
-        check(n == itemp, "number of k values mismatch");
-        itemp = 0;
-        for(auto const &point : P_lin_funcz0)
+        //check(n == itemp, "number of k values mismatch");
+        //itemp = 0;
+        //for(auto const &point : P_lin_funcz0)
+        point = P_lin_funcz0.begin();
+        P_linz0[0] = point->second;
+        for(int i = 1; i < n; ++i)
         {
-            check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
-            double Pval = point.second;
-            P_linz0[itemp] = Pval;
-            ++itemp;
+            ++point;
+            check(std::abs(kvals[i] - point->first) < 0.01*kvals[i], "kvals should be identical");
+            double Pval = point->second;
+            P_linz0[i] = Pval;
+            //++itemp;
         }
-        check(n == itemp, "number of k values mismatch");
+        //check(n == itemp, "number of k values mismatch");
+
+        // Check that all arrays are initialized
+        bool success = true;
+        for(int i = 0; i < n; ++i)
+        {
+            if(P_linNEAR[i] <= 0 || lnP_linNEAR[i] <= 0 || P_linMID[i] <= 0 || lnP_linMID[i] <= 0 ||
+                P_linFAR[i] <= 0 || lnP_linFAR[i] <= 0 || P_linz0[i] <= 0)
+                success = false;
+        }
+        check(success, "P_lin arrays not initialized properly");
 
         // extract getabstransferscale for NEAR, MID, and FAR
         const double khmindata = 0.0221168;
         std::vector<double> getabstransferscale(4);
         double getabstransferscaleNEAR, getabstransferscaleMID, getabstransferscaleFAR;
-        itemp = 0;
+        int itemp = 0;
         while(kvals[itemp]/h < khmindata && itemp < n)
             ++itemp;
         check(itemp < n, "khmindata > kvals");
@@ -288,6 +342,15 @@ public:
             P_nwFAR[i] = std::exp(lnP_nwFAR[i]);
         }
 
+        // Check that P_nw arrays are initialized
+        for(int i = 0; i < n; ++i)
+        {
+            if(P_nwNEAR[i] <= 0 || lnP_nwNEAR[i] <= 0 || P_nwMID[i] <= 0 || lnP_nwMID[i] <= 0 ||
+                P_nwFAR[i] <= 0 || lnP_nwFAR[i] <= 0)
+                success = false;
+        }
+        check(success, "P_nw arrays not initialized properly");
+
         // Apply halofit model for nonlinear structure growth to P_nw to generate P_halofitnw
         // Tau is the conformal time at z
         // k_nl is the value of k where power spectrum becomes nonlinear
@@ -297,27 +360,72 @@ public:
         double tau;
         double k_nl;
         // Apply halofit model to P_nw for NEAR
-        nonlinear_k_nl_at_z(br_, nl_, zNEAR, &k_nl);
-        background_tau_of_z(br_, zNEAR, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl);
+        StandardException exc;
+        bool halofit_success = true;
+        //nonlinear_k_nl_at_z(br_, nl_, zNEAR, &k_nl);
+        if(background_tau_of_z(br_, zNEAR, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwNEAR, P_halofitnwNEAR, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwNEAR[i] = P_nwNEAR[i];
+        }
         // Apply halofit model to P_nw for MID 
-        nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
-        background_tau_of_z(br_, zMID, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl);
+        //nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
+        if(background_tau_of_z(br_, zMID, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwMID, P_halofitnwMID, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwMID[i] = P_nwMID[i];
+        }
         // Apply halofit model to P_nw for FAR 
-        nonlinear_k_nl_at_z(br_, nl_, zFAR, &k_nl);
-        background_tau_of_z(br_, zFAR, &tau);
-        nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl);
+        //nonlinear_k_nl_at_z(br_, nl_, zFAR, &k_nl);
+        if(background_tau_of_z(br_, zFAR, &tau) == _FAILURE_)
+        {
+            std::stringstream exceptionStr;
+            exceptionStr << "CLASS: background_tau_of_z failed!" << std::endl << br_->error_message;
+            exc.set(exceptionStr.str());
+            throw exc;
+        }
+        if(nonlinear_halofit(pr_, br_, pm_, nl_, tau, P_nwFAR, P_halofitnwFAR, &k_nl) == _FAILURE_)
+        {
+            halofit_success = false;
+            for(int i = 0; i < n; ++i)
+                P_halofitnwFAR[i] = P_nwFAR[i];
+        }
 
-        // Make sure that P_halofitnw is positive everywhere
+        // Check that P_nw arrays are initialized
         for(int i = 0; i < n; ++i)
         {
             if(P_halofitnwNEAR[i] <= 0 || P_halofitnwMID[i] <= 0 || P_halofitnwFAR[i] <= 0)
-            {
-                output_screen("BADHALOFIT" << std::endl);
-                return false;
-            }
+                success = false;
         }
+        check(success, "P_halofitnw arrays not initialized properly");
+
+        // Make sure that P_halofitnw is positive everywhere
+        //for(int i = 0; i < n; ++i)
+        //{
+        //    if(P_halofitnwNEAR[i] <= 0 || P_halofitnwMID[i] <= 0 || P_halofitnwFAR[i] <= 0)
+        //    {
+        //        output_screen("BADHALOFIT" << std::endl);
+        //        return false;
+        //    }
+        //}
+        if(halofit_success)
+            output_screen("BADHALOFIT" << std::endl);
         output_screen("GOODHALOFIT" << std::endl);
 
         // Calculate factor r_halofit, the ratio of P_halofitnw to P_nw
@@ -363,6 +471,13 @@ public:
         std::vector<double> P_halo;
         // Calculate P_halo by calling LRGTheory_()
         LRGTheory_(root, kh, P_lin, P_nw, r_nwhalofit, getabstransferscale, kh_fid, P_halo);
+
+        for(int i = 0; i < P_halo.size(); ++i)
+        {
+            if(kh_fid[i] <= 0 || P_halo[i] <= 0)
+                success = false; 
+        }
+        check(success, "P_halo initialization error" << std::endl);
 
         // Store LRG power spectrum in table function
         ps->clear();
@@ -538,6 +653,7 @@ private:
             r_fid[0][i] = ratiodummy;
         }
         datafile.close();
+        check(kh_fid[k_size-1] < kh[kh.size()-1], "kh_fid > kh" << std::endl);
         // Read in MID model
         datafile.open(root + "models/lrgdr7fiducialmodel_matterpowerzMID.dat");
         // Skip first line
@@ -567,7 +683,7 @@ private:
         }
         datafile.close();
 
-        // Evaluate P_lin, P_nw, and r_nwhalofit as values of k_fid using cubic spline in log space
+        // Evaluate P_lin, P_nw, and r_nwhalofit at values of k_fid using cubic spline in log space
         // Note: Doing this in linear space doesn't seem to make a difference
         int n = P_lin[0].size();
         std::vector<double> lnP_lin(n);
@@ -587,16 +703,30 @@ private:
             }
             //Math::CubicSpline P_lin_spline(kh, P_lin[i]);
             //Math::CubicSpline P_nw_spline(kh, P_nw[i]);
-            Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
-            Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
-            Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
+            //Math::CubicSpline lnP_lin_spline(lnkh, lnP_lin);
+            //Math::CubicSpline lnP_nw_spline(lnkh, lnP_nw);
+            //Math::CubicSpline r_nwhalofit_spline(lnkh, r_nwhalofit[i]);
+            Math::TableFunction<double, double> lnP_lin_spline;
+            Math::TableFunction<double, double> lnP_nw_spline;
+            Math::TableFunction<double, double> r_nwhalofit_spline;
+            for(int j = 0; j < n; ++j)
+            {
+                lnP_lin_spline[lnkh[j]] = lnP_lin[j];
+                lnP_nw_spline[lnkh[j]] = lnP_nw[j];
+                r_nwhalofit_spline[lnkh[j]] = r_nwhalofit[i][j];
+            }
             for(int j = 0; j < k_size; ++j)
             {
                 //P_lin_atfid[i][j] = P_lin_spline.evaluate(kh_fid[j]);
-                P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(std::log(kh_fid[j])));
+                double lnkhj = std::log(kh_fid[j]);
+                check(lnkhj > lnkh[0] && lnkhj < lnkh[n-1], "lnkh: (" << lnkh[0] << ", " << lnkh[n-1] << "), requested value: " << lnkhj);
+                P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(lnkhj));
+                //P_lin_atfid[i][j] = std::exp(lnP_lin_spline.evaluate(std::log(kh_fid[j])));
                 //P_nw_atfid[i][j] = P_nw_spline.evaluate(kh_fid[j]);
-                P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(std::log(kh_fid[j])));
-                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(std::log(kh_fid[j]));
+                P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(lnkhj));
+                r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(lnkhj);
+                //P_nw_atfid[i][j] = std::exp(lnP_nw_spline.evaluate(std::log(kh_fid[j])));
+                //r_nwhalofit_atfid[i][j] = r_nwhalofit_spline.evaluate(std::log(kh_fid[j]));
             }
         }
 

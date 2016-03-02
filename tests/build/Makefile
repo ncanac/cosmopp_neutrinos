@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_wigglez_like
+# Target rules for targets named test_lrgdr7_like
 
 # Build rule for target.
-test_wigglez_like: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_wigglez_like
-.PHONY : test_wigglez_like
+test_lrgdr7_like: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_lrgdr7_like
+.PHONY : test_lrgdr7_like
 
 # fast build rule for target.
-test_wigglez_like/fast:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/build
-.PHONY : test_wigglez_like/fast
+test_lrgdr7_like/fast:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/build
+.PHONY : test_lrgdr7_like/fast
 
-test_wigglez_like.o: test_wigglez_like.cpp.o
+test_lrgdr7_like.o: test_lrgdr7_like.cpp.o
 
-.PHONY : test_wigglez_like.o
+.PHONY : test_lrgdr7_like.o
 
 # target to build an object file
-test_wigglez_like.cpp.o:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.o
-.PHONY : test_wigglez_like.cpp.o
+test_lrgdr7_like.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o
+.PHONY : test_lrgdr7_like.cpp.o
 
-test_wigglez_like.i: test_wigglez_like.cpp.i
+test_lrgdr7_like.i: test_lrgdr7_like.cpp.i
 
-.PHONY : test_wigglez_like.i
+.PHONY : test_lrgdr7_like.i
 
 # target to preprocess a source file
-test_wigglez_like.cpp.i:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.i
-.PHONY : test_wigglez_like.cpp.i
+test_lrgdr7_like.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.i
+.PHONY : test_lrgdr7_like.cpp.i
 
-test_wigglez_like.s: test_wigglez_like.cpp.s
+test_lrgdr7_like.s: test_lrgdr7_like.cpp.s
 
-.PHONY : test_wigglez_like.s
+.PHONY : test_lrgdr7_like.s
 
 # target to generate assembly for a file
-test_wigglez_like.cpp.s:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.s
-.PHONY : test_wigglez_like.cpp.s
+test_lrgdr7_like.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.s
+.PHONY : test_lrgdr7_like.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_wigglez_like"
-	@echo "... test_wigglez_like.o"
-	@echo "... test_wigglez_like.i"
-	@echo "... test_wigglez_like.s"
+	@echo "... test_lrgdr7_like"
+	@echo "... test_lrgdr7_like.o"
+	@echo "... test_lrgdr7_like.i"
+	@echo "... test_lrgdr7_like.s"
 .PHONY : help
 
 

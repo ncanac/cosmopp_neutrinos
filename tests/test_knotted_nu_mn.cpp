@@ -1,3 +1,5 @@
+#include <combined_like.hpp>
+
 #include <memory>
 #include <cstdlib>
 #include <string>
@@ -6,7 +8,6 @@
 
 #include <macros.hpp>
 #include <exception_handler.hpp>
-#include <combined_like.hpp>
 #include <power_spectrum.hpp>
 #include <neutrino_cosmology_params.hpp>
 #include <mn_scanner.hpp>
@@ -117,22 +118,10 @@ int main(int argc, char *argv[])
             output_screen("Using WiggleZ." << std::endl);
         }
 
-        const double h = 0.702;
-        const double omBH2 = 0.02262;
-        const double omCH2 = 0.1138;
-        const double tau = 0.088;
-        const double as = 2.1955e-9;
-        const double ns = 0.9655;
-        const double pivot = 0.05;
-
-        const double nEff = 3.046; 
-        const int nMassive = (varySumMNu ? 1 : 0);
-        const double sumMNu = 0.0;
-
         const double kMin = 0.8e-6;
         const double kMax = 1.2;
-        const double aMin = 2.8;
-        const double aMax = 4.0;
+        const double aMin = 2.7;
+        const double aMax = 4;
 
         std::vector<double> kVals(nKnots + 2);
         std::vector<double> amplitudes(nKnots + 2);
@@ -144,21 +133,16 @@ int main(int argc, char *argv[])
 
         for(int i = 1; i < kVals.size() - 1; ++i)
             kVals[i] = std::exp(std::log(kMin) + i * deltaLogK);
-
+    
+        const double as = 2.1955e-9;
+        const double ns = 0.9655;
+        const double pivot = 0.5;
         for(int i = 0; i < amplitudes.size(); ++i)
             amplitudes[i] = as * pow(kVals[i]/pivot, ns - 1.0);
 
-        SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
-
-//#ifdef COSMO_PLANCK_15
-//        PlanckLikelihood planckLike(true, true, true, false, true, false, false, false, 100);
-//#else
-//        ERROR NOT IMPLEMENTED;
-//#endif
-//        planckLike.setModelCosmoParams(&params);
-
-        //Cosmo cosmo;
-        //cosmo.preInitialize(5000, false, true, false, 0, 100, kMin/0.8, kMax/1.2);
+        int nMassive = (varySumMNu ? 1 : 0);
+        double nEff = 3.046, sumMNu = 0.0;
+        SplineWithDegenerateNeutrinosParams params(isLinear, 0.022, 0.12, 0.7, 0.1, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
         std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
         CombinedLikelihood like(datapath, usePlanck, useWMAP, useBAO, useLRG, useWiggleZ);
@@ -183,7 +167,8 @@ int main(int argc, char *argv[])
             root << "_bao";
         if(useLRG)
             root << "_lrg";
-        root << "_";
+        if(useWiggleZ)
+            root << "_wigglez";
         MnScanner scanner(nPar, like, 300, root.str());
 
         int paramIndex = 0;
@@ -196,7 +181,7 @@ int main(int argc, char *argv[])
         if(varyNEff)
             scanner.setParam(paramIndex++, "n_eff", 2.0, 5.0);
         if(varySumMNu)
-            scanner.setParam(paramIndex++, "sum_mnu", 0.001, 2.0);
+            scanner.setParam(paramIndex++, "sum_mnu", 0.01, 3.0);
 
         for(int i = 1; i < kVals.size() - 1; ++i)
         {
