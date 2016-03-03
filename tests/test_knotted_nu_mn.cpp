@@ -131,8 +131,8 @@ int main(int argc, char *argv[])
 
         const double kMin = 0.8e-6;
         const double kMax = 12.0;
-        const double aMin = -2;
-        const double aMax = 4;
+        const double aMin = 2.5;
+        const double aMax = 4.2;
 
         std::vector<double> kVals(nKnots + 2);
         std::vector<double> amplitudes(nKnots + 2);

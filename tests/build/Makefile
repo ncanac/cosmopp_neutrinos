@@ -111,44 +111,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_wigglez_like
+# Target rules for targets named test_knotted_nu_mn
 
 # Build rule for target.
-test_wigglez_like: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_wigglez_like
-.PHONY : test_wigglez_like
+test_knotted_nu_mn: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_knotted_nu_mn
+.PHONY : test_knotted_nu_mn
 
 # fast build rule for target.
-test_wigglez_like/fast:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/build
-.PHONY : test_wigglez_like/fast
+test_knotted_nu_mn/fast:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/build
+.PHONY : test_knotted_nu_mn/fast
 
-test_wigglez_like.o: test_wigglez_like.cpp.o
+sample.o: sample.f90.o
 
-.PHONY : test_wigglez_like.o
+.PHONY : sample.o
 
 # target to build an object file
-test_wigglez_like.cpp.o:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.o
-.PHONY : test_wigglez_like.cpp.o
+sample.f90.o:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.o
+.PHONY : sample.f90.o
 
-test_wigglez_like.i: test_wigglez_like.cpp.i
+sample.i: sample.f90.i
 
-.PHONY : test_wigglez_like.i
+.PHONY : sample.i
 
 # target to preprocess a source file
-test_wigglez_like.cpp.i:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.i
-.PHONY : test_wigglez_like.cpp.i
+sample.f90.i:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.i
+.PHONY : sample.f90.i
 
-test_wigglez_like.s: test_wigglez_like.cpp.s
+sample.s: sample.f90.s
 
-.PHONY : test_wigglez_like.s
+.PHONY : sample.s
 
 # target to generate assembly for a file
-test_wigglez_like.cpp.s:
-	$(MAKE) -f CMakeFiles/test_wigglez_like.dir/build.make CMakeFiles/test_wigglez_like.dir/test_wigglez_like.cpp.s
-.PHONY : test_wigglez_like.cpp.s
+sample.f90.s:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.s
+.PHONY : sample.f90.s
+
+test_knotted_nu_mn.o: test_knotted_nu_mn.cpp.o
+
+.PHONY : test_knotted_nu_mn.o
+
+# target to build an object file
+test_knotted_nu_mn.cpp.o:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.o
+.PHONY : test_knotted_nu_mn.cpp.o
+
+test_knotted_nu_mn.i: test_knotted_nu_mn.cpp.i
+
+.PHONY : test_knotted_nu_mn.i
+
+# target to preprocess a source file
+test_knotted_nu_mn.cpp.i:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.i
+.PHONY : test_knotted_nu_mn.cpp.i
+
+test_knotted_nu_mn.s: test_knotted_nu_mn.cpp.s
+
+.PHONY : test_knotted_nu_mn.s
+
+# target to generate assembly for a file
+test_knotted_nu_mn.cpp.s:
+	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.s
+.PHONY : test_knotted_nu_mn.cpp.s
 
 # Help Target
 help:
@@ -158,10 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_wigglez_like"
-	@echo "... test_wigglez_like.o"
-	@echo "... test_wigglez_like.i"
-	@echo "... test_wigglez_like.s"
+	@echo "... test_knotted_nu_mn"
+	@echo "... sample.o"
+	@echo "... sample.i"
+	@echo "... sample.s"
+	@echo "... test_knotted_nu_mn.o"
+	@echo "... test_knotted_nu_mn.i"
+	@echo "... test_knotted_nu_mn.s"
 .PHONY : help
 
 
