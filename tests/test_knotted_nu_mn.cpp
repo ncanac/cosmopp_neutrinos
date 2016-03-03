@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
         if(varyNEff)
             scanner.setParam(paramIndex++, "n_eff", 2.0, 5.0);
         if(varySumMNu)
-            scanner.setParam(paramIndex++, "sum_mnu", 0.001, 2.0);
+            scanner.setParam(paramIndex++, "sum_mnu", 0.01, 2.0);
 
         for(int i = 1; i < kVals.size() - 1; ++i)
         {
