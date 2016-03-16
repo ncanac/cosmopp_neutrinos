@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
     const double as = 3.094; // ln(10^10*as)
     const double pivot = 0.05;
 
-    const double kMin = 0.8e-6;
-    const double kMax = 1.2;
+    const double kMin = 1.0e-6;
+    const double kMax = 10;
     const double aMin = -2;
     const double aMax = 4;
 
@@ -71,14 +71,14 @@ int main(int argc, char *argv[])
     for(int i = 0; i < amplitudes.size(); ++i)
         amplitudes[i] = (std::exp(as)/1e10) * pow(kVals[i]/pivot, ns - 1.0);
 
-    int nMassive = (varySumMNu ? 1 : 0);
+    int nMassive = (varySumMNu ? 3 : 0);
     double nEff = 3.046; 
     double sumMNu = 0.0;
 
     SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
 
     Cosmo cosmo;
-    cosmo.preInitialize(3500, false, true, false);
+    cosmo.preInitialize(3500, false, true, false, 0, 100, 1e-6, 1.0);
 
     std::ifstream datafile(file_name);
     std::ofstream outfile(file_name.substr(0, file_name.size()-4) + "sigma8.txt");

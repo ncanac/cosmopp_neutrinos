@@ -266,10 +266,10 @@ public:
         check(n == itemp, "number of k values mismatch");
         itemp = 0;
 
-        //output_screen(P_lin_funcNEAR.evaluate(0.19982*h)*pow(h,3) << std::endl);
-        //output_screen(getPkatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
-        //output_screen(getPkNLatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
-        //output_screen(getNLRatioatk(0.19982*h, zNEAR) << std::endl);
+        output_screen(P_lin_funcNEAR.evaluate(0.19982*h)*pow(h,3) << std::endl);
+        output_screen(getPkatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
+        output_screen(getPkNLatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
+        output_screen(getNLRatioatk(0.19982*h, zNEAR) << std::endl);
 
         for(auto const &point : P_lin_funcMID)
         {
@@ -892,10 +892,10 @@ private:
         //powerscaletoz0[2] = pow(getabstransferscale2[3], 2.0)/pow(getabstransferscale2[2], 2.0);
         ///////////////////////////////
 
-        //output_screen("getabstransferscalez0: " << getabstransferscale[3] << std::endl);
-        //output_screen("getabstransferscaleNEAR: " << getabstransferscale[0] << std::endl);
-        //output_screen("getabstransferscaleMID: " << getabstransferscale[1] << std::endl);
-        //output_screen("getabstransferscaleFAR: " << getabstransferscale[2] << std::endl);
+        output_screen("getabstransferscalez0: " << getabstransferscale[3] << std::endl);
+        output_screen("getabstransferscaleNEAR: " << getabstransferscale[0] << std::endl);
+        output_screen("getabstransferscaleMID: " << getabstransferscale[1] << std::endl);
+        output_screen("getabstransferscaleFAR: " << getabstransferscale[2] << std::endl);
 
         // Calculate P_halo for NEAR, MID, and FAR using eq. 10 from BR09
         P_halo.resize(k_size);

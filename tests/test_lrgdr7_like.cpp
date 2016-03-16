@@ -1,5 +1,5 @@
 #include <macros.hpp>
-#include <combined_like.hpp>
+#include <lrgdr7_like.hpp>
 #include <neutrino_cosmology_params.hpp>
 
 int main(int argc, char *argv[])
@@ -39,16 +39,67 @@ int main(int argc, char *argv[])
     //}
 
     // Choose values of the cosmological parameters
-    const double h = 0.702;
-    const double omBH2 = 0.02262;
-    const double omCH2 = 0.1138;
-    const double tau = 0.088;
-    const double ns = 0.9655;
-    const double as = 2.1955e-9;
+    //const double h = 0.702;
+    //const double omBH2 = 0.02262;
+    //const double omCH2 = 0.1138;
+    //const double tau = 0.088;
+    //const double ns = 0.98;//9655;
+    //const double as = 2.1955e-9;
+    //const double pivot = 0.05;
+    //const int nMassive = 0;
+    //const double nEff = 3.046;
+    //const double sumMNu = 0.0;
+
+    // BR09 sample parameters
+    //const double h = 0.690167;
+    //const double omBH2 = 0.0225740;
+    ////const double omBH2 = 0.0280;
+    //const double omCH2 = 0.116197;
+    //const double tau = 0.090;
+    //const double ns = 0.959959;
+    //const double as = 2.15547e-9;
+    //const double pivot = 0.05;
+    //const int nMassive = 0;
+    //const double nEff = 3.04;
+    //const double sumMNu = 0.0;
+
+    // Planck 2015 parameters
+    const double h = 0.6727;
+    const double omBH2 = 0.02225;
+    //const double omCH2 = 0.1198;
+    const double omCH2 = 0.11443;
+    const double tau = 0.079;
+    const double ns = 0.9645;
+    const double as = 2.2065e-9;
     const double pivot = 0.05;
-    const int nMassive = 0;
+    const int nMassive = 1;
     const double nEff = 3.046;
-    const double sumMNu = 0.0;
+    const double sumMNu = 0.5;
+
+    // BR09 fiducial model parameters
+    //const double h = 0.701;
+    //const double omBH2 = 0.0227027;
+    //const double omCH2 = 0.114496;
+    //const double tau = 0.09;
+    //const double ns = 0.96;
+    //const double as = 21.76059e-10;
+    ////const double as = 20e-10;
+    //const double pivot = 0.05;
+    //const int nMassive = 0;
+    //const double nEff = 3.04;
+    //const double sumMNu = 0.0;
+
+    // Model with OmegaM = 0.25 used for computing a_scl
+    //const double h = 0.690167;
+    //const double omBH2 = 0.01937127431;
+    //const double omCH2 = 0.09971134765;
+    //const double tau = 0.09;
+    //const double ns = 0.959959;
+    //const double as = 2.15547e-9;
+    //const double pivot = 0.05;
+    //const int nMassive = 0;
+    //const double nEff = 3.04;
+    //const double sumMNu = 0.0;
 
     //const double kMin = 0.8e-6;
     //const double kMax = 1.2;
@@ -72,54 +123,36 @@ int main(int argc, char *argv[])
     //const double omBH2 = ;
     //const double omCH2 = ;
     //const double tau = ;
-    //std::vector<double> kVals {0.8e-6, std::exp(), std:exp(), 1.2};
-    //std::vector<double> amplitudes {std::exp()/1e10, std::exp()/1e10, std::exp()/1e10, std::exp()/1e10};
+    std::vector<double> kVals {1.0e-6, 10};
+    std::vector<double> amplitudes {3.23979378e-9, 1.82817332e-9};
     //const int nMassive = 1;
     //const double nEff = ;
     //const double sumMNu = ;
 
     // Does not work:
 
-    //const double h = 0.694561;
-    //const double omBH2 = 0.0246605;
-    //const double omCH2 = 0.115974;
-    //const double tau = 0.0650107;
-    //std::vector<double> kVals {0.8e-6, std::exp(-12.0654), std:exp(-5.22511), 1.2};
-    //std::vector<double> amplitudes {std::exp(3.30985)/1e10, std::exp(3.0059)/1e10, std::exp(3.19711)/1e10, std::exp(2.91141)/1e10};
-    //const int nMassive = 1;
-    //const double nEff = 3.99409;
-    //const double sumMNu = 0.796424;
-
-    //const double h = 0.695958;
-    //const double omBH2 = 0.0207389;
-    //const double omCH2 = 0.121261;
-    //const double tau = 0.0866845;
-    //std::vector<double> kVals {0.8e-6, std::exp(-5.38061), std:exp(-1.61162), 1.2};
-    //std::vector<double> amplitudes {std::exp(3.99405)/1e10, std::exp(3.1774)/1e10, std::exp(3.13913)/1e10, std::exp(3.64804)/1e10};
-    //const int nMassive = 1;
-    //const double nEff = 2.40787;
-    //const double sumMNu = 0.329839;
-
-    output_screen("Creating instance of cosmological parameters..." << std::endl);
+    //output_screen("Creating instance of cosmological parameters..." << std::endl);
     // Create cosmological params
-    LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
-    //SplineWithDegenerateNeutrinosParams params(isLinear, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, varyNEff, varySumMNu);
+    //LambdaCDMParams params(omBH2, omCH2, h, tau, ns, as, pivot);
+    SplineWithDegenerateNeutrinosParams params(true, omBH2, omCH2, h, tau, kVals, amplitudes, nEff, nMassive, sumMNu, false, false);
 
-    output_screen("Initializing LRG DR7 likelihood..." << std::endl);
+    //output_screen("Initializing LRG DR7 likelihood..." << std::endl);
     //Cosmo cosmo;
     //cosmo.preInitialize(3500, false, true, false, 0, 100, 1e-6, 1);
 
+    Cosmo cosmo;
+    cosmo.preInitialize(3500, false, true, false);
     std::string datapath = "/Volumes/Data1/ncanac/cosmopp_neutrinos";
 
     // Create likelihood
-    CombinedLikelihood lrgLike(datapath, false, false, false, true, false);
-    //LRGDR7Likelihood lrgLike(datapath, cosmo);
+    //CombinedLikelihood lrgLike(datapath, false, false, false, true, false);
+    LRGDR7Likelihood lrgLike(datapath, cosmo);
     
-    output_screen("Setting the cosmological parameters for likelihood calculation..." << std::endl);
+    //output_screen("Setting the cosmological parameters for likelihood calculation..." << std::endl);
     // Set the cosmological parameters
     lrgLike.setCosmoParams(params);
 
-    output_screen("Calculating the likelihood..." << std::endl);
+    //output_screen("Calculating the likelihood..." << std::endl);
     // Calculate likelihood
     double lnlike = lrgLike.likelihood();
 

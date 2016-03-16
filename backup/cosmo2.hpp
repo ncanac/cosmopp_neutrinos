@@ -96,7 +96,6 @@ public:
         check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
         const int kSize = sp_->ln_k_size;
         check(kSize > 0, "");
-        check(nl_->method == nl_halofit, "nonlinear corrections from halofit not requested");
     
         // To be done better
         check(kSize < 10000, "");
@@ -105,13 +104,6 @@ public:
         double outTotNL[100000];
         double tau;
         double k_nl;
-
-        //double *pk_l;
-        //double *pk_nl;
-        //double *lnk_l;
-        //double *lnpk_l;
-        //double *ddlnpk_l;
-
     
         if(spectra_pk_at_z(br_, sp_, linear, z, outTot, outIc) == _FAILURE_)
         {
@@ -196,32 +188,6 @@ public:
         return pk;
     }
 
-    double getPkatk(double k, double z)
-    {
-        StandardException exc;
-        check(init_, "need to initialize first");
-        check(pt_->has_pk_matter, "matter ps not requested");
-        check(z >= 0 && z <= sp_->z_max_pk, "invalid z = " << z);
-
-        double pk;
-        double *pk_ic = (double*) calloc(sp_->ic_ic_size[sp_->index_md_scalars], sizeof(double));
-    
-        if(spectra_pk_at_k_and_z(br_, pm_, sp_, k, z, &pk, pk_ic) == _FAILURE_)
-        {
-            std::stringstream exceptionStr;
-            exceptionStr << "CLASS: spectra_pk_nl_at_k_and_z failed!" << std::endl << sp_->error_message;
-            exc.set(exceptionStr.str());
-            throw exc;
-        }
-
-        return pk;
-    }
-
-    double getNLRatioatk(double k, double z)
-    {
-        return getPkNLatk(k, z) / getPkatk(k, z);
-    }
-
     bool getLRGHaloPs(std::string root, Math::TableFunction<double, double>* ps)
     {
         StandardException exc;
@@ -265,12 +231,6 @@ public:
         }
         check(n == itemp, "number of k values mismatch");
         itemp = 0;
-
-        //output_screen(P_lin_funcNEAR.evaluate(0.19982*h)*pow(h,3) << std::endl);
-        //output_screen(getPkatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
-        //output_screen(getPkNLatk(0.19982*h, zNEAR)*pow(h,3) << std::endl);
-        //output_screen(getNLRatioatk(0.19982*h, zNEAR) << std::endl);
-
         for(auto const &point : P_lin_funcMID)
         {
             check(std::abs(kvals[itemp] - point.first) < 0.1*kvals[itemp], "kvals should be identical");
@@ -299,6 +259,120 @@ public:
             ++itemp;
         }
         check(n == itemp, "number of k values mismatch");
+
+        // Populate sparse vectors with k values from original BR09 LRG code
+        // Read in k values
+        int n_sparse = 106;
+        double kvals_sparse[n];
+        std::ifstream infile("/Users/ncanac/lrgdr7like/models/kvals_sparse.txt");
+        for(int i = 0; i < 106; ++i)
+        {
+            infile >> kvals_sparse[i];
+        }
+        infile.close();
+
+        check(kvals_sparse[0] > kvals[0], "kmin outside range");
+        check(kvals_sparse[n_sparse-1] < kvals[n-1], "max outside range");
+
+        // Initialize linear power spectrum vectors
+        double P_linNEAR_sparse[n_sparse];
+        double P_linMID_sparse[n_sparse];
+        double P_linFAR_sparse[n_sparse];
+        double P_linz0_sparse[n_sparse];
+        double lnP_linNEAR_sparse[n_sparse];
+        double lnP_linMID_sparse[n_sparse];
+        double lnP_linFAR_sparse[n_sparse];
+        for(int i = 0; i < n_sparse; ++i)
+        {
+            P_linNEAR_sparse[i] = P_lin_funcNEAR.evaluate(kvals_sparse[i]);
+            lnP_linNEAR_sparse[i] = std::log(P_linNEAR_sparse[i]);
+            P_linMID_sparse[i] = P_lin_funcMID.evaluate(kvals_sparse[i]);
+            lnP_linMID_sparse[i] = std::log(P_linMID_sparse[i]);
+            P_linFAR_sparse[i] = P_lin_funcFAR.evaluate(kvals_sparse[i]);
+            lnP_linFAR_sparse[i] = std::log(P_linFAR_sparse[i]);
+            P_linz0_sparse[i] = P_lin_funcz0.evaluate(kvals_sparse[i]);
+        }
+
+        // extract getabstransferscale for NEAR, MID, and FAR
+        const double khmindata = 0.02;
+        std::vector<double> getabstransferscale(4);
+        itemp = 0;
+        while(kvals_sparse[itemp]/h < khmindata && itemp < n_sparse)
+            ++itemp;
+        check(itemp < n_sparse, "khmindata > kvals");
+        getabstransferscale[0] = sqrt(P_linNEAR_sparse[itemp]*pow(h, 3.0));        
+        getabstransferscale[1] = sqrt(P_linMID_sparse[itemp]*pow(h, 3.0));        
+        getabstransferscale[2] = sqrt(P_linFAR_sparse[itemp]*pow(h, 3.0));        
+        getabstransferscale[3] = sqrt(P_linz0_sparse[itemp]*pow(h, 3.0));        
+
+        // Compute smoothed power spectrum using basis spline
+        double lnP_nwNEAR_sparse[n_sparse];
+        double lnP_nwMID_sparse[n_sparse];
+        double lnP_nwFAR_sparse[n_sparse];
+        double P_nwNEAR_sparse[n_sparse];
+        double P_nwMID_sparse[n_sparse];
+        double P_nwFAR_sparse[n_sparse];
+        //for(int i = 0; i < n; ++i)
+        //    output_screen(kvals[i] << " " << lnP_linNEAR[i] << std::endl);
+        dopksmoothbspline_(kvals_sparse, lnP_linNEAR_sparse, lnP_nwNEAR_sparse, n_sparse);
+        //for(int i = 0; i < n; ++i)
+        //    output_screen(kvals[i] << " " << lnP_nwNEAR[i] << std::endl);
+        dopksmoothbspline_(kvals_sparse, lnP_linMID_sparse, lnP_nwMID_sparse, n_sparse);
+        dopksmoothbspline_(kvals_sparse, lnP_linFAR_sparse, lnP_nwFAR_sparse, n_sparse);
+        for(int i = 0; i < n; ++i)
+        {
+            P_nwNEAR_sparse[i] = std::exp(lnP_nwNEAR_sparse[i]);
+            P_nwMID_sparse[i] = std::exp(lnP_nwMID_sparse[i]);
+            P_nwFAR_sparse[i] = std::exp(lnP_nwFAR_sparse[i]);
+        }
+
+        std::ofstream outfile("P_lin_nw_sparsezNEAR.txt");
+        for(int i = 0; i < n_sparse; ++i)
+            outfile << kvals_sparse[i] << " " << P_linNEAR_sparse[i] << " " << P_nwNEAR_sparse[i] << std::endl;
+        outfile.close();
+        outfile.open("P_lin_nw_sparsezMID.txt");
+        for(int i = 0; i < n_sparse; ++i)
+            outfile << kvals_sparse[i] << " " << P_linMID_sparse[i] << " " << P_nwMID_sparse[i] << std::endl;
+        outfile.close();
+        outfile.open("P_lin_nw_sparsezFAR.txt");
+        for(int i = 0; i < n_sparse; ++i)
+            outfile << kvals_sparse[i] << " " << P_linFAR_sparse[i] << " " << P_nwFAR_sparse[i] << std::endl;
+        outfile.close();
+
+        // Initialize interpolating function for P_nw
+        Math::TableFunction<double, double> lnP_nwNEAR_sparse_spline;
+        Math::TableFunction<double, double> lnP_nwMID_sparse_spline;
+        Math::TableFunction<double, double> lnP_nwFAR_sparse_spline;
+        for(int i = 0; i < n_sparse; ++i)
+        {
+            lnP_nwNEAR_sparse_spline[std::log(kvals_sparse[i])] = lnP_nwNEAR_sparse[i];
+            lnP_nwMID_sparse_spline[std::log(kvals_sparse[i])] = lnP_nwMID_sparse[i];
+            lnP_nwFAR_sparse_spline[std::log(kvals_sparse[i])] = lnP_nwFAR_sparse[i];
+        }
+
+        // Now initialize full smoothed power spectrum by interpolating
+        // For values outside interpolating range, just use linear power spectrum
+        //double lnP_nwNEAR[n];
+        //double lnP_nwMID[n];
+        //double lnP_nwFAR[n];
+        double P_nwNEAR[n];
+        double P_nwMID[n];
+        double P_nwFAR[n];
+        for(int i = 0; i < n; ++i)
+        {
+            if(kvals[i] > kvals_sparse[0] && kvals[i] < kvals_sparse[n_sparse-1])
+            {
+                P_nwNEAR[i] = std::exp(lnP_nwNEAR_sparse_spline[std::log(kvals[i])]);
+                P_nwMID[i] = std::exp(lnP_nwMID_sparse_spline[std::log(kvals[i])]);
+                P_nwFAR[i] = std::exp(lnP_nwFAR_sparse_spline[std::log(kvals[i])]);
+            }
+            else
+            {
+                P_nwNEAR[i] = P_linNEAR[i];
+                P_nwMID[i] = P_linMID[i];
+                P_nwFAR[i] = P_linFAR[i];
+            }
+        }
 
         // Debugging: Read in P_lin from CAMB for fiducial model
         //int n = 106;
@@ -357,43 +431,43 @@ public:
 
         // extract getabstransferscale for NEAR, MID, and FAR
         //const double khmindata = 0.0221168;
-        const double khmindata = 0.02;
-        std::vector<double> getabstransferscale(4);
-        double getabstransferscaleNEAR, getabstransferscaleMID, getabstransferscaleFAR;
-        itemp = 0;
-        while(kvals[itemp]/h < khmindata && itemp < n)
-            ++itemp;
-        check(itemp < n, "khmindata > kvals");
-        getabstransferscale[0] = sqrt(P_linNEAR[itemp]*pow(h, 3.0));        
-        getabstransferscale[1] = sqrt(P_linMID[itemp]*pow(h, 3.0));        
-        getabstransferscale[2] = sqrt(P_linFAR[itemp]*pow(h, 3.0));        
-        getabstransferscale[3] = sqrt(P_linz0[itemp]*pow(h, 3.0));        
+        //const double khmindata = 0.02;
+        //std::vector<double> getabstransferscale(4);
+        //double getabstransferscaleNEAR, getabstransferscaleMID, getabstransferscaleFAR;
+        //itemp = 0;
+        //while(kvals[itemp]/h < khmindata && itemp < n)
+        //    ++itemp;
+        //check(itemp < n, "khmindata > kvals");
+        //getabstransferscale[0] = sqrt(P_linNEAR[itemp]*pow(h, 3.0));        
+        //getabstransferscale[1] = sqrt(P_linMID[itemp]*pow(h, 3.0));        
+        //getabstransferscale[2] = sqrt(P_linFAR[itemp]*pow(h, 3.0));        
+        //getabstransferscale[3] = sqrt(P_linz0[itemp]*pow(h, 3.0));        
 
-        //std::ofstream outfile("P_linFAR.txt");
-        //for(int i = 0; i < n; ++i)
-        //    outfile << kvals[i] << " " << P_linFAR[i]*pow(h, 3) << std::endl;
-        //outfile.close();
+        ////std::ofstream outfile("P_linFAR.txt");
+        ////for(int i = 0; i < n; ++i)
+        ////    outfile << kvals[i] << " " << P_linFAR[i]*pow(h, 3) << std::endl;
+        ////outfile.close();
        
-        // Initialize P_nw (linear power spectrum with "no wiggles") based on spline method used in BR09        
-        double lnP_nwNEAR[n];
-        double lnP_nwMID[n];
-        double lnP_nwFAR[n];
-        double P_nwNEAR[n];
-        double P_nwMID[n];
-        double P_nwFAR[n];
+        //// Initialize P_nw (linear power spectrum with "no wiggles") based on spline method used in BR09        
+        //double lnP_nwNEAR[n];
+        //double lnP_nwMID[n];
+        //double lnP_nwFAR[n];
+        //double P_nwNEAR[n];
+        //double P_nwMID[n];
+        //double P_nwFAR[n];
+        ////for(int i = 0; i < n; ++i)
+        ////    output_screen(kvals[i] << " " << lnP_linNEAR[i] << std::endl);
+        //dopksmoothbspline_(kvals, lnP_linNEAR, lnP_nwNEAR, n);
+        ////for(int i = 0; i < n; ++i)
+        ////    output_screen(kvals[i] << " " << lnP_nwNEAR[i] << std::endl);
+        //dopksmoothbspline_(kvals, lnP_linMID, lnP_nwMID, n);
+        //dopksmoothbspline_(kvals, lnP_linFAR, lnP_nwFAR, n);
         //for(int i = 0; i < n; ++i)
-        //    output_screen(kvals[i] << " " << lnP_linNEAR[i] << std::endl);
-        dopksmoothbspline_(kvals, lnP_linNEAR, lnP_nwNEAR, n);
-        //for(int i = 0; i < n; ++i)
-        //    output_screen(kvals[i] << " " << lnP_nwNEAR[i] << std::endl);
-        dopksmoothbspline_(kvals, lnP_linMID, lnP_nwMID, n);
-        dopksmoothbspline_(kvals, lnP_linFAR, lnP_nwFAR, n);
-        for(int i = 0; i < n; ++i)
-        {
-            P_nwNEAR[i] = std::exp(lnP_nwNEAR[i]);
-            P_nwMID[i] = std::exp(lnP_nwMID[i]);
-            P_nwFAR[i] = std::exp(lnP_nwFAR[i]);
-        }
+        //{
+        //    P_nwNEAR[i] = std::exp(lnP_nwNEAR[i]);
+        //    P_nwMID[i] = std::exp(lnP_nwMID[i]);
+        //    P_nwFAR[i] = std::exp(lnP_nwFAR[i]);
+        //}
 
         //for(int i = 0; i < n; ++i)
         //    output_screen(kvals[i] << " " << P_nwNEAR[i] << std::endl);
@@ -429,8 +503,8 @@ public:
                 P_halofitnwNEAR[i] = P_nwNEAR[i];
         }
 
-        //for(int i = 0; i < n; ++i)
-        //    output_screen(kvals[i]/h << " " << P_halofitnwNEAR[i] << std::endl);
+        for(int i = 0; i < n; ++i)
+            output_screen(kvals[i]/h << " " << P_halofitnwNEAR[i] << std::endl);
 
         // Apply halofit model to P_nw for MID 
         //nonlinear_k_nl_at_z(br_, nl_, zMID, &k_nl);
@@ -892,10 +966,10 @@ private:
         //powerscaletoz0[2] = pow(getabstransferscale2[3], 2.0)/pow(getabstransferscale2[2], 2.0);
         ///////////////////////////////
 
-        //output_screen("getabstransferscalez0: " << getabstransferscale[3] << std::endl);
-        //output_screen("getabstransferscaleNEAR: " << getabstransferscale[0] << std::endl);
-        //output_screen("getabstransferscaleMID: " << getabstransferscale[1] << std::endl);
-        //output_screen("getabstransferscaleFAR: " << getabstransferscale[2] << std::endl);
+        output_screen("getabstransferscalez0: " << getabstransferscale[3] << std::endl);
+        output_screen("getabstransferscaleNEAR: " << getabstransferscale[0] << std::endl);
+        output_screen("getabstransferscaleMID: " << getabstransferscale[1] << std::endl);
+        output_screen("getabstransferscaleFAR: " << getabstransferscale[2] << std::endl);
 
         // Calculate P_halo for NEAR, MID, and FAR using eq. 10 from BR09
         P_halo.resize(k_size);

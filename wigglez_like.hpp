@@ -71,9 +71,9 @@ public:
 
         // Decide which bandpowers to use, min to max
         min_mpk_points_use_ = 3;
-        max_mpk_points_use_ = 30;
-        min_mpk_kbands_use_ = 1;
-        max_mpk_kbands_use_ = 100;
+        max_mpk_points_use_ = 20;
+        min_mpk_kbands_use_ = 5;
+        max_mpk_kbands_use_ = 10;
 
         k_size_ = max_mpk_kbands_use_ - min_mpk_kbands_use_ + 1;
         int mu_size = 1;
@@ -89,6 +89,8 @@ public:
         datafile.close();
 
         double khmax = kh_[k_size_-1];
+        
+        //output_screen("khmax: " << khmax << std::endl);
 
         // Read in data file containing fiducial power spectrum
         // to determine k_fid_size and ifid_discard. These are
@@ -172,6 +174,7 @@ public:
                     std::istringstream iss(line);
                     double khdum, klodum, khidum, pdum, errdum, dum;
                     iss >> khdum >> klodum >> khidum >> pdum >> errdum >> dum;
+                    //output_screen("khdum: " << khdum << std::endl);
                     P_obs_(i_region, i-min_mpk_points_use_+1) = pdum;
                     P_err_(i_region, i-min_mpk_points_use_+1) = errdum;
                 }

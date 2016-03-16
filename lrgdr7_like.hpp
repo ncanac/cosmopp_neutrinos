@@ -19,6 +19,67 @@
 
 #include <gsl/gsl_bspline.h>
 #include <gsl/gsl_multifit.h>
+#include <gsl/gsl_integration.h>
+
+// Used for calculating a_scl
+namespace eta_integration
+{
+    struct eta_params
+    {
+        double Om; // Matter density
+        double Or; // Radiation density
+        double Ok; // Curvature
+        double Ol; // Dark energy
+        double w; // Dark energy equation of state
+    };
+
+    double eta(double a, void *params)
+    {
+        eta_params &pars = *reinterpret_cast<eta_params *>(params);
+        if(a == 0.0)
+        {
+            return 0.0;
+        }
+        else
+        {
+            return 1.0/sqrt(pars.Ol*pow(a, 1-3*pars.w) + pars.Ok*pow(a, 2) + pars.Om*a + pars.Or);
+        }
+    }
+
+    double compute_z_eta(double Or, double Ok, double Ol, double w, double z)
+    {
+        eta_params params;
+        params.Om = 1.0 - Or - Ok - Ol;
+        params.Or = Or;
+        params.Ok = Ok;
+        params.Ol = Ol;
+        params.w = w;
+
+        gsl_function eta_F;
+        eta_F.function = &eta;
+        eta_F.params = reinterpret_cast<void *>(&params);
+
+        double result, error;
+        size_t neval;
+
+        const double epsabs = 1e-4;
+        const double epsrel = 1e-4;
+        const double amin = 1/(1+z);
+        const double amax = 1; 
+
+        int code = gsl_integration_qng(&eta_F, amin, amax, epsabs, epsrel, &result, &error, &neval);
+
+        if(code)
+        {
+            output_screen("WARNING: Integration of eta failed" << std::endl);
+            return 0;
+        }
+        else
+        {
+            return result;
+        }
+    }
+}
 
 class LRGDR7Likelihood : public Math::CosmoLikelihood
 {
@@ -142,6 +203,7 @@ public:
 
     double likelihood()
     {
+        //output_screen("Sigma8: " << cosmo_->sigma8() << std::endl);
         Math::Matrix<double> mpk_raw(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth(k_size_, 1, 0);
         Math::Matrix<double> mpk_Pth_k(k_size_, 1, 0);
@@ -153,24 +215,58 @@ public:
 
         // Compute scaling factor
         const double zeffDR7 = 0.312782; // redshift at which a_scl is evaluated.
-        const double dvfid = 1211.884207; // value of dv for fiducial model
-        double da = cosmo_->getAngularDistance(zeffDR7);
-        double dr = zeffDR7 / cosmo_->getHubble(zeffDR7);
-        double dv = pow(da*da*(1 + zeffDR7)*(1 + zeffDR7)*dr,1.0/3.0);
-        double a_scl = dv/dvfid; // Value in BR09 example model = 1.012937
+        //double da = cosmo_->getAngularDistance(zeffDR7);
+        //double dr = zeffDR7 / cosmo_->getHubble(zeffDR7);
+        //double dv = pow(da*da*(1 + zeffDR7)*(1 + zeffDR7)*dr, 1.0/3.0);
+
+        double Om = params_->getOmM();
+        const double Or = 0.0; // radiation is negligible
+        const double Ok = 0.0; // flat
+        double Ol = params_->getOmLambda();
+        const double w = -1.0;
+        double Hrelinv = 1/sqrt(Ol*pow(1+zeffDR7, (3*(1+w))) + Ok*pow(1+zeffDR7, 2) + Om*pow(1+zeffDR7, 3) + Or*pow(1+zeffDR7, 4));
+        double eta = eta_integration::compute_z_eta(Or, Ok, Ol, w, zeffDR7);
+        //double a_angular = pow(Om/0.25, -0.065); // Approximation
+        Om = 0.25;
+        Ol = 0.75;
+        double Hrelinv0 = 1/sqrt(Ol*pow(1+zeffDR7, (3*(1+w))) + Ok*pow(1+zeffDR7, 2) + Om*pow(1+zeffDR7, 3) + Or*pow(1+zeffDR7, 4));
+        double eta0 = eta_integration::compute_z_eta(Or, Ok, Ol, w, zeffDR7);
+        double a_radial = Hrelinv/Hrelinv0;
+        double a_angular = eta/eta0;
+        //output_screen("a_radial: " << a_radial << std::endl);
+        //output_screen("a_angular: " << a_angular << std::endl);
+        double a_scl = 1/pow(a_angular*a_angular * a_radial, 1.0/3.0);
+
+        //output_screen("a_scl: " << a_scl << std::endl);
 
         // Initialize halopowerlrgtheory
         Math::TableFunction<double, double> halopowerlrgtheory;
+        Math::TableFunction<double, double> lnhalopowerlrgtheory;
         if(!cosmo_->getLRGHaloPs(root_, &halopowerlrgtheory))
-            return 1e10;
+            return 1e10; // return a large value for the likelihood if getLRGHaloPs() fails
+        for(auto const &point : halopowerlrgtheory)
+        {
+            lnhalopowerlrgtheory[std::log(point.first)] = std::log(point.second);
+        }
 
-        // Calculate kh_scaled and mpk_raw, which is just halopowerlrgtheory evaluated at kh_scaled*h
+        // Calculate kh_scaled and mpk_raw by interpolating halopowerlrgtheory in log space
         // mpk_raw is in units of h^3 Mpc^3
         for(int i = 0; i < k_size_; ++i)
         {
             kh_scaled(i, 0) = a_scl * kh_[i];
-            mpk_raw(i, 0) = halopowerlrgtheory.evaluate(kh_scaled(i, 0)) / pow(a_scl, 3.0);
+            mpk_raw(i, 0) = std::exp(lnhalopowerlrgtheory.evaluate(std::log(kh_scaled(i, 0)))) / pow(a_scl, 3.0);
         }
+
+        //std::ifstream infile("mpk_raw_model.txt");
+        //for(int i = 0; i < k_size_; ++i)
+        //    infile >> kh_scaled(i, 0) >> mpk_raw(i, 0);
+        //infile.close();
+
+        std::ofstream outfile("mpk_raw_cpp.txt");
+        for(int i = 0; i < k_size_; ++i)
+            outfile << kh_scaled(i, 0) << " " << mpk_raw(i, 0) << std::endl;
+            //outfile << kh_[i] << " " << mpk_raw(i, 0) << std::endl;
+        outfile.close();
 
         // Initialize
         mpk_Pth = mpk_raw;
@@ -188,6 +284,7 @@ public:
         Math::Matrix<double> zerowindowfxn_transpose = zerowindowfxn_.getTranspose();
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth, &tempMat);
         double sumzerow_Pth = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
+        //output_screen("sumzerw_Pth: " << sumzerow_Pth << std::endl);
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k, &tempMat);
         double sumzerow_Pth_k = tempMat(0, 0) / zerowindowfxnsubdatnorm_;
         Math::Matrix<double>::multiplyMatrices(zerowindowfxn_transpose, mpk_Pth_k2, &tempMat);
@@ -215,6 +312,7 @@ public:
         double sumDT_k2 = tempMat(0, 0);
         Math::Matrix<double>::multiplyMatrices(P_obs_transpose, covth_zerowin, &tempMat);
         double sumDT_zerowin = tempMat(0, 0);
+        //output_screen("sumDD sumDT: " << sumDD << " " << sumDT << std::endl); 
 
         Math::Matrix<double> mpk_WPth_transpose = mpk_WPth.getTranspose();
         Math::Matrix<double> mpk_WPth_k_transpose = mpk_WPth_k.getTranspose();
@@ -239,6 +337,8 @@ public:
         double sumTT_k2_zerowin = tempMat(0, 0);
         Math::Matrix<double>::multiplyMatrices(zerowindowfxnsubdat_.getTranspose(), covth_zerowin, &tempMat);
         double sumTT_zerowin_zerowin = tempMat(0, 0);
+
+        //output_screen("sumTT sumTT_zerowin sumTT_zerowin_zerowin: " << sumTT << " " << sumTT_zerowin << " " << sumTT_zerowin_zerowin << std::endl);
 
         // Nuisance parameter integration
         std::vector<double> chisq(nptstot_);
@@ -287,14 +387,22 @@ public:
             }
         }
 
+        //output_screen("sumDT_tot sumTT_tot: " << sumDT_tot << " " << sumTT_tot << std::endl);
+        //output_screen("minchisqtheoryampminnuis: " << minchisqtheoryampminnuis << std::endl);
+        //output_screen("minchisqtheoryampnonuis: " << minchisqtheoryampnonuis << std::endl);
+
         // Numerically marginalize over a1, a2 now using values stored in chisq
         minchisq = *std::min_element(std::begin(chisqmarg), std::end(chisqmarg));
         maxchisq = *std::max_element(std::begin(chisqmarg), std::end(chisqmarg));
+
+        //output_screen("minchisq: " << minchisq << std::endl);
+        //output_screen("maxchisq: " << maxchisq << std::endl);
 
         double LnLike = 0;
         for(int i = 0; i < nptstot_; ++i)
             LnLike += std::exp(-1.0*(chisqmarg[i]-minchisq)/2.0);
         LnLike = LnLike / (float)nptstot_;
+        //output_screen("LnLike: " << LnLike << std::endl);
         check(LnLike != 0, "LRG LnLike LogZero error");
         LnLike = -1.0*std::log(LnLike) + minchisq/2.0;
         //deltaL = (maxchisq - minchisq) * 0.5;

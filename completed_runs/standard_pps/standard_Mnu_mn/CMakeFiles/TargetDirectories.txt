@@ -1,1 +1,0 @@
-/Volumes/Data1/ncanac/cosmopp_neutrinos/runs/standard_Mnu_mn_build/CMakeFiles/run_standard_mn.dir

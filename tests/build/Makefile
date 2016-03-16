@@ -111,71 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_knotted_nu_mn
+# Target rules for targets named test_lrgdr7_like
 
 # Build rule for target.
-test_knotted_nu_mn: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_knotted_nu_mn
-.PHONY : test_knotted_nu_mn
+test_lrgdr7_like: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_lrgdr7_like
+.PHONY : test_lrgdr7_like
 
 # fast build rule for target.
-test_knotted_nu_mn/fast:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/build
-.PHONY : test_knotted_nu_mn/fast
+test_lrgdr7_like/fast:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/build
+.PHONY : test_lrgdr7_like/fast
 
-sample.o: sample.f90.o
+test_lrgdr7_like.o: test_lrgdr7_like.cpp.o
 
-.PHONY : sample.o
-
-# target to build an object file
-sample.f90.o:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.o
-.PHONY : sample.f90.o
-
-sample.i: sample.f90.i
-
-.PHONY : sample.i
-
-# target to preprocess a source file
-sample.f90.i:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.i
-.PHONY : sample.f90.i
-
-sample.s: sample.f90.s
-
-.PHONY : sample.s
-
-# target to generate assembly for a file
-sample.f90.s:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/sample.f90.s
-.PHONY : sample.f90.s
-
-test_knotted_nu_mn.o: test_knotted_nu_mn.cpp.o
-
-.PHONY : test_knotted_nu_mn.o
+.PHONY : test_lrgdr7_like.o
 
 # target to build an object file
-test_knotted_nu_mn.cpp.o:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.o
-.PHONY : test_knotted_nu_mn.cpp.o
+test_lrgdr7_like.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.o
+.PHONY : test_lrgdr7_like.cpp.o
 
-test_knotted_nu_mn.i: test_knotted_nu_mn.cpp.i
+test_lrgdr7_like.i: test_lrgdr7_like.cpp.i
 
-.PHONY : test_knotted_nu_mn.i
+.PHONY : test_lrgdr7_like.i
 
 # target to preprocess a source file
-test_knotted_nu_mn.cpp.i:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.i
-.PHONY : test_knotted_nu_mn.cpp.i
+test_lrgdr7_like.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.i
+.PHONY : test_lrgdr7_like.cpp.i
 
-test_knotted_nu_mn.s: test_knotted_nu_mn.cpp.s
+test_lrgdr7_like.s: test_lrgdr7_like.cpp.s
 
-.PHONY : test_knotted_nu_mn.s
+.PHONY : test_lrgdr7_like.s
 
 # target to generate assembly for a file
-test_knotted_nu_mn.cpp.s:
-	$(MAKE) -f CMakeFiles/test_knotted_nu_mn.dir/build.make CMakeFiles/test_knotted_nu_mn.dir/test_knotted_nu_mn.cpp.s
-.PHONY : test_knotted_nu_mn.cpp.s
+test_lrgdr7_like.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lrgdr7_like.dir/build.make CMakeFiles/test_lrgdr7_like.dir/test_lrgdr7_like.cpp.s
+.PHONY : test_lrgdr7_like.cpp.s
 
 # Help Target
 help:
@@ -185,13 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_knotted_nu_mn"
-	@echo "... sample.o"
-	@echo "... sample.i"
-	@echo "... sample.s"
-	@echo "... test_knotted_nu_mn.o"
-	@echo "... test_knotted_nu_mn.i"
-	@echo "... test_knotted_nu_mn.s"
+	@echo "... test_lrgdr7_like"
+	@echo "... test_lrgdr7_like.o"
+	@echo "... test_lrgdr7_like.i"
+	@echo "... test_lrgdr7_like.s"
 .PHONY : help
 
 
